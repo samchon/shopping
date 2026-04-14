@@ -19,7 +19,7 @@ Before designing screens, make the SDK surface clear.
 
 - Scaffold the app.
 - Install the SDK.
-- Read `../@samchon/shopping-api/src/**/*.ts` carefully.
+- Read `../api/src/**/*.ts` files carefully (`@samchon/shopping-api`).
 - Read the comments too.
 - Treat code, types, and comments as the source of truth.
 - Map the main APIs, DTOs, and constraints before designing the UI.

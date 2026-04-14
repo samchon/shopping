@@ -1,13 +1,3 @@
-import "server-only";
-
-import type {
-  IShoppingCartCommodity,
-} from "@samchon/shopping-api/lib/structures/shoppings/orders/IShoppingCartCommodity";
-import type { IShoppingOrder } from "@samchon/shopping-api/lib/structures/shoppings/orders/IShoppingOrder";
-import type { IShoppingOrderPublish } from "@samchon/shopping-api/lib/structures/shoppings/orders/IShoppingOrderPublish";
-import type { IShoppingSale } from "@samchon/shopping-api/lib/structures/shoppings/sales/IShoppingSale";
-import type { IShoppingSaleSnapshot } from "@samchon/shopping-api/lib/structures/shoppings/sales/IShoppingSaleSnapshot";
-
 import type {
   CartItemView,
   CartSelectionView,
@@ -25,6 +15,15 @@ import type {
   SessionView,
   SnapshotView,
 } from "@/lib/shopping/types";
+import "server-only";
+
+import type {
+  IShoppingCartCommodity,
+  IShoppingOrder,
+  IShoppingOrderPublish,
+  IShoppingSale,
+  IShoppingSaleSnapshot,
+} from "@samchon/shopping-api";
 
 function sellerNameOf(seller: {
   member?: { nickname: string } | null;
@@ -53,10 +52,7 @@ function categoryTrailsOf(categories: IShoppingSale["categories"]) {
   return uniqueStrings(categories.map(categoryTrailOf));
 }
 
-export function mapMoney(price: {
-  nominal: number;
-  real: number;
-}): MoneyView {
+export function mapMoney(price: { nominal: number; real: number }): MoneyView {
   return {
     nominal: price.nominal,
     real: price.real,
@@ -159,10 +155,11 @@ function deriveDetailPriceRange(
   units: IShoppingSale["units"],
 ): ProductDetailView["priceRange"] {
   const minimumScope = units.filter((unit) => unit.required);
-  const lowestStocks = (minimumScope.length ? minimumScope : units).map((unit) =>
-    unit.stocks.reduce((candidate, stock) =>
-      stock.price.real < candidate.price.real ? stock : candidate,
-    ),
+  const lowestStocks = (minimumScope.length ? minimumScope : units).map(
+    (unit) =>
+      unit.stocks.reduce((candidate, stock) =>
+        stock.price.real < candidate.price.real ? stock : candidate,
+      ),
   );
   const highestStocks = units.map((unit) =>
     unit.stocks.reduce((candidate, stock) =>
@@ -196,7 +193,9 @@ function resolveDetailPriceRange(
   };
 }
 
-function mapProductOptions(unit: IShoppingSale["units"][number]): ProductOptionView[] {
+function mapProductOptions(
+  unit: IShoppingSale["units"][number],
+): ProductOptionView[] {
   return unit.options.map((option) =>
     option.type === "select"
       ? {
@@ -227,8 +226,12 @@ function mapUnit(unit: IShoppingSale["units"][number]): ProductUnitView {
   const prices = unit.stocks.map((stock) => stock.price.real);
   const lowest = Math.min(...prices);
   const highest = Math.max(...prices);
-  const matchingLowest = unit.stocks.find((stock) => stock.price.real === lowest)!;
-  const matchingHighest = unit.stocks.find((stock) => stock.price.real === highest)!;
+  const matchingLowest = unit.stocks.find(
+    (stock) => stock.price.real === lowest,
+  )!;
+  const matchingHighest = unit.stocks.find(
+    (stock) => stock.price.real === highest,
+  )!;
 
   return {
     id: unit.id,
@@ -244,7 +247,10 @@ function mapUnit(unit: IShoppingSale["units"][number]): ProductUnitView {
       id: stock.id,
       name: stock.name,
       price: mapMoney(stock.price),
-      availableQuantity: Math.max(stock.inventory.income - stock.inventory.outcome, 0),
+      availableQuantity: Math.max(
+        stock.inventory.income - stock.inventory.outcome,
+        0,
+      ),
       choices: stock.choices.map((choice) => ({
         optionId: choice.option_id,
         candidateId: choice.candidate_id,
@@ -253,7 +259,9 @@ function mapUnit(unit: IShoppingSale["units"][number]): ProductUnitView {
   };
 }
 
-export function mapSnapshot(snapshot: IShoppingSaleSnapshot.ISummary): SnapshotView {
+export function mapSnapshot(
+  snapshot: IShoppingSaleSnapshot.ISummary,
+): SnapshotView {
   return {
     id: snapshot.snapshot_id,
     latest: snapshot.latest,
@@ -308,7 +316,9 @@ function mergeCategoryCounts(
   }
 }
 
-export function mapSectionsFromSales(sales: IShoppingSale.ISummary[]): SectionFilter[] {
+export function mapSectionsFromSales(
+  sales: IShoppingSale.ISummary[],
+): SectionFilter[] {
   const counts = new Map<string, SectionFilter>();
 
   for (const sale of sales) {
