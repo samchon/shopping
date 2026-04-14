@@ -34,8 +34,9 @@ jobs:
         run: pnpm run build
 
       - name: Create DB Schema
+        working-directory: packages/backend
         run: pnpm run schema postgres root
 
       - name: Test Backend-Server
         working-directory: packages/backend
-        run: pnpm run test --reset true
+        run: pnpm run test --reset true 
