@@ -31,7 +31,7 @@ jobs:
 
       - name: Compile Backend-Server
         working-directory: packages/backend
-        run: pnpm run build
+        run: pnpm run build:main
 
       - name: Create DB Schema
         working-directory: packages/backend
