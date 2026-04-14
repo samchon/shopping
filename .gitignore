@@ -1,0 +1,9 @@
+bin/
+dist/
+lib/
+node_modules/
+
+.env
+.npmrc
+*.DS_Store
+*.log

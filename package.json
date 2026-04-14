@@ -1,0 +1,17 @@
+{
+  "name": "@samchon/shopping",
+  "version": "0.1.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Jeongho Nam",
+  "license": "MIT",
+  "packageManager": "pnpm@10.10.0",
+  "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+    "prettier": "^3.3.2",
+    "prettier-plugin-prisma": "^5.0.0"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "name": "@samchon/shopping-api",
+  "version": "0.18.0",
+  "description": "API for shopping",
+  "main": "src/index.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/samchon/shopping"
+  },
+  "author": "AUTHOR",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/samchon/shopping/issues"
+  },
+  "homepage": "https://github.com/samchon/shopping#readme",
+  "dependencies": {
+    "@nestia/fetcher": "catalog:samchon",
+    "typia": "catalog:samchon",
+    "uuid": "catalog:utils"
+  },
+  "include": [
+    "lib",
+    "package.json",
+    "swagger.json",
+    "LICENSE",
+    "README.md"
+  ]
+}
