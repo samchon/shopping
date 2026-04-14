@@ -11,7 +11,7 @@ Well-designed backend + Nestia-generated SDK = AI automates the frontend.
 
 Clear domain modeling, strong API contracts, careful backend documentation, and a typed SDK gave AI enough context to build the customer app, seller console, admin console, and tests.
 
-This repository proves the point: with a Nestia-generated SDK and a single prompt ([`CLAUDE.md`](packages/frontend/CLAUDE.md)), AI built an enterprise-scale shopping mall frontend in one shot.
+This repository proves the point: with a Nestia-generated SDK and a single prompt ([`CLAUDE.md`](packages/frontend/CLAUDE.md)), a well-designed backend was enough to produce an enterprise-scale shopping mall frontend in one shot.
 
 - [Nestia](https://nestia.io): SDK generator for NestJS
 - [Nestia Editor](https://nestia.io/editor): SDK generator from Swagger/OpenAPI
@@ -98,6 +98,6 @@ For manual setup without Docker:
 
 AutoBe generates backends with exceptionally strong API design and documentation.
 
-If you want AI to automate not only the frontend but the backend too, it is an easy recommendation.
+If this repository shows what AI can do with a great backend, AutoBe points at the next step: generating that backend too.
 
 - [AutoBe Repository](https://github.com/wrtnlabs/autobe)
