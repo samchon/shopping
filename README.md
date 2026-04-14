@@ -9,8 +9,6 @@
 
 Well-designed backend + Nestia-generated SDK = AI automates the frontend.
 
-Clear domain modeling, strong API contracts, careful backend documentation, and a typed SDK gave AI enough context to build the customer app, seller console, admin console, and tests.
-
 This repository proves the point: with a Nestia-generated SDK and a single prompt ([`CLAUDE.md`](packages/frontend/CLAUDE.md)), a well-designed backend was enough to produce an enterprise-scale shopping mall frontend in one shot.
 
 - [Nestia](https://nestia.io): SDK generator for NestJS
@@ -18,41 +16,43 @@ This repository proves the point: with a Nestia-generated SDK and a single promp
 
 ## 2. Screenshots
 
+What came out was not a toy page, but a full shopping mall surface.
+
 ### 2.1. Customer
 
-| Customer Home<br><sub>Catalog and discovery</sub> | Product Page<br><sub>Product options and purchase flow</sub> |
+| Customer Home<br><sub>Catalog</sub> | Product Page<br><sub>Options and purchase flow</sub> |
 |------|---------------|
 | ![Home](images/home.png) | ![Detail](images/detail.png) |
 
-| Cart<br><sub>Draft checkout before publish</sub> | Orders<br><sub>Customer order timeline</sub> |
+| Cart<br><sub>Draft checkout</sub> | Orders<br><sub>Order timeline</sub> |
 |------|--------|
 | ![Cart](images/cart.png) | ![Orders](images/orders.png) |
 
-| Checkout<br><sub>Order pricing and publish step</sub> | Wallet<br><sub>Balances, tickets, and coupons</sub> |
+| Checkout<br><sub>Pricing and publish step</sub> | Wallet<br><sub>Balances and coupons</sub> |
 |--------------|--------|
 | ![Order Detail](images/order-detail.png) | ![Wallet](images/wallet.png) |
 
-| Delivery<br><sub>Published order and shipping state</sub> | Wallet History<br><sub>Deposit and mileage activity</sub> |
+| Delivery<br><sub>Shipping state</sub> | Wallet History<br><sub>Deposit and mileage activity</sub> |
 |-------------------|-----------------|
 | ![Order Delivery](images/order-delivery.png) | ![Wallet History](images/wallet-history.png) |
 
-| Coupon Tickets<br><sub>Claimed discounts in wallet</sub> | Orders Feed<br><sub>Purchase history and order states</sub> |
+| Coupon Tickets<br><sub>Claimed discounts</sub> | Orders Feed<br><sub>Purchase history and states</sub> |
 |---------------|-------------|
 | ![Wallet Coupons](images/wallet-coupons.png) | ![Orders](images/orders.png) |
 
 ### 2.2. Seller
 
-| Seller Console<br><sub>Revenue, sales, and paid orders</sub> | Sale Studio<br><sub>Replicate an existing sale</sub> |
+| Seller Console<br><sub>Revenue, sales, paid orders</sub> | Sale Studio<br><sub>Replicate a sale</sub> |
 |---------|--------|
 | ![Seller](images/seller.png) | ![Seller Studio](images/seller-studio.png) |
 
-| Paid Orders<br><sub>Recent buyers and totals</sub> | Sales Board<br><sub>Live and paused sale inventory</sub> |
+| Paid Orders<br><sub>Recent buyers and totals</sub> | Sales Board<br><sub>Live and paused inventory</sub> |
 |-------------|-------------|
 | ![Seller Orders](images/seller-orders.png) | ![Seller Sales](images/seller-sales.png) |
 
 ### 2.3. Administrator
 
-| Admin Console<br><sub>Sales, revenue, and coupons</sub> | Policy Board<br><sub>Commerce rules and operations</sub> |
+| Admin Console<br><sub>Sales, revenue, coupons</sub> | Policy Board<br><sub>Commerce rules</sub> |
 |---------|----------|
 | ![Admin](images/admin.png) | ![Admin Policies](images/admin-policies.png) |
 
@@ -98,6 +98,6 @@ For manual setup without Docker:
 
 AutoBe generates backends with exceptionally strong API design and documentation.
 
-If this repository shows what AI can do with a great backend, AutoBe points at the next step: generating that backend too.
+If this repository shows frontend automation from a great backend, AutoBe is the next step.
 
 - [AutoBe Repository](https://github.com/wrtnlabs/autobe)
