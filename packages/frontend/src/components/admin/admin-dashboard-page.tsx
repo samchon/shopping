@@ -1,6 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import Link from "next/link";
 import {
   BadgeDollarSign,
   Gift,
@@ -255,11 +256,16 @@ export function AdminDashboardPage() {
                 just passive summaries.
               </p>
             </div>
-            <div className="rounded-3xl bg-secondary px-4 py-3 text-right">
-              <p className="text-sm text-muted-foreground">Admin joined</p>
-              <p className="text-lg font-semibold">
-                {formatDateTime(session.admin?.joinedAt ?? null)}
-              </p>
+            <div className="flex flex-col items-stretch gap-3 lg:items-end">
+              <div className="rounded-3xl bg-secondary px-4 py-3 text-right">
+                <p className="text-sm text-muted-foreground">Admin joined</p>
+                <p className="text-lg font-semibold">
+                  {formatDateTime(session.admin?.joinedAt ?? null)}
+                </p>
+              </div>
+              <Button asChild variant="outline">
+                <Link href="/admin/policies">Open policy board</Link>
+              </Button>
             </div>
           </div>
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import Link from "next/link";
 import {
   BarChart3,
   CalendarClock,
@@ -402,11 +403,16 @@ export function SellerDashboardPage() {
                 controls on top of the summary endpoints.
               </p>
             </div>
-            <div className="rounded-3xl bg-secondary px-4 py-3 text-right">
-              <p className="text-sm text-muted-foreground">Seller joined</p>
-              <p className="text-lg font-semibold">
-                {formatDateTime(session.seller?.joinedAt ?? null)}
-              </p>
+            <div className="flex flex-col items-stretch gap-3 lg:items-end">
+              <div className="rounded-3xl bg-secondary px-4 py-3 text-right">
+                <p className="text-sm text-muted-foreground">Seller joined</p>
+                <p className="text-lg font-semibold">
+                  {formatDateTime(session.seller?.joinedAt ?? null)}
+                </p>
+              </div>
+              <Button asChild variant="outline">
+                <Link href="/seller/studio">Open studio board</Link>
+              </Button>
             </div>
           </div>
 

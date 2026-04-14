@@ -1,16 +1,15 @@
-import "server-only";
-
-import ShoppingApi from "@samchon/shopping-api";
-
 import type {
   AddToCartPayload,
   CartView,
   UpdateCartPayload,
 } from "@/lib/shopping/types";
 import { mapCartItem, mapSession } from "@/server/shopping/mappers";
+import "server-only";
+
+import ShoppingApi from "@samchon/shopping-api";
 
 import { ApiRouteError } from "./errors";
-import { requireCurrentCustomer, type SessionContext } from "./session";
+import { type SessionContext, requireCurrentCustomer } from "./session";
 
 export async function getCartData(context: SessionContext): Promise<CartView> {
   const customer = await requireCurrentCustomer(context);
@@ -40,7 +39,10 @@ export async function addCartItem(
   context: SessionContext,
 ) {
   if (!payload.selections.length) {
-    throw new ApiRouteError(400, "Choose at least one unit before adding to cart.");
+    throw new ApiRouteError(
+      400,
+      "Choose at least one unit before adding to cart.",
+    );
   }
 
   await ShoppingApi.functional.shoppings.customers.carts.commodities.create(

@@ -45,4 +45,4 @@ Browser automation was executed with Playwright after the production build compl
 ## Artifacts
 
 - UI review screenshots were written to `.artifacts/ui-review/` during the final pass and are ignored by Git.
-- README screenshots were refreshed under `public/readme/`, including seller studio and admin policy authoring views.
+- README screenshots were refreshed under the repo-root `images/` directory, including the new seller studio and admin policy board views.

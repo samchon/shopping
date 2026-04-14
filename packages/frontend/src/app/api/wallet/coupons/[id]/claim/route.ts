@@ -1,8 +1,7 @@
-import type { NextRequest } from "next/server";
-
 import { toErrorResponse } from "@/server/shopping/errors";
 import { jsonWithCustomerSession } from "@/server/shopping/session";
 import { claimCoupon } from "@/server/shopping/wallet";
+import type { NextRequest } from "next/server";
 
 export async function POST(
   request: NextRequest,

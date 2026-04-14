@@ -1,5 +1,4 @@
 # `@samchon/shopping-frontend`
-[![Guide Documents](https://img.shields.io/badge/guide-documents-forestgreen)](./wiki/README.md)
 
 Frontend package of the [`@samchon/shopping`](https://github.com/samchon/shopping) monorepo — a Next.js storefront built on the auto-generated SDK (`@samchon/shopping-api`).
 

@@ -389,7 +389,9 @@ function issueTokens(state: SimulationState, customer: CustomerRecord) {
     token: {
       access,
       refresh,
-      expired_at: new Date(Date.parse(issuedAt) + 3 * 60 * 60 * 1000).toISOString(),
+      expired_at: new Date(
+        Date.parse(issuedAt) + 3 * 60 * 60 * 1000,
+      ).toISOString(),
       refreshable_until: new Date(
         Date.parse(issuedAt) + 7 * 24 * 60 * 60 * 1000,
       ).toISOString(),
@@ -416,10 +418,12 @@ function pageOf<T>(items: T[], input: { page?: number; limit?: number } = {}) {
   const records = items.length;
   const limit =
     input.limit && input.limit > 0 ? input.limit : records > 0 ? records : 1;
-  const current = input.limit && input.limit > 0 ? Math.max(input.page ?? 1, 1) : 1;
+  const current =
+    input.limit && input.limit > 0 ? Math.max(input.page ?? 1, 1) : 1;
   const pages = records === 0 ? 0 : Math.ceil(records / limit);
   const start = input.limit && input.limit > 0 ? (current - 1) * limit : 0;
-  const data = input.limit && input.limit > 0 ? items.slice(start, start + limit) : items;
+  const data =
+    input.limit && input.limit > 0 ? items.slice(start, start + limit) : items;
 
   return {
     pagination: {
@@ -484,7 +488,9 @@ function assignMemberToCustomer(
   member: MemberRecord,
 ) {
   customer.member = makeMemberProjection(member);
-  customer.citizen = member.citizen ? structuredClone(member.citizen) : customer.citizen;
+  customer.citizen = member.citizen
+    ? structuredClone(member.citizen)
+    : customer.citizen;
 }
 
 function requireSeller(state: SimulationState, headers: Headers) {
@@ -542,7 +548,11 @@ function createSimulationState(): SimulationState {
     couponTickets: new Map(),
   };
 
-  const createCategory = (code: string, name: string, parentCode: string | null) => {
+  const createCategory = (
+    code: string,
+    name: string,
+    parentCode: string | null,
+  ) => {
     const parent = parentCode ? state.categories.get(parentCode) : null;
     const category: CategoryNode = {
       id: nextRuntimeId(state),
@@ -743,7 +753,9 @@ function createSimulationState(): SimulationState {
         primary: false,
         required: false,
         options: [],
-        stocks: [createSimpleStock(state, "3-year coverage", 129_000, 89_000, 30)],
+        stocks: [
+          createSimpleStock(state, "3-year coverage", 129_000, 89_000, 30),
+        ],
       },
     ],
     snapshots: [
@@ -1078,10 +1090,14 @@ function createSimulationState(): SimulationState {
     closed_at: null,
   });
 
-  macbook.snapshots.find((snapshot) => snapshot.latest)!.snapshot_id = macbook.snapshotId;
-  iphone.snapshots.find((snapshot) => snapshot.latest)!.snapshot_id = iphone.snapshotId;
-  ipad.snapshots.find((snapshot) => snapshot.latest)!.snapshot_id = ipad.snapshotId;
-  watch.snapshots.find((snapshot) => snapshot.latest)!.snapshot_id = watch.snapshotId;
+  macbook.snapshots.find((snapshot) => snapshot.latest)!.snapshot_id =
+    macbook.snapshotId;
+  iphone.snapshots.find((snapshot) => snapshot.latest)!.snapshot_id =
+    iphone.snapshotId;
+  ipad.snapshots.find((snapshot) => snapshot.latest)!.snapshot_id =
+    ipad.snapshotId;
+  watch.snapshots.find((snapshot) => snapshot.latest)!.snapshot_id =
+    watch.snapshotId;
 
   state.sales = [macbook, iphone, ipad, watch];
   state.salesById = new Map(state.sales.map((sale) => [sale.id, sale]));
@@ -1253,7 +1269,9 @@ function categoryInvert(
     parent_id: category.parent_id,
     name: category.name,
     created_at: category.created_at,
-    parent: category.parent_code ? categoryInvert(state, category.parent_code) : null,
+    parent: category.parent_code
+      ? categoryInvert(state, category.parent_code)
+      : null,
   };
 }
 
@@ -1269,7 +1287,9 @@ function unitPriceRange(unit: UnitFixture) {
   const lowest = Math.min(...prices);
   const highest = Math.max(...prices);
   const lowestStock = unit.stocks.find((stock) => stock.price.real === lowest)!;
-  const highestStock = unit.stocks.find((stock) => stock.price.real === highest)!;
+  const highestStock = unit.stocks.find(
+    (stock) => stock.price.real === highest,
+  )!;
 
   return {
     lowest: lowestStock.price,
@@ -1300,8 +1320,8 @@ function cloneSaleFixture(
   },
 ) {
   const section =
-    state.sales.find((sale) => sale.section.code === input.sectionCode)?.section ??
-    source.section;
+    state.sales.find((sale) => sale.section.code === input.sectionCode)
+      ?.section ?? source.section;
   const createdAt = advanceTimestamp(state, 9);
   const optionIdMap = new Map<string, string>();
   const candidateIdMap = new Map<string, string>();
@@ -1356,7 +1376,8 @@ function cloneSaleFixture(
         id: nextRuntimeId(state),
         choices: stock.choices.map((choice) => ({
           optionId: optionIdMap.get(choice.optionId) ?? choice.optionId,
-          candidateId: candidateIdMap.get(choice.candidateId) ?? choice.candidateId,
+          candidateId:
+            candidateIdMap.get(choice.candidateId) ?? choice.candidateId,
         })),
       })),
     })),
@@ -1364,8 +1385,18 @@ function cloneSaleFixture(
       createSnapshot(
         state,
         input.title,
-        structuredClone(source.snapshots.at(-1)?.price_range.lowest ?? { nominal: 0, real: 0 }),
-        structuredClone(source.snapshots.at(-1)?.price_range.highest ?? { nominal: 0, real: 0 }),
+        structuredClone(
+          source.snapshots.at(-1)?.price_range.lowest ?? {
+            nominal: 0,
+            real: 0,
+          },
+        ),
+        structuredClone(
+          source.snapshots.at(-1)?.price_range.highest ?? {
+            nominal: 0,
+            real: 0,
+          },
+        ),
         true,
       ),
     ],
@@ -1428,9 +1459,13 @@ function toApiDepositHistory(
   customer: CustomerRecord,
   history: DepositHistoryRecord,
 ) {
-  const deposit = state.depositMetas.find((meta) => meta.id === history.source_id);
+  const deposit = state.depositMetas.find(
+    (meta) => meta.id === history.source_id,
+  );
   if (!deposit || !customer.citizen) {
-    throw new Error("Deposit history projection requires citizen and metadata.");
+    throw new Error(
+      "Deposit history projection requires citizen and metadata.",
+    );
   }
   return {
     id: history.id,
@@ -1448,9 +1483,13 @@ function toApiMileageHistory(
   customer: CustomerRecord,
   history: MileageHistoryRecord,
 ) {
-  const mileage = state.mileageMetas.find((meta) => meta.id === history.source_id);
+  const mileage = state.mileageMetas.find(
+    (meta) => meta.id === history.source_id,
+  );
   if (!mileage || !customer.citizen) {
-    throw new Error("Mileage history projection requires citizen and metadata.");
+    throw new Error(
+      "Mileage history projection requires citizen and metadata.",
+    );
   }
   return {
     id: history.id,
@@ -1464,7 +1503,9 @@ function toApiMileageHistory(
 }
 
 function toApiCoupon(state: SimulationState, coupon: CouponRecord) {
-  const issued = [...state.couponTickets.values()].flat().filter((ticket) => ticket.coupon_id === coupon.id).length;
+  const issued = [...state.couponTickets.values()]
+    .flat()
+    .filter((ticket) => ticket.coupon_id === coupon.id).length;
   return {
     id: coupon.id,
     designer: {
@@ -1497,7 +1538,9 @@ function toApiCouponTicket(
   customer: CustomerRecord,
   ticket: CouponTicketRecord,
 ) {
-  const coupon = state.coupons.find((candidate) => candidate.id === ticket.coupon_id);
+  const coupon = state.coupons.find(
+    (candidate) => candidate.id === ticket.coupon_id,
+  );
   if (!coupon) {
     throw new Error(`Unknown coupon ticket target: ${ticket.coupon_id}`);
   }
@@ -1538,7 +1581,9 @@ function toApiOption(option: OptionFixture) {
 
 function toApiSaleSummary(state: SimulationState, sale: SaleFixture) {
   const currentSnapshot =
-    sale.snapshots.find((snapshot) => snapshot.snapshot_id === sale.snapshotId) ??
+    sale.snapshots.find(
+      (snapshot) => snapshot.snapshot_id === sale.snapshotId,
+    ) ??
     sale.snapshots.find((snapshot) => snapshot.latest) ??
     sale.snapshots[0];
 
@@ -1636,11 +1681,18 @@ function toApiChannel(state: SimulationState) {
   };
 }
 
-function computeCommodityPrice(commodity: CartCommodityRecord, sale: SaleFixture): Price {
+function computeCommodityPrice(
+  commodity: CartCommodityRecord,
+  sale: SaleFixture,
+): Price {
   return commodity.selections.reduce<Price>(
     (acc, selection) => {
-      const unit = sale.units.find((candidate) => candidate.id === selection.unit_id);
-      const stock = unit?.stocks.find((candidate) => candidate.id === selection.stock_id);
+      const unit = sale.units.find(
+        (candidate) => candidate.id === selection.unit_id,
+      );
+      const stock = unit?.stocks.find(
+        (candidate) => candidate.id === selection.stock_id,
+      );
       if (!stock) {
         return acc;
       }
@@ -1654,7 +1706,10 @@ function computeCommodityPrice(commodity: CartCommodityRecord, sale: SaleFixture
   );
 }
 
-function toApiCommodity(state: SimulationState, commodity: CartCommodityRecord) {
+function toApiCommodity(
+  state: SimulationState,
+  commodity: CartCommodityRecord,
+) {
   const sale = state.salesById.get(commodity.sale_id);
   if (!sale) {
     throw new Error(`Unknown sale: ${commodity.sale_id}`);
@@ -1662,8 +1717,12 @@ function toApiCommodity(state: SimulationState, commodity: CartCommodityRecord) 
 
   const units = commodity.selections
     .map((selection) => {
-      const unit = sale.units.find((candidate) => candidate.id === selection.unit_id);
-      const stock = unit?.stocks.find((candidate) => candidate.id === selection.stock_id);
+      const unit = sale.units.find(
+        (candidate) => candidate.id === selection.unit_id,
+      );
+      const stock = unit?.stocks.find(
+        (candidate) => candidate.id === selection.stock_id,
+      );
       if (!unit || !stock) {
         return null;
       }
@@ -1689,7 +1748,11 @@ function toApiCommodity(state: SimulationState, commodity: CartCommodityRecord) 
                   (item) => item.id === choice.candidateId,
                 );
                 return {
-                  id: stableChoiceId([stock.id, choice.optionId, choice.candidateId]),
+                  id: stableChoiceId([
+                    stock.id,
+                    choice.optionId,
+                    choice.candidateId,
+                  ]),
                   option: option
                     ? {
                         id: option.id,
@@ -1709,11 +1772,16 @@ function toApiCommodity(state: SimulationState, commodity: CartCommodityRecord) 
               }),
               ...unit.options
                 .filter(
-                  (option): option is FieldOptionFixture => option.kind === "field",
+                  (option): option is FieldOptionFixture =>
+                    option.kind === "field",
                 )
                 .filter((option) => option.id in selection.values)
                 .map((option) => ({
-                  id: stableChoiceId([stock.id, option.id, String(selection.values[option.id])]),
+                  id: stableChoiceId([
+                    stock.id,
+                    option.id,
+                    String(selection.values[option.id]),
+                  ]),
                   option: {
                     id: option.id,
                     type:
@@ -1831,7 +1899,10 @@ function createGuestCustomer(
         ? payload.href
         : "http://127.0.0.1:3000/",
     referrer: typeof payload.referrer === "string" ? payload.referrer : null,
-    ip: typeof payload.ip === "string" && payload.ip.length ? payload.ip : "127.0.0.1",
+    ip:
+      typeof payload.ip === "string" && payload.ip.length
+        ? payload.ip
+        : "127.0.0.1",
     created_at: advanceTimestamp(state, 7),
     member: null,
     citizen: null,
@@ -1895,24 +1966,28 @@ function selectionKey(commodity: CartCommodityRecord) {
   );
 }
 
-function bySort(sort: string | undefined, left: SaleFixture, right: SaleFixture) {
+function bySort(
+  sort: string | undefined,
+  left: SaleFixture,
+  right: SaleFixture,
+) {
   switch (sort) {
     case "+sale.content.title":
       return left.title.localeCompare(right.title);
     case "+sale.price_range.lowest.real":
       return (
-        left.snapshots.find((snapshot) => snapshot.latest)?.price_range.lowest.real ??
-        0
-      ) -
-        (right.snapshots.find((snapshot) => snapshot.latest)?.price_range.lowest.real ??
-          0);
+        (left.snapshots.find((snapshot) => snapshot.latest)?.price_range.lowest
+          .real ?? 0) -
+        (right.snapshots.find((snapshot) => snapshot.latest)?.price_range.lowest
+          .real ?? 0)
+      );
     case "-sale.price_range.lowest.real":
       return (
-        right.snapshots.find((snapshot) => snapshot.latest)?.price_range.lowest.real ??
-        0
-      ) -
-        (left.snapshots.find((snapshot) => snapshot.latest)?.price_range.lowest.real ??
-          0);
+        (right.snapshots.find((snapshot) => snapshot.latest)?.price_range.lowest
+          .real ?? 0) -
+        (left.snapshots.find((snapshot) => snapshot.latest)?.price_range.lowest
+          .real ?? 0)
+      );
     case "-sale.updated_at":
     default:
       return right.updated_at.localeCompare(left.updated_at);
@@ -1931,7 +2006,10 @@ async function routeSimulation(url: URL, init?: RequestInit) {
       return Response.json(createGuestCustomer(state, body), { status: 201 });
     }
 
-    if (method === "PATCH" && pathname === "/shoppings/customers/authenticate/refresh") {
+    if (
+      method === "PATCH" &&
+      pathname === "/shoppings/customers/authenticate/refresh"
+    ) {
       const refreshToken = typeof body.value === "string" ? body.value : "";
       const customerId = state.refreshTokens.get(refreshToken);
       const customer = customerId ? state.customers.get(customerId) : null;
@@ -1954,7 +2032,10 @@ async function routeSimulation(url: URL, init?: RequestInit) {
       });
     }
 
-    if (method === "POST" && pathname === "/shoppings/customers/authenticate/activate") {
+    if (
+      method === "POST" &&
+      pathname === "/shoppings/customers/authenticate/activate"
+    ) {
       const customer = requireCustomer(state, headers);
       const name = typeof body.name === "string" ? body.name.trim() : "";
       const mobile = typeof body.mobile === "string" ? body.mobile.trim() : "";
@@ -1981,10 +2062,15 @@ async function routeSimulation(url: URL, init?: RequestInit) {
       return Response.json(cloneCustomer(customer), { status: 201 });
     }
 
-    if (method === "POST" && pathname === "/shoppings/customers/authenticate/join") {
+    if (
+      method === "POST" &&
+      pathname === "/shoppings/customers/authenticate/join"
+    ) {
       const customer = requireCustomer(state, headers);
-      const email = typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
-      const nickname = typeof body.nickname === "string" ? body.nickname.trim() : "";
+      const email =
+        typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
+      const nickname =
+        typeof body.nickname === "string" ? body.nickname.trim() : "";
       const password = typeof body.password === "string" ? body.password : "";
       const citizenPayload =
         body.citizen && typeof body.citizen === "object"
@@ -2027,9 +2113,13 @@ async function routeSimulation(url: URL, init?: RequestInit) {
       return Response.json(cloneCustomer(customer), { status: 201 });
     }
 
-    if (method === "PUT" && pathname === "/shoppings/customers/authenticate/login") {
+    if (
+      method === "PUT" &&
+      pathname === "/shoppings/customers/authenticate/login"
+    ) {
       const customer = requireCustomer(state, headers);
-      const email = typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
+      const email =
+        typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
       const password = typeof body.password === "string" ? body.password : "";
       const member = email ? state.members.get(email) : undefined;
       if (!member || member.password !== password) {
@@ -2037,19 +2127,32 @@ async function routeSimulation(url: URL, init?: RequestInit) {
       }
 
       customer.member = makeMemberProjection(member);
-      customer.citizen = member.citizen ? structuredClone(member.citizen) : customer.citizen;
+      customer.citizen = member.citizen
+        ? structuredClone(member.citizen)
+        : customer.citizen;
       return Response.json(cloneCustomer(customer), { status: 200 });
     }
 
-    if (method === "GET" && pathname === "/shoppings/customers/deposits/histories/balance") {
+    if (
+      method === "GET" &&
+      pathname === "/shoppings/customers/deposits/histories/balance"
+    ) {
       const customer = requireCustomer(state, headers);
-      return Response.json(depositBalanceOf(state, customer.id), { status: 200 });
+      return Response.json(depositBalanceOf(state, customer.id), {
+        status: 200,
+      });
     }
 
-    if (method === "PATCH" && pathname === "/shoppings/customers/deposits/histories") {
+    if (
+      method === "PATCH" &&
+      pathname === "/shoppings/customers/deposits/histories"
+    ) {
       const customer = requireCustomer(state, headers);
       if (!customer.citizen) {
-        return httpError(403, "Citizen verification is required for deposit history.");
+        return httpError(
+          403,
+          "Citizen verification is required for deposit history.",
+        );
       }
       const histories = (state.depositHistories.get(customer.id) ?? [])
         .slice()
@@ -2064,15 +2167,26 @@ async function routeSimulation(url: URL, init?: RequestInit) {
       );
     }
 
-    if (method === "GET" && pathname === "/shoppings/customers/mileages/histories/balance") {
+    if (
+      method === "GET" &&
+      pathname === "/shoppings/customers/mileages/histories/balance"
+    ) {
       const customer = requireCustomer(state, headers);
-      return Response.json(mileageBalanceOf(state, customer.id), { status: 200 });
+      return Response.json(mileageBalanceOf(state, customer.id), {
+        status: 200,
+      });
     }
 
-    if (method === "PATCH" && pathname === "/shoppings/customers/mileages/histories") {
+    if (
+      method === "PATCH" &&
+      pathname === "/shoppings/customers/mileages/histories"
+    ) {
       const customer = requireCustomer(state, headers);
       if (!customer.citizen) {
-        return httpError(403, "Citizen verification is required for mileage history.");
+        return httpError(
+          403,
+          "Citizen verification is required for mileage history.",
+        );
       }
       const histories = (state.mileageHistories.get(customer.id) ?? [])
         .slice()
@@ -2099,7 +2213,10 @@ async function routeSimulation(url: URL, init?: RequestInit) {
       );
     }
 
-    if (method === "PATCH" && pathname === "/shoppings/customers/coupons/tickets") {
+    if (
+      method === "PATCH" &&
+      pathname === "/shoppings/customers/coupons/tickets"
+    ) {
       const customer = requireCustomer(state, headers);
       const tickets = (state.couponTickets.get(customer.id) ?? [])
         .slice()
@@ -2114,10 +2231,15 @@ async function routeSimulation(url: URL, init?: RequestInit) {
       );
     }
 
-    if (method === "POST" && pathname === "/shoppings/customers/coupons/tickets") {
+    if (
+      method === "POST" &&
+      pathname === "/shoppings/customers/coupons/tickets"
+    ) {
       const customer = requireCustomer(state, headers);
       const couponId = typeof body.coupon_id === "string" ? body.coupon_id : "";
-      const coupon = state.coupons.find((candidate) => candidate.id === couponId);
+      const coupon = state.coupons.find(
+        (candidate) => candidate.id === couponId,
+      );
       if (!coupon) {
         return httpError(404, "The requested coupon could not be found.");
       }
@@ -2128,10 +2250,18 @@ async function routeSimulation(url: URL, init?: RequestInit) {
         coupon.restriction.volume_per_citizen !== null &&
         existing >= coupon.restriction.volume_per_citizen
       ) {
-        return httpError(410, "This coupon has already been fully issued for the current customer.");
+        return httpError(
+          410,
+          "This coupon has already been fully issued for the current customer.",
+        );
       }
-      const issued = [...state.couponTickets.values()].flat().filter((ticket) => ticket.coupon_id === couponId).length;
-      if (coupon.restriction.volume !== null && issued >= coupon.restriction.volume) {
+      const issued = [...state.couponTickets.values()]
+        .flat()
+        .filter((ticket) => ticket.coupon_id === couponId).length;
+      if (
+        coupon.restriction.volume !== null &&
+        issued >= coupon.restriction.volume
+      ) {
         return httpError(410, "This coupon is out of stock.");
       }
 
@@ -2143,14 +2273,17 @@ async function routeSimulation(url: URL, init?: RequestInit) {
         created_at: createdAt,
         expired_at: coupon.restriction.expired_in
           ? new Date(
-              Date.parse(createdAt) + coupon.restriction.expired_in * 24 * 60 * 60 * 1000,
+              Date.parse(createdAt) +
+                coupon.restriction.expired_in * 24 * 60 * 60 * 1000,
             ).toISOString()
           : coupon.restriction.expired_at,
       };
       const tickets = state.couponTickets.get(customer.id) ?? [];
       tickets.push(ticket);
       state.couponTickets.set(customer.id, tickets);
-      return Response.json(toApiCouponTicket(state, customer, ticket), { status: 201 });
+      return Response.json(toApiCouponTicket(state, customer, ticket), {
+        status: 201,
+      });
     }
 
     if (method === "GET" && pathname === "/shoppings/sellers/authenticate") {
@@ -2161,19 +2294,29 @@ async function routeSimulation(url: URL, init?: RequestInit) {
     if (method === "POST" && pathname === "/shoppings/sellers/authenticate") {
       const customer = requireCustomer(state, headers);
       if (!customer.member) {
-        return httpError(403, "Membership is required before joining as a seller.");
+        return httpError(
+          403,
+          "Membership is required before joining as a seller.",
+        );
       }
       if (!customer.citizen) {
-        return httpError(403, "Citizen verification is required before joining as a seller.");
+        return httpError(
+          403,
+          "Citizen verification is required before joining as a seller.",
+        );
       }
 
       state.sellerSessions.add(customer.id);
       return Response.json(toApiSellerInvert(state, customer), { status: 201 });
     }
 
-    if (method === "PUT" && pathname === "/shoppings/sellers/authenticate/login") {
+    if (
+      method === "PUT" &&
+      pathname === "/shoppings/sellers/authenticate/login"
+    ) {
       const customer = requireCustomer(state, headers);
-      const email = typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
+      const email =
+        typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
       const password = typeof body.password === "string" ? body.password : "";
       if (
         email !== state.operatorMember.email ||
@@ -2196,25 +2339,38 @@ async function routeSimulation(url: URL, init?: RequestInit) {
     if (method === "POST" && pathname === "/shoppings/admins/authenticate") {
       const customer = requireCustomer(state, headers);
       if (!customer.member) {
-        return httpError(403, "Membership is required before joining as an administrator.");
+        return httpError(
+          403,
+          "Membership is required before joining as an administrator.",
+        );
       }
       if (!customer.citizen) {
-        return httpError(403, "Citizen verification is required before joining as an administrator.");
+        return httpError(
+          403,
+          "Citizen verification is required before joining as an administrator.",
+        );
       }
 
       state.adminSessions.add(customer.id);
       return Response.json(toApiAdminInvert(state, customer), { status: 201 });
     }
 
-    if (method === "PUT" && pathname === "/shoppings/admins/authenticate/login") {
+    if (
+      method === "PUT" &&
+      pathname === "/shoppings/admins/authenticate/login"
+    ) {
       const customer = requireCustomer(state, headers);
-      const email = typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
+      const email =
+        typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
       const password = typeof body.password === "string" ? body.password : "";
       if (
         email !== state.operatorMember.email ||
         password !== state.operatorMember.password
       ) {
-        return httpError(401, "Administrator email or password does not match.");
+        return httpError(
+          401,
+          "Administrator email or password does not match.",
+        );
       }
 
       assignMemberToCustomer(customer, state.operatorMember);
@@ -2250,15 +2406,21 @@ async function routeSimulation(url: URL, init?: RequestInit) {
         const categoryIds = ensureArray(search.channel_category_ids);
         if (query) {
           sales = sales.filter((sale) =>
-            `${sale.title} ${sale.description.body}`.toLowerCase().includes(query),
+            `${sale.title} ${sale.description.body}`
+              .toLowerCase()
+              .includes(query),
           );
         }
         if (sectionCodes.length) {
-          sales = sales.filter((sale) => sectionCodes.includes(sale.section.code));
+          sales = sales.filter((sale) =>
+            sectionCodes.includes(sale.section.code),
+          );
         }
         if (categoryIds.length) {
           sales = sales.filter((sale) =>
-            sale.categoryCodes.some((code) => categoryIds.includes(state.categories.get(code)?.id ?? "")),
+            sale.categoryCodes.some((code) =>
+              categoryIds.includes(state.categories.get(code)?.id ?? ""),
+            ),
           );
         }
       }
@@ -2279,7 +2441,9 @@ async function routeSimulation(url: URL, init?: RequestInit) {
       );
     }
 
-    const saleMatch = pathname.match(/^\/shoppings\/customers\/sales\/([0-9a-f-]+)$/);
+    const saleMatch = pathname.match(
+      /^\/shoppings\/customers\/sales\/([0-9a-f-]+)$/,
+    );
     if (method === "GET" && saleMatch) {
       requireCustomer(state, headers);
       const sale = state.salesById.get(saleMatch[1]);
@@ -2308,7 +2472,10 @@ async function routeSimulation(url: URL, init?: RequestInit) {
         : httpError(404, "The snapshot history could not be found.");
     }
 
-    if (method === "PATCH" && pathname === "/shoppings/customers/carts/commodities") {
+    if (
+      method === "PATCH" &&
+      pathname === "/shoppings/customers/carts/commodities"
+    ) {
       const customer = requireCustomer(state, headers);
       const data = (state.carts.get(customer.id) ?? [])
         .slice()
@@ -2323,20 +2490,28 @@ async function routeSimulation(url: URL, init?: RequestInit) {
       );
     }
 
-    if (method === "POST" && pathname === "/shoppings/customers/carts/commodities") {
+    if (
+      method === "POST" &&
+      pathname === "/shoppings/customers/carts/commodities"
+    ) {
       const customer = requireCustomer(state, headers);
       const saleId = typeof body.sale_id === "string" ? body.sale_id : "";
       const sale = state.salesById.get(saleId);
       const stocks = Array.isArray(body.stocks) ? body.stocks : [];
       if (!sale || !stocks.length) {
-        return httpError(400, "A sale and at least one stock selection are required.");
+        return httpError(
+          400,
+          "A sale and at least one stock selection are required.",
+        );
       }
 
       const commodity: CartCommodityRecord = {
         id: nextRuntimeId(state),
         sale_id: sale.id,
         volume:
-          typeof body.volume === "number" && body.volume > 0 ? Math.floor(body.volume) : 1,
+          typeof body.volume === "number" && body.volume > 0
+            ? Math.floor(body.volume)
+            : 1,
         orderable: true,
         pseudo: false,
         created_at: advanceTimestamp(state, 5),
@@ -2349,7 +2524,8 @@ async function routeSimulation(url: URL, init?: RequestInit) {
             const choices = Array.isArray(typed.choices) ? typed.choices : [];
             return {
               unit_id: typeof typed.unit_id === "string" ? typed.unit_id : "",
-              stock_id: typeof typed.stock_id === "string" ? typed.stock_id : "",
+              stock_id:
+                typeof typed.stock_id === "string" ? typed.stock_id : "",
               quantity:
                 typeof typed.quantity === "number" && typed.quantity > 0
                   ? Math.floor(typed.quantity)
@@ -2379,7 +2555,8 @@ async function routeSimulation(url: URL, init?: RequestInit) {
           .filter(
             (
               selection,
-            ): selection is CartCommodityRecord["selections"][number] => selection !== null,
+            ): selection is CartCommodityRecord["selections"][number] =>
+              selection !== null,
           ),
       };
 
@@ -2415,7 +2592,9 @@ async function routeSimulation(url: URL, init?: RequestInit) {
         return httpError(404, "The cart commodity could not be found.");
       }
       commodity.volume =
-        typeof body.volume === "number" && body.volume > 0 ? Math.floor(body.volume) : 1;
+        typeof body.volume === "number" && body.volume > 0
+          ? Math.floor(body.volume)
+          : 1;
       return Response.json(null, { status: 200 });
     }
 
@@ -2442,7 +2621,9 @@ async function routeSimulation(url: URL, init?: RequestInit) {
           const commodityId =
             typeof typed.commodity_id === "string" ? typed.commodity_id : "";
           const volume =
-            typeof typed.volume === "number" && typed.volume > 0 ? Math.floor(typed.volume) : 1;
+            typeof typed.volume === "number" && typed.volume > 0
+              ? Math.floor(typed.volume)
+              : 1;
           const commodity = commodities.find((item) => item.id === commodityId);
           if (!commodity) {
             return null;
@@ -2504,7 +2685,9 @@ async function routeSimulation(url: URL, init?: RequestInit) {
       );
     }
 
-    const orderMatch = pathname.match(/^\/shoppings\/customers\/orders\/([0-9a-f-]+)$/);
+    const orderMatch = pathname.match(
+      /^\/shoppings\/customers\/orders\/([0-9a-f-]+)$/,
+    );
     if (method === "GET" && orderMatch) {
       const customer = requireCustomer(state, headers);
       const order = (state.orders.get(customer.id) ?? []).find(
@@ -2534,7 +2717,10 @@ async function routeSimulation(url: URL, init?: RequestInit) {
     if (method === "POST" && publishMatch) {
       const customer = requireCustomer(state, headers);
       if (!customer.citizen) {
-        return httpError(428, "Real-name verification is required before checkout.");
+        return httpError(
+          428,
+          "Real-name verification is required before checkout.",
+        );
       }
 
       const order = (state.orders.get(customer.id) ?? []).find(
@@ -2563,16 +2749,24 @@ async function routeSimulation(url: URL, init?: RequestInit) {
         address: {
           id: nextRuntimeId(state),
           created_at: createdAt,
-          mobile: typeof address.mobile === "string" ? address.mobile.trim() : "",
+          mobile:
+            typeof address.mobile === "string" ? address.mobile.trim() : "",
           name: typeof address.name === "string" ? address.name.trim() : "",
-          country: typeof address.country === "string" ? address.country.trim() : "",
-          province: typeof address.province === "string" ? address.province.trim() : "",
+          country:
+            typeof address.country === "string" ? address.country.trim() : "",
+          province:
+            typeof address.province === "string" ? address.province.trim() : "",
           city: typeof address.city === "string" ? address.city.trim() : "",
           department:
-            typeof address.department === "string" ? address.department.trim() : "",
+            typeof address.department === "string"
+              ? address.department.trim()
+              : "",
           possession:
-            typeof address.possession === "string" ? address.possession.trim() : "",
-          zip_code: typeof address.zip_code === "string" ? address.zip_code.trim() : "",
+            typeof address.possession === "string"
+              ? address.possession.trim()
+              : "",
+          zip_code:
+            typeof address.zip_code === "string" ? address.zip_code.trim() : "",
           special_note:
             typeof address.special_note === "string"
               ? address.special_note.trim()
@@ -2584,7 +2778,9 @@ async function routeSimulation(url: URL, init?: RequestInit) {
         state: "preparing",
       }));
 
-      const commodityIds = new Set(order.goods.map((good) => good.commodity_id));
+      const commodityIds = new Set(
+        order.goods.map((good) => good.commodity_id),
+      );
       state.carts.set(
         customer.id,
         (state.carts.get(customer.id) ?? []).filter(
@@ -2646,10 +2842,15 @@ async function routeSimulation(url: URL, init?: RequestInit) {
     if (method === "POST" && pathname === "/shoppings/sellers/sales") {
       requireSeller(state, headers);
       const sourceId =
-        typeof body.__source_sale_id === "string" ? body.__source_sale_id : null;
+        typeof body.__source_sale_id === "string"
+          ? body.__source_sale_id
+          : null;
       const source = sourceId ? state.salesById.get(sourceId) : null;
       if (!source) {
-        return httpError(400, "Simulation currently requires a replica source sale.");
+        return httpError(
+          400,
+          "Simulation currently requires a replica source sale.",
+        );
       }
 
       const created = cloneSaleFixture(state, source, {
@@ -2661,7 +2862,9 @@ async function routeSimulation(url: URL, init?: RequestInit) {
             : `${source.title} Replica`,
         tags: ensureArray(body.tags),
         sectionCode:
-          typeof body.section_code === "string" ? body.section_code : source.section.code,
+          typeof body.section_code === "string"
+            ? body.section_code
+            : source.section.code,
         openedAt: typeof body.opened_at === "string" ? body.opened_at : null,
         closedAt: typeof body.closed_at === "string" ? body.closed_at : null,
         status: body.status === "paused" ? "paused" : "live",
@@ -2670,7 +2873,9 @@ async function routeSimulation(url: URL, init?: RequestInit) {
       return Response.json(toApiSaleDetail(state, created), { status: 201 });
     }
 
-    const sellerSaleMatch = pathname.match(/^\/shoppings\/sellers\/sales\/([0-9a-f-]+)$/);
+    const sellerSaleMatch = pathname.match(
+      /^\/shoppings\/sellers\/sales\/([0-9a-f-]+)$/,
+    );
     if (method === "GET" && sellerSaleMatch) {
       requireSeller(state, headers);
       const sale = state.salesById.get(sellerSaleMatch[1]);
@@ -2717,8 +2922,10 @@ async function routeSimulation(url: URL, init?: RequestInit) {
       if (!sale) {
         return httpError(404, "The requested seller sale could not be found.");
       }
-      sale.opened_at = typeof body.opened_at === "string" ? body.opened_at : null;
-      sale.closed_at = typeof body.closed_at === "string" ? body.closed_at : null;
+      sale.opened_at =
+        typeof body.opened_at === "string" ? body.opened_at : null;
+      sale.closed_at =
+        typeof body.closed_at === "string" ? body.closed_at : null;
       sale.updated_at = advanceTimestamp(state, 2);
       return Response.json(null, { status: 200 });
     }
@@ -2739,12 +2946,17 @@ async function routeSimulation(url: URL, init?: RequestInit) {
       );
     }
 
-    const sellerOrderMatch = pathname.match(/^\/shoppings\/sellers\/orders\/([0-9a-f-]+)$/);
+    const sellerOrderMatch = pathname.match(
+      /^\/shoppings\/sellers\/orders\/([0-9a-f-]+)$/,
+    );
     if (method === "GET" && sellerOrderMatch) {
       requireSeller(state, headers);
       const order = [...state.orders.values()]
         .flat()
-        .find((candidate) => candidate.id === sellerOrderMatch[1] && candidate.publish?.paid_at);
+        .find(
+          (candidate) =>
+            candidate.id === sellerOrderMatch[1] && candidate.publish?.paid_at,
+        );
       return order
         ? Response.json(toApiOrder(state, order), { status: 200 })
         : httpError(404, "The requested seller order could not be found.");
@@ -2814,17 +3026,24 @@ async function routeSimulation(url: URL, init?: RequestInit) {
                   (body.discount as Record<string, unknown>).unit === "amount"
                     ? "amount"
                     : "percent",
-                value: Number((body.discount as Record<string, unknown>).value ?? 0),
+                value: Number(
+                  (body.discount as Record<string, unknown>).value ?? 0,
+                ),
                 threshold:
-                  typeof (body.discount as Record<string, unknown>).threshold === "number"
-                    ? Number((body.discount as Record<string, unknown>).threshold)
+                  typeof (body.discount as Record<string, unknown>)
+                    .threshold === "number"
+                    ? Number(
+                        (body.discount as Record<string, unknown>).threshold,
+                      )
                     : null,
                 limit:
-                  typeof (body.discount as Record<string, unknown>).limit === "number"
+                  typeof (body.discount as Record<string, unknown>).limit ===
+                  "number"
                     ? Number((body.discount as Record<string, unknown>).limit)
                     : null,
                 multiplicative:
-                  (body.discount as Record<string, unknown>).multiplicative === true,
+                  (body.discount as Record<string, unknown>).multiplicative ===
+                  true,
               }
             : {
                 unit: "percent",
@@ -2836,29 +3055,43 @@ async function routeSimulation(url: URL, init?: RequestInit) {
           body.restriction && typeof body.restriction === "object"
             ? {
                 access:
-                  (body.restriction as Record<string, unknown>).access === "private"
+                  (body.restriction as Record<string, unknown>).access ===
+                  "private"
                     ? "private"
                     : "public",
                 exclusive:
-                  (body.restriction as Record<string, unknown>).exclusive === true,
+                  (body.restriction as Record<string, unknown>).exclusive ===
+                  true,
                 volume:
-                  typeof (body.restriction as Record<string, unknown>).volume === "number"
-                    ? Number((body.restriction as Record<string, unknown>).volume)
+                  typeof (body.restriction as Record<string, unknown>)
+                    .volume === "number"
+                    ? Number(
+                        (body.restriction as Record<string, unknown>).volume,
+                      )
                     : null,
                 volume_per_citizen:
-                  typeof (body.restriction as Record<string, unknown>).volume_per_citizen ===
-                  "number"
+                  typeof (body.restriction as Record<string, unknown>)
+                    .volume_per_citizen === "number"
                     ? Number(
-                        (body.restriction as Record<string, unknown>).volume_per_citizen,
+                        (body.restriction as Record<string, unknown>)
+                          .volume_per_citizen,
                       )
                     : null,
                 expired_in:
-                  typeof (body.restriction as Record<string, unknown>).expired_in === "number"
-                    ? Number((body.restriction as Record<string, unknown>).expired_in)
+                  typeof (body.restriction as Record<string, unknown>)
+                    .expired_in === "number"
+                    ? Number(
+                        (body.restriction as Record<string, unknown>)
+                          .expired_in,
+                      )
                     : null,
                 expired_at:
-                  typeof (body.restriction as Record<string, unknown>).expired_at === "string"
-                    ? String((body.restriction as Record<string, unknown>).expired_at)
+                  typeof (body.restriction as Record<string, unknown>)
+                    .expired_at === "string"
+                    ? String(
+                        (body.restriction as Record<string, unknown>)
+                          .expired_at,
+                      )
                     : null,
               }
             : {
@@ -2877,13 +3110,10 @@ async function routeSimulation(url: URL, init?: RequestInit) {
     if (method === "PATCH" && pathname === "/shoppings/admins/deposits") {
       requireAdmin(state, headers);
       return Response.json(
-        pageOf(
-          state.depositMetas.map(toApiDepositMeta),
-          {
-            page: typeof body.page === "number" ? body.page : 1,
-            limit: typeof body.limit === "number" ? body.limit : undefined,
-          },
-        ),
+        pageOf(state.depositMetas.map(toApiDepositMeta), {
+          page: typeof body.page === "number" ? body.page : 1,
+          limit: typeof body.limit === "number" ? body.limit : undefined,
+        }),
         { status: 200 },
       );
     }
@@ -2904,13 +3134,10 @@ async function routeSimulation(url: URL, init?: RequestInit) {
     if (method === "PATCH" && pathname === "/shoppings/admins/mileages") {
       requireAdmin(state, headers);
       return Response.json(
-        pageOf(
-          state.mileageMetas.map(toApiMileageMeta),
-          {
-            page: typeof body.page === "number" ? body.page : 1,
-            limit: typeof body.limit === "number" ? body.limit : undefined,
-          },
-        ),
+        pageOf(state.mileageMetas.map(toApiMileageMeta), {
+          page: typeof body.page === "number" ? body.page : 1,
+          limit: typeof body.limit === "number" ? body.limit : undefined,
+        }),
         { status: 200 },
       );
     }
@@ -2935,7 +3162,10 @@ async function routeSimulation(url: URL, init?: RequestInit) {
       return error;
     }
     console.error(error);
-    return httpError(500, "The simulated shopping backend failed unexpectedly.");
+    return httpError(
+      500,
+      "The simulated shopping backend failed unexpectedly.",
+    );
   }
 }
 

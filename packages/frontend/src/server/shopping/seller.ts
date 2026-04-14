@@ -1,7 +1,3 @@
-import "server-only";
-
-import ShoppingApi from "@samchon/shopping-api";
-
 import type {
   LoginMemberPayload,
   SellerDashboardView,
@@ -13,8 +9,11 @@ import type {
   SellerSessionView,
 } from "@/lib/shopping/types";
 import { mapMoney, mapSession } from "@/server/shopping/mappers";
+import "server-only";
 
-import { requireCurrentCustomer, type SessionContext } from "./session";
+import ShoppingApi from "@samchon/shopping-api";
+
+import { type SessionContext, requireCurrentCustomer } from "./session";
 
 function isForbiddenError(error: unknown) {
   return (
@@ -59,7 +58,11 @@ function mapSellerSale(
     tags: sale.tags,
     unitCount: sale.units.length,
     stockCount: sale.units.reduce(
-      (acc, unit) => acc + ("stocks" in unit && Array.isArray(unit.stocks) ? unit.stocks.length : 0),
+      (acc, unit) =>
+        acc +
+        ("stocks" in unit && Array.isArray(unit.stocks)
+          ? unit.stocks.length
+          : 0),
       0,
     ),
     priceRange: {
@@ -75,7 +78,10 @@ function mapSellerOrder(
   return {
     id: order.id,
     name: order.name,
-    customerName: order.customer.citizen?.name ?? order.customer.member?.nickname ?? "Guest",
+    customerName:
+      order.customer.citizen?.name ??
+      order.customer.member?.nickname ??
+      "Guest",
     customerEmail: order.customer.member?.emails[0]?.value ?? null,
     createdAt: order.created_at,
     paidAt: order.publish?.paid_at ?? null,
@@ -194,18 +200,21 @@ export async function replicateSellerSale(
     payload.sourceSaleId,
   );
 
-  await ShoppingApi.functional.shoppings.sellers.sales.create(context.connection, {
-    ...template,
-    section_code: payload.sectionCode,
-    status: payload.status === "paused" ? "paused" : null,
-    opened_at: payload.openedAt,
-    closed_at: payload.closedAt,
-    tags: payload.tags,
-    content: {
-      ...template.content,
-      title: payload.title,
+  await ShoppingApi.functional.shoppings.sellers.sales.create(
+    context.connection,
+    {
+      ...template,
+      section_code: payload.sectionCode,
+      status: payload.status === "paused" ? "paused" : null,
+      opened_at: payload.openedAt,
+      closed_at: payload.closedAt,
+      tags: payload.tags,
+      content: {
+        ...template.content,
+        title: payload.title,
+      },
     },
-  });
+  );
 
   return getSellerDashboard(context);
 }

@@ -1,7 +1,3 @@
-import "server-only";
-
-import ShoppingApi from "@samchon/shopping-api";
-
 import type {
   AdminCouponView,
   AdminCreateCouponPayload,
@@ -16,8 +12,11 @@ import type {
   SellerSaleView,
 } from "@/lib/shopping/types";
 import { mapMoney, mapSession } from "@/server/shopping/mappers";
+import "server-only";
 
-import { requireCurrentCustomer, type SessionContext } from "./session";
+import ShoppingApi from "@samchon/shopping-api";
+
+import { type SessionContext, requireCurrentCustomer } from "./session";
 
 function isForbiddenError(error: unknown) {
   return (
@@ -32,9 +31,10 @@ function isForbiddenError(error: unknown) {
   );
 }
 
-function discountLabelOf(
-  discount: { unit: "amount" | "percent"; value: number },
-) {
+function discountLabelOf(discount: {
+  unit: "amount" | "percent";
+  value: number;
+}) {
   return discount.unit === "percent"
     ? `${discount.value}% discount`
     : `-${new Intl.NumberFormat("ko-KR").format(discount.value)} KRW`;
@@ -83,7 +83,10 @@ function mapOrder(
   return {
     id: order.id,
     name: order.name,
-    customerName: order.customer.citizen?.name ?? order.customer.member?.nickname ?? "Guest",
+    customerName:
+      order.customer.citizen?.name ??
+      order.customer.member?.nickname ??
+      "Guest",
     customerEmail: order.customer.member?.emails[0]?.value ?? null,
     createdAt: order.created_at,
     paidAt: order.publish?.paid_at ?? null,
@@ -218,18 +221,24 @@ export async function getAdminDashboard(
         limit: 0,
         sort: ["-order.publish.paid_at"],
       }),
-      ShoppingApi.functional.shoppings.admins.coupons.index(context.connection, {
-        limit: 0,
-        sort: ["-coupon.created_at"],
-      }).catch(() => ({ data: [] })),
-      ShoppingApi.functional.shoppings.admins.deposits.index(context.connection, {
-        limit: 0,
-        sort: ["+deposit.source"],
-      }).catch(() => ({ data: [] })),
-      ShoppingApi.functional.shoppings.admins.mileages.index(context.connection, {
-        limit: 0,
-        sort: ["+mileage.source"],
-      }).catch(() => ({ data: [] })),
+      ShoppingApi.functional.shoppings.admins.coupons
+        .index(context.connection, {
+          limit: 0,
+          sort: ["-coupon.created_at"],
+        })
+        .catch(() => ({ data: [] })),
+      ShoppingApi.functional.shoppings.admins.deposits
+        .index(context.connection, {
+          limit: 0,
+          sort: ["+deposit.source"],
+        })
+        .catch(() => ({ data: [] })),
+      ShoppingApi.functional.shoppings.admins.mileages
+        .index(context.connection, {
+          limit: 0,
+          sort: ["+mileage.source"],
+        })
+        .catch(() => ({ data: [] })),
     ]);
 
   const sales = salesPage.data.map(mapSale);
@@ -258,36 +267,39 @@ export async function createAdminCoupon(
   payload: AdminCreateCouponPayload,
   context: SessionContext,
 ): Promise<AdminDashboardView> {
-  await ShoppingApi.functional.shoppings.admins.coupons.create(context.connection, {
-    name: payload.name,
-    discount:
-      payload.unit === "percent"
-        ? {
-            unit: "percent",
-            value: payload.value,
-            threshold: payload.threshold,
-            limit: payload.limit,
-          }
-        : {
-            unit: "amount",
-            value: payload.value,
-            threshold: payload.threshold,
-            limit: payload.limit,
-            multiplicative: payload.multiplicative,
-          },
-    restriction: {
-      access: payload.access,
-      exclusive: payload.exclusive,
-      volume: payload.volume,
-      volume_per_citizen: payload.volumePerCitizen,
-      expired_in: payload.expiredIn,
-      expired_at: null,
+  await ShoppingApi.functional.shoppings.admins.coupons.create(
+    context.connection,
+    {
+      name: payload.name,
+      discount:
+        payload.unit === "percent"
+          ? {
+              unit: "percent",
+              value: payload.value,
+              threshold: payload.threshold,
+              limit: payload.limit,
+            }
+          : {
+              unit: "amount",
+              value: payload.value,
+              threshold: payload.threshold,
+              limit: payload.limit,
+              multiplicative: payload.multiplicative,
+            },
+      restriction: {
+        access: payload.access,
+        exclusive: payload.exclusive,
+        volume: payload.volume,
+        volume_per_citizen: payload.volumePerCitizen,
+        expired_in: payload.expiredIn,
+        expired_at: null,
+      },
+      criterias: [],
+      disposable_codes: [],
+      opened_at: payload.openedAt,
+      closed_at: payload.closedAt,
     },
-    criterias: [],
-    disposable_codes: [],
-    opened_at: payload.openedAt,
-    closed_at: payload.closedAt,
-  });
+  );
 
   return getAdminDashboard(context);
 }
@@ -296,11 +308,14 @@ export async function createAdminDeposit(
   payload: AdminCreateDepositPayload,
   context: SessionContext,
 ): Promise<AdminDashboardView> {
-  await ShoppingApi.functional.shoppings.admins.deposits.create(context.connection, {
-    code: payload.code,
-    source: payload.source,
-    direction: payload.direction === "income" ? 1 : -1,
-  });
+  await ShoppingApi.functional.shoppings.admins.deposits.create(
+    context.connection,
+    {
+      code: payload.code,
+      source: payload.source,
+      direction: payload.direction === "income" ? 1 : -1,
+    },
+  );
   return getAdminDashboard(context);
 }
 
@@ -308,11 +323,14 @@ export async function createAdminMileage(
   payload: AdminCreateMileagePayload,
   context: SessionContext,
 ): Promise<AdminDashboardView> {
-  await ShoppingApi.functional.shoppings.admins.mileages.create(context.connection, {
-    code: payload.code,
-    source: payload.source,
-    direction: payload.direction === "income" ? 1 : -1,
-    value: payload.defaultValue,
-  });
+  await ShoppingApi.functional.shoppings.admins.mileages.create(
+    context.connection,
+    {
+      code: payload.code,
+      source: payload.source,
+      direction: payload.direction === "income" ? 1 : -1,
+      value: payload.defaultValue,
+    },
+  );
   return getAdminDashboard(context);
 }

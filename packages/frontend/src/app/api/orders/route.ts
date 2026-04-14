@@ -1,8 +1,7 @@
-import type { NextRequest } from "next/server";
-
-import { createOrder, getOrdersData } from "@/server/shopping/orders";
 import { toErrorResponse } from "@/server/shopping/errors";
+import { createOrder, getOrdersData } from "@/server/shopping/orders";
 import { jsonWithCustomerSession } from "@/server/shopping/session";
+import type { NextRequest } from "next/server";
 
 export async function GET(request: NextRequest) {
   try {

@@ -1,8 +1,7 @@
-import type { NextRequest } from "next/server";
-
 import { activateCitizen } from "@/server/shopping/account";
 import { toErrorResponse } from "@/server/shopping/errors";
 import { jsonWithCustomerSession } from "@/server/shopping/session";
+import type { NextRequest } from "next/server";
 
 export async function POST(request: NextRequest) {
   try {

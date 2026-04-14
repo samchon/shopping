@@ -13,4 +13,4 @@ RUN pnpm --filter @samchon/shopping-frontend build
 
 EXPOSE 3000 37001
 
-CMD bash -lc "service postgresql start && su postgres -c \"psql -c \\\"ALTER USER postgres WITH PASSWORD 'root';\\\"\" && exec pnpm start"
+CMD bash -lc "pg_ctlcluster 15 main start && su postgres -c \"psql -c \\\"ALTER USER postgres WITH PASSWORD 'root';\\\"\" && exec pnpm start"

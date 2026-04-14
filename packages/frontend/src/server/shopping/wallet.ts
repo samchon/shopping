@@ -1,7 +1,3 @@
-import "server-only";
-
-import ShoppingApi from "@samchon/shopping-api";
-
 import type {
   WalletCouponTicketView,
   WalletCouponView,
@@ -9,6 +5,9 @@ import type {
   WalletView,
 } from "@/lib/shopping/types";
 import { mapSession } from "@/server/shopping/mappers";
+import "server-only";
+
+import ShoppingApi from "@samchon/shopping-api";
 
 import { type SessionContext, requireCurrentCustomer } from "./session";
 
@@ -25,24 +24,23 @@ function isForbiddenError(error: unknown) {
   );
 }
 
-function discountLabelOf(
-  discount: { unit: "amount" | "percent"; value: number },
-) {
+function discountLabelOf(discount: {
+  unit: "amount" | "percent";
+  value: number;
+}) {
   return discount.unit === "percent"
     ? `${discount.value}% discount`
     : `-${new Intl.NumberFormat("ko-KR").format(discount.value)} KRW`;
 }
 
-function mapHistory(
-  entry: {
-    id: string;
-    value: number;
-    balance: number;
-    created_at: string;
-    deposit?: { source: string } | undefined;
-    mileage?: { source: string } | undefined;
-  },
-): WalletHistoryEntryView {
+function mapHistory(entry: {
+  id: string;
+  value: number;
+  balance: number;
+  created_at: string;
+  deposit?: { source: string } | undefined;
+  mileage?: { source: string } | undefined;
+}): WalletHistoryEntryView {
   return {
     id: entry.id,
     label: entry.deposit?.source ?? entry.mileage?.source ?? "Adjustment",
@@ -87,13 +85,14 @@ export async function getWalletData(
 ): Promise<WalletView> {
   const customer = await requireCurrentCustomer(context);
 
-  const couponsPromise = ShoppingApi.functional.shoppings.customers.coupons.index(
-    context.connection,
-    {
-      limit: 20,
-      sort: ["-coupon.created_at"],
-    },
-  );
+  const couponsPromise =
+    ShoppingApi.functional.shoppings.customers.coupons.index(
+      context.connection,
+      {
+        limit: 20,
+        sort: ["-coupon.created_at"],
+      },
+    );
   const ticketsPromise =
     ShoppingApi.functional.shoppings.customers.coupons.tickets.index(
       context.connection,
@@ -126,12 +125,7 @@ export async function getWalletData(
           },
         ),
       ])
-    : Promise.resolve([
-        0,
-        0,
-        { data: [] },
-        { data: [] },
-      ] as const);
+    : Promise.resolve([0, 0, { data: [] }, { data: [] }] as const);
 
   const [walletData, coupons, tickets] = await Promise.all([
     walletCore.catch((error) => {

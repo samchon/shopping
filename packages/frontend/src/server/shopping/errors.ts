@@ -1,6 +1,5 @@
-import "server-only";
-
 import { NextResponse } from "next/server";
+import "server-only";
 
 export class ApiRouteError extends Error {
   public readonly status: number;
