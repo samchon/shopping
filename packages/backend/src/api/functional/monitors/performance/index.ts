@@ -13,7 +13,7 @@ import type { IPerformance } from "../../../structures/monitors/IPerformance";
 /**
  * Get performance information.
  *
- * Get perofmration information composed with CPU, memory and resource usage.
+ * Get performance information composed with CPU, memory and resource usage.
  *
  * @returns Performance info
  * @tag Monitor
