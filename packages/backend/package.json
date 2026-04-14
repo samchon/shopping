@@ -26,12 +26,12 @@
     "type": "git",
     "url": "https://github.com/samchon/shopping"
   },
-  "author": "AUTHOR",
+  "author": "Jeongho Nam",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/samchon/shopping/issues"
   },
-  "homepage": "https://github.com/samchon/shopping",
+  "homepage": "https://github.com/samchon/shopping#readme",
   "devDependencies": {
     "@nestia/benchmark": "catalog:samchon",
     "@nestia/e2e": "catalog:samchon",

@@ -6,6 +6,7 @@ on:
       - "packages/backend/src/**"
       - "packages/backend/test/**"
       - "packages/backend/package.json"
+      - "packages/backend/tsconfig.json"
       - "packages/api/**"
       - "pnpm-workspace.yaml"
       - ".github/workflows/backend.yml"
