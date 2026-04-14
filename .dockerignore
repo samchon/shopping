@@ -1,0 +1,11 @@
+node_modules/
+.git/
+.next/
+.artifacts/
+*.log
+*.err.log
+
+packages/backend/prisma/migrations/
+packages/backend/prisma/docs/
+packages/frontend/.next/
+packages/frontend/.artifacts/
