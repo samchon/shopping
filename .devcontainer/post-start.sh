@@ -15,7 +15,7 @@ if [[ -f "$PID_FILE" ]]; then
 fi
 
 echo "[codespaces] starting shopping fullstack"
-nohup bash -lc "cd '$ROOT_DIR' && ./scripts/start-fullstack.sh" >"$LOG_FILE" 2>&1 &
+nohup bash -lc "service postgresql start && su postgres -c \"psql -c \\\"ALTER USER postgres WITH PASSWORD 'root';\\\"\" && cd '$ROOT_DIR' && pnpm start" >"$LOG_FILE" 2>&1 &
 echo $! >"$PID_FILE"
 
 echo "[codespaces] fullstack log: $LOG_FILE"
