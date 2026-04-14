@@ -15,10 +15,10 @@ With AutoBe, you don't even need to write the backend.
 - [Nestia Editor](https://nestia.io/editor): SDK generator from Swagger/OpenAPI
 - [AutoBe](https://autobe.dev): Automated backend generator
 
-## 2. Screens
+## 2. Screenshots
 Every screen below was built by AI. No human wrote any frontend code.
 
-### Customer
+### 2.1. Customer
 | Home | Product Detail |
 |------|---------------|
 | ![Home](packages/frontend/public/readme/home.png) | ![Detail](packages/frontend/public/readme/detail.png) |
@@ -31,12 +31,12 @@ Every screen below was built by AI. No human wrote any frontend code.
 |--------------|--------|
 | ![Order Detail](packages/frontend/public/readme/order-detail.png) | ![Wallet](packages/frontend/public/readme/wallet.png) |
 
-### Seller
+### 2.2. Seller
 | Console | Studio |
 |---------|--------|
 | ![Seller](packages/frontend/public/readme/seller.png) | ![Seller Studio](packages/frontend/public/readme/seller-studio.png) |
 
-### Administrator
+### 2.3. Administrator
 | Console | Policies |
 |---------|----------|
 | ![Admin](packages/frontend/public/readme/admin.png) | ![Admin Policies](packages/frontend/public/readme/admin-policies.png) |
