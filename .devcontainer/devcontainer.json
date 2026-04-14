@@ -1,0 +1,36 @@
+{
+  "name": "shopping-fullstack-demo",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "workspace",
+  "workspaceFolder": "/workspaces/shopping",
+  "shutdownAction": "stopCompose",
+  "forwardPorts": [3000, 37001],
+  "portsAttributes": {
+    "3000": {
+      "label": "Shopping Frontend",
+      "onAutoForward": "openPreview"
+    },
+    "37001": {
+      "label": "Shopping Backend",
+      "onAutoForward": "silent"
+    }
+  },
+  "remoteEnv": {
+    "NEXT_PUBLIC_SHOPPING_API_HOST": "http://127.0.0.1:37001",
+    "NEXT_PUBLIC_SHOPPING_CHANNEL_CODE": "samchon",
+    "NEXT_PUBLIC_SHOPPING_API_SIMULATE": "false",
+    "SHOPPING_API_SIMULATE": "false",
+    "SHOPPING_POSTGRES_HOST": "postgres"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.vscode-typescript-next",
+        "esbenp.prettier-vscode",
+        "bradlc.vscode-tailwindcss"
+      ]
+    }
+  },
+  "postCreateCommand": "bash .devcontainer/post-create.sh",
+  "postStartCommand": "bash .devcontainer/post-start.sh"
+}

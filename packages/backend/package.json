@@ -17,8 +17,8 @@
     "dev": "tsc -p test/tsconfig.json --watch",
     "prepare": "pnpm build:prisma",
     "------------------------DEPLOYS------------------------": "",
-    "start": "node lib/executable/server",
-    "start:ts": "ts-node src/executable/server.ts",
+    "start": "ts-node src/executable/server.ts",
+    "start:prod": "node lib/executable/server",
     "start:dev": "nest start --watch",
     "schema": "ts-node src/executable/schema"
   },
