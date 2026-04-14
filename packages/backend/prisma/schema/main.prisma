@@ -1,0 +1,14 @@
+datasource db {
+  provider = "sqlite"
+}
+
+generator client {
+  provider = "prisma-client"
+  output   = "../../src/prisma"
+}
+
+generator markdown {
+  provider = "prisma-markdown"
+  title    = "Shopping Mall"
+  output   = "../../docs/ERD.md"
+}

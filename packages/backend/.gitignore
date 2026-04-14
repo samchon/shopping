@@ -1,0 +1,5 @@
+prisma/docs/
+prisma/migrations/
+prisma/schema/migrations/
+prisma/db.sqlite
+src/prisma/

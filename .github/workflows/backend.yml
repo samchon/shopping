@@ -1,0 +1,33 @@
+name: backend
+on:
+  pull_request:
+    paths:
+      - "packages/backend/prisma/**"
+      - "packages/backend/src/**"
+      - "packages/backend/test/**"
+      - "packages/backend/package.json"
+      - "packages/api/**"
+      - "pnpm-workspace.yaml"
+      - ".github/workflows/backend.yml"
+
+jobs:
+  Ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Install Backend-Server
+        working-directory: packages/backend
+        run: pnpm install
+
+      - name: Compile Backend-Server
+        working-directory: packages/backend
+        run: pnpm run build
+
+      - name: Test Backend-Server
+        working-directory: packages/backend
+        run: pnpm run test --reset true
