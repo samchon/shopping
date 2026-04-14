@@ -54,7 +54,7 @@ Every screen below was built by AI. No human wrote any frontend code.
 ```bash
 git clone https://github.com/samchon/shopping
 cd shopping
-docker compose up
+docker compose up --build
 ```
 
 | Service | Address |
