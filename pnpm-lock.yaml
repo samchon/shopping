@@ -92,6 +92,9 @@ importers:
       '@rollup/plugin-typescript':
         specifier: ^11.1.6
         version: 11.1.6(rollup@4.60.1)(tslib@2.8.1)(typescript@5.9.3)
+      '@samchon/shopping-api':
+        specifier: workspace:^
+        version: 'link:'
       rollup:
         specifier: ^4.60.1
         version: 4.60.1
