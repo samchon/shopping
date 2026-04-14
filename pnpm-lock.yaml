@@ -61,12 +61,18 @@ importers:
       '@trivago/prettier-plugin-sort-imports':
         specifier: ^4.3.0
         version: 4.3.0(prettier@3.8.2)
+      '@types/node':
+        specifier: ^25.6.0
+        version: 25.6.0
       prettier:
         specifier: ^3.3.2
         version: 3.8.2
       prettier-plugin-prisma:
         specifier: ^5.0.0
         version: 5.0.0(prettier@3.8.2)
+      ts-node:
+        specifier: catalog:typescript
+        version: 10.9.2(@types/node@25.6.0)(typescript@5.9.3)
       ts-patch:
         specifier: catalog:typescript
         version: 3.3.0
@@ -81,7 +87,7 @@ importers:
         version: 11.0.1
       typia:
         specifier: catalog:samchon
-        version: 12.0.2(@types/node@24.12.2)(typescript@5.9.3)
+        version: 12.0.2(@types/node@25.6.0)(typescript@5.9.3)
       uuid:
         specifier: catalog:utils
         version: 13.0.0
@@ -6224,6 +6230,13 @@ snapshots:
     optionalDependencies:
       '@types/node': 24.12.2
 
+  '@inquirer/external-editor@1.0.3(@types/node@25.6.0)':
+    dependencies:
+      chardet: 2.1.1
+      iconv-lite: 0.7.2
+    optionalDependencies:
+      '@types/node': 25.6.0
+
   '@inquirer/figures@1.0.15': {}
 
   '@inquirer/input@4.3.1(@types/node@24.12.2)':
@@ -7341,19 +7354,19 @@ snapshots:
   '@types/body-parser@1.19.6':
     dependencies:
       '@types/connect': 3.4.38
-      '@types/node': 24.12.2
+      '@types/node': 25.6.0
 
   '@types/cli-progress@3.11.6':
     dependencies:
-      '@types/node': 24.12.2
+      '@types/node': 25.6.0
 
   '@types/cli@0.11.25':
     dependencies:
-      '@types/node': 24.12.2
+      '@types/node': 25.6.0
 
   '@types/connect@3.4.38':
     dependencies:
-      '@types/node': 24.12.2
+      '@types/node': 25.6.0
 
   '@types/debug@4.1.13':
     dependencies:
@@ -7377,7 +7390,7 @@ snapshots:
 
   '@types/express-serve-static-core@4.19.8':
     dependencies:
-      '@types/node': 24.12.2
+      '@types/node': 25.6.0
       '@types/qs': 6.15.0
       '@types/range-parser': 1.2.7
       '@types/send': 1.2.1
@@ -7407,7 +7420,7 @@ snapshots:
   '@types/jsonwebtoken@9.0.10':
     dependencies:
       '@types/ms': 2.1.0
-      '@types/node': 24.12.2
+      '@types/node': 25.6.0
 
   '@types/mdast@4.0.4':
     dependencies:
@@ -7419,7 +7432,7 @@ snapshots:
 
   '@types/node-fetch@2.6.13':
     dependencies:
-      '@types/node': 24.12.2
+      '@types/node': 25.6.0
       form-data: 4.0.5
 
   '@types/node@18.19.130':
@@ -7442,7 +7455,7 @@ snapshots:
 
   '@types/pg@8.20.0':
     dependencies:
-      '@types/node': 24.12.2
+      '@types/node': 25.6.0
       pg-protocol: 1.13.0
       pg-types: 2.2.0
 
@@ -7471,21 +7484,21 @@ snapshots:
   '@types/send@0.17.6':
     dependencies:
       '@types/mime': 1.3.5
-      '@types/node': 24.12.2
+      '@types/node': 25.6.0
 
   '@types/send@1.2.1':
     dependencies:
-      '@types/node': 24.12.2
+      '@types/node': 25.6.0
 
   '@types/serve-static@1.15.10':
     dependencies:
       '@types/http-errors': 2.0.5
-      '@types/node': 24.12.2
+      '@types/node': 25.6.0
       '@types/send': 0.17.6
 
   '@types/through@0.0.33':
     dependencies:
-      '@types/node': 24.12.2
+      '@types/node': 25.6.0
 
   '@types/unist@2.0.11': {}
 
@@ -7493,11 +7506,11 @@ snapshots:
 
   '@types/websocket@1.0.10':
     dependencies:
-      '@types/node': 24.12.2
+      '@types/node': 25.6.0
 
   '@types/ws@7.4.7':
     dependencies:
-      '@types/node': 24.12.2
+      '@types/node': 25.6.0
 
   '@typescript-eslint/eslint-plugin@8.58.2(@typescript-eslint/parser@8.58.2(eslint@9.38.0(jiti@2.6.1))(typescript@5.9.3))(eslint@9.38.0(jiti@2.6.1))(typescript@5.9.3)':
     dependencies:
@@ -9245,6 +9258,26 @@ snapshots:
     transitivePeerDependencies:
       - '@types/node'
 
+  inquirer@8.2.7(@types/node@25.6.0):
+    dependencies:
+      '@inquirer/external-editor': 1.0.3(@types/node@25.6.0)
+      ansi-escapes: 4.3.2
+      chalk: 4.1.2
+      cli-cursor: 3.1.0
+      cli-width: 3.0.0
+      figures: 3.2.0
+      lodash: 4.18.1
+      mute-stream: 0.0.8
+      ora: 5.4.1
+      run-async: 2.4.1
+      rxjs: 7.8.2
+      string-width: 4.2.3
+      strip-ansi: 6.0.1
+      through: 2.3.8
+      wrap-ansi: 6.2.0
+    transitivePeerDependencies:
+      - '@types/node'
+
   internal-slot@1.1.0:
     dependencies:
       es-errors: 1.3.0
@@ -9421,7 +9454,7 @@ snapshots:
 
   jest-worker@27.5.1:
     dependencies:
-      '@types/node': 24.12.2
+      '@types/node': 25.6.0
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
@@ -11169,7 +11202,6 @@ snapshots:
       typescript: 5.9.3
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
-    optional: true
 
   ts-patch@3.3.0:
     dependencies:
@@ -11286,6 +11318,22 @@ snapshots:
       commander: 10.0.1
       comment-json: 4.6.2
       inquirer: 8.2.7(@types/node@24.12.2)
+      package-manager-detector: 0.2.11
+      randexp: 0.5.3
+      typescript: 5.9.3
+    transitivePeerDependencies:
+      - '@types/node'
+
+  typia@12.0.2(@types/node@25.6.0)(typescript@5.9.3):
+    dependencies:
+      '@standard-schema/spec': 1.1.0
+      '@typia/core': 12.0.2
+      '@typia/interface': 12.0.2
+      '@typia/transform': 12.0.2
+      '@typia/utils': 12.0.2
+      commander: 10.0.1
+      comment-json: 4.6.2
+      inquirer: 8.2.7(@types/node@25.6.0)
       package-manager-detector: 0.2.11
       randexp: 0.5.3
       typescript: 5.9.3

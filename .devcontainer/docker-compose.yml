@@ -1,0 +1,9 @@
+services:
+  workspace:
+    build:
+      context: ..
+      dockerfile: ../Dockerfile
+    init: true
+    command: sleep infinity
+    volumes:
+      - ..:/workspaces/shopping:cached

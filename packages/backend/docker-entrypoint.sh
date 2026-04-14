@@ -7,6 +7,9 @@ until pg_isready -h "$SHOPPING_POSTGRES_HOST" -p "$SHOPPING_POSTGRES_PORT" -U po
   sleep 1
 done
 
+# Ensure .env exists before any ts-node entrypoint reads process.env
+pnpm build:env
+
 # Create schema and seed data (default root credentials: postgres / root)
 echo "Setting up database schema..."
 pnpm schema 2>/dev/null || true

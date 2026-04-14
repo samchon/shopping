@@ -1,10 +1,9 @@
-# Shopping Mall Monorepo
-
 ![](og.png)
 
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/samchon/shopping/blob/master/LICENSE)
 [![npm version](https://img.shields.io/npm/v/@samchon/shopping-api.svg)](https://www.npmjs.com/package/@samchon/shopping-api)
 [![Build Status](https://github.com/samchon/shopping/actions/workflows/build.yml/badge.svg)](https://github.com/samchon/shopping/actions/workflows/build.yml)
+[![Open in GitHub Codespaces](https://img.shields.io/badge/Codespaces-open-purple?logo=github)](https://codespaces.new/samchon/shopping?quickstart=1)
 
 ## 1. Prologue
 Well-designed backend + Nestia-generated SDK = AI automates the frontend.
@@ -55,7 +54,7 @@ Every screen below was built by AI. No human wrote any frontend code.
 ```bash
 git clone https://github.com/samchon/shopping
 cd shopping
-docker compose up
+docker compose up --build
 ```
 
 | Service | Address |
