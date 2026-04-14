@@ -1,6 +1,7 @@
 bin/
 dist/
 lib/
+!packages/frontend/src/lib/
 node_modules/
 
 .env

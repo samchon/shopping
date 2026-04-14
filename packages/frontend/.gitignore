@@ -1,0 +1,8 @@
+.env.local
+.artifacts/
+.next/
+artifacts/
+
+*.log
+*.err.log
+tsconfig.tsbuildinfo
