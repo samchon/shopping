@@ -15,22 +15,22 @@ model shopping_channels {
   // COLUMNS
   //----
   /// Primary Key.
-  id String @id
+  id String @id @db.Uuid
 
   /// Identifier code.
-  code String
+  code String @db.VarChar
 
   /// Name of channel.
-  name String
+  name String @db.VarChar
 
   /// Creation time of record.
-  created_at DateTime
+  created_at DateTime @db.Timestamptz
 
   /// Update time of record.
-  updated_at DateTime
+  updated_at DateTime @db.Timestamptz
 
   /// Deletion time of record.
-  deleted_at DateTime?
+  deleted_at DateTime? @db.Timestamptz
 
   //----
   // RELATIONS
@@ -84,30 +84,30 @@ model shopping_channel_categories {
   // COLUMNS
   //----
   /// Primary Key.
-  id String @id
+  id String @id @db.Uuid
 
   /// Belonged channel's {@link shopping_channels.id}.
-  shopping_channel_id String
+  shopping_channel_id String @db.Uuid
 
   /// Parent category's {@link shopping_channel_categories.id}.
   ///
   /// Only when the category is a subcategory of another one.
-  parent_id String?
+  parent_id String? @db.Uuid
 
   /// Identifier code.
-  code String
+  code String @db.VarChar
 
   /// Name of category.
-  name String
+  name String @db.VarChar
 
   /// Creation time of record.
-  created_at DateTime
+  created_at DateTime @db.Timestamptz
 
   /// Updadte time of record.
-  updated_at DateTime
+  updated_at DateTime @db.Timestamptz
 
   /// Deletion time of record.
-  deleted_at DateTime?
+  deleted_at DateTime? @db.Timestamptz
 
   //----
   // RELATIONS
@@ -144,22 +144,22 @@ model shopping_sections {
   // COLUMNS
   //----
   /// Primary Key.
-  id String @id
+  id String @id @db.Uuid
 
   /// Identifier code.
-  code String
+  code String @db.VarChar
 
   /// Name of section.
-  name String
+  name String @db.VarChar
 
   /// Creation time of record.
-  created_at DateTime
+  created_at DateTime @db.Timestamptz
 
   /// Update time of record.
-  updated_at DateTime
+  updated_at DateTime @db.Timestamptz
 
   /// Deletion time of record.
-  deleted_at DateTime?
+  deleted_at DateTime? @db.Timestamptz
 
   //----
   // RELATIONS
@@ -174,11 +174,11 @@ model shopping_sections {
 
 /// @hidden
 model mv_cache_times {
-  id     String   @id
-  schema String  
-  table  String  
-  key    String  
-  value  DateTime
+  id     String   @id @db.Uuid
+  schema String   @db.VarChar
+  table  String   @db.VarChar
+  key    String   @db.VarChar
+  value  DateTime @db.Timestamptz
 
   @@unique([schema, table, key])
 }

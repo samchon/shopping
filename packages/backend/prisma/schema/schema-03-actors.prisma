@@ -36,37 +36,37 @@ model shopping_customers {
   // COLUMNS
   //----
   /// Primary Key.
-  id String @id
+  id String @id @db.Uuid
 
   /// Belonged channel's {@link shopping_channels.id}
-  shopping_channel_id String /// @format uuid
+  shopping_channel_id String @db.Uuid /// @format uuid
 
   /// Belonged member's {@link shopping_members.id}
-  shopping_member_id String? /// @format uuid
+  shopping_member_id String? @db.Uuid /// @format uuid
 
   /// Belonged external service user's {@link shopping_external_users.id}
-  shopping_external_user_id String? /// @format uuid
+  shopping_external_user_id String? @db.Uuid /// @format uuid
 
   /// Belonged citizen's {@link shopping_citizens.id}
-  shopping_citizen_id String? /// @format uuid
+  shopping_citizen_id String? @db.Uuid /// @format uuid
 
   /// Connection URL.
   ///
   /// {@link window.location.href}
-  href String
+  href String @db.VarChar(1024)
 
   /// Referrer URL.
   ///
   /// {@link window.document.referrer}
-  referrer String?
+  referrer String? @db.VarChar(1024)
 
   /// IP address,
-  ip String
+  ip String @db.VarChar
 
   /// Creation time of record.
   ///
   /// It means the time when the customer connected to the shopping mall.
-  created_at DateTime
+  created_at DateTime @db.Timestamptz
 
   //----
   // RELATIONS
@@ -140,24 +140,24 @@ model shopping_external_users {
   // COLUMNS
   //----
   /// Primary Key.
-  id String @id
+  id String @id @db.Uuid
 
   /// Belonged channel's {@link shopping_channels.id}
-  shopping_channel_id String
+  shopping_channel_id String @db.Uuid
 
   /// Belonged citizen's {@link shopping_citizens.id}
-  shopping_citizen_id String?
+  shopping_citizen_id String? @db.Uuid
 
   /// Identifier code of the external service.
   ///
   /// It can be same with {@link shopping_channels.code} in common.
-  application String
+  application String @db.VarChar
 
   /// Identifier key of external user from the external system.
-  uid String
+  uid String @db.VarChar
 
   /// Nickname of external user in the external system.
-  nickname String
+  nickname String @db.VarChar
 
   /// Additional information about external user from the external system.
   data String?
@@ -169,7 +169,7 @@ model shopping_external_users {
   /// entered the same application and code as the current external system 
   /// user, this is to determine whether to view this as a correct external 
   /// system user or a violation.
-  password String
+  password String @db.VarChar
 
   /// Creation time of record.
   ///
@@ -188,6 +188,7 @@ model shopping_external_users {
   @@index([shopping_citizen_id])
   @@index([application, created_at])
   @@index([created_at])
+  @@index([nickname(ops: raw("gin_trgm_ops"))], type: Gin)
 }
 
 /// Citizen verification information.
@@ -212,28 +213,28 @@ model shopping_citizens {
   // COLUMNS
   //----
   /// Primary Key.
-  id String @id
+  id String @id @db.Uuid
 
   /// Belonged channel's {@link shopping_channels.id}
   ///
   /// This is to manage personal information separately for each channel, 
   /// and also to recognize cases where the same citizen is authenticated 
   /// through different channels.
-  shopping_channel_id String?
+  shopping_channel_id String? @db.Uuid
 
   /// Mobile phone number.
-  mobile String
+  mobile String @db.VarChar
 
   /// Real name, or equivalent name identifiable.
-  name String
+  name String @db.VarChar
 
   /// Creation time of record.
   ///
   /// In other words, the 1st time of citizen activation.
-  created_at DateTime
+  created_at DateTime @db.Timestamptz
 
   /// Deletion time of record.
-  deleted_at DateTime?
+  deleted_at DateTime? @db.Timestamptz
 
   //----
   // RELATIONS
@@ -284,30 +285,30 @@ model shopping_members {
   // COLUMNS
   //----
   /// Primary Key.
-  id String @id
+  id String @id @db.Uuid
 
   /// Belonged channel's {@link shopping_channels.id}
-  shopping_channel_id String
+  shopping_channel_id String @db.Uuid
 
   /// Belonged citizen's {@link shopping_citizens.id}
-  shopping_citizen_id String?
+  shopping_citizen_id String? @db.Uuid
 
   /// Nickname.
-  nickname String
+  nickname String @db.VarChar
 
   /// Password for log-in.
-  password String
+  password String @db.VarChar
 
   /// Creation time of record.
   ///
   /// In other words, the joining time.
-  created_at DateTime
+  created_at DateTime @db.Timestamptz
 
   /// Update time of record.
-  updated_at DateTime
+  updated_at DateTime @db.Timestamptz
 
   /// Deletion time of record.
-  withdrawn_at DateTime?
+  withdrawn_at DateTime? @db.Timestamptz
 
   //----
   // RELATIONS
@@ -330,6 +331,7 @@ model shopping_members {
   @@unique([shopping_channel_id, nickname])
   @@unique([shopping_channel_id, shopping_citizen_id])
   @@index([shopping_citizen_id])
+  @@index([nickname(ops: raw("gin_trgm_ops"))], type: Gin)
   @@index([created_at])
 }
 
@@ -345,7 +347,7 @@ model shopping_member_emails {
   //----
   // COLUMNS
   //----
-  id String @id
+  id String @id @db.Uuid
 
   /// Belonged channel's {@link shopping_channels.id}
   ///
@@ -353,16 +355,16 @@ model shopping_member_emails {
   /// just denormalized for composing unique constraint.
   ///
   /// @hidden
-  shopping_channel_id String
+  shopping_channel_id String @db.Uuid
 
   /// Belonged member's {@link shopping_members.id}
-  shopping_member_id String
+  shopping_member_id String @db.Uuid
 
   /// Email address.
-  value String
+  value String @db.VarChar
 
   /// Creation time of record.
-  created_at DateTime
+  created_at DateTime @db.Timestamptz
 
   //----
   // RELATIONS
@@ -372,6 +374,7 @@ model shopping_member_emails {
 
   @@unique([shopping_channel_id, value])
   @@unique([shopping_member_id, value])
+  @@index([value(ops: raw("gin_trgm_ops"))], type: Gin)
 }
 
 /// Seller information.
@@ -392,21 +395,21 @@ model shopping_sellers {
   // COLUMNS
   //----
   /// Primary Key.
-  id String @id
+  id String @id @db.Uuid
 
   /// Belonged member's {@link shopping_members.id}.
-  shopping_member_id String
+  shopping_member_id String @db.Uuid
 
   /// Creation time of record.
   ///
   /// Joining time as seller, and it can be different with 
   /// {@link shopping_members membership} joining time.
-  created_at DateTime
+  created_at DateTime @db.Timestamptz
 
   /// Withdrawal time.
   ///
   /// It can be different with {@link shopping_members.deleted_at}.
-  deleted_at DateTime?
+  deleted_at DateTime? @db.Timestamptz
 
   //----
   // RELATIONSHIPS
@@ -438,22 +441,22 @@ model shopping_administrators {
   // COLUMNS
   //----
   /// Primary Key.
-  id String @id
+  id String @id @db.Uuid
 
   /// Belonged member's {@link shopping_members.id}.
-  shopping_member_id String
+  shopping_member_id String @db.Uuid
 
   /// Creation time of record.
   ///
   /// Joining time as an administrator, and can be different with
   /// {@link shopping_members membership} joining time.
-  created_at DateTime
+  created_at DateTime @db.Timestamptz
 
   /// Deletion time of record.
   ///
   /// Withdrawal time from administrator, and can be different with
   /// {@link shopping_members.deleted_at}.
-  deleted_at DateTime?
+  deleted_at DateTime? @db.Timestamptz
 
   //----
   // RELATIONS
@@ -475,39 +478,39 @@ model shopping_addresses {
   // COLUMNS
   //----
   /// Primary Key.
-  id String @id
+  id String @id @db.Uuid
 
   /// Mobile number.
-  mobile String
+  mobile String @db.VarChar
 
   /// Representative name of the address.
   ///
   /// Sometimes be receiver's name, and sometimes be place name.
-  name String
+  name String @db.VarChar
 
   /// Target country.
-  country String
+  country String @db.VarChar
 
   /// Target province.
-  province String
+  province String @db.VarChar
 
   /// Target city.
-  city String
+  city String @db.VarChar
 
   /// Department name.
-  department String
+  department String @db.VarChar
 
   /// Detailed address containing room number.
-  possession String
+  possession String @db.VarChar
 
   /// Zip code, or postal code.
-  zip_code String
+  zip_code String @db.VarChar
 
   /// Special description if required.
-  special_note String?
+  special_note String? @db.VarChar
 
   /// Creation time of record.
-  created_at DateTime
+  created_at DateTime @db.Timestamptz
 
   //----
   // RELATIONS

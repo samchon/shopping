@@ -12,23 +12,23 @@ model attachment_files {
   // COLUMNS
   //----
   /// Primary Key.
-  id String @id
+  id String @id @db.Uuid
 
   /// File name, except extension.
   ///
   /// If there's file `.gitignore`, then its name is an empty string.
-  name String
+  name String @db.VarChar
 
   /// Extension.
   ///
   /// Possible to omit like `README` case.
-  extension String?
+  extension String? @db.VarChar
 
   /// URL path of the real file.
-  url String
+  url String @db.VarChar(1024)
 
   /// Creation time of record.
-  created_at DateTime
+  created_at DateTime @db.Timestamptz
 
   //----
   // RELATIONS
@@ -67,16 +67,16 @@ model attachment_files {
 /// @author Samchon
 model bbs_articles {
   /// Primary Key.
-  id String @id
+  id String @id @db.Uuid
 
   /// Creation time of article.
-  created_at DateTime
+  created_at DateTime @db.Timestamptz
 
   /// Deletion time of article.
   ///
   /// To keep evidence, do not delete the article, but just mark it as 
   /// deleted.
-  deleted_at DateTime?
+  deleted_at DateTime? @db.Timestamptz
 
   //----
   // RELATIONS
@@ -113,18 +113,18 @@ model bbs_article_snapshots {
   // COLUMNS
   //----
   /// Primary Key.
-  id String @id
+  id String @id @db.Uuid
 
   /// Belong article's {@link bbs_articles.id}
-  bbs_article_id String
+  bbs_article_id String @db.Uuid
 
   /// Format of body.
   ///
   /// Same meaning with extension like `html`, `md`, `txt`.
-  format String
+  format String @db.VarChar
 
   /// Title of article.
-  title String
+  title String @db.VarChar
 
   /// Content body of article.
   body String
@@ -132,7 +132,7 @@ model bbs_article_snapshots {
   /// Creation time of record.
   ///
   /// It means creation time or update time or article.
-  created_at DateTime
+  created_at DateTime @db.Timestamptz
 
   //----
   // RELATIONS
@@ -148,6 +148,8 @@ model bbs_article_snapshots {
   shopping_sale_snapshot_inquiry_favorites shopping_sale_snapshot_inquiry_favorites[]
 
   @@index([bbs_article_id, created_at])
+  @@index([title(ops: raw("gin_trgm_ops"))], type: Gin)
+  @@index([body(ops: raw("gin_trgm_ops"))], type: Gin)
 }
 
 /// Attachment file of article snapshot.
@@ -168,16 +170,16 @@ model bbs_article_snapshot_files {
   // COLUMNS
   //----
   /// Primary Key.
-  id String @id
+  id String @id @db.Uuid
 
   /// Belonged snapshot's {@link bbs_article_snapshots.id}
-  bbs_article_snapshot_id String
+  bbs_article_snapshot_id String @db.Uuid
 
   /// Belonged file's {@link attachment_files.id}
-  attachment_file_id String
+  attachment_file_id String @db.Uuid
 
   /// Sequence of attachment file in the snapshot.
-  sequence Int
+  sequence Int @db.Integer
 
   //----
   // RELATIONS
@@ -214,24 +216,24 @@ model bbs_article_comments {
   // COLUMNS
   //----
   /// Primary Key.
-  id String @id
+  id String @id @db.Uuid
 
   /// Belonged article's {@link bbs_articles.id}
-  bbs_article_id String
+  bbs_article_id String @db.Uuid
 
   /// Parent comment's {@link bbs_article_comments.id}
   ///
   /// Used to express the hierarchical reply structure.
-  parent_id String?
+  parent_id String? @db.Uuid
 
   /// Creation time of comment.
-  created_at DateTime
+  created_at DateTime @db.Timestamptz
 
   /// Deletion time of comment.
   ///
   /// Do not allow to delete the comment, but just mark it as deleted, 
   /// to keep evidence.
-  deleted_at DateTime?
+  deleted_at DateTime? @db.Timestamptz
 
   //----
   // RELATIONS
@@ -274,15 +276,15 @@ model bbs_article_comment_snapshots {
   // COLUMNS
   //----
   /// Primary Key.
-  id String @id
+  id String @id @db.Uuid
 
   /// Belonged article's {@link bbs_article_comments.id}
-  bbs_article_comment_id String
+  bbs_article_comment_id String @db.Uuid
 
   /// Format of content body.
   ///
   /// Same meaning with extension like `html`, `md`, `txt`.
-  format String
+  format String @db.VarChar
 
   /// Content body of comment.
   body String
@@ -290,7 +292,7 @@ model bbs_article_comment_snapshots {
   /// Creation time of record.
   ///
   /// It means creation time or update time or comment.
-  created_at DateTime
+  created_at DateTime @db.Timestamptz
 
   //----
   // RELATIONS
@@ -302,6 +304,7 @@ model bbs_article_comment_snapshots {
   files bbs_article_comment_snapshot_files[]
 
   @@index([bbs_article_comment_id, created_at])
+  @@index([body(ops: raw("gin_trgm_ops"))], type: Gin)
 }
 
 /// Attachment file of comment snapshot.
@@ -317,18 +320,18 @@ model bbs_article_comment_snapshot_files {
   // COLUMNS
   //----
   /// Primary Key.
-  id String @id
+  id String @id @db.Uuid
 
   /// Belonged snapshot's {@link bbs_article_comment_snapshots.id}
-  bbs_article_comment_snapshot_id String
+  bbs_article_comment_snapshot_id String @db.Uuid
 
   /// Belonged file's {@link attachment_files.id}
-  attachment_file_id String
+  attachment_file_id String @db.Uuid
 
   /// Sequence order.
   ///
   /// Sequence order of the attached file in the belonged snapshot.
-  sequence Int
+  sequence Int @db.Integer
 
   //----
   // RELATIONS
@@ -345,8 +348,8 @@ model bbs_article_comment_snapshot_files {
 
 /// @hidden
 model mv_bbs_article_last_snapshots {
-  bbs_article_id          String @id
-  bbs_article_snapshot_id String
+  bbs_article_id          String @id @db.Uuid
+  bbs_article_snapshot_id String @db.Uuid
 
   article  bbs_articles          @relation(fields: [bbs_article_id], references: [id], onDelete: Cascade)
   snapshot bbs_article_snapshots @relation(fields: [bbs_article_snapshot_id], references: [id], onDelete: Cascade)

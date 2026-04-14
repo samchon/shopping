@@ -1,11 +1,9 @@
-import { PrismaBetterSqlite3 } from "@prisma/adapter-better-sqlite3";
+import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient } from "@prisma/sdk";
 import dotenv from "dotenv";
 import dotenvExpand from "dotenv-expand";
 import { Singleton } from "tstl";
 import typia from "typia";
-
-import { ShoppingConfiguration } from "./ShoppingConfiguration";
 
 interface IEnvironments {
   SHOPPING_MODE: "local" | "dev" | "real";
@@ -14,6 +12,15 @@ interface IEnvironments {
   SHOPPING_SYSTEM_PASSWORD: string;
   SHOPPING_JWT_SECRET_KEY: string;
   SHOPPING_JWT_REFRESH_KEY: string;
+
+  SHOPPING_POSTGRES_HOST: string;
+  SHOPPING_POSTGRES_PORT: `${number}`;
+  SHOPPING_POSTGRES_DATABASE: string;
+  SHOPPING_POSTGRES_SCHEMA: string;
+  SHOPPING_POSTGRES_USERNAME: string;
+  SHOPPING_POSTGRES_USERNAME_READONLY: string;
+  SHOPPING_POSTGRES_PASSWORD: string;
+  SHOPPING_POSTGRES_URL: string;
 
   SHOPPING_ADDRESS_SECRET_KEY: string;
   SHOPPING_CITIZEN_SECRET_KEY: string;
@@ -36,14 +43,6 @@ const environments = new Singleton(() => {
   dotenvExpand.expand(env);
   return typia.assert<IEnvironments>(process.env);
 });
-const prismaSingleton = new Singleton(
-  () =>
-    new PrismaClient({
-      adapter: new PrismaBetterSqlite3({
-        url: `${ShoppingConfiguration.ROOT}/prisma/db.sqlite`,
-      }),
-    }),
-);
 
 /**
  * Global variables of the shopping server.
@@ -53,9 +52,12 @@ const prismaSingleton = new Singleton(
 export class ShoppingGlobal {
   public static testing: boolean = false;
 
-  public static get prisma(): PrismaClient {
-    return prismaSingleton.get();
-  }
+  public static readonly prisma: PrismaClient = new PrismaClient({
+    adapter: new PrismaPg(
+      { connectionString: environments.get().SHOPPING_POSTGRES_URL },
+      { schema: environments.get().SHOPPING_POSTGRES_SCHEMA },
+    ),
+  });
 
   public static get env(): IEnvironments {
     return environments.get();

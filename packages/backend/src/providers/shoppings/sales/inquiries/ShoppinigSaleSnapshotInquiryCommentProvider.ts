@@ -158,7 +158,7 @@ export namespace ShoppingSaleSnapshotInquiryCommentProvider {
                 member: {
                   nickname: {
                     contains: input.nickname,
-                    // mode: "insensitive" as const,
+                    mode: "insensitive" as const,
                   },
                 },
               },

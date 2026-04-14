@@ -23,23 +23,23 @@ model shopping_carts {
   // COLUMNS
   //----
   /// Primary Key.
-  id String @id
+  id String @id @db.Uuid
 
   /// Belonged customer's {@link shopping_customers.id}
-  shopping_customer_id String
+  shopping_customer_id String @db.Uuid
 
   /// Type of the cart creator.
   ///
   /// - customer
   /// - seller
   /// - administrator
-  actor_type String
+  actor_type String @db.VarChar
 
   /// Creation time of record.
-  created_at DateTime
+  created_at DateTime @db.Timestamptz
 
   /// Deletion time of record.
-  deleted_at DateTime?
+  deleted_at DateTime? @db.Timestamptz
 
   //----
   // RELATIONS
@@ -82,24 +82,24 @@ model shopping_cart_commodities {
   // COLUMNS
   //----
   /// Primary Key.
-  id String @id
+  id String @id @db.Uuid
 
   /// Belonged cart's {@link shopping_carts.id}
-  shopping_cart_id String
+  shopping_cart_id String @db.Uuid
 
   /// Target snapshot's {@link shopping_sale_snapshots.id}
-  shopping_sale_snapshot_id String
+  shopping_sale_snapshot_id String @db.Uuid
 
   /// Volume count.
   ///
   /// The value multiplied to {@link shopping_cart_commodity_stocks.quantity}.
-  volume Int
+  volume Int @db.Integer
 
   /// Creation time of record.
-  created_at DateTime
+  created_at DateTime @db.Timestamptz
 
   /// Deletion time of record.
-  deleted_at DateTime?
+  deleted_at DateTime? @db.Timestamptz
 
   /// Whether be published or not.
   ///
@@ -161,22 +161,22 @@ model shopping_cart_commodity_stocks {
   // COLUMNS
   //----
   /// Primary Key.
-  id String @id
+  id String @id @db.Uuid
 
   /// Belonged commodity's {@link shopping_cart_commodities.id}
-  shopping_cart_commodity_id String
+  shopping_cart_commodity_id String @db.Uuid
 
   /// Target unit's {@link shopping_sale_snapshot_units.id}
-  shopping_sale_snapshot_unit_id String
+  shopping_sale_snapshot_unit_id String @db.Uuid
 
   /// Target final stock's {@link shopping_sale_snapshot_unit_stocks.id}
-  shopping_sale_snapshot_unit_stock_id String
+  shopping_sale_snapshot_unit_stock_id String @db.Uuid
 
   /// Quantity count.
-  quantity Int
+  quantity Int @db.Integer
 
   /// Sequence order in belonged cart commodity.
-  sequence Int
+  sequence Int @db.Integer
 
   //----
   // RELATIONS
@@ -185,10 +185,10 @@ model shopping_cart_commodity_stocks {
   commodity shopping_cart_commodities @relation(fields: [shopping_cart_commodity_id], references: [id], onDelete: Cascade)
 
   /// Target unit.
-  unit shopping_sale_snapshot_units @relation(fields: [shopping_sale_snapshot_unit_id], references: [id], onDelete: Cascade)
+  unit shopping_sale_snapshot_units @relation(map: "rel_shopping_cart_commodity_stocks_unit", fields: [shopping_sale_snapshot_unit_id], references: [id], onDelete: Cascade)
 
   /// Target final stock.
-  stock shopping_sale_snapshot_unit_stocks @relation(fields: [shopping_sale_snapshot_unit_stock_id], references: [id], onDelete: Cascade)
+  stock shopping_sale_snapshot_unit_stocks @relation(map: "rel_shopping_cart_commodity_stocks_stock", fields: [shopping_sale_snapshot_unit_stock_id], references: [id], onDelete: Cascade)
 
   /// List of choices, how customer has determined for each option.
   choices shopping_cart_commodity_stock_choices[]
@@ -223,22 +223,22 @@ model shopping_cart_commodity_stock_choices {
   // COLUMNS
   //----
   /// Primary Key.
-  id String @id
+  id String @id @db.Uuid
 
   /// Belonged cart-commodity-stock's {@link shopping_cart_commodity_stocks.id}
-  shopping_cart_commodity_stock_id String
+  shopping_cart_commodity_stock_id String @db.Uuid
 
   /// Target option's {@link shopping_sale_snapshot_unit_options.id}
-  shopping_sale_snapshot_unit_option_id String
+  shopping_sale_snapshot_unit_option_id String @db.Uuid
 
   /// Selected candidate's {@link shopping_sale_snapshot_unit_option_candidates.id}
-  shopping_sale_snapshot_unit_option_candidate_id String?
+  shopping_sale_snapshot_unit_option_candidate_id String? @db.Uuid
 
   /// User-written value for descriptive option.
-  value String?
+  value String? @db.VarChar
 
   /// Sequence order in belonged cart-commodity-stock.
-  sequence Int
+  sequence Int @db.Integer
 
   //----
   // RELATIONS
@@ -247,10 +247,10 @@ model shopping_cart_commodity_stock_choices {
   stock shopping_cart_commodity_stocks @relation(fields: [shopping_cart_commodity_stock_id], references: [id], onDelete: Cascade)
 
   /// Target option.
-  option shopping_sale_snapshot_unit_options @relation(fields: [shopping_sale_snapshot_unit_option_id], references: [id], onDelete: Cascade)
+  option shopping_sale_snapshot_unit_options @relation(map: "rel_shopping_cart_commodity_stock_choices_option", fields: [shopping_sale_snapshot_unit_option_id], references: [id], onDelete: Cascade)
 
   /// Selected candidate value for "select" typed option.
-  candidate shopping_sale_snapshot_unit_option_candidates? @relation(fields: [shopping_sale_snapshot_unit_option_candidate_id], references: [id], onDelete: Cascade)
+  candidate shopping_sale_snapshot_unit_option_candidates? @relation(map: "rel_shopping_cart_commodity_stock_choices_candidate", fields: [shopping_sale_snapshot_unit_option_candidate_id], references: [id], onDelete: Cascade)
 
   @@index([shopping_cart_commodity_stock_id])
   @@index([shopping_sale_snapshot_unit_option_id], map: "idx_shopping_cart_commodity_stock_choices_option")
@@ -259,10 +259,10 @@ model shopping_cart_commodity_stock_choices {
 
 /// @hidden
 model mv_shopping_cart_commodity_prices {
-  shopping_cart_commodity_id String @id
-  nominal                    Float 
-  real                       Float 
-  volumed_price              Float 
+  shopping_cart_commodity_id String @id @db.Uuid
+  nominal                    Float  @db.DoublePrecision
+  real                       Float  @db.DoublePrecision
+  volumed_price              Float  @db.DoublePrecision
 
   commodity shopping_cart_commodities @relation(fields: [shopping_cart_commodity_id], references: [id], onDelete: Cascade)
 }

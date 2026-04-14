@@ -1,6 +1,5 @@
 import cp from "child_process";
 
-import { ShoppingConfiguration } from "../ShoppingConfiguration";
 import { ShoppingGlobal } from "../ShoppingGlobal";
 import { ShoppingAdministratorSeeder } from "./seeders/ShoppingAdministratorSeeder";
 import { ShoppingChannelSeeder } from "./seeders/ShoppingChannelSeeder";
@@ -17,11 +16,14 @@ export namespace ShoppingSetupWizard {
       );
     const execute = (type: string) => (argv: string) =>
       cp.execSync(`npx prisma migrate ${type} --schema=prisma/schema ${argv}`, {
-        cwd: ShoppingConfiguration.ROOT,
-        stdio: ["pipe", process.stdout, process.stderr],
+        stdio: "inherit",
       });
     execute("reset")("--force");
     execute("dev")("--name init");
+
+    await ShoppingGlobal.prisma.$executeRawUnsafe(
+      `GRANT SELECT ON ALL TABLES IN SCHEMA ${ShoppingGlobal.env.SHOPPING_POSTGRES_SCHEMA} TO ${ShoppingGlobal.env.SHOPPING_POSTGRES_USERNAME_READONLY}`,
+    );
   }
 
   export async function seed(): Promise<void> {

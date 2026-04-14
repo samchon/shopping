@@ -27,29 +27,29 @@ model shopping_sale_snapshot_inquiries {
   // COLUMNS
   //----
   /// PK + FK.
-  id String @id
+  id String @id @db.Uuid
 
   /// Belonged snapshot's {@link shopping_sale_snapshots.id}
-  shopping_sale_snapshot_id String
+  shopping_sale_snapshot_id String @db.Uuid
 
   /// Writer customer's {@link shopping_customers.id}
-  shopping_customer_id String
+  shopping_customer_id String @db.Uuid
 
   /// Type of the inquiry article.
   ///
   /// - `question`
   /// - `review`
-  type String
+  type String @db.VarChar
 
   /// Creation time of record.
   ///
   /// Duplicated property for fast sorting.
   ///
   /// @hidden
-  created_at DateTime
+  created_at DateTime @db.Timestamptz
 
   /// The first time when the seller read the inquiry.
-  read_by_seller_at DateTime?
+  read_by_seller_at DateTime? @db.Timestamptz
 
   //----
   // RELATIONS
@@ -87,13 +87,13 @@ model shopping_sale_snapshot_questions {
   // COLUMNS
   //----
   /// PK + FK.
-  id String @id
+  id String @id @db.Uuid
 
   /// Whether secret or not.
   ///
   /// If secret article, only the writer customer and related seller can see
   /// the detailed content.
-  secret Boolean
+  secret Boolean @db.Boolean
 
   //----
   // RELATIONS
@@ -124,10 +124,10 @@ model shopping_sale_snapshot_reviews {
   // COLUMNS
   //----
   /// PK + FK.
-  id String @id
+  id String @id @db.Uuid
 
   /// Belonged good's {@link shopping_order_goods.id}
-  shopping_order_good_id String
+  shopping_order_good_id String @db.Uuid
 
   //----
   // RELATIONS
@@ -154,10 +154,10 @@ model shopping_sale_snapshot_review_snapshots {
   // COLUMNS
   //----
   /// PK + FK.
-  id String @id
+  id String @id @db.Uuid
 
   /// Estimation score value.
-  score Float
+  score Float @db.DoublePrecision
 
   //----
   // RELATIONS
@@ -190,13 +190,13 @@ model shopping_sale_snapshot_inquiry_answers {
   // COLUMNS
   //----
   /// PK + FK
-  id String @id
+  id String @id @db.Uuid
 
   /// Belonged inquiry's {@link shopping_sale_snapshot_inquiries.id}
-  shopping_sale_snapshot_inquiry_id String
+  shopping_sale_snapshot_inquiry_id String @db.Uuid
 
   /// Answered seller's {@link shopping_customers.id}
-  shopping_seller_customer_id String
+  shopping_seller_customer_id String @db.Uuid
 
   //----
   // RELATIONS
@@ -228,16 +228,16 @@ model shopping_sale_snapshot_inquiry_comments {
   // COLUMNS
   //----
   /// PK + FK
-  id String @id
+  id String @id @db.Uuid
 
   /// Writer's {@link shopping_customers.id}
-  shopping_customer_id String
+  shopping_customer_id String @db.Uuid
 
   /// Type of the writer.
   ///
   /// - customer
   /// - seller
-  actor_type String
+  actor_type String @db.VarChar
 
   //----
   // RELATIONS

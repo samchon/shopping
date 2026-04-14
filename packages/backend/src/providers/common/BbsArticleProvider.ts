@@ -95,7 +95,7 @@ export namespace BbsArticleProvider {
                 snapshot: {
                   title: {
                     contains: input.title,
-                    // mode: "insensitive" as const,
+                    mode: "insensitive" as const,
                   },
                 },
               },
@@ -109,7 +109,7 @@ export namespace BbsArticleProvider {
                 snapshot: {
                   body: {
                     contains: input.body,
-                    // mode: "insensitive" as const,
+                    mode: "insensitive" as const,
                   },
                 },
               },
@@ -125,7 +125,7 @@ export namespace BbsArticleProvider {
                     snapshot: {
                       title: {
                         contains: input.title_or_body,
-                        // mode: "insensitive" as const,
+                        mode: "insensitive" as const,
                       },
                     },
                   },
@@ -135,7 +135,7 @@ export namespace BbsArticleProvider {
                     snapshot: {
                       body: {
                         contains: input.title_or_body,
-                        // mode: "insensitive" as const,
+                        mode: "insensitive" as const,
                       },
                     },
                   },

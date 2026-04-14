@@ -228,7 +228,7 @@ export namespace ShoppingCouponProvider {
             {
               name: {
                 contains: input.name,
-                // mode: "insensitive" as const,
+                mode: "insensitive" as const,
               },
             },
           ]

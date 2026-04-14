@@ -64,7 +64,7 @@
     "@nestjs/common": "^11.1.12",
     "@nestjs/core": "^11.1.12",
     "@nestjs/platform-fastify": "^11.1.12",
-    "@prisma/adapter-better-sqlite3": "^7.3.0",
+    "@prisma/adapter-pg": "^7.3.0",
     "@prisma/client": "^7.3.0",
     "@prisma/internals": "^7.3.0",
     "@rollup/plugin-terser": "^0.4.4",
@@ -85,10 +85,5 @@
     "tstl": "catalog:samchon",
     "typia": "catalog:samchon",
     "uuid": "catalog:utils"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "better-sqlite3"
-    ]
   }
 }

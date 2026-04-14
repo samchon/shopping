@@ -28,35 +28,35 @@ model shopping_orders {
   // COLUMNS
   //----
   /// Primary Key.
-  id String @id
+  id String @id @db.Uuid
 
   /// Belonged customer's {@link shopping_customers.id}
-  shopping_customer_id String
+  shopping_customer_id String @db.Uuid
 
   /// Target address' {@link shopping_addresses.id}
-  shopping_address_id String?
+  shopping_address_id String? @db.Uuid
 
   /// Representative name of the order.
-  name String
+  name String @db.VarChar
 
   /// Amount of cash payment.
-  cash Float
+  cash Float @db.DoublePrecision
 
   /// Amount of deposit payment instead of cash.
-  deposit Float
+  deposit Float @db.DoublePrecision
 
   /// Amount of mileage payment instead of cash.
-  mileage Float
+  mileage Float @db.DoublePrecision
 
   /// Creation time of record.
-  created_at DateTime
+  created_at DateTime @db.Timestamptz
 
   /// Deletion time of record.
   ///
   /// If order be published, unable to erase it. In that case, you
   /// {@link shopping_order_publishes.cancelled_at} instead, or utilize
   /// {@link shopping_order_good_reverts} instead.
-  deleted_at DateTime?
+  deleted_at DateTime? @db.Timestamptz
 
   //----
   // RELATIONS
@@ -115,13 +115,13 @@ model shopping_order_goods {
   // COLUMNS
   //----
   /// Primary Key.
-  id String @id
+  id String @id @db.Uuid
 
   /// Belonged order's {@link shopping_orders.id}
-  shopping_order_id String
+  shopping_order_id String @db.Uuid
 
   /// Belonged cart commodity's {@link shopping_cart_commodities.id}
-  shopping_cart_commodity_id String
+  shopping_cart_commodity_id String @db.Uuid
 
   /// Belonged seller's {@link shopping_sellers.id}
   ///
@@ -129,7 +129,7 @@ model shopping_order_goods {
   /// but denormalized for performance reason.
   ///
   /// @hidden
-  shopping_seller_id String
+  shopping_seller_id String @db.Uuid
 
   /// Volume count.
   ///
@@ -137,10 +137,10 @@ model shopping_order_goods {
   /// It's purpose is exactly same with {@link shopping_cart_commodities.volume},
   /// but rewritten because the {@link shopping_cart_commodities} records are
   /// reusable until payment.
-  volume Int
+  volume Int @db.Integer
 
   /// Sequence order(?) in belonged order.
-  sequence Int
+  sequence Int @db.Integer
 
   /// Confirmation time of order good.
   ///
@@ -150,7 +150,7 @@ model shopping_order_goods {
   ///
   /// - Customer does it directly.
   /// - 14 days after the delivery.
-  confirmed_at DateTime?
+  confirmed_at DateTime? @db.Timestamptz
 
   //----
   // RELATIONS
@@ -200,38 +200,38 @@ model shopping_order_publishes {
   // COLUMNS
   //----
   /// Primary Key.
-  id String @id
+  id String @id @db.Uuid
 
   /// Belonged order's {@link shopping_orders.id}
-  shopping_order_id String
+  shopping_order_id String @db.Uuid
 
   /// Target address' {@link shopping_addresses.id}
   ///
   /// The place to receive the goods. For reference, the address information
   /// also has an information of receiver, and it can be different with the
   /// customer who has ordered.
-  shopping_address_id String
+  shopping_address_id String @db.Uuid
 
   /// Password for encryption.
   ///
   /// This shopping mall system uses a randomly issued password to 
   /// encrypt payment history, and is completely unrelated to the user.
-  password String?
+  password String? @db.VarChar
 
   /// Creation time of record.
   ///
   /// Note that, this property does not mean the payment completion time.
-  created_at DateTime
+  created_at DateTime @db.Timestamptz
 
   /// Completion time of payment.
   ///
   /// This property is the only way to know if the payment has been
   /// completed. If this property is `null`, the payment has not been
   /// completed yet.
-  paid_at DateTime?
+  paid_at DateTime? @db.Timestamptz
 
   /// The time when the payment was cancelled or reverted.
-  cancelled_at DateTime?
+  cancelled_at DateTime? @db.Timestamptz
 
   //----
   // RELATIONS
@@ -276,16 +276,16 @@ model shopping_deliveries {
   // COLUMNS
   //----
   /// Primary Key.
-  id String @id
+  id String @id @db.Uuid
 
   /// Belonged seller's {@link shopping_sellers.id}
-  shopping_seller_customer_id String
+  shopping_seller_customer_id String @db.Uuid
 
   /// Creation time of record.
-  created_at DateTime
+  created_at DateTime @db.Timestamptz
 
   /// Deletion time of record.
-  deleted_at DateTime?
+  deleted_at DateTime? @db.Timestamptz
 
   //----
   // RELATIONS
@@ -317,27 +317,27 @@ model shopping_delivery_pieces {
   // COLUMNS
   //----
   /// Primary Key.
-  id String @id
+  id String @id @db.Uuid
 
   /// Belonged delivery's {@link shopping_deliveries.id}
-  shopping_delivery_id String
+  shopping_delivery_id String @db.Uuid
 
   /// Target order-publish'es {@link shopping_order_publishes.id}
-  shopping_order_publish_id String
+  shopping_order_publish_id String @db.Uuid
 
   /// Target good's {@link shopping_order_goods.id}
-  shopping_order_good_id String
+  shopping_order_good_id String @db.Uuid
 
   /// Target stock's {@link shopping_sale_snapshot_unit_stocks.id}
-  shopping_sale_snapshot_unit_stock_id String
+  shopping_sale_snapshot_unit_stock_id String @db.Uuid
 
   /// Quantity count.
   ///
   /// It can be precision value to express split shipping.
-  quantity Float
+  quantity Float @db.DoublePrecision
 
   /// Sequence order in belonged delivery.
-  sequence Int
+  sequence Int @db.Integer
 
   //----
   // RELATIONS
@@ -360,21 +360,21 @@ model shopping_delivery_shippers {
   // COLUMNS
   //----
   /// Primary Key.
-  id String @id
+  id String @id @db.Uuid
 
   /// Belonged delivery's {@link shopping_deliveries.id}
-  shopping_delivery_id String
+  shopping_delivery_id String @db.Uuid
 
   /// Mobile number of shipper.
-  mobile String
+  mobile String @db.VarChar
 
   /// Name of shipper.
-  name String
+  name String @db.VarChar
 
   /// Company of shipper.
-  company String?
+  company String? @db.VarChar
 
-  created_at DateTime
+  created_at DateTime @db.Timestamptz
 
   //----
   // RELATIONS
@@ -398,10 +398,10 @@ model shopping_delivery_journeys {
   // COLUMNS
   //----
   /// Primary Key.
-  id String @id
+  id String @id @db.Uuid
 
   /// Belonged delivery's {@link shopping_deliveries.id}
-  shopping_delivery_id String
+  shopping_delivery_id String @db.Uuid
 
   /// Type of journey.
   ///
@@ -409,28 +409,28 @@ model shopping_delivery_journeys {
   /// - manufacturing
   /// - shipping
   /// - delivering
-  type String
+  type String @db.VarChar
 
   /// Title of journey.
-  title String?
+  title String? @db.VarChar
 
   /// Description of journey.
   description String?
 
   /// Sequence order in belonged delivery.
-  sequence Int
+  sequence Int @db.Integer
 
   /// Creation time of record.
-  created_at DateTime
+  created_at DateTime @db.Timestamptz
 
   /// Start time of journey.
-  started_at DateTime?
+  started_at DateTime? @db.Timestamptz
 
   /// Completion time of journey.
-  completed_at DateTime?
+  completed_at DateTime? @db.Timestamptz
 
   /// Deletion time of record.
-  deleted_at DateTime?
+  deleted_at DateTime? @db.Timestamptz
 
   //----
   // RELATIONS
@@ -443,50 +443,50 @@ model shopping_delivery_journeys {
 
 /// @hidden
 model mv_shopping_order_prices {
-  shopping_order_id String @id
-  quantity          Int   
-  nominal           Float 
-  real              Float 
-  ticket            Float 
+  shopping_order_id String @id @db.Uuid
+  quantity          Int    @db.Integer
+  nominal           Float  @db.DoublePrecision
+  real              Float  @db.DoublePrecision
+  ticket            Float  @db.DoublePrecision
 
   order shopping_orders @relation(fields: [shopping_order_id], references: [id], onDelete: Cascade)
 }
 
 /// @hidden
 model mv_shopping_order_good_prices {
-  shopping_order_good_id String @id
-  nominal                Float 
-  real                   Float 
-  cash                   Float 
-  deposit                Float 
-  mileage                Float 
-  ticket                 Float 
+  shopping_order_good_id String @id @db.Uuid
+  nominal                Float  @db.DoublePrecision
+  real                   Float  @db.DoublePrecision
+  cash                   Float  @db.DoublePrecision
+  deposit                Float  @db.DoublePrecision
+  mileage                Float  @db.DoublePrecision
+  ticket                 Float  @db.DoublePrecision
 
   good shopping_order_goods @relation(fields: [shopping_order_good_id], references: [id], onDelete: Cascade)
 }
 
 /// @hidden
 model mv_shopping_order_publish_states {
-  shopping_order_publish_id String @id
-  value                     String
+  shopping_order_publish_id String @id @db.Uuid
+  value                     String @db.VarChar
 
   publish shopping_order_publishes @relation(fields: [shopping_order_publish_id], references: [id], onDelete: Cascade)
 }
 
 /// @hidden
 model mv_shopping_order_good_states {
-  shopping_order_good_id String @id
-  value                  String
+  shopping_order_good_id String @id @db.Uuid
+  value                  String @db.VarChar
 
   good shopping_order_goods @relation(fields: [shopping_order_good_id], references: [id], onDelete: Cascade)
 }
 
 /// @hidden
 model mv_shopping_order_publish_seller_states {
-  id                        String @id
-  shopping_order_publish_id String
-  shopping_seller_id        String
-  value                     String
+  id                        String @id @db.Uuid
+  shopping_order_publish_id String @db.Uuid
+  shopping_seller_id        String @db.Uuid
+  value                     String @db.VarChar
 
   publish shopping_order_publishes @relation(fields: [shopping_order_publish_id], references: [id], onDelete: Cascade)
   seller  shopping_sellers         @relation(fields: [shopping_seller_id], references: [id], onDelete: Cascade)
@@ -497,8 +497,8 @@ model mv_shopping_order_publish_seller_states {
 
 /// @hidden
 model mv_shopping_delivery_states {
-  shopping_delivery_id String @id
-  value                String
+  shopping_delivery_id String @id @db.Uuid
+  value                String @db.VarChar
 
   delivery shopping_deliveries @relation(fields: [shopping_delivery_id], references: [id], onDelete: Cascade)
 }
