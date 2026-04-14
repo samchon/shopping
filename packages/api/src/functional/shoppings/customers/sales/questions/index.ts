@@ -6,12 +6,9 @@
 //================================================================
 import type { IConnection } from "@nestia/fetcher";
 import { NestiaSimulator, PlainFetcher } from "@nestia/fetcher";
+import type { IPage, IShoppingSaleQuestion } from "@samchon/shopping-api";
 import type { tags } from "typia";
 import typia from "typia";
-
-import type { IBbsArticle } from "../../../../../structures/common/IBbsArticle";
-import type { IPage } from "../../../../../structures/common/IPage";
-import type { IShoppingSaleQuestion } from "../../../../../structures/shoppings/sales/inquiries/IShoppingSaleQuestion";
 
 export * as comments from "./comments/index";
 
@@ -157,8 +154,8 @@ export async function update(
       );
 }
 export namespace update {
-  export type Body = IBbsArticle.ICreate;
-  export type Output = IBbsArticle.ISnapshot;
+  export type Body = IShoppingSaleQuestion.IUpdate;
+  export type Output = IShoppingSaleQuestion.ISnapshot;
 
   export const METADATA = {
     method: "POST",
@@ -179,8 +176,8 @@ export namespace update {
     id: string & tags.Format<"uuid">,
   ) =>
     `/shoppings/customers/sales/${encodeURIComponent(saleId?.toString() ?? "null")}/questions/${encodeURIComponent(id?.toString() ?? "null")}`;
-  export const random = (): IBbsArticle.ISnapshot =>
-    typia.random<IBbsArticle.ISnapshot>();
+  export const random = (): IShoppingSaleQuestion.ISnapshot =>
+    typia.random<IShoppingSaleQuestion.ISnapshot>();
   export const simulate = (
     connection: IConnection,
     saleId: string & tags.Format<"uuid">,

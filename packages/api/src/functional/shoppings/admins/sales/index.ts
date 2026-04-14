@@ -6,11 +6,9 @@
 //================================================================
 import type { IConnection } from "@nestia/fetcher";
 import { NestiaSimulator, PlainFetcher } from "@nestia/fetcher";
+import type { IPage, IShoppingSale } from "@samchon/shopping-api";
 import typia from "typia";
 import type { tags } from "typia";
-
-import type { IPage } from "../../../../structures/common/IPage";
-import type { IShoppingSale } from "../../../../structures/shoppings/sales/IShoppingSale";
 
 export * as questions from "./questions/index";
 export * as reviews from "./reviews/index";

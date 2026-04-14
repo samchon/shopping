@@ -6,10 +6,9 @@
 //================================================================
 import type { IConnection } from "@nestia/fetcher";
 import { NestiaSimulator, PlainFetcher } from "@nestia/fetcher";
+import type { IShoppingDeliveryShipper } from "@samchon/shopping-api";
 import type { tags } from "typia";
 import typia from "typia";
-
-import type { IShoppingDeliveryShipper } from "../../../../../structures/shoppings/orders/IShoppingDeliveryShipper";
 
 /**
  * Create a new shipper.

@@ -6,10 +6,11 @@
 //================================================================
 import type { IConnection } from "@nestia/fetcher";
 import { NestiaSimulator, PlainFetcher } from "@nestia/fetcher";
+import type {
+  IShoppingAdministrator,
+  IShoppingMember,
+} from "@samchon/shopping-api";
 import typia from "typia";
-
-import type { IShoppingAdministrator } from "../../../../structures/shoppings/actors/IShoppingAdministrator";
-import type { IShoppingMember } from "../../../../structures/shoppings/actors/IShoppingMember";
 
 /**
  * Get administrator information.

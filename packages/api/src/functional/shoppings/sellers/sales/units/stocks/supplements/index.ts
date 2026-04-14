@@ -6,11 +6,12 @@
 //================================================================
 import type { IConnection } from "@nestia/fetcher";
 import { NestiaSimulator, PlainFetcher } from "@nestia/fetcher";
+import type {
+  IPage,
+  IShoppingSaleUnitStockSupplement,
+} from "@samchon/shopping-api";
 import type { tags } from "typia";
 import typia from "typia";
-
-import type { IPage } from "../../../../../../../structures/common/IPage";
-import type { IShoppingSaleUnitStockSupplement } from "../../../../../../../structures/shoppings/sales/IShoppingSaleUnitStockSupplement";
 
 /**
  * List up every supplements.

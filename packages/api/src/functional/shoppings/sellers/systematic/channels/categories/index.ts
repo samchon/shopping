@@ -6,10 +6,9 @@
 //================================================================
 import type { IConnection } from "@nestia/fetcher";
 import { NestiaSimulator, PlainFetcher } from "@nestia/fetcher";
+import type { IShoppingChannelCategory } from "@samchon/shopping-api";
 import typia from "typia";
 import type { tags } from "typia";
-
-import type { IShoppingChannelCategory } from "../../../../../../structures/shoppings/systematic/IShoppingChannelCategory";
 
 /**
  * List up every categories with children records.

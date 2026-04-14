@@ -6,11 +6,9 @@
 //================================================================
 import type { IConnection } from "@nestia/fetcher";
 import { NestiaSimulator, PlainFetcher } from "@nestia/fetcher";
+import type { IPage, IShoppingSaleInquiryComment } from "@samchon/shopping-api";
 import type { tags } from "typia";
 import typia from "typia";
-
-import type { IPage } from "../../../../../../structures/common/IPage";
-import type { IShoppingSaleInquiryComment } from "../../../../../../structures/shoppings/sales/inquiries/IShoppingSaleInquiryComment";
 
 /**
  * List up every inquiry comments.
@@ -331,7 +329,7 @@ export async function update(
       );
 }
 export namespace update {
-  export type Body = IShoppingSaleInquiryComment.ICreate;
+  export type Body = IShoppingSaleInquiryComment.IUpdate;
   export type Output = IShoppingSaleInquiryComment.ISnapshot;
 
   export const METADATA = {

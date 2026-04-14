@@ -6,9 +6,8 @@
 //================================================================
 import type { IConnection } from "@nestia/fetcher";
 import { NestiaSimulator, PlainFetcher } from "@nestia/fetcher";
+import type { IShoppingMember } from "@samchon/shopping-api";
 import typia from "typia";
-
-import type { IShoppingMember } from "../../../../../structures/shoppings/actors/IShoppingMember";
 
 /**
  * Change password.

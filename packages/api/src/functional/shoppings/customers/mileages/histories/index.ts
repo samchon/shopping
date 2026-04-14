@@ -6,11 +6,9 @@
 //================================================================
 import type { IConnection } from "@nestia/fetcher";
 import { NestiaSimulator, PlainFetcher } from "@nestia/fetcher";
+import type { IPage, IShoppingMileageHistory } from "@samchon/shopping-api";
 import typia from "typia";
 import type { tags } from "typia";
-
-import type { IPage } from "../../../../../structures/common/IPage";
-import type { IShoppingMileageHistory } from "../../../../../structures/shoppings/mileages/IShoppingMileageHistory";
 
 /**
  * List up every mileage histories.

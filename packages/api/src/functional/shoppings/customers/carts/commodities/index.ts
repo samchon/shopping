@@ -6,12 +6,13 @@
 //================================================================
 import type { IConnection } from "@nestia/fetcher";
 import { NestiaSimulator, PlainFetcher } from "@nestia/fetcher";
+import type {
+  IPage,
+  IShoppingCartCommodity,
+  IShoppingCartDiscountable,
+} from "@samchon/shopping-api";
 import typia from "typia";
 import type { tags } from "typia";
-
-import type { IPage } from "../../../../../structures/common/IPage";
-import type { IShoppingCartCommodity } from "../../../../../structures/shoppings/orders/IShoppingCartCommodity";
-import type { IShoppingCartDiscountable } from "../../../../../structures/shoppings/orders/IShoppingCartDiscountable";
 
 /**
  * List of every commodities.

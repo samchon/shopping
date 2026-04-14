@@ -6,11 +6,9 @@
 //================================================================
 import type { IConnection } from "@nestia/fetcher";
 import { NestiaSimulator, PlainFetcher } from "@nestia/fetcher";
+import type { IPage, IShoppingMileage } from "@samchon/shopping-api";
 import typia from "typia";
 import type { tags } from "typia";
-
-import type { IPage } from "../../../../structures/common/IPage";
-import type { IShoppingMileage } from "../../../../structures/shoppings/mileages/IShoppingMileage";
 
 export * as donations from "./donations/index";
 

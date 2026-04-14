@@ -6,12 +6,13 @@
 //================================================================
 import type { IConnection } from "@nestia/fetcher";
 import { NestiaSimulator, PlainFetcher } from "@nestia/fetcher";
+import type {
+  IPage,
+  IRecordMerge,
+  IShoppingSection,
+} from "@samchon/shopping-api";
 import typia from "typia";
 import type { tags } from "typia";
-
-import type { IPage } from "../../../../../structures/common/IPage";
-import type { IRecordMerge } from "../../../../../structures/common/IRecordMerge";
-import type { IShoppingSection } from "../../../../../structures/shoppings/systematic/IShoppingSection";
 
 /**
  * Create a new section.

@@ -6,10 +6,9 @@
 //================================================================
 import type { IConnection } from "@nestia/fetcher";
 import { NestiaSimulator, PlainFetcher } from "@nestia/fetcher";
+import type { IShoppingDeliveryJourney } from "@samchon/shopping-api";
 import type { tags } from "typia";
 import typia from "typia";
-
-import type { IShoppingDeliveryJourney } from "../../../../../structures/shoppings/orders/IShoppingDeliveryJourney";
 
 /**
  * Create a new journey.

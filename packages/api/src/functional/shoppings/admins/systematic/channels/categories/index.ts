@@ -6,11 +6,12 @@
 //================================================================
 import type { IConnection } from "@nestia/fetcher";
 import { NestiaSimulator, PlainFetcher } from "@nestia/fetcher";
+import type {
+  IRecordMerge,
+  IShoppingChannelCategory,
+} from "@samchon/shopping-api";
 import typia from "typia";
 import type { tags } from "typia";
-
-import type { IRecordMerge } from "../../../../../../structures/common/IRecordMerge";
-import type { IShoppingChannelCategory } from "../../../../../../structures/shoppings/systematic/IShoppingChannelCategory";
 
 /**
  * Create a new category.
@@ -135,7 +136,7 @@ export async function update(
       );
 }
 export namespace update {
-  export type Body = IShoppingChannelCategory.ICreate;
+  export type Body = IShoppingChannelCategory.IUpdate;
 
   export const METADATA = {
     method: "PUT",

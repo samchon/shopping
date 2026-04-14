@@ -6,10 +6,8 @@
 //================================================================
 import type { IConnection } from "@nestia/fetcher";
 import { NestiaSimulator, PlainFetcher } from "@nestia/fetcher";
+import type { IPage, IShoppingCoupon } from "@samchon/shopping-api";
 import typia from "typia";
-
-import type { IPage } from "../../../../structures/common/IPage";
-import type { IShoppingCoupon } from "../../../../structures/shoppings/coupons/IShoppingCoupon";
 
 /**
  * Create a new coupon.

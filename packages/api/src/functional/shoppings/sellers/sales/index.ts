@@ -6,12 +6,9 @@
 //================================================================
 import type { IConnection } from "@nestia/fetcher";
 import { NestiaSimulator, PlainFetcher } from "@nestia/fetcher";
+import type { IPage, IShoppingSale } from "@samchon/shopping-api";
 import typia from "typia";
 import type { tags } from "typia";
-
-import type { IPage } from "../../../../structures/common/IPage";
-import type { IShoppingSale } from "../../../../structures/shoppings/sales/IShoppingSale";
-import type { IShoppingSaleSnapshot } from "../../../../structures/shoppings/sales/IShoppingSaleSnapshot";
 
 export * as questions from "./questions/index";
 export * as reviews from "./reviews/index";
@@ -147,7 +144,7 @@ export async function update(
       );
 }
 export namespace update {
-  export type Body = IShoppingSaleSnapshot.ICreate;
+  export type Body = IShoppingSale.IUpdate;
   export type Output = IShoppingSale;
 
   export const METADATA = {

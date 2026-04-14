@@ -6,9 +6,8 @@
 //================================================================
 import type { IConnection } from "@nestia/fetcher";
 import { PlainFetcher } from "@nestia/fetcher";
+import type { ISystem } from "@samchon/shopping-api";
 import typia from "typia";
-
-import type { ISystem } from "../../../structures/monitors/ISystem";
 
 /**
  * Get system information.

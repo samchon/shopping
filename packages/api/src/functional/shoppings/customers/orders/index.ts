@@ -6,14 +6,15 @@
 //================================================================
 import type { IConnection } from "@nestia/fetcher";
 import { NestiaSimulator, PlainFetcher } from "@nestia/fetcher";
+import type {
+  IPage,
+  IShoppingCartCommodity,
+  IShoppingOrder,
+  IShoppingOrderDiscountable,
+  IShoppingOrderPrice,
+} from "@samchon/shopping-api";
 import typia from "typia";
 import type { tags } from "typia";
-
-import type { IPage } from "../../../../structures/common/IPage";
-import type { IShoppingCartCommodity } from "../../../../structures/shoppings/orders/IShoppingCartCommodity";
-import type { IShoppingOrder } from "../../../../structures/shoppings/orders/IShoppingOrder";
-import type { IShoppingOrderDiscountable } from "../../../../structures/shoppings/orders/IShoppingOrderDiscountable";
-import type { IShoppingOrderPrice } from "../../../../structures/shoppings/orders/IShoppingOrderPrice";
 
 export * as goods from "./goods/index";
 export * as publish from "./publish/index";

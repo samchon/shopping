@@ -6,7 +6,7 @@ import { ShoppingModule } from "./src/ShoppingModule";
 
 export default {
   input: () => NestFactory.create(ShoppingModule, new FastifyAdapter()),
-  output: "../packages/api/src",
+  output: "../api/src",
   swagger: {
     servers: [
       {
@@ -21,7 +21,7 @@ export default {
         in: "header",
       },
     },
-    output: "../packages/api/swagger.json",
+    output: "../api/swagger.json",
   },
   simulate: true,
   primitive: false,

@@ -6,10 +6,8 @@
 //================================================================
 import type { IConnection } from "@nestia/fetcher";
 import { NestiaSimulator, PlainFetcher } from "@nestia/fetcher";
+import type { IShoppingMember, IShoppingSeller } from "@samchon/shopping-api";
 import typia from "typia";
-
-import type { IShoppingMember } from "../../../../structures/shoppings/actors/IShoppingMember";
-import type { IShoppingSeller } from "../../../../structures/shoppings/actors/IShoppingSeller";
 
 /**
  * Get seller information.

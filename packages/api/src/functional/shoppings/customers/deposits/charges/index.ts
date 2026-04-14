@@ -6,10 +6,8 @@
 //================================================================
 import type { IConnection } from "@nestia/fetcher";
 import { NestiaSimulator, PlainFetcher } from "@nestia/fetcher";
+import type { IPage, IShoppingDepositCharge } from "@samchon/shopping-api";
 import typia from "typia";
-
-import type { IPage } from "../../../../../structures/common/IPage";
-import type { IShoppingDepositCharge } from "../../../../../structures/shoppings/deposits/IShoppingDepositCharge";
 
 export * as publish from "./publish/index";
 
@@ -265,7 +263,7 @@ export async function update(
       );
 }
 export namespace update {
-  export type Body = IShoppingDepositCharge.ICreate;
+  export type Body = IShoppingDepositCharge.IUpdate;
 
   export const METADATA = {
     method: "PUT",

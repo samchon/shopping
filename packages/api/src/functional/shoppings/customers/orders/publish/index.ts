@@ -6,10 +6,9 @@
 //================================================================
 import type { IConnection } from "@nestia/fetcher";
 import { NestiaSimulator, PlainFetcher } from "@nestia/fetcher";
+import type { IShoppingOrderPublish } from "@samchon/shopping-api";
 import type { tags } from "typia";
 import typia from "typia";
-
-import type { IShoppingOrderPublish } from "../../../../../structures/shoppings/orders/IShoppingOrderPublish";
 
 /**
  * Check publishable.

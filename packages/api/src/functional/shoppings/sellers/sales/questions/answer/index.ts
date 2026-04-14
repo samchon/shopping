@@ -6,11 +6,9 @@
 //================================================================
 import type { IConnection } from "@nestia/fetcher";
 import { NestiaSimulator, PlainFetcher } from "@nestia/fetcher";
+import type { IShoppingSaleInquiryAnswer } from "@samchon/shopping-api";
 import type { tags } from "typia";
 import typia from "typia";
-
-import type { IBbsArticle } from "../../../../../../structures/common/IBbsArticle";
-import type { IShoppingSaleInquiryAnswer } from "../../../../../../structures/shoppings/sales/inquiries/IShoppingSaleInquiryAnswer";
 
 /**
  * Write an answer article.
@@ -64,7 +62,7 @@ export async function create(
       );
 }
 export namespace create {
-  export type Body = IBbsArticle.ICreate;
+  export type Body = IShoppingSaleInquiryAnswer.ICreate;
   export type Output = IShoppingSaleInquiryAnswer;
 
   export const METADATA = {
@@ -164,7 +162,7 @@ export async function update(
       );
 }
 export namespace update {
-  export type Body = IBbsArticle.ICreate;
+  export type Body = IShoppingSaleInquiryAnswer.IUpdate;
   export type Output = IShoppingSaleInquiryAnswer.ISnapshot;
 
   export const METADATA = {

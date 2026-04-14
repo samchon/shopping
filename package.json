@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "description": "",
   "scripts": {
+    "build": "pnpm -r build",
     "format": "prettier --write \"**/*.(ts|tsx)\"",
     "format:check": "prettier --check \"**/*.(ts|tsx)\"",
     "prepare": "ts-patch install"
   },
-  "keywords": [],
   "author": "Jeongho Nam",
   "license": "MIT",
   "packageManager": "pnpm@10.10.0",

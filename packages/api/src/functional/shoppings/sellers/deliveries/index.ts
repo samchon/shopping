@@ -6,12 +6,13 @@
 //================================================================
 import type { IConnection } from "@nestia/fetcher";
 import { NestiaSimulator, PlainFetcher } from "@nestia/fetcher";
+import type {
+  IPage,
+  IShoppingDelivery,
+  IShoppingDeliveryPiece,
+} from "@samchon/shopping-api";
 import typia from "typia";
 import type { tags } from "typia";
-
-import type { IPage } from "../../../../structures/common/IPage";
-import type { IShoppingDelivery } from "../../../../structures/shoppings/orders/IShoppingDelivery";
-import type { IShoppingDeliveryPiece } from "../../../../structures/shoppings/orders/IShoppingDeliveryPiece";
 
 export * as journeys from "./journeys/index";
 export * as shippers from "./shippers/index";

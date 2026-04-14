@@ -6,14 +6,13 @@
 //================================================================
 import type { IConnection } from "@nestia/fetcher";
 import { PlainFetcher } from "@nestia/fetcher";
+import type { IPerformance } from "@samchon/shopping-api";
 import typia from "typia";
-
-import type { IPerformance } from "../../../structures/monitors/IPerformance";
 
 /**
  * Get performance information.
  *
- * Get performance information composed with CPU, memory and resource usage.
+ * Get perofmration information composed with CPU, memory and resource usage.
  *
  * @returns Performance info
  * @tag Monitor

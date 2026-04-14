@@ -6,12 +6,13 @@
 //================================================================
 import type { IConnection } from "@nestia/fetcher";
 import { NestiaSimulator, PlainFetcher } from "@nestia/fetcher";
+import type {
+  IShoppingCitizen,
+  IShoppingCustomer,
+  IShoppingExternalUser,
+  IShoppingMember,
+} from "@samchon/shopping-api";
 import typia from "typia";
-
-import type { IShoppingCitizen } from "../../../../structures/shoppings/actors/IShoppingCitizen";
-import type { IShoppingCustomer } from "../../../../structures/shoppings/actors/IShoppingCustomer";
-import type { IShoppingExternalUser } from "../../../../structures/shoppings/actors/IShoppingExternalUser";
-import type { IShoppingMember } from "../../../../structures/shoppings/actors/IShoppingMember";
 
 export * as password from "./password/index";
 
