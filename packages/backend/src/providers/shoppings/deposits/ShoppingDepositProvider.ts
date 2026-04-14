@@ -2,9 +2,11 @@ import { Prisma } from "@prisma/sdk";
 import typia from "typia";
 import { v4 } from "uuid";
 
-import { IPage } from "@samchon/shopping-api/lib/structures/common/IPage";
-import { IShoppingAdministrator } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingAdministrator";
-import { IShoppingDeposit } from "@samchon/shopping-api/lib/structures/shoppings/deposits/IShoppingDeposit";
+import {
+  IPage,
+  IShoppingAdministrator,
+  IShoppingDeposit,
+} from "@samchon/shopping-api";
 
 import { ShoppingGlobal } from "../../../ShoppingGlobal";
 import { ErrorProvider } from "../../../utils/ErrorProvider";

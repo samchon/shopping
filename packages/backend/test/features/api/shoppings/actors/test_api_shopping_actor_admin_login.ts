@@ -2,9 +2,11 @@ import { TestValidator } from "@nestia/e2e";
 import { v4 } from "uuid";
 
 import ShoppingApi from "@samchon/shopping-api";
-import { IShoppingAdministrator } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingAdministrator";
-import { IShoppingCustomer } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingCustomer";
-import { IShoppingMember } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingMember";
+import {
+  IShoppingAdministrator,
+  IShoppingCustomer,
+  IShoppingMember,
+} from "@samchon/shopping-api";
 
 import { ShoppingGlobal } from "../../../../../src/ShoppingGlobal";
 import { ShoppingMemberProvider } from "../../../../../src/providers/shoppings/actors/ShoppingMemberProvider";

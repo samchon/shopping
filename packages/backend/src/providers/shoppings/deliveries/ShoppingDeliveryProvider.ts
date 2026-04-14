@@ -3,14 +3,16 @@ import { Prisma } from "@prisma/sdk";
 import typia from "typia";
 import { v4 } from "uuid";
 
-import { IDiagnosis } from "@samchon/shopping-api/lib/structures/common/IDiagnosis";
-import { IEntity } from "@samchon/shopping-api/lib/structures/common/IEntity";
-import { IPage } from "@samchon/shopping-api/lib/structures/common/IPage";
-import { IShoppingActorEntity } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingActorEntity";
-import { IShoppingSeller } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingSeller";
-import { IShoppingDelivery } from "@samchon/shopping-api/lib/structures/shoppings/orders/IShoppingDelivery";
-import { IShoppingDeliveryJourney } from "@samchon/shopping-api/lib/structures/shoppings/orders/IShoppingDeliveryJourney";
-import { IShoppingDeliveryPiece } from "@samchon/shopping-api/lib/structures/shoppings/orders/IShoppingDeliveryPiece";
+import {
+  IDiagnosis,
+  IEntity,
+  IPage,
+  IShoppingActorEntity,
+  IShoppingDelivery,
+  IShoppingDeliveryJourney,
+  IShoppingDeliveryPiece,
+  IShoppingSeller,
+} from "@samchon/shopping-api";
 
 import { ShoppingGlobal } from "../../../ShoppingGlobal";
 import { ErrorProvider } from "../../../utils/ErrorProvider";

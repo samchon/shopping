@@ -1,10 +1,12 @@
 import { ArrayUtil, RandomGenerator, TestValidator } from "@nestia/e2e";
 
-import ShoppingApi from "@samchon/shopping-api/lib/index";
-import { IPage } from "@samchon/shopping-api/lib/structures/common/IPage";
-import { IShoppingCustomer } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingCustomer";
-import { IShoppingCoupon } from "@samchon/shopping-api/lib/structures/shoppings/coupons/IShoppingCoupon";
-import { IShoppingSale } from "@samchon/shopping-api/lib/structures/shoppings/sales/IShoppingSale";
+import ShoppingApi from "@samchon/shopping-api";
+import {
+  IPage,
+  IShoppingCoupon,
+  IShoppingCustomer,
+  IShoppingSale,
+} from "@samchon/shopping-api";
 
 import { ActorPath } from "../../../../../src/typings/ActorPath";
 import { ConnectionPool } from "../../../../ConnectionPool";

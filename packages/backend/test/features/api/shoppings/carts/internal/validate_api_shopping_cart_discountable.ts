@@ -1,14 +1,16 @@
 import { ArrayUtil, TestValidator } from "@nestia/e2e";
 
-import ShoppingApi from "@samchon/shopping-api/lib/index";
-import { IShoppingCustomer } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingCustomer";
-import { IShoppingSeller } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingSeller";
-import { IShoppingCoupon } from "@samchon/shopping-api/lib/structures/shoppings/coupons/IShoppingCoupon";
-import { IShoppingCouponCriteria } from "@samchon/shopping-api/lib/structures/shoppings/coupons/IShoppingCouponCriteria";
-import { IShoppingCartCommodity } from "@samchon/shopping-api/lib/structures/shoppings/orders/IShoppingCartCommodity";
-import { IShoppingCartDiscountable } from "@samchon/shopping-api/lib/structures/shoppings/orders/IShoppingCartDiscountable";
-import { IShoppingSale } from "@samchon/shopping-api/lib/structures/shoppings/sales/IShoppingSale";
-import { IShoppingSection } from "@samchon/shopping-api/lib/structures/shoppings/systematic/IShoppingSection";
+import ShoppingApi from "@samchon/shopping-api";
+import {
+  IShoppingCartCommodity,
+  IShoppingCartDiscountable,
+  IShoppingCoupon,
+  IShoppingCouponCriteria,
+  IShoppingCustomer,
+  IShoppingSale,
+  IShoppingSection,
+  IShoppingSeller,
+} from "@samchon/shopping-api";
 
 import { ShoppingGlobal } from "../../../../../../src/ShoppingGlobal";
 import { ConnectionPool } from "../../../../../ConnectionPool";

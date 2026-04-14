@@ -2,9 +2,11 @@ import { InternalServerErrorException } from "@nestjs/common";
 import { Prisma } from "@prisma/sdk";
 import { v4 } from "uuid";
 
-import { IPage } from "@samchon/shopping-api/lib/structures/common/IPage";
-import { IShoppingAdministrator } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingAdministrator";
-import { IShoppingMileageDonation } from "@samchon/shopping-api/lib/structures/shoppings/mileages/IShoppingMileageDonation";
+import {
+  IPage,
+  IShoppingAdministrator,
+  IShoppingMileageDonation,
+} from "@samchon/shopping-api";
 
 import { ShoppingGlobal } from "../../../ShoppingGlobal";
 import { PaginationUtil } from "../../../utils/PaginationUtil";

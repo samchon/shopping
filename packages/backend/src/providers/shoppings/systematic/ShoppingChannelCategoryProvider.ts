@@ -7,9 +7,11 @@ import {
 } from "tstl";
 import { v4 } from "uuid";
 
-import { IEntity } from "@samchon/shopping-api/lib/structures/common/IEntity";
-import { IRecordMerge } from "@samchon/shopping-api/lib/structures/common/IRecordMerge";
-import { IShoppingChannelCategory } from "@samchon/shopping-api/lib/structures/shoppings/systematic/IShoppingChannelCategory";
+import {
+  IEntity,
+  IRecordMerge,
+  IShoppingChannelCategory,
+} from "@samchon/shopping-api";
 
 import { ShoppingGlobal } from "../../../ShoppingGlobal";
 import { ErrorProvider } from "../../../utils/ErrorProvider";

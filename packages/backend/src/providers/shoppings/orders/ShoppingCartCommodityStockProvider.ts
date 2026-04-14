@@ -1,9 +1,11 @@
 import { Prisma } from "@prisma/sdk";
 import { v4 } from "uuid";
 
-import { IShoppingCartCommodityStock } from "@samchon/shopping-api/lib/structures/shoppings/orders/IShoppingCartCommodityStock";
-import { IShoppingSaleUnit } from "@samchon/shopping-api/lib/structures/shoppings/sales/IShoppingSaleUnit";
-import { IShoppingSaleUnitStock } from "@samchon/shopping-api/lib/structures/shoppings/sales/IShoppingSaleUnitStock";
+import {
+  IShoppingCartCommodityStock,
+  IShoppingSaleUnit,
+  IShoppingSaleUnitStock,
+} from "@samchon/shopping-api";
 
 import { ErrorProvider } from "../../../utils/ErrorProvider";
 import { ShoppingSaleSnapshotUnitProvider } from "../sales/ShoppingSaleSnapshotUnitProvider";

@@ -1,6 +1,6 @@
 // import { ArrayUtil, RandomGenerator, TestValidator } from "@nestia/e2e";
 
-// import ShoppingApi from "@samchon/shopping-api/lib/index";
+// import ShoppingApi from "@samchon/shopping-api";
 // import { IPage } from "@samchon/shopping-api/lib/structures/common/IPage";
 // import { IShoppingSale } from "@samchon/shopping-api/lib/structures/shoppings/sales/IShoppingSale";
 // import { IShoppingSection } from "@samchon/shopping-api/lib/structures/shoppings/systematic/IShoppingSection";

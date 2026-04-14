@@ -1,11 +1,10 @@
 import { v4 } from "uuid";
 
-import { IShoppingCustomer } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingCustomer";
-
-import { ShoppingCustomerProvider } from "../../providers/shoppings/actors/ShoppingCustomerProvider";
-import { ShoppingMemberProvider } from "../../providers/shoppings/actors/ShoppingMemberProvider";
+import { IShoppingCustomer } from "@samchon/shopping-api";
 
 import { ShoppingGlobal } from "../../ShoppingGlobal";
+import { ShoppingCustomerProvider } from "../../providers/shoppings/actors/ShoppingCustomerProvider";
+import { ShoppingMemberProvider } from "../../providers/shoppings/actors/ShoppingMemberProvider";
 
 export namespace ShoppingAdministratorSeeder {
   export const seed = async (): Promise<void> => {

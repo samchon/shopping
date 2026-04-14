@@ -1,8 +1,10 @@
 import { v4 } from "uuid";
 
-import ShoppingApi from "@samchon/shopping-api/lib/index";
-import { IShoppingDepositCharge } from "@samchon/shopping-api/lib/structures/shoppings/deposits/IShoppingDepositCharge";
-import { IShoppingDepositChargePublish } from "@samchon/shopping-api/lib/structures/shoppings/deposits/IShoppingDepositChargePublish";
+import ShoppingApi from "@samchon/shopping-api";
+import {
+  IShoppingDepositCharge,
+  IShoppingDepositChargePublish,
+} from "@samchon/shopping-api";
 
 import { ConnectionPool } from "../../../../../ConnectionPool";
 

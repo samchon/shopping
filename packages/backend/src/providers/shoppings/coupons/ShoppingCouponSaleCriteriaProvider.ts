@@ -2,11 +2,13 @@ import { ArrayUtil } from "@nestia/e2e";
 import { Prisma } from "@prisma/sdk";
 import { IPointer } from "tstl";
 
-import { IShoppingAdministrator } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingAdministrator";
-import { IShoppingSeller } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingSeller";
-import { IShoppingCouponCriteria } from "@samchon/shopping-api/lib/structures/shoppings/coupons/IShoppingCouponCriteria";
-import { IShoppingCouponSaleCriteria } from "@samchon/shopping-api/lib/structures/shoppings/coupons/IShoppingCouponSaleCriteria";
-import { IShoppingSale } from "@samchon/shopping-api/lib/structures/shoppings/sales/IShoppingSale";
+import {
+  IShoppingAdministrator,
+  IShoppingCouponCriteria,
+  IShoppingCouponSaleCriteria,
+  IShoppingSale,
+  IShoppingSeller,
+} from "@samchon/shopping-api";
 
 import { ShoppingGlobal } from "../../../ShoppingGlobal";
 import { ErrorProvider } from "../../../utils/ErrorProvider";

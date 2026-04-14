@@ -1,9 +1,11 @@
 import { Prisma } from "@prisma/sdk";
 import { IPointer } from "tstl";
 
-import { IShoppingCouponCriteria } from "@samchon/shopping-api/lib/structures/shoppings/coupons/IShoppingCouponCriteria";
-import { IShoppingCouponSectionCriteria } from "@samchon/shopping-api/lib/structures/shoppings/coupons/IShoppingCouponSectionCriteria";
-import { IShoppingSection } from "@samchon/shopping-api/lib/structures/shoppings/systematic/IShoppingSection";
+import {
+  IShoppingCouponCriteria,
+  IShoppingCouponSectionCriteria,
+  IShoppingSection,
+} from "@samchon/shopping-api";
 
 import { ShoppingGlobal } from "../../../ShoppingGlobal";
 import { ErrorProvider } from "../../../utils/ErrorProvider";

@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "description": "",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "format": "prettier --write \"**/*.(ts|tsx)\"",
+    "format:check": "prettier --check \"**/*.(ts|tsx)\"",
+    "prepare": "ts-patch install"
   },
   "keywords": [],
   "author": "Jeongho Nam",
@@ -12,6 +14,8 @@
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "prettier": "^3.3.2",
-    "prettier-plugin-prisma": "^5.0.0"
+    "prettier-plugin-prisma": "^5.0.0",
+    "typescript": "catalog:typescript",
+    "ts-patch": "catalog:typescript"
   }
 }

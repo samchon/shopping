@@ -2,19 +2,20 @@ import core from "@nestia/core";
 import { Controller } from "@nestjs/common";
 import { tags } from "typia";
 
-import { IPage } from "@samchon/shopping-api/lib/structures/common/IPage";
-import { IShoppingActorEntity } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingActorEntity";
-import { IShoppingSaleInquiryComment } from "@samchon/shopping-api/lib/structures/shoppings/sales/inquiries/IShoppingSaleInquiryComment";
+import {
+  IPage,
+  IShoppingActorEntity,
+  IShoppingSaleInquiryComment,
+} from "@samchon/shopping-api";
 
 import { ShoppingSaleSnapshotInquiryCommentProvider } from "../../../../providers/shoppings/sales/inquiries/ShoppinigSaleSnapshotInquiryCommentProvider";
-
 import { IShoppingControllerProps } from "../IShoppingControllerProps";
 
 export function ShoppingSaleInquiryCommentController<
   Actor extends IShoppingActorEntity,
 >(type: "questions" | "reviews", props: IShoppingControllerProps) {
   @Controller(
-    `shoppings/${props.path}/sales/:saleId/${type}/:inquiryId/comments`
+    `shoppings/${props.path}/sales/:saleId/${type}/:inquiryId/comments`,
   )
   abstract class ShoppingSaleInquiryCommentController {
     /**
@@ -47,7 +48,7 @@ export function ShoppingSaleInquiryCommentController<
       @core.TypedParam("saleId") saleId: string & tags.Format<"uuid">,
       @core.TypedParam("inquiryId")
       inquiryId: string & tags.Format<"uuid">,
-      @core.TypedBody() input: IShoppingSaleInquiryComment.IRequest
+      @core.TypedBody() input: IShoppingSaleInquiryComment.IRequest,
     ): Promise<IPage<IShoppingSaleInquiryComment>> {
       return ShoppingSaleSnapshotInquiryCommentProvider.index({
         actor,
@@ -82,7 +83,7 @@ export function ShoppingSaleInquiryCommentController<
       @core.TypedParam("saleId") saleId: string & tags.Format<"uuid">,
       @core.TypedParam("inquiryId")
       inquiryId: string & tags.Format<"uuid">,
-      @core.TypedParam("id") id: string & tags.Format<"uuid">
+      @core.TypedParam("id") id: string & tags.Format<"uuid">,
     ): Promise<IShoppingSaleInquiryComment> {
       return ShoppingSaleSnapshotInquiryCommentProvider.at({
         actor,
@@ -116,7 +117,7 @@ export function ShoppingSaleInquiryCommentController<
       @core.TypedParam("saleId") saleId: string & tags.Format<"uuid">,
       @core.TypedParam("inquiryId")
       inquiryId: string & tags.Format<"uuid">,
-      @core.TypedBody() input: IShoppingSaleInquiryComment.ICreate
+      @core.TypedBody() input: IShoppingSaleInquiryComment.ICreate,
     ): Promise<IShoppingSaleInquiryComment> {
       return ShoppingSaleSnapshotInquiryCommentProvider.create({
         actor,
@@ -158,7 +159,7 @@ export function ShoppingSaleInquiryCommentController<
       @core.TypedParam("inquiryId")
       inquiryId: string & tags.Format<"uuid">,
       @core.TypedParam("id") id: string & tags.Format<"uuid">,
-      @core.TypedBody() input: IShoppingSaleInquiryComment.IUpdate
+      @core.TypedBody() input: IShoppingSaleInquiryComment.IUpdate,
     ): Promise<IShoppingSaleInquiryComment.ISnapshot> {
       return ShoppingSaleSnapshotInquiryCommentProvider.update({
         actor,

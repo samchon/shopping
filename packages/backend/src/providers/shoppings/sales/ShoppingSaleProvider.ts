@@ -1,15 +1,17 @@
 import { Prisma } from "@prisma/sdk";
 import { v4 } from "uuid";
 
-import { ShoppingCustomerDiagnoser } from "@samchon/shopping-api/lib/diagnosers/shoppings/actors/ShoppingCustomerDiagnoser";
-import { ShoppingSaleDiagnoser } from "@samchon/shopping-api/lib/diagnosers/shoppings/sales/ShoppingSaleDiagnoser";
-import { IDiagnosis } from "@samchon/shopping-api/lib/structures/common/IDiagnosis";
-import { IPage } from "@samchon/shopping-api/lib/structures/common/IPage";
-import { IShoppingActorEntity } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingActorEntity";
-import { IShoppingSeller } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingSeller";
-import { IShoppingSale } from "@samchon/shopping-api/lib/structures/shoppings/sales/IShoppingSale";
-import { IShoppingSaleSnapshot } from "@samchon/shopping-api/lib/structures/shoppings/sales/IShoppingSaleSnapshot";
-import { IShoppingSection } from "@samchon/shopping-api/lib/structures/shoppings/systematic/IShoppingSection";
+import {
+  IDiagnosis,
+  IPage,
+  IShoppingActorEntity,
+  IShoppingSale,
+  IShoppingSaleSnapshot,
+  IShoppingSection,
+  IShoppingSeller,
+  ShoppingCustomerDiagnoser,
+  ShoppingSaleDiagnoser,
+} from "@samchon/shopping-api";
 
 import { ShoppingGlobal } from "../../../ShoppingGlobal";
 import { ErrorProvider } from "../../../utils/ErrorProvider";

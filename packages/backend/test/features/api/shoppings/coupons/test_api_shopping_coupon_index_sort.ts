@@ -7,11 +7,13 @@ import {
 import { randint } from "tstl";
 import typia from "typia";
 
-import ShoppingApi from "@samchon/shopping-api/lib/index";
-import { IPage } from "@samchon/shopping-api/lib/structures/common/IPage";
-import { IShoppingCoupon } from "@samchon/shopping-api/lib/structures/shoppings/coupons/IShoppingCoupon";
-import { IShoppingCouponCriteria } from "@samchon/shopping-api/lib/structures/shoppings/coupons/IShoppingCouponCriteria";
-import { IShoppingSale } from "@samchon/shopping-api/lib/structures/shoppings/sales/IShoppingSale";
+import ShoppingApi from "@samchon/shopping-api";
+import {
+  IPage,
+  IShoppingCoupon,
+  IShoppingCouponCriteria,
+  IShoppingSale,
+} from "@samchon/shopping-api";
 
 import { ConnectionPool } from "../../../../ConnectionPool";
 import { test_api_shopping_actor_admin_login } from "../actors/test_api_shopping_actor_admin_login";

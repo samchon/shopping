@@ -2,12 +2,14 @@ import { HttpException } from "@nestjs/common";
 import { Prisma } from "@prisma/sdk";
 import { v4 } from "uuid";
 
-import { ShoppingCustomerDiagnoser } from "@samchon/shopping-api/lib/diagnosers/shoppings/actors/ShoppingCustomerDiagnoser";
-import { IPage } from "@samchon/shopping-api/lib/structures/common/IPage";
-import { IShoppingActorEntity } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingActorEntity";
-import { IShoppingAdministrator } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingAdministrator";
-import { IShoppingSeller } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingSeller";
-import { IShoppingCoupon } from "@samchon/shopping-api/lib/structures/shoppings/coupons/IShoppingCoupon";
+import {
+  IPage,
+  IShoppingActorEntity,
+  IShoppingAdministrator,
+  IShoppingCoupon,
+  IShoppingSeller,
+  ShoppingCustomerDiagnoser,
+} from "@samchon/shopping-api";
 
 import { ShoppingGlobal } from "../../../ShoppingGlobal";
 import { ErrorProvider } from "../../../utils/ErrorProvider";

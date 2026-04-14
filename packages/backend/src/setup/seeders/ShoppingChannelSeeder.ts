@@ -1,8 +1,10 @@
 import { ArrayUtil } from "@nestia/e2e";
 import fs from "fs";
 
-import { IShoppingChannel } from "@samchon/shopping-api/lib/structures/shoppings/systematic/IShoppingChannel";
-import { IShoppingChannelCategory } from "@samchon/shopping-api/lib/structures/shoppings/systematic/IShoppingChannelCategory";
+import {
+  IShoppingChannel,
+  IShoppingChannelCategory,
+} from "@samchon/shopping-api";
 
 import { ShoppingConfiguration } from "../../ShoppingConfiguration";
 import { ShoppingChannelCategoryProvider } from "../../providers/shoppings/systematic/ShoppingChannelCategoryProvider";

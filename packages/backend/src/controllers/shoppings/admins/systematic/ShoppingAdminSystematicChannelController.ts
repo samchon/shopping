@@ -1,20 +1,21 @@
 import core from "@nestia/core";
 import { tags } from "typia";
 
-import { IRecordMerge } from "@samchon/shopping-api/lib/structures/common/IRecordMerge";
-import { IShoppingAdministrator } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingAdministrator";
-import { IShoppingChannel } from "@samchon/shopping-api/lib/structures/shoppings/systematic/IShoppingChannel";
-
-import { ShoppingChannelProvider } from "../../../../providers/shoppings/systematic/ShoppingChannelProvider";
+import {
+  IRecordMerge,
+  IShoppingAdministrator,
+  IShoppingChannel,
+} from "@samchon/shopping-api";
 
 import { ShoppingAdminAuth } from "../../../../decorators/ShoppingAdminAuth";
+import { ShoppingChannelProvider } from "../../../../providers/shoppings/systematic/ShoppingChannelProvider";
 import { ShoppingSystematicChannelController } from "../../base/systematic/ShoppingSystematicChannelController";
 
 export class ShoppingAdminSystematicChannelController extends ShoppingSystematicChannelController(
   {
     AuthGuard: ShoppingAdminAuth,
     path: "admins",
-  }
+  },
 ) {
   /**
    * Create a new channel.
@@ -34,7 +35,7 @@ export class ShoppingAdminSystematicChannelController extends ShoppingSystematic
   @core.TypedRoute.Post()
   public async create(
     @ShoppingAdminAuth() _admin: IShoppingAdministrator.IInvert,
-    @core.TypedBody() input: IShoppingChannel.ICreate
+    @core.TypedBody() input: IShoppingChannel.ICreate,
   ): Promise<IShoppingChannel> {
     return ShoppingChannelProvider.create(input);
   }
@@ -57,7 +58,7 @@ export class ShoppingAdminSystematicChannelController extends ShoppingSystematic
   public async update(
     @ShoppingAdminAuth() _admin: IShoppingAdministrator.IInvert,
     @core.TypedParam("id") id: string & tags.Format<"uuid">,
-    @core.TypedBody() input: IShoppingChannel.IUpdate
+    @core.TypedBody() input: IShoppingChannel.IUpdate,
   ): Promise<void> {
     return ShoppingChannelProvider.update({
       id,
@@ -85,7 +86,7 @@ export class ShoppingAdminSystematicChannelController extends ShoppingSystematic
   @core.TypedRoute.Delete("merge")
   public async merge(
     @ShoppingAdminAuth() _admin: IShoppingAdministrator.IInvert,
-    @core.TypedBody() input: IRecordMerge
+    @core.TypedBody() input: IRecordMerge,
   ): Promise<void> {
     return ShoppingChannelProvider.merge(input);
   }

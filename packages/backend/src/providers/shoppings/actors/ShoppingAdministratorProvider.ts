@@ -2,10 +2,12 @@ import { ForbiddenException } from "@nestjs/common";
 import { Prisma } from "@prisma/sdk";
 import { v4 } from "uuid";
 
-import { ShoppingAdministratorDiagnoser } from "@samchon/shopping-api/lib/diagnosers/shoppings/actors/ShoppingAdministratorDiagnoser";
-import { IShoppingAdministrator } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingAdministrator";
-import { IShoppingCustomer } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingCustomer";
-import { IShoppingMember } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingMember";
+import {
+  IShoppingAdministrator,
+  IShoppingCustomer,
+  IShoppingMember,
+  ShoppingAdministratorDiagnoser,
+} from "@samchon/shopping-api";
 
 import { ShoppingGlobal } from "../../../ShoppingGlobal";
 import { JwtTokenService } from "../../../services/JwtTokenService";

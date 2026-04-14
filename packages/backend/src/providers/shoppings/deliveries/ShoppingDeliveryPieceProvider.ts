@@ -2,12 +2,14 @@ import { ArrayUtil } from "@nestia/e2e";
 import { Prisma } from "@prisma/sdk";
 import { v4 } from "uuid";
 
-import { IDiagnosis } from "@samchon/shopping-api/lib/structures/common/IDiagnosis";
-import { IShoppingActorEntity } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingActorEntity";
-import { IShoppingSeller } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingSeller";
-import { IShoppingDelivery } from "@samchon/shopping-api/lib/structures/shoppings/orders/IShoppingDelivery";
-import { IShoppingDeliveryPiece } from "@samchon/shopping-api/lib/structures/shoppings/orders/IShoppingDeliveryPiece";
-import { IShoppingOrder } from "@samchon/shopping-api/lib/structures/shoppings/orders/IShoppingOrder";
+import {
+  IDiagnosis,
+  IShoppingActorEntity,
+  IShoppingDelivery,
+  IShoppingDeliveryPiece,
+  IShoppingOrder,
+  IShoppingSeller,
+} from "@samchon/shopping-api";
 
 import { ShoppingGlobal } from "../../../ShoppingGlobal";
 import { ErrorProvider } from "../../../utils/ErrorProvider";

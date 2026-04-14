@@ -2,18 +2,17 @@ import core from "@nestia/core";
 import { Controller } from "@nestjs/common";
 import { tags } from "typia";
 
-import { IShoppingChannelCategory } from "@samchon/shopping-api/lib/structures/shoppings/systematic/IShoppingChannelCategory";
+import { IShoppingChannelCategory } from "@samchon/shopping-api";
 
 import { ShoppingChannelCategoryProvider } from "../../../../providers/shoppings/systematic/ShoppingChannelCategoryProvider";
 import { ShoppingChannelProvider } from "../../../../providers/shoppings/systematic/ShoppingChannelProvider";
-
 import { IShoppingControllerProps } from "../IShoppingControllerProps";
 
 export function ShoppingSystematicChannelCategoryController(
-  props: IShoppingControllerProps
+  props: IShoppingControllerProps,
 ) {
   @Controller(
-    `shoppings/${props.path}/systematic/channels/:channelCode/categories`
+    `shoppings/${props.path}/systematic/channels/:channelCode/categories`,
   )
   class ShoppingSystematicChannelCategoryController {
     /**
@@ -37,10 +36,10 @@ export function ShoppingSystematicChannelCategoryController(
     @core.TypedRoute.Patch()
     public async index(
       @props.AuthGuard() _actor: unknown,
-      @core.TypedParam("channelCode") channelCode: string
+      @core.TypedParam("channelCode") channelCode: string,
     ): Promise<IShoppingChannelCategory.IHierarchical[]> {
       return ShoppingChannelCategoryProvider.hierarchical.entire(
-        await ShoppingChannelProvider.get(channelCode)
+        await ShoppingChannelProvider.get(channelCode),
       );
     }
 
@@ -63,7 +62,7 @@ export function ShoppingSystematicChannelCategoryController(
     public async at(
       @props.AuthGuard() _actor: unknown,
       @core.TypedParam("channelCode") channelCode: string,
-      @core.TypedParam("id") id: string & tags.Format<"uuid">
+      @core.TypedParam("id") id: string & tags.Format<"uuid">,
     ): Promise<IShoppingChannelCategory> {
       return ShoppingChannelCategoryProvider.at({
         channel: await ShoppingChannelProvider.get(channelCode),
@@ -90,7 +89,7 @@ export function ShoppingSystematicChannelCategoryController(
     public async invert(
       @props.AuthGuard() _actor: unknown,
       @core.TypedParam("channelCode") channelCode: string,
-      @core.TypedParam("id") id: string & tags.Format<"uuid">
+      @core.TypedParam("id") id: string & tags.Format<"uuid">,
     ): Promise<IShoppingChannelCategory.IInvert> {
       return ShoppingChannelCategoryProvider.invert({
         channel: await ShoppingChannelProvider.get(channelCode),

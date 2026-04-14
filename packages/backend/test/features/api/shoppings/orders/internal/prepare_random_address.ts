@@ -1,5 +1,4 @@
-import { IShoppingAddress } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingAddress";
-import { IShoppingCitizen } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingCitizen";
+import { IShoppingAddress, IShoppingCitizen } from "@samchon/shopping-api";
 
 export const prepare_random_address = (
   citizen: IShoppingCitizen.ICreate,

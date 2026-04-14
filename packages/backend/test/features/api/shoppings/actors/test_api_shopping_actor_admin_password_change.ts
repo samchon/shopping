@@ -2,7 +2,7 @@ import { TestValidator } from "@nestia/e2e";
 import typia from "typia";
 
 import ShoppingApi from "@samchon/shopping-api";
-import { IShoppingAdministrator } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingAdministrator";
+import { IShoppingAdministrator } from "@samchon/shopping-api";
 
 import { ConnectionPool } from "../../../../ConnectionPool";
 import { TestGlobal } from "../../../../TestGlobal";

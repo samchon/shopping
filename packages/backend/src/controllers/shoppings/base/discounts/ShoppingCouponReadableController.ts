@@ -1,12 +1,13 @@
 import core from "@nestia/core";
 import { Controller } from "@nestjs/common";
 
-import { IPage } from "@samchon/shopping-api/lib/structures/common/IPage";
-import { IShoppingActorEntity } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingActorEntity";
-import { IShoppingCoupon } from "@samchon/shopping-api/lib/structures/shoppings/coupons/IShoppingCoupon";
+import {
+  IPage,
+  IShoppingActorEntity,
+  IShoppingCoupon,
+} from "@samchon/shopping-api";
 
 import { ShoppingCouponProvider } from "../../../../providers/shoppings/coupons/ShoppingCouponProvider";
-
 import { IShoppingControllerProps } from "../IShoppingControllerProps";
 
 export function ShoppingCouponReadableController<
@@ -37,7 +38,7 @@ export function ShoppingCouponReadableController<
     @core.TypedRoute.Patch()
     public index(
       @props.AuthGuard() actor: Actor,
-      @core.TypedBody() input: IShoppingCoupon.IRequest
+      @core.TypedBody() input: IShoppingCoupon.IRequest,
     ): Promise<IPage<IShoppingCoupon>> {
       return ShoppingCouponProvider.index({
         actor,
@@ -65,7 +66,7 @@ export function ShoppingCouponReadableController<
     @core.TypedRoute.Get(":id")
     public at(
       @props.AuthGuard() actor: Actor,
-      @core.TypedParam("id") id: string
+      @core.TypedParam("id") id: string,
     ): Promise<IShoppingCoupon> {
       return ShoppingCouponProvider.at({
         actor,

@@ -1,7 +1,7 @@
 import { DMMF } from "@prisma/client/runtime/client";
 import { Prisma } from "@prisma/sdk";
 
-import { IRecordMerge } from "@samchon/shopping-api/lib/structures/common/IRecordMerge";
+import { IRecordMerge } from "@samchon/shopping-api";
 
 import { ShoppingGlobal } from "../../ShoppingGlobal";
 import { EntityUtil } from "../../utils/EntityUtil";

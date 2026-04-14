@@ -67,6 +67,12 @@ importers:
       prettier-plugin-prisma:
         specifier: ^5.0.0
         version: 5.0.0(prettier@3.8.2)
+      ts-patch:
+        specifier: catalog:typescript
+        version: 3.3.0
+      typescript:
+        specifier: catalog:typescript
+        version: 5.9.3
 
   packages/api:
     dependencies:
@@ -79,6 +85,16 @@ importers:
       uuid:
         specifier: catalog:utils
         version: 13.0.0
+    devDependencies:
+      ts-patch:
+        specifier: catalog:typescript
+        version: 3.3.0
+      typescript:
+        specifier: catalog:typescript
+        version: 5.9.3
+      typescript-transform-paths:
+        specifier: catalog:typescript
+        version: 3.5.6(typescript@5.9.3)
 
   packages/backend:
     dependencies:
@@ -118,6 +134,9 @@ importers:
       '@rollup/plugin-typescript':
         specifier: ^11.1.6
         version: 11.1.6(rollup@4.60.1)(tslib@2.8.1)(typescript@5.9.3)
+      '@samchon/shopping-api':
+        specifier: workspace:^
+        version: link:../api
       bcryptjs:
         specifier: ^2.4.3
         version: 2.4.3

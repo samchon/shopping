@@ -2,9 +2,7 @@ import { ArrayUtil } from "@nestia/e2e";
 import { Prisma } from "@prisma/sdk";
 import { v4 } from "uuid";
 
-import { IPage } from "@samchon/shopping-api/lib/structures/common/IPage";
-import { IRecordMerge } from "@samchon/shopping-api/lib/structures/common/IRecordMerge";
-import { IShoppingChannel } from "@samchon/shopping-api/lib/structures/shoppings/systematic/IShoppingChannel";
+import { IPage, IRecordMerge, IShoppingChannel } from "@samchon/shopping-api";
 
 import { ShoppingGlobal } from "../../../ShoppingGlobal";
 import { PaginationUtil } from "../../../utils/PaginationUtil";

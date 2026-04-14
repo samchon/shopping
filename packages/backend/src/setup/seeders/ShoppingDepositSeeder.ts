@@ -1,4 +1,4 @@
-import { IShoppingDeposit } from "@samchon/shopping-api/lib/structures/shoppings/deposits/IShoppingDeposit";
+import { IShoppingDeposit } from "@samchon/shopping-api";
 
 import { ShoppingDepositProvider } from "../../providers/shoppings/deposits/ShoppingDepositProvider";
 

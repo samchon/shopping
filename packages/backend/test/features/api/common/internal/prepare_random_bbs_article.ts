@@ -1,7 +1,7 @@
 import { ArrayUtil, RandomGenerator } from "@nestia/e2e";
 import { randint } from "tstl";
 
-import { IBbsArticle } from "@samchon/shopping-api/lib/structures/common/IBbsArticle";
+import { IBbsArticle } from "@samchon/shopping-api";
 
 import { prepare_random_attachment_file } from "./prepare_random_attachment_file";
 

@@ -18,6 +18,11 @@
     "typia": "catalog:samchon",
     "uuid": "catalog:utils"
   },
+  "devDependencies": {
+    "ts-patch": "catalog:typescript",
+    "typescript": "catalog:typescript",
+    "typescript-transform-paths": "catalog:typescript"
+  },
   "include": [
     "lib",
     "package.json",

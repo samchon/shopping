@@ -1,9 +1,7 @@
 import { Prisma } from "@prisma/sdk";
 import { v4 } from "uuid";
 
-import { IPage } from "@samchon/shopping-api/lib/structures/common/IPage";
-import { IRecordMerge } from "@samchon/shopping-api/lib/structures/common/IRecordMerge";
-import { IShoppingSection } from "@samchon/shopping-api/lib/structures/shoppings/systematic/IShoppingSection";
+import { IPage, IRecordMerge, IShoppingSection } from "@samchon/shopping-api";
 
 import { ShoppingGlobal } from "../../../ShoppingGlobal";
 import { PaginationUtil } from "../../../utils/PaginationUtil";

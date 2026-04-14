@@ -1,9 +1,11 @@
 import { randint } from "tstl";
 
-import ShoppingApi from "@samchon/shopping-api/lib/index";
-import { IShoppingOrderGood } from "@samchon/shopping-api/lib/structures/shoppings/orders/IShoppingOrderGood";
-import { IShoppingSale } from "@samchon/shopping-api/lib/structures/shoppings/sales/IShoppingSale";
-import { IShoppingSaleReview } from "@samchon/shopping-api/lib/structures/shoppings/sales/inquiries/IShoppingSaleReview";
+import ShoppingApi from "@samchon/shopping-api";
+import {
+  IShoppingOrderGood,
+  IShoppingSale,
+  IShoppingSaleReview,
+} from "@samchon/shopping-api";
 
 import { ConnectionPool } from "../../../../../ConnectionPool";
 import { prepare_random_bbs_article } from "../../../common/internal/prepare_random_bbs_article";
