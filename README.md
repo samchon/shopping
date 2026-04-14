@@ -1,11 +1,13 @@
 # Shopping Mall Monorepo
 
+![](og.png)
+
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/samchon/shopping/blob/master/LICENSE)
 [![npm version](https://img.shields.io/npm/v/@samchon/shopping-api.svg)](https://www.npmjs.com/package/@samchon/shopping-api)
 [![Build Status](https://github.com/samchon/shopping/actions/workflows/build.yml/badge.svg)](https://github.com/samchon/shopping/actions/workflows/build.yml)
 
 ## 1. Prologue
-Well-designed backend + Nestia-generated SDK = AI fully automates the frontend.
+Well-designed backend + Nestia-generated SDK = AI automates the frontend.
 
 A human wrote the backend. Nestia generated a typed SDK. AI (Claude Code) read the SDK and a single [`CLAUDE.md`](packages/frontend/CLAUDE.md), then built every page, component, and test by itself. This repo is the proof.
 
