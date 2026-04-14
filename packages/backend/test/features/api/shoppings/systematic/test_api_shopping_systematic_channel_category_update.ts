@@ -1,9 +1,11 @@
 import { RandomGenerator, TestValidator } from "@nestia/e2e";
 
-import ShoppingApi from "@samchon/shopping-api/lib/index";
-import { IShoppingAdministrator } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingAdministrator";
-import { IShoppingChannel } from "@samchon/shopping-api/lib/structures/shoppings/systematic/IShoppingChannel";
-import { IShoppingChannelCategory } from "@samchon/shopping-api/lib/structures/shoppings/systematic/IShoppingChannelCategory";
+import ShoppingApi from "@samchon/shopping-api";
+import {
+  IShoppingAdministrator,
+  IShoppingChannel,
+  IShoppingChannelCategory,
+} from "@samchon/shopping-api";
 
 import { ConnectionPool } from "../../../../ConnectionPool";
 import { test_api_shopping_actor_admin_login } from "../actors/test_api_shopping_actor_admin_login";

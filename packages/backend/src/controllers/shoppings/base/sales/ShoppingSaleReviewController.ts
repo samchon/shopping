@@ -2,12 +2,13 @@ import core from "@nestia/core";
 import { Controller } from "@nestjs/common";
 import { tags } from "typia";
 
-import { IPage } from "@samchon/shopping-api/lib/structures/common/IPage";
-import { IShoppingActorEntity } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingActorEntity";
-import { IShoppingSaleReview } from "@samchon/shopping-api/lib/structures/shoppings/sales/inquiries/IShoppingSaleReview";
+import {
+  IPage,
+  IShoppingActorEntity,
+  IShoppingSaleReview,
+} from "@samchon/shopping-api";
 
 import { ShoppingSaleReviewProvider } from "../../../../providers/shoppings/sales/inquiries/ShoppingSaleSnapshotReviewProvider";
-
 import { IShoppingControllerProps } from "../IShoppingControllerProps";
 
 export function ShoppingSaleReviewController<
@@ -48,7 +49,7 @@ export function ShoppingSaleReviewController<
     public async index(
       @props.AuthGuard() actor: Actor,
       @core.TypedParam("saleId") saleId: string & tags.Format<"uuid">,
-      @core.TypedBody() input: IShoppingSaleReview.IRequest
+      @core.TypedBody() input: IShoppingSaleReview.IRequest,
     ): Promise<IPage<IShoppingSaleReview.ISummary>> {
       return ShoppingSaleReviewProvider.index({
         actor,
@@ -90,7 +91,7 @@ export function ShoppingSaleReviewController<
     public async abridges(
       @props.AuthGuard() actor: Actor,
       @core.TypedParam("saleId") saleId: string & tags.Format<"uuid">,
-      @core.TypedBody() input: IShoppingSaleReview.IRequest
+      @core.TypedBody() input: IShoppingSaleReview.IRequest,
     ): Promise<IPage<IShoppingSaleReview.IAbridge>> {
       return ShoppingSaleReviewProvider.abridges({
         actor,
@@ -121,7 +122,7 @@ export function ShoppingSaleReviewController<
     public async at(
       @props.AuthGuard() actor: Actor,
       @core.TypedParam("saleId") saleId: string & tags.Format<"uuid">,
-      @core.TypedParam("id") id: string & tags.Format<"uuid">
+      @core.TypedParam("id") id: string & tags.Format<"uuid">,
     ): Promise<IShoppingSaleReview> {
       return ShoppingSaleReviewProvider.at({
         actor,

@@ -15,7 +15,7 @@
     "build:swagger": "nestia swagger",
     "build:test": "tsc -p test/tsconfig.json",
     "dev": "tsc -p test/tsconfig.json --watch",
-    "prepare": "ts-patch install && pnpm build:prisma",
+    "prepare": "pnpm build:prisma",
     "------------------------DEPLOYS------------------------": "",
     "start": "node lib/executable/server",
     "start:ts": "ts-node src/executable/server.ts",
@@ -26,12 +26,12 @@
     "type": "git",
     "url": "https://github.com/samchon/shopping"
   },
-  "author": "AUTHOR",
+  "author": "Jeongho Nam",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/samchon/shopping/issues"
   },
-  "homepage": "https://github.com/samchon/shopping",
+  "homepage": "https://github.com/samchon/shopping#readme",
   "devDependencies": {
     "@nestia/benchmark": "catalog:samchon",
     "@nestia/e2e": "catalog:samchon",
@@ -64,6 +64,7 @@
     "@nestjs/common": "^11.1.12",
     "@nestjs/core": "^11.1.12",
     "@nestjs/platform-fastify": "^11.1.12",
+    "@samchon/shopping-api": "workspace:^",
     "@prisma/adapter-pg": "^7.3.0",
     "@prisma/client": "^7.3.0",
     "@prisma/internals": "^7.3.0",

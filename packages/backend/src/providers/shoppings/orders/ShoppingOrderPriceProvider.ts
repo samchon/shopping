@@ -1,18 +1,20 @@
 import { ArrayUtil } from "@nestia/e2e";
 import { Prisma } from "@prisma/sdk";
 
-import { ShoppingCouponTicketDiagnoser } from "@samchon/shopping-api/lib/diagnosers/shoppings/coupons/ShoppingCouponTicketDiagnoser";
-import { ShoppingOrderDiscountableDiagnoser } from "@samchon/shopping-api/lib/diagnosers/shoppings/orders/ShoppingOrderDiscountableDiagnoser";
-import { IEntity } from "@samchon/shopping-api/lib/structures/common/IEntity";
-import { IPage } from "@samchon/shopping-api/lib/structures/common/IPage";
-import { IShoppingActorEntity } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingActorEntity";
-import { IShoppingCustomer } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingCustomer";
-import { IShoppingCoupon } from "@samchon/shopping-api/lib/structures/shoppings/coupons/IShoppingCoupon";
-import { IShoppingCouponTicket } from "@samchon/shopping-api/lib/structures/shoppings/coupons/IShoppingCouponTicket";
-import { IShoppingOrder } from "@samchon/shopping-api/lib/structures/shoppings/orders/IShoppingOrder";
-import { IShoppingOrderDiscountable } from "@samchon/shopping-api/lib/structures/shoppings/orders/IShoppingOrderDiscountable";
-import { IShoppingOrderGood } from "@samchon/shopping-api/lib/structures/shoppings/orders/IShoppingOrderGood";
-import { IShoppingOrderPrice } from "@samchon/shopping-api/lib/structures/shoppings/orders/IShoppingOrderPrice";
+import {
+  IEntity,
+  IPage,
+  IShoppingActorEntity,
+  IShoppingCoupon,
+  IShoppingCouponTicket,
+  IShoppingCustomer,
+  IShoppingOrder,
+  IShoppingOrderDiscountable,
+  IShoppingOrderGood,
+  IShoppingOrderPrice,
+  ShoppingCouponTicketDiagnoser,
+  ShoppingOrderDiscountableDiagnoser,
+} from "@samchon/shopping-api";
 
 import { ShoppingGlobal } from "../../../ShoppingGlobal";
 import { ErrorProvider } from "../../../utils/ErrorProvider";

@@ -3,20 +3,39 @@
   "version": "0.18.0",
   "description": "API for shopping",
   "main": "src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/samchon/shopping"
   },
-  "author": "AUTHOR",
+  "author": "Jeongho Nam",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/samchon/shopping/issues"
   },
   "homepage": "https://github.com/samchon/shopping#readme",
+  "scripts": {
+    "build": "pnpm build:sdk && pnpm build:tsc && pnpm build:rollup",
+    "build:sdk": "cd ../backend && pnpm build:sdk",
+    "build:tsc": "tsc",
+    "build:rollup": "rollup -c",
+    "prepack": "pnpm build"
+  },
   "dependencies": {
     "@nestia/fetcher": "catalog:samchon",
     "typia": "catalog:samchon",
     "uuid": "catalog:utils"
+  },
+  "devDependencies": {
+    "@samchon/shopping-api": "workspace:^",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "rollup": "^4.60.1",
+    "ts-patch": "catalog:typescript",
+    "typescript": "catalog:typescript",
+    "typescript-transform-paths": "catalog:typescript"
   },
   "include": [
     "lib",
@@ -24,5 +43,17 @@
     "swagger.json",
     "LICENSE",
     "README.md"
-  ]
+  ],
+  "publishConfig": {
+    "main": "./lib/index.js",
+    "module": "./lib/index.mjs",
+    "types": "./lib/index.d.ts",
+    "exports": {
+      ".": {
+        "types": "./lib/index.d.ts",
+        "import": "./lib/index.mjs",
+        "default": "./lib/index.js"
+      }
+    }
+  }
 }

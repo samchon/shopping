@@ -1,7 +1,7 @@
 import { Prisma } from "@prisma/sdk";
 import { v4 } from "uuid";
 
-import { IShoppingSaleUnitOption } from "@samchon/shopping-api/lib/structures/shoppings/sales/IShoppingSaleUnitOption";
+import { IShoppingSaleUnitOption } from "@samchon/shopping-api";
 
 import { ShoppingSaleSnapshotUnitOptionCandidateProvider } from "./ShoppingSaleSnapshotUnitOptionCandidateProvider";
 

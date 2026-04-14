@@ -1,17 +1,29 @@
 {
   "name": "@samchon/shopping",
   "version": "0.1.0",
-  "description": "",
+  "description": "Shopping monorepo",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "pnpm -r build",
+    "format": "prettier --write \"**/*.(ts|tsx)\"",
+    "format:check": "prettier --check \"**/*.(ts|tsx)\"",
+    "prepare": "ts-patch install"
   },
-  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/samchon/shopping"
+  },
   "author": "Jeongho Nam",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/samchon/shopping/issues"
+  },
+  "homepage": "https://github.com/samchon/shopping#readme",
   "packageManager": "pnpm@10.10.0",
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "prettier": "^3.3.2",
-    "prettier-plugin-prisma": "^5.0.0"
+    "prettier-plugin-prisma": "^5.0.0",
+    "typescript": "catalog:typescript",
+    "ts-patch": "catalog:typescript"
   }
 }

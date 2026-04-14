@@ -1,6 +1,5 @@
-import ShoppingApi from "@samchon/shopping-api/lib/index";
-import { IShoppingCartCommodity } from "@samchon/shopping-api/lib/structures/shoppings/orders/IShoppingCartCommodity";
-import { IShoppingOrder } from "@samchon/shopping-api/lib/structures/shoppings/orders/IShoppingOrder";
+import ShoppingApi from "@samchon/shopping-api";
+import { IShoppingCartCommodity, IShoppingOrder } from "@samchon/shopping-api";
 
 import { ConnectionPool } from "../../../../../ConnectionPool";
 

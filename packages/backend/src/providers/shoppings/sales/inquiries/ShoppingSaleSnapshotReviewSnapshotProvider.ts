@@ -1,7 +1,6 @@
 import { Prisma } from "@prisma/sdk";
 
-import { IEntity } from "@samchon/shopping-api/lib/structures/common/IEntity";
-import { IShoppingSaleReview } from "@samchon/shopping-api/lib/structures/shoppings/sales/inquiries/IShoppingSaleReview";
+import { IEntity, IShoppingSaleReview } from "@samchon/shopping-api";
 
 import { ShoppingGlobal } from "../../../../ShoppingGlobal";
 import { ErrorProvider } from "../../../../utils/ErrorProvider";

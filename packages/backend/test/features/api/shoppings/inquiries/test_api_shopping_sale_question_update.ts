@@ -1,8 +1,7 @@
 import { ArrayUtil, TestValidator } from "@nestia/e2e";
 
-import ShoppingApi from "@samchon/shopping-api/lib/index";
-import { IShoppingSale } from "@samchon/shopping-api/lib/structures/shoppings/sales/IShoppingSale";
-import { IShoppingSaleQuestion } from "@samchon/shopping-api/lib/structures/shoppings/sales/inquiries/IShoppingSaleQuestion";
+import ShoppingApi from "@samchon/shopping-api";
+import { IShoppingSale, IShoppingSaleQuestion } from "@samchon/shopping-api";
 
 import { ConnectionPool } from "../../../../ConnectionPool";
 import { prepare_random_bbs_article } from "../../common/internal/prepare_random_bbs_article";

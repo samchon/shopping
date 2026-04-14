@@ -1,13 +1,15 @@
 import { TestValidator } from "@nestia/e2e";
 
-import ShoppingApi from "@samchon/shopping-api/lib/index";
-import { IPage } from "@samchon/shopping-api/lib/structures/common/IPage";
-import { IShoppingAdministrator } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingAdministrator";
-import { IShoppingCustomer } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingCustomer";
-import { IShoppingSeller } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingSeller";
-import { IShoppingSale } from "@samchon/shopping-api/lib/structures/shoppings/sales/IShoppingSale";
-import { IShoppingSaleInquiry } from "@samchon/shopping-api/lib/structures/shoppings/sales/inquiries/IShoppingSaleInquiry";
-import { IShoppingSaleInquiryComment } from "@samchon/shopping-api/lib/structures/shoppings/sales/inquiries/IShoppingSaleInquiryComment";
+import ShoppingApi from "@samchon/shopping-api";
+import {
+  IPage,
+  IShoppingAdministrator,
+  IShoppingCustomer,
+  IShoppingSale,
+  IShoppingSaleInquiry,
+  IShoppingSaleInquiryComment,
+  IShoppingSeller,
+} from "@samchon/shopping-api";
 
 import { ConnectionPool } from "../../../../../ConnectionPool";
 import { generate_random_sale_inquiry_comment } from "./generate_random_sale_inquiry_comment";

@@ -2,12 +2,13 @@ import core from "@nestia/core";
 import { Controller } from "@nestjs/common";
 import { tags } from "typia";
 
-import { IShoppingSeller } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingSeller";
-import { IShoppingDeliveryJourney } from "@samchon/shopping-api/lib/structures/shoppings/orders/IShoppingDeliveryJourney";
-
-import { ShoppingDeliveryJourneyProvider } from "../../../../providers/shoppings/deliveries/ShoppingDeliveryJourneyProvider";
+import {
+  IShoppingDeliveryJourney,
+  IShoppingSeller,
+} from "@samchon/shopping-api";
 
 import { ShoppingSellerAuth } from "../../../../decorators/ShoppingSellerAuth";
+import { ShoppingDeliveryJourneyProvider } from "../../../../providers/shoppings/deliveries/ShoppingDeliveryJourneyProvider";
 
 @Controller("shoppings/sellers/deliveries/:deliveryId/journeys")
 export class ShoppingSellerDeliveryJourneyController {
@@ -34,7 +35,7 @@ export class ShoppingSellerDeliveryJourneyController {
   public create(
     @ShoppingSellerAuth() seller: IShoppingSeller.IInvert,
     @core.TypedParam("deliveryId") deliveryId: string & tags.Format<"uuid">,
-    @core.TypedBody() input: IShoppingDeliveryJourney.ICreate
+    @core.TypedBody() input: IShoppingDeliveryJourney.ICreate,
   ): Promise<IShoppingDeliveryJourney> {
     return ShoppingDeliveryJourneyProvider.create({
       seller,
@@ -65,7 +66,7 @@ export class ShoppingSellerDeliveryJourneyController {
     @ShoppingSellerAuth() seller: IShoppingSeller.IInvert,
     @core.TypedParam("deliveryId") deliveryId: string & tags.Format<"uuid">,
     @core.TypedParam("id") id: string & tags.Format<"uuid">,
-    @core.TypedBody() input: IShoppingDeliveryJourney.IComplete
+    @core.TypedBody() input: IShoppingDeliveryJourney.IComplete,
   ): Promise<void> {
     return ShoppingDeliveryJourneyProvider.complete({
       seller,
@@ -96,7 +97,7 @@ export class ShoppingSellerDeliveryJourneyController {
   public erase(
     @ShoppingSellerAuth() seller: IShoppingSeller.IInvert,
     @core.TypedParam("deliveryId") deliveryId: string & tags.Format<"uuid">,
-    @core.TypedParam("id") id: string & tags.Format<"uuid">
+    @core.TypedParam("id") id: string & tags.Format<"uuid">,
   ): Promise<void> {
     return ShoppingDeliveryJourneyProvider.erase({
       seller,

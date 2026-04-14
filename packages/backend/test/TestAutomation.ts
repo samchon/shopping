@@ -2,8 +2,8 @@ import { DynamicExecutor, RandomGenerator } from "@nestia/e2e";
 import chalk from "chalk";
 import { sleep_for } from "tstl";
 
-import ShoppingApi from "@samchon/shopping-api/lib/index";
-import { IShoppingChannel } from "@samchon/shopping-api/lib/structures/shoppings/systematic/IShoppingChannel";
+import ShoppingApi from "@samchon/shopping-api";
+import { IShoppingChannel } from "@samchon/shopping-api";
 
 import { ShoppingConfiguration } from "../src/ShoppingConfiguration";
 import { ShoppingChannelProvider } from "../src/providers/shoppings/systematic/ShoppingChannelProvider";

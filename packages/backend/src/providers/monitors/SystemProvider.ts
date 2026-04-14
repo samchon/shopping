@@ -2,7 +2,7 @@ import fs from "fs";
 import git from "git-last-commit";
 import { Singleton, randint } from "tstl";
 
-import { ISystem } from "@samchon/shopping-api/lib/structures/monitors/ISystem";
+import { ISystem } from "@samchon/shopping-api";
 
 import { ShoppingConfiguration } from "../../ShoppingConfiguration";
 import { DateUtil } from "../../utils/DateUtil";

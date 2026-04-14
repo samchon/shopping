@@ -2,8 +2,7 @@ import { AesPkcs5 } from "@nestia/fetcher";
 import { Prisma } from "@prisma/sdk";
 import { v4 } from "uuid";
 
-import { IEntity } from "@samchon/shopping-api/lib/structures/common/IEntity";
-import { IShoppingCitizen } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingCitizen";
+import { IEntity, IShoppingCitizen } from "@samchon/shopping-api";
 
 import { ShoppingGlobal } from "../../../ShoppingGlobal";
 

@@ -1,4 +1,4 @@
-import { IShoppingSection } from "@samchon/shopping-api/lib/structures/shoppings/systematic/IShoppingSection";
+import { IShoppingSection } from "@samchon/shopping-api";
 
 import { ShoppingSectionProvider } from "../../providers/shoppings/systematic/ShoppingSectionProvider";
 

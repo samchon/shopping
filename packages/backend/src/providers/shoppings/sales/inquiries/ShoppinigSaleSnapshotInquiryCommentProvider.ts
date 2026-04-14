@@ -1,13 +1,13 @@
 import { Prisma } from "@prisma/sdk";
 
 import {
+  IEntity,
+  IPage,
+  IShoppingActorEntity,
+  IShoppingSaleInquiryComment,
   ShoppingAdministratorDiagnoser,
   ShoppingSellerDiagnoser,
-} from "@samchon/shopping-api/lib/diagnosers/shoppings";
-import { IEntity } from "@samchon/shopping-api/lib/structures/common/IEntity";
-import { IPage } from "@samchon/shopping-api/lib/structures/common/IPage";
-import { IShoppingActorEntity } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingActorEntity";
-import { IShoppingSaleInquiryComment } from "@samchon/shopping-api/lib/structures/shoppings/sales/inquiries/IShoppingSaleInquiryComment";
+} from "@samchon/shopping-api";
 
 import { ShoppingGlobal } from "../../../../ShoppingGlobal";
 import { ErrorProvider } from "../../../../utils/ErrorProvider";

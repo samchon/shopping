@@ -1,9 +1,11 @@
 import { ArrayUtil, GaffComparator, TestValidator } from "@nestia/e2e";
 
-import ShoppingApi from "@samchon/shopping-api/lib/index";
-import { IPage } from "@samchon/shopping-api/lib/structures/common/IPage";
-import { IShoppingCustomer } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingCustomer";
-import { IShoppingMileageHistory } from "@samchon/shopping-api/lib/structures/shoppings/mileages/IShoppingMileageHistory";
+import ShoppingApi from "@samchon/shopping-api";
+import {
+  IPage,
+  IShoppingCustomer,
+  IShoppingMileageHistory,
+} from "@samchon/shopping-api";
 
 import { ConnectionPool } from "../../../../ConnectionPool";
 import { test_api_shopping_actor_admin_login } from "../actors/test_api_shopping_actor_admin_login";

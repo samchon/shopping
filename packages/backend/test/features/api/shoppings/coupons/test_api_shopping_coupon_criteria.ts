@@ -1,15 +1,17 @@
 import { RandomGenerator, TestValidator } from "@nestia/e2e";
 import typia from "typia";
 
-import ShoppingApi from "@samchon/shopping-api/lib/index";
-import { IShoppingCustomer } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingCustomer";
-import { IShoppingCouponCriteria } from "@samchon/shopping-api/lib/structures/shoppings/coupons/IShoppingCouponCriteria";
-import { IShoppingCartCommodity } from "@samchon/shopping-api/lib/structures/shoppings/orders/IShoppingCartCommodity";
-import { IShoppingCartDiscountable } from "@samchon/shopping-api/lib/structures/shoppings/orders/IShoppingCartDiscountable";
-import { IShoppingOrder } from "@samchon/shopping-api/lib/structures/shoppings/orders/IShoppingOrder";
-import { IShoppingOrderDiscountable } from "@samchon/shopping-api/lib/structures/shoppings/orders/IShoppingOrderDiscountable";
-import { IShoppingSale } from "@samchon/shopping-api/lib/structures/shoppings/sales/IShoppingSale";
-import { IShoppingSection } from "@samchon/shopping-api/lib/structures/shoppings/systematic/IShoppingSection";
+import ShoppingApi from "@samchon/shopping-api";
+import {
+  IShoppingCartCommodity,
+  IShoppingCartDiscountable,
+  IShoppingCouponCriteria,
+  IShoppingCustomer,
+  IShoppingOrder,
+  IShoppingOrderDiscountable,
+  IShoppingSale,
+  IShoppingSection,
+} from "@samchon/shopping-api";
 
 import { ConnectionPool } from "../../../../ConnectionPool";
 import { test_api_shopping_actor_admin_login } from "../actors/test_api_shopping_actor_admin_login";

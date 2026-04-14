@@ -1,9 +1,11 @@
 import { InternalServerErrorException } from "@nestjs/common";
 import { Prisma } from "@prisma/sdk";
 
-import { IEntity } from "@samchon/shopping-api/lib/structures/common/IEntity";
-import { IShoppingSeller } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingSeller";
-import { IShoppingSaleInquiryAnswer } from "@samchon/shopping-api/lib/structures/shoppings/sales/inquiries/IShoppingSaleInquiryAnswer";
+import {
+  IEntity,
+  IShoppingSaleInquiryAnswer,
+  IShoppingSeller,
+} from "@samchon/shopping-api";
 
 import { ShoppingGlobal } from "../../../../ShoppingGlobal";
 import { BbsArticleProvider } from "../../../common/BbsArticleProvider";

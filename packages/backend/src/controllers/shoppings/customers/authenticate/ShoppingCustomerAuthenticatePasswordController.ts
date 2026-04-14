@@ -1,12 +1,10 @@
 import core from "@nestia/core";
 import { Controller } from "@nestjs/common";
 
-import { IShoppingCustomer } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingCustomer";
-import { IShoppingMember } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingMember";
-
-import { ShoppingMemberPasswordProvider } from "../../../../providers/shoppings/actors/ShoppingMemberPasswordProvider";
+import { IShoppingCustomer, IShoppingMember } from "@samchon/shopping-api";
 
 import { ShoppingCustomerAuth } from "../../../../decorators/ShoppingCustomerAuth";
+import { ShoppingMemberPasswordProvider } from "../../../../providers/shoppings/actors/ShoppingMemberPasswordProvider";
 
 @Controller("shoppings/customers/authenticate/password")
 export class ShoppingCustomerAuthenticatePasswordController {
@@ -25,7 +23,7 @@ export class ShoppingCustomerAuthenticatePasswordController {
   @core.TypedRoute.Put("change")
   public async change(
     @ShoppingCustomerAuth("member") customer: IShoppingCustomer,
-    @core.TypedBody() input: IShoppingMember.IPasswordChange
+    @core.TypedBody() input: IShoppingMember.IPasswordChange,
   ): Promise<void> {
     return ShoppingMemberPasswordProvider.change({
       customer,

@@ -1,7 +1,7 @@
 import { TestValidator } from "@nestia/e2e";
 
-import ShoppingApi from "@samchon/shopping-api/lib/index";
-import { IShoppingCoupon } from "@samchon/shopping-api/lib/structures/shoppings/coupons/IShoppingCoupon";
+import ShoppingApi from "@samchon/shopping-api";
+import { IShoppingCoupon } from "@samchon/shopping-api";
 
 import { validate_api_shopping_order_discountable } from "./internal/validate_api_shopping_order_discountable";
 

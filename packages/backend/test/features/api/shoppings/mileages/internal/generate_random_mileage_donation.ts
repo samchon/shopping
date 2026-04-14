@@ -1,6 +1,8 @@
-import ShoppingApi from "@samchon/shopping-api/lib/index";
-import { IShoppingCitizen } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingCitizen";
-import { IShoppingMileageDonation } from "@samchon/shopping-api/lib/structures/shoppings/mileages/IShoppingMileageDonation";
+import ShoppingApi from "@samchon/shopping-api";
+import {
+  IShoppingCitizen,
+  IShoppingMileageDonation,
+} from "@samchon/shopping-api";
 
 import { ConnectionPool } from "../../../../../ConnectionPool";
 

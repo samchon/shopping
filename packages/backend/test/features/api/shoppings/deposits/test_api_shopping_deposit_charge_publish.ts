@@ -1,7 +1,7 @@
 import { TestValidator } from "@nestia/e2e";
 
-import ShoppingApi from "@samchon/shopping-api/lib/index";
-import { IShoppingDepositCharge } from "@samchon/shopping-api/lib/structures/shoppings/deposits/IShoppingDepositCharge";
+import ShoppingApi from "@samchon/shopping-api";
+import { IShoppingDepositCharge } from "@samchon/shopping-api";
 
 import { ConnectionPool } from "../../../../ConnectionPool";
 import { test_api_shopping_actor_customer_join } from "../actors/test_api_shopping_actor_customer_join";

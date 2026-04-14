@@ -1,21 +1,22 @@
-import { ArrayUtil } from "@nestia/e2e";
+import { ArrayUtil, MapUtil } from "@nestia/e2e";
 import { Prisma } from "@prisma/sdk";
 import { v4 } from "uuid";
 
-import { ShoppingCartCommodityDiagnoser } from "@samchon/shopping-api/lib/diagnosers/shoppings/orders/ShoppingCartCommodityDiagnoser";
-import { ShoppingCartDiscountableDiagnoser } from "@samchon/shopping-api/lib/diagnosers/shoppings/orders/ShoppingCartDiscountableDiagnoser";
-import { IDiagnosis } from "@samchon/shopping-api/lib/structures/common/IDiagnosis";
-import { IEntity } from "@samchon/shopping-api/lib/structures/common/IEntity";
-import { IPage } from "@samchon/shopping-api/lib/structures/common/IPage";
-import { IShoppingCustomer } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingCustomer";
-import { IShoppingCartCommodity } from "@samchon/shopping-api/lib/structures/shoppings/orders/IShoppingCartCommodity";
-import { IShoppingCartDiscountable } from "@samchon/shopping-api/lib/structures/shoppings/orders/IShoppingCartDiscountable";
-import { IShoppingSale } from "@samchon/shopping-api/lib/structures/shoppings/sales/IShoppingSale";
-import { IShoppingSaleSnapshot } from "@samchon/shopping-api/lib/structures/shoppings/sales/IShoppingSaleSnapshot";
-import { IShoppingSaleUnit } from "@samchon/shopping-api/lib/structures/shoppings/sales/IShoppingSaleUnit";
+import {
+  IDiagnosis,
+  IEntity,
+  IPage,
+  IShoppingCartCommodity,
+  IShoppingCartDiscountable,
+  IShoppingCustomer,
+  IShoppingSale,
+  IShoppingSaleSnapshot,
+  IShoppingSaleUnit,
+  ShoppingCartCommodityDiagnoser,
+  ShoppingCartDiscountableDiagnoser,
+} from "@samchon/shopping-api";
 
 import { ShoppingGlobal } from "../../../ShoppingGlobal";
-import { MapUtil } from "../../../api/utils/MapUtil";
 import { ErrorProvider } from "../../../utils/ErrorProvider";
 import { PaginationUtil } from "../../../utils/PaginationUtil";
 import { ShoppingCustomerProvider } from "../actors/ShoppingCustomerProvider";

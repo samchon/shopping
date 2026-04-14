@@ -21,7 +21,7 @@ erDiagram
   String id PK
   String name
   String extension "nullable"
-  String url
+  String(1024) url
   DateTime created_at
 }
 "bbs_articles" {
@@ -405,8 +405,8 @@ erDiagram
   String shopping_member_id FK "nullable"
   String shopping_external_user_id FK "nullable"
   String shopping_citizen_id FK "nullable"
-  String href
-  String referrer "nullable"
+  String(1024) href
+  String(1024) referrer "nullable"
   String ip
   DateTime created_at
 }
@@ -2319,8 +2319,8 @@ erDiagram
   String shopping_member_id FK "nullable"
   String shopping_external_user_id FK "nullable"
   String shopping_citizen_id FK "nullable"
-  String href
-  String referrer "nullable"
+  String(1024) href
+  String(1024) referrer "nullable"
   String ip
   DateTime created_at
 }
@@ -2793,8 +2793,8 @@ erDiagram
   String shopping_member_id FK "nullable"
   String shopping_external_user_id FK "nullable"
   String shopping_citizen_id FK "nullable"
-  String href
-  String referrer "nullable"
+  String(1024) href
+  String(1024) referrer "nullable"
   String ip
   DateTime created_at
 }

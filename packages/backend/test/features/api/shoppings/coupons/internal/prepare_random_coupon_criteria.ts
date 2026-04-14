@@ -1,7 +1,9 @@
-import { IShoppingCustomer } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingCustomer";
-import { IShoppingCouponCriteria } from "@samchon/shopping-api/lib/structures/shoppings/coupons/IShoppingCouponCriteria";
-import { IShoppingCouponFunnelCriteria } from "@samchon/shopping-api/lib/structures/shoppings/coupons/IShoppingCouponFunnelCriteria";
-import { IShoppingSale } from "@samchon/shopping-api/lib/structures/shoppings/sales/IShoppingSale";
+import {
+  IShoppingCouponCriteria,
+  IShoppingCouponFunnelCriteria,
+  IShoppingCustomer,
+  IShoppingSale,
+} from "@samchon/shopping-api";
 
 import { TestGlobal } from "../../../../../TestGlobal";
 

@@ -2,13 +2,14 @@ import core from "@nestia/core";
 import { Controller } from "@nestjs/common";
 import { tags } from "typia";
 
-import { IPage } from "@samchon/shopping-api/lib/structures/common/IPage";
-import { IShoppingActorEntity } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingActorEntity";
-import { IShoppingSale } from "@samchon/shopping-api/lib/structures/shoppings/sales/IShoppingSale";
-import { IShoppingSaleSnapshot } from "@samchon/shopping-api/lib/structures/shoppings/sales/IShoppingSaleSnapshot";
+import {
+  IPage,
+  IShoppingActorEntity,
+  IShoppingSale,
+  IShoppingSaleSnapshot,
+} from "@samchon/shopping-api";
 
 import { ShoppingSaleSnapshotProvider } from "../../../../providers/shoppings/sales/ShoppingSaleSnapshotProvider";
-
 import { IShoppingControllerProps } from "../IShoppingControllerProps";
 
 export function ShoppingSaleSnapshotController<
@@ -45,7 +46,7 @@ export function ShoppingSaleSnapshotController<
     public async index(
       @props.AuthGuard() actor: Actor,
       @core.TypedParam("saleId") saleId: string & tags.Format<"uuid">,
-      @core.TypedBody() input: IPage.IRequest
+      @core.TypedBody() input: IPage.IRequest,
     ): Promise<IPage<IShoppingSaleSnapshot.ISummary>> {
       return ShoppingSaleSnapshotProvider.index({
         actor,
@@ -79,7 +80,7 @@ export function ShoppingSaleSnapshotController<
     public async at(
       @props.AuthGuard() actor: Actor,
       @core.TypedParam("saleId") saleId: string & tags.Format<"uuid">,
-      @core.TypedParam("id") id: string & tags.Format<"uuid">
+      @core.TypedParam("id") id: string & tags.Format<"uuid">,
     ): Promise<IShoppingSaleSnapshot> {
       return ShoppingSaleSnapshotProvider.at({
         actor,
@@ -113,7 +114,7 @@ export function ShoppingSaleSnapshotController<
     public async flip(
       @props.AuthGuard() actor: Actor,
       @core.TypedParam("saleId") saleId: string & tags.Format<"uuid">,
-      @core.TypedParam("id") id: string & tags.Format<"uuid">
+      @core.TypedParam("id") id: string & tags.Format<"uuid">,
     ): Promise<IShoppingSale> {
       return ShoppingSaleSnapshotProvider.flip({
         actor,

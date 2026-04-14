@@ -1,8 +1,7 @@
 import { RandomGenerator, TestValidator } from "@nestia/e2e";
 
 import ShoppingApi from "@samchon/shopping-api";
-import { IShoppingMember } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingMember";
-import { IShoppingSeller } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingSeller";
+import { IShoppingMember, IShoppingSeller } from "@samchon/shopping-api";
 
 import { ConnectionPool } from "../../../../ConnectionPool";
 import { TestGlobal } from "../../../../TestGlobal";

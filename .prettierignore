@@ -1,0 +1,7 @@
+bin/
+dist/
+lib/
+node_modules/
+
+packages/api/src/functional
+packages/backend/src/prisma

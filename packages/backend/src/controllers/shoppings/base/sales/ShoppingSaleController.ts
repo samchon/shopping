@@ -2,9 +2,11 @@ import core from "@nestia/core";
 import { Controller } from "@nestjs/common";
 import { tags } from "typia";
 
-import { IPage } from "@samchon/shopping-api/lib/structures/common/IPage";
-import { IShoppingActorEntity } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingActorEntity";
-import { IShoppingSale } from "@samchon/shopping-api/lib/structures/shoppings/sales/IShoppingSale";
+import {
+  IPage,
+  IShoppingActorEntity,
+  IShoppingSale,
+} from "@samchon/shopping-api";
 
 import { ShoppingSaleProvider } from "../../../../providers/shoppings/sales/ShoppingSaleProvider";
 import { IShoppingControllerProps } from "../IShoppingControllerProps";

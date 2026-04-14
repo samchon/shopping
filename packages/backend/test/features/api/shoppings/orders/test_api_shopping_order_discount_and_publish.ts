@@ -1,5 +1,5 @@
-import ShoppingApi from "@samchon/shopping-api/lib/index";
-import { IShoppingOrderDiscountable } from "@samchon/shopping-api/lib/structures/shoppings/orders/IShoppingOrderDiscountable";
+import ShoppingApi from "@samchon/shopping-api";
+import { IShoppingOrderDiscountable } from "@samchon/shopping-api";
 
 import { generate_random_order_publish } from "./internal/generate_random_order_publish";
 import { validate_api_shopping_order_discountable } from "./internal/validate_api_shopping_order_discountable";

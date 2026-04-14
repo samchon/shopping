@@ -1,12 +1,14 @@
 import { Prisma } from "@prisma/sdk";
 import { v4 } from "uuid";
 
-import { IPage } from "@samchon/shopping-api/lib/structures/common/IPage";
-import { IShoppingActorEntity } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingActorEntity";
-import { IShoppingCitizen } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingCitizen";
-import { IShoppingCustomer } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingCustomer";
-import { IShoppingCoupon } from "@samchon/shopping-api/lib/structures/shoppings/coupons/IShoppingCoupon";
-import { IShoppingCouponTicket } from "@samchon/shopping-api/lib/structures/shoppings/coupons/IShoppingCouponTicket";
+import {
+  IPage,
+  IShoppingActorEntity,
+  IShoppingCitizen,
+  IShoppingCoupon,
+  IShoppingCouponTicket,
+  IShoppingCustomer,
+} from "@samchon/shopping-api";
 
 import { ShoppingGlobal } from "../../../ShoppingGlobal";
 import { ErrorProvider } from "../../../utils/ErrorProvider";

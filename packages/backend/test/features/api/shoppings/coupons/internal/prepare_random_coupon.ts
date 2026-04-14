@@ -1,9 +1,11 @@
 import { RandomGenerator } from "@nestia/e2e";
 
-import { IShoppingCoupon } from "@samchon/shopping-api/lib/structures/shoppings/coupons/IShoppingCoupon";
-import { IShoppingCouponCriteria } from "@samchon/shopping-api/lib/structures/shoppings/coupons/IShoppingCouponCriteria";
-import { IShoppingCouponDiscount } from "@samchon/shopping-api/lib/structures/shoppings/coupons/IShoppingCouponDiscount";
-import { IShoppingCouponRestriction } from "@samchon/shopping-api/lib/structures/shoppings/coupons/IShoppingCouponRestriction";
+import {
+  IShoppingCoupon,
+  IShoppingCouponCriteria,
+  IShoppingCouponDiscount,
+  IShoppingCouponRestriction,
+} from "@samchon/shopping-api";
 
 export const prepare_random_coupon = (
   input?: Partial<Omit<IShoppingCoupon.ICreate, "discount" | "restriction">> &

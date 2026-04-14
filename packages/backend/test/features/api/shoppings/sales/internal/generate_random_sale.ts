@@ -1,5 +1,5 @@
-import ShoppingApi from "@samchon/shopping-api/lib/index";
-import { IShoppingSale } from "@samchon/shopping-api/lib/structures/shoppings/sales/IShoppingSale";
+import ShoppingApi from "@samchon/shopping-api";
+import { IShoppingSale } from "@samchon/shopping-api";
 
 import { ConnectionPool } from "../../../../../ConnectionPool";
 import { prepare_random_sale } from "./prepare_random_sale";

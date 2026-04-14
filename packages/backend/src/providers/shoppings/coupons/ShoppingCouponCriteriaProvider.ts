@@ -1,18 +1,19 @@
-import { ArrayUtil } from "@nestia/e2e";
+import { ArrayUtil, MapUtil } from "@nestia/e2e";
 import { Prisma } from "@prisma/sdk";
 import { IPointer } from "tstl";
 import typia from "typia";
 import { v4 } from "uuid";
 
-import { IShoppingAdministrator } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingAdministrator";
-import { IShoppingSeller } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingSeller";
-import { IShoppingCouponCriteria } from "@samchon/shopping-api/lib/structures/shoppings/coupons/IShoppingCouponCriteria";
-import { IShoppingCouponFunnelCriteria } from "@samchon/shopping-api/lib/structures/shoppings/coupons/IShoppingCouponFunnelCriteria";
-import { IShoppingCouponSaleCriteria } from "@samchon/shopping-api/lib/structures/shoppings/coupons/IShoppingCouponSaleCriteria";
-import { IShoppingCouponSectionCriteria } from "@samchon/shopping-api/lib/structures/shoppings/coupons/IShoppingCouponSectionCriteria";
-import { IShoppingCouponSellerCriteria } from "@samchon/shopping-api/lib/structures/shoppings/coupons/IShoppingCouponSellerCriteria";
+import {
+  IShoppingAdministrator,
+  IShoppingCouponCriteria,
+  IShoppingCouponFunnelCriteria,
+  IShoppingCouponSaleCriteria,
+  IShoppingCouponSectionCriteria,
+  IShoppingCouponSellerCriteria,
+  IShoppingSeller,
+} from "@samchon/shopping-api";
 
-import { MapUtil } from "../../../api/utils/MapUtil";
 import { ErrorProvider } from "../../../utils/ErrorProvider";
 import { ShoppingCouponFunnelCriteriaProvider } from "./ShoppingCouponFunnelCriteriaProvider";
 import { ShoppingCouponSaleCriteriaProvider } from "./ShoppingCouponSaleCriteriaProvider";

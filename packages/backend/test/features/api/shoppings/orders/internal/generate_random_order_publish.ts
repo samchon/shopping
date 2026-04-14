@@ -1,12 +1,14 @@
 import { TestValidator } from "@nestia/e2e";
 import { v4 } from "uuid";
 
-import ShoppingApi from "@samchon/shopping-api/lib/index";
-import { IShoppingAddress } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingAddress";
-import { IShoppingCustomer } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingCustomer";
-import { IShoppingOrder } from "@samchon/shopping-api/lib/structures/shoppings/orders/IShoppingOrder";
-import { IShoppingOrderPrice } from "@samchon/shopping-api/lib/structures/shoppings/orders/IShoppingOrderPrice";
-import { IShoppingOrderPublish } from "@samchon/shopping-api/lib/structures/shoppings/orders/IShoppingOrderPublish";
+import ShoppingApi from "@samchon/shopping-api";
+import {
+  IShoppingAddress,
+  IShoppingCustomer,
+  IShoppingOrder,
+  IShoppingOrderPrice,
+  IShoppingOrderPublish,
+} from "@samchon/shopping-api";
 
 import { ConnectionPool } from "../../../../../ConnectionPool";
 import { prepare_random_address } from "./prepare_random_address";

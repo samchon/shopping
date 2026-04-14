@@ -1,10 +1,12 @@
 import { Prisma } from "@prisma/sdk";
 import { v4 } from "uuid";
 
-import { IDiagnosis } from "@samchon/shopping-api/lib/structures/common/IDiagnosis";
-import { IShoppingCitizen } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingCitizen";
-import { IShoppingCustomer } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingCustomer";
-import { IShoppingMember } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingMember";
+import {
+  IDiagnosis,
+  IShoppingCitizen,
+  IShoppingCustomer,
+  IShoppingMember,
+} from "@samchon/shopping-api";
 
 import { ShoppingGlobal } from "../../../ShoppingGlobal";
 import { BcryptUtil } from "../../../utils/BcryptUtil";

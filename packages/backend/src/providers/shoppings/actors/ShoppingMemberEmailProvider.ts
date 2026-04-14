@@ -1,6 +1,6 @@
 import { Prisma } from "@prisma/sdk";
 
-import { IShoppingMemberEmail } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingMemberEmail";
+import { IShoppingMemberEmail } from "@samchon/shopping-api";
 
 export namespace ShoppingMemberEmailProvider {
   export namespace json {

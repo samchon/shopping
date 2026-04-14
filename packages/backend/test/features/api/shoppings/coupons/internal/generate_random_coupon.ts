@@ -1,7 +1,9 @@
-import { IShoppingCustomer } from "@samchon/shopping-api/lib/structures/shoppings/actors/IShoppingCustomer";
-import { IShoppingCoupon } from "@samchon/shopping-api/lib/structures/shoppings/coupons/IShoppingCoupon";
-import { IShoppingCouponCriteria } from "@samchon/shopping-api/lib/structures/shoppings/coupons/IShoppingCouponCriteria";
-import { IShoppingSale } from "@samchon/shopping-api/lib/structures/shoppings/sales/IShoppingSale";
+import {
+  IShoppingCoupon,
+  IShoppingCouponCriteria,
+  IShoppingCustomer,
+  IShoppingSale,
+} from "@samchon/shopping-api";
 
 import { prepare_random_coupon_criteria } from "./prepare_random_coupon_criteria";
 

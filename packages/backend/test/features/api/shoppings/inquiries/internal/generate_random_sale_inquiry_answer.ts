@@ -1,7 +1,9 @@
-import ShoppingApi from "@samchon/shopping-api/lib/index";
-import { IShoppingSale } from "@samchon/shopping-api/lib/structures/shoppings/sales/IShoppingSale";
-import { IShoppingSaleInquiry } from "@samchon/shopping-api/lib/structures/shoppings/sales/inquiries/IShoppingSaleInquiry";
-import { IShoppingSaleInquiryAnswer } from "@samchon/shopping-api/lib/structures/shoppings/sales/inquiries/IShoppingSaleInquiryAnswer";
+import ShoppingApi from "@samchon/shopping-api";
+import {
+  IShoppingSale,
+  IShoppingSaleInquiry,
+  IShoppingSaleInquiryAnswer,
+} from "@samchon/shopping-api";
 
 import { ConnectionPool } from "../../../../../ConnectionPool";
 import { prepare_random_bbs_article } from "../../../common/internal/prepare_random_bbs_article";

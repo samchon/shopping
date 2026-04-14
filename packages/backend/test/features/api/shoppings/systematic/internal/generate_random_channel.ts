@@ -1,7 +1,7 @@
 import { RandomGenerator } from "@nestia/e2e";
 
-import ShoppingApi from "@samchon/shopping-api/lib/index";
-import { IShoppingChannel } from "@samchon/shopping-api/lib/structures/shoppings/systematic/IShoppingChannel";
+import ShoppingApi from "@samchon/shopping-api";
+import { IShoppingChannel } from "@samchon/shopping-api";
 
 import { ConnectionPool } from "../../../../../ConnectionPool";
 

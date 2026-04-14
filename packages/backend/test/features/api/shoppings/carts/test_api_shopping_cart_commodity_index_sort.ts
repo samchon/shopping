@@ -1,10 +1,12 @@
 import { ArrayUtil, GaffComparator, TestValidator } from "@nestia/e2e";
 import { randint } from "tstl";
 
-import api from "@samchon/shopping-api/lib/index";
-import { IPage } from "@samchon/shopping-api/lib/structures/common/IPage";
-import { IShoppingCartCommodity } from "@samchon/shopping-api/lib/structures/shoppings/orders/IShoppingCartCommodity";
-import { IShoppingSale } from "@samchon/shopping-api/lib/structures/shoppings/sales/IShoppingSale";
+import api from "@samchon/shopping-api";
+import {
+  IPage,
+  IShoppingCartCommodity,
+  IShoppingSale,
+} from "@samchon/shopping-api";
 
 import { ConnectionPool } from "../../../../ConnectionPool";
 import { test_api_shopping_actor_customer_create } from "../actors/test_api_shopping_actor_customer_create";

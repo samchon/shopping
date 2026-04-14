@@ -1,10 +1,12 @@
 import { ArrayUtil, TestValidator } from "@nestia/e2e";
 
-import ShoppingApi from "@samchon/shopping-api/lib/index";
-import { IShoppingCartCommodity } from "@samchon/shopping-api/lib/structures/shoppings/orders/IShoppingCartCommodity";
-import { IShoppingOrder } from "@samchon/shopping-api/lib/structures/shoppings/orders/IShoppingOrder";
-import { IShoppingOrderDiscountable } from "@samchon/shopping-api/lib/structures/shoppings/orders/IShoppingOrderDiscountable";
-import { IShoppingOrderPrice } from "@samchon/shopping-api/lib/structures/shoppings/orders/IShoppingOrderPrice";
+import ShoppingApi from "@samchon/shopping-api";
+import {
+  IShoppingCartCommodity,
+  IShoppingOrder,
+  IShoppingOrderDiscountable,
+  IShoppingOrderPrice,
+} from "@samchon/shopping-api";
 
 import { generate_random_order } from "./internal/generate_random_order";
 import { validate_api_shopping_order_discountable } from "./internal/validate_api_shopping_order_discountable";
