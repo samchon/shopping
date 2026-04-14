@@ -1,0 +1,27 @@
+name: frontend
+on:
+  pull_request:
+    paths:
+      - "packages/frontend/**"
+      - "packages/api/**"
+      - "pnpm-workspace.yaml"
+      - ".github/workflows/frontend.yml"
+
+jobs:
+  Ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+      - uses: pnpm/action-setup@v4
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Install Playwright
+        working-directory: packages/frontend
+        run: pnpm run playwright:install
+
+      - name: Run E2E Tests
+        working-directory: packages/frontend
+        run: pnpm run test:e2e
