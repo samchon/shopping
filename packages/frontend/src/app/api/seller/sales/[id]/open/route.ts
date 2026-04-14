@@ -1,8 +1,7 @@
-import type { NextRequest } from "next/server";
-
 import { toErrorResponse } from "@/server/shopping/errors";
-import { jsonWithCustomerSession } from "@/server/shopping/session";
 import { openSellerSale } from "@/server/shopping/seller";
+import { jsonWithCustomerSession } from "@/server/shopping/session";
+import type { NextRequest } from "next/server";
 
 export async function PUT(
   request: NextRequest,

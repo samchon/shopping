@@ -1,8 +1,3 @@
-import "server-only";
-
-import ShoppingApi from "@samchon/shopping-api";
-import type { NextRequest } from "next/server";
-
 import type { CatalogSortKey } from "@/lib/shopping/types";
 import {
   mapCategoryTree,
@@ -11,10 +6,14 @@ import {
   mapSectionsFromSales,
   mapSession,
 } from "@/server/shopping/mappers";
+import type { NextRequest } from "next/server";
+import "server-only";
+
+import ShoppingApi from "@samchon/shopping-api";
 
 import { shoppingConfig } from "./config";
 import { ApiRouteError } from "./errors";
-import { requireCurrentCustomer, type SessionContext } from "./session";
+import { type SessionContext, requireCurrentCustomer } from "./session";
 
 function getSort(sort: CatalogSortKey) {
   switch (sort) {
@@ -137,10 +136,7 @@ export async function getCatalogData(
   };
 }
 
-export async function getProductData(
-  saleId: string,
-  context: SessionContext,
-) {
+export async function getProductData(saleId: string, context: SessionContext) {
   const sale = await ShoppingApi.functional.shoppings.customers.sales.at(
     context.connection,
     saleId,

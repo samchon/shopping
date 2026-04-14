@@ -23,7 +23,9 @@ async function publishMacbookOrder(page: import("@playwright/test").Page) {
   await page.locator("#citizen-mobile").fill("01055557777");
   await page.getByRole("button", { name: "Verify identity" }).click();
   await expect(
-    page.getByText("Identity verified. You can now continue to publish the order."),
+    page.getByText(
+      "Identity verified. You can now continue to publish the order.",
+    ),
   ).toBeVisible();
 
   await page.locator("#address-name").fill("Kim Buyer");
@@ -70,7 +72,9 @@ test("guest session can join membership", async ({ page }) => {
 
   await expect(page.getByText("Membership created.")).toBeVisible();
   await page.keyboard.press("Escape");
-  await expect(page.getByRole("button", { name: /Codex Shopper/ })).toBeVisible();
+  await expect(
+    page.getByRole("button", { name: /Codex Shopper/ }),
+  ).toBeVisible();
 });
 
 test("catalog flow publishes an order", async ({ page }) => {
@@ -83,7 +87,9 @@ test("catalog flow publishes an order", async ({ page }) => {
 
   await page.getByRole("button", { name: /Smart Phones/ }).click();
   await expect(page.getByText("iPhone 16 Pro Field Kit")).toBeVisible();
-  await expect(page.getByText("MacBook Pro 16 Creator Bundle")).not.toBeVisible();
+  await expect(
+    page.getByText("MacBook Pro 16 Creator Bundle"),
+  ).not.toBeVisible();
 
   await publishMacbookOrder(page);
   await page.getByRole("link", { name: "Orders", exact: true }).click();
@@ -111,11 +117,15 @@ test("seller console can log in and observe paid orders", async ({ page }) => {
     }),
   ).toBeVisible();
 
-  await expect(page.getByText("MacBook Pro 16 Creator Bundle").first()).toBeVisible();
+  await expect(
+    page.getByText("MacBook Pro 16 Creator Bundle").first(),
+  ).toBeVisible();
   await expect(page.getByText("Kim Buyer")).toBeVisible();
 });
 
-test("seller console can replicate, pause, and restore a sale", async ({ page }) => {
+test("seller console can replicate, pause, and restore a sale", async ({
+  page,
+}) => {
   await page.goto("/seller");
   await page.locator("#seller-email").fill("robot@nestia.io");
   await page.locator("#seller-password").fill("samchon");
@@ -126,11 +136,15 @@ test("seller console can replicate, pause, and restore a sale", async ({ page })
     }),
   ).toBeVisible();
 
-  await page.locator("#replica-title").fill("MacBook Pro 16 Creator Bundle Replica");
+  await page
+    .locator("#replica-title")
+    .fill("MacBook Pro 16 Creator Bundle Replica");
   await page.getByRole("button", { name: "Create replica sale" }).click();
   await expect(page.getByText("Replica sale created.")).toBeVisible();
 
-  const replicaCard = page.locator('[data-sale-title="MacBook Pro 16 Creator Bundle Replica"]').first();
+  const replicaCard = page
+    .locator('[data-sale-title="MacBook Pro 16 Creator Bundle Replica"]')
+    .first();
   await expect(replicaCard).toBeVisible();
   await replicaCard.getByRole("button", { name: "Pause sale" }).click();
   await expect(page.getByText("Sale paused.")).toBeVisible();
@@ -139,7 +153,9 @@ test("seller console can replicate, pause, and restore a sale", async ({ page })
   await expect(page.getByText("Sale restored.")).toBeVisible();
 });
 
-test("wallet shows balances and can claim a coupon ticket", async ({ page }) => {
+test("wallet shows balances and can claim a coupon ticket", async ({
+  page,
+}) => {
   await openSessionAndVerifyIdentity(page, "Wallet Buyer", "01022223333");
 
   await page.goto("/wallet");
@@ -157,7 +173,9 @@ test("wallet shows balances and can claim a coupon ticket", async ({ page }) => 
   await expect(page.getByText("Spring Launch 10%").first()).toBeVisible();
 });
 
-test("admin console can log in and observe market summaries", async ({ page }) => {
+test("admin console can log in and observe market summaries", async ({
+  page,
+}) => {
   await publishMacbookOrder(page);
 
   await page.goto("/admin");
@@ -180,7 +198,9 @@ test("admin console can log in and observe market summaries", async ({ page }) =
   await expect(page.getByText("Welcome bonus")).toBeVisible();
 });
 
-test("admin console can create coupon and ledger metadata", async ({ page }) => {
+test("admin console can create coupon and ledger metadata", async ({
+  page,
+}) => {
   await page.goto("/admin");
   await page.locator("#admin-email").fill("robot@nestia.io");
   await page.locator("#admin-password").fill("samchon");

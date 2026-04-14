@@ -13,7 +13,10 @@ export default defineConfig({
     timeout: 10_000,
   },
   outputDir: ".artifacts/test-results",
-  reporter: [["list"], ["html", { open: "never", outputFolder: ".artifacts/playwright-report" }]],
+  reporter: [
+    ["list"],
+    ["html", { open: "never", outputFolder: ".artifacts/playwright-report" }],
+  ],
   use: {
     ...devices["Desktop Chrome"],
     baseURL,

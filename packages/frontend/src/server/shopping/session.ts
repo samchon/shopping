@@ -1,10 +1,9 @@
+import { mapSession } from "@/server/shopping/mappers";
+import { type NextRequest, NextResponse } from "next/server";
 import "server-only";
 
 import type { IConnection } from "@samchon/shopping-api";
 import ShoppingApi from "@samchon/shopping-api";
-import { NextResponse, type NextRequest } from "next/server";
-
-import { mapSession } from "@/server/shopping/mappers";
 
 import { shoppingConfig } from "./config";
 import { ApiRouteError, isUnauthorizedError } from "./errors";
@@ -74,7 +73,9 @@ function queueTokenCookies(
   context.connection.headers.Authorization = `Bearer ${token.access}`;
 }
 
-async function bootstrapCustomer(request: NextRequest): Promise<SessionContext> {
+async function bootstrapCustomer(
+  request: NextRequest,
+): Promise<SessionContext> {
   const connection = createConnection();
   const referer = request.headers.get("referer");
   const forwardedFor = request.headers.get("x-forwarded-for");
@@ -121,7 +122,9 @@ async function refreshCustomer(refreshToken: string): Promise<SessionContext> {
   return context;
 }
 
-async function getOrCreateContext(request: NextRequest): Promise<SessionContext> {
+async function getOrCreateContext(
+  request: NextRequest,
+): Promise<SessionContext> {
   const accessToken = request.cookies.get(ACCESS_COOKIE)?.value;
   const refreshToken = request.cookies.get(REFRESH_COOKIE)?.value ?? null;
 

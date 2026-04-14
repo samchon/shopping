@@ -25,7 +25,7 @@ if (mode === "ui-review") {
   env.UI_REVIEW_TARGET = ".artifacts/ui-review";
 }
 if (mode === "readme") {
-  env.UI_REVIEW_TARGET = "public/readme";
+  env.UI_REVIEW_TARGET = "../../images";
   env.README_SCREENSHOTS = "true";
   assertReadmeScreenshotEnv(env);
 }

@@ -1,7 +1,3 @@
-import "server-only";
-
-import ShoppingApi from "@samchon/shopping-api";
-
 import type {
   ActivateCitizenPayload,
   JoinMemberPayload,
@@ -9,8 +5,11 @@ import type {
   SessionView,
 } from "@/lib/shopping/types";
 import { mapSession } from "@/server/shopping/mappers";
+import "server-only";
 
-import { requireCurrentCustomer, type SessionContext } from "./session";
+import ShoppingApi from "@samchon/shopping-api";
+
+import { type SessionContext, requireCurrentCustomer } from "./session";
 
 export async function getSessionData(
   context: SessionContext,
@@ -39,20 +38,21 @@ export async function joinMember(
   payload: JoinMemberPayload,
   context: SessionContext,
 ) {
-  const customer = await ShoppingApi.functional.shoppings.customers.authenticate.join(
-    context.connection,
-    {
-      email: payload.email,
-      password: payload.password,
-      nickname: payload.nickname,
-      citizen: payload.citizen
-        ? {
-            name: payload.citizen.name,
-            mobile: payload.citizen.mobile,
-          }
-        : null,
-    },
-  );
+  const customer =
+    await ShoppingApi.functional.shoppings.customers.authenticate.join(
+      context.connection,
+      {
+        email: payload.email,
+        password: payload.password,
+        nickname: payload.nickname,
+        citizen: payload.citizen
+          ? {
+              name: payload.citizen.name,
+              mobile: payload.citizen.mobile,
+            }
+          : null,
+      },
+    );
 
   return mapSession(customer);
 }

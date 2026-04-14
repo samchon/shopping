@@ -1,8 +1,11 @@
-import type { NextRequest } from "next/server";
-
-import { deleteCartItem, getCartData, updateCartItem } from "@/server/shopping/cart";
+import {
+  deleteCartItem,
+  getCartData,
+  updateCartItem,
+} from "@/server/shopping/cart";
 import { toErrorResponse } from "@/server/shopping/errors";
 import { jsonWithCustomerSession } from "@/server/shopping/session";
+import type { NextRequest } from "next/server";
 
 export async function PATCH(
   request: NextRequest,
