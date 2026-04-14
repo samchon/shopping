@@ -15,7 +15,7 @@
     "build:swagger": "nestia swagger",
     "build:test": "tsc -p test/tsconfig.json",
     "dev": "tsc -p test/tsconfig.json --watch",
-    "prepare": "ts-patch install && pnpm build:prisma && prisma db push",
+    "prepare": "ts-patch install && pnpm build:prisma",
     "------------------------DEPLOYS------------------------": "",
     "start": "node lib/executable/server",
     "start:ts": "ts-node src/executable/server.ts",
