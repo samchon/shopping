@@ -95,8 +95,10 @@ For manual setup without Docker:
 
 ![AutoBe Replay](https://autobe.dev/images/demonstrate/replay-qwen-qwen3.5-35b-a3b.png)
 
-AutoBe generates backends with exceptionally strong API design and documentation.
+> Even small models can hit 100%.
 
-If this repository shows frontend automation from a great backend, AutoBe is the next step.
+AutoBe is an open-source project that generates complete backends from natural-language requirements.
+
+It produces robust API design and documentation. If you want to automate the backend as well, this is the best next step.
 
 - [AutoBe Repository](https://github.com/wrtnlabs/autobe)
