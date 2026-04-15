@@ -323,7 +323,6 @@ export namespace ShoppingSaleSnapshotProvider {
               content: {
                 title: {
                   contains: props.input.title,
-                  mode: "insensitive" as const,
                 },
               },
             },
@@ -335,7 +334,6 @@ export namespace ShoppingSaleSnapshotProvider {
               content: {
                 body: {
                   contains: props.input.content,
-                  mode: "insensitive" as const,
                 },
               },
             },
@@ -349,7 +347,6 @@ export namespace ShoppingSaleSnapshotProvider {
                   content: {
                     title: {
                       contains: props.input.title_or_content,
-                      mode: "insensitive" as const,
                     },
                   },
                 },
@@ -357,7 +354,6 @@ export namespace ShoppingSaleSnapshotProvider {
                   content: {
                     body: {
                       contains: props.input.title_or_content,
-                      mode: "insensitive" as const,
                     },
                   },
                 },

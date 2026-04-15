@@ -31,19 +31,19 @@
 /// @author Samchon
 model shopping_coupons {
   /// Primary Key.
-  id String @id @db.Uuid
+  id String @id
 
   /// Belonged administrator or seller's {@link shopping_customers.id}
-  shopping_customer_id String @db.Uuid
+  shopping_customer_id String
 
   /// Type of the coupon creator.
   ///
   /// - administrator
   /// - seller
-  actor_type String @db.VarChar
+  actor_type String
 
   /// Reprensentative name of coupon.
-  name String @db.VarChar
+  name String
 
   /// Access level of coupon.
   ///
@@ -51,7 +51,7 @@ model shopping_coupons {
   /// - `private`: unable to find from public API
   ///   - arbitrarily assigned by the seller or administrator
   ///   - issued from one-time link
-  access String @db.VarChar
+  access String
 
   /// Exclusivity or not.
   /// 
@@ -65,30 +65,30 @@ model shopping_coupons {
   /// concept from `multiplicative`, which means whether the same coupon 
   /// can be multiplied and applied to multiple coupons of the same order, 
   /// so please do not confuse them.
-  exclusive Boolean @db.Boolean
+  exclusive Boolean
 
   /// Discount unit.
   ///
   /// - amount: Absolute value
   /// - percent: 0 ~ 100 %
-  unit String @db.VarChar
+  unit String
 
   /// Discount value.
   ///
   /// If `unit` is percent, range of value is limited from 0 to 100.
-  value Float @db.DoublePrecision
+  value Float
 
   /// Minimum purchase amount for discount.
   /// 
   /// When setting this value, discount coupons cannot be applied to 
   /// order totals that are less than this value.
-  threshold Float? @db.DoublePrecision
+  threshold Float?
 
   /// Maximum amount available for discount.
   /// 
   /// When this value is set, no further discount will be given no matter 
   /// how much you order.
-  limit Int? @db.Integer /// @format uint @minimum 1
+  limit Int? /// @format uint @minimum 1
 
   /// Whether be multiplied to volume or not.
   ///
@@ -108,7 +108,7 @@ model shopping_coupons {
   /// 
   /// - `false`: Only `5,000 won` would be discounted
   /// - `true`: `50,000 won` would be discounted
-  multiplicative Boolean @db.Boolean
+  multiplicative Boolean
 
   /// Limited quantity issued.
   /// 
@@ -117,7 +117,7 @@ model shopping_coupons {
   /// 
   /// In other words, the concept of N coupons being issued on a first-come, 
   /// first-served basis is created.
-  volume Int? @db.Integer
+  volume Int?
 
   /// Limited quantity issued per person.
   /// 
@@ -127,7 +127,7 @@ model shopping_coupons {
   /// 
   /// Of course, by assigning a value of N, the total amount issued to the 
   /// same citizen can be limited.
-  volume_per_citizen Int? @db.Integer
+  volume_per_citizen Int?
 
   /// Expiration day(s) value.
   /// 
@@ -135,7 +135,7 @@ model shopping_coupons {
   /// 
   /// Therefore, customers must use the ticket within N days, if possible, 
   /// from the time it is issued.
-  expired_in Int? @db.Integer
+  expired_in Int?
 
   /// Expiration date.
   /// 
@@ -144,10 +144,10 @@ model shopping_coupons {
   /// 
   /// Double restrictions are possible with `expired_in`, of which the one 
   /// with the shorter expiration date is used.
-  expired_at DateTime? @db.Timestamptz
+  expired_at DateTime?
 
   /// Opening time of the coupon.
-  opened_at DateTime? @db.Timestamptz
+  opened_at DateTime?
 
   /// Closing time of the coupon.
   /// 
@@ -155,20 +155,20 @@ model shopping_coupons {
   /// 
   /// However, previously issued tickets can still be used until their 
   /// expiration date.
-  closed_at DateTime? @db.Timestamptz
+  closed_at DateTime?
 
   /// Creation time of record.
-  created_at DateTime @db.Timestamptz
+  created_at DateTime
 
   /// Update time of record.
   ///
   /// Only possible to update until `opened_at`.
-  updated_at DateTime @db.Timestamptz
+  updated_at DateTime
 
   /// Deletion time of record.
   ///
   /// Pre-issued tickets can still be used until their expiration date.
-  deleted_at DateTime? @db.Timestamptz
+  deleted_at DateTime?
 
   //----
   // RELATIONS
@@ -194,7 +194,6 @@ model shopping_coupons {
   mv_citizen_inventories mv_shopping_coupon_citizen_inventories[]
 
   @@index([shopping_customer_id, actor_type])
-  @@index([name(ops: raw("gin_trgm_ops"))], type: Gin)
   @@index([created_at])
   @@index([opened_at])
 }
@@ -220,24 +219,24 @@ model shopping_coupons {
 /// @author Samchon
 model shopping_coupon_criterias {
   /// Primary Key.
-  id String @id @db.Uuid
+  id String @id
 
   /// Belonged coupon's {@link shopping_coupons.id}
-  shopping_coupon_id String @db.Uuid
+  shopping_coupon_id String
 
   /// Type of criteria.
   ///
   /// It means which subtype being used.
-  type String @db.VarChar
+  type String
 
   /// Direction of criteria.
   ///
   /// - include
   /// - exclude
-  direction String @db.VarChar
+  direction String
 
   /// Sequence order in belonged coupon.
-  sequence Int @db.Integer
+  sequence Int
 
   //----
   // RELATIONS
@@ -270,10 +269,10 @@ model shopping_coupon_criterias {
 /// @author Samchon
 model shopping_coupon_section_criterias {
   /// Primary Key.
-  id String @id @db.Uuid
+  id String @id
 
   /// Target section's {@link shopping_coupon_criterias.id}
-  shopping_section_id String @db.Uuid
+  shopping_section_id String
 
   //----
   // RELATIONS
@@ -305,10 +304,10 @@ model shopping_coupon_section_criterias {
 /// @author Samchon
 model shopping_coupon_seller_criterias {
   /// PK + FK.
-  id String @id @db.Uuid
+  id String @id
 
   /// Target seller's {@link shopping_sellers.id}
-  shopping_seller_id String @db.Uuid
+  shopping_seller_id String
 
   //----
   // RELATIONS
@@ -338,10 +337,10 @@ model shopping_coupon_seller_criterias {
 /// @author Samchon
 model shopping_coupon_sale_criterias {
   /// PK + FK.
-  id String @id @db.Uuid
+  id String @id
 
   /// Target sale's {@link shopping_sales.id}
-  shopping_sale_id String @db.Uuid
+  shopping_sale_id String
 
   //----
   // RELATIONS
@@ -371,20 +370,20 @@ model shopping_coupon_sale_criterias {
 /// @author Samchon
 model shopping_coupon_funnel_criterias {
   /// PK + FK.
-  id String @id @db.Uuid
+  id String @id
 
   /// What kind of funnel is it?
   ///
   /// - path
   /// - referrer
   /// - variable
-  kind String @db.VarChar
+  kind String
 
   /// Key name of funnel, when `kind` is "variable".
-  key String? @db.VarChar
+  key String?
 
   /// Value of funnel.
-  value String @db.VarChar
+  value String
 
   //----
   // RELATIONS
@@ -408,24 +407,24 @@ model shopping_coupon_funnel_criterias {
 /// @author Samchon
 model shopping_coupon_tickets {
   /// Primary Key.
-  id String @id @db.Uuid
+  id String @id
 
   /// Belonged customer's {@link shopping_customers.id}
-  shopping_customer_id String @db.Uuid
+  shopping_customer_id String
 
   /// Belonged coupon's {@link shopping_coupons.id}
-  shopping_coupon_id String @db.Uuid
+  shopping_coupon_id String
 
   /// Belonged disposable's {@link shopping_coupon_disposables.id}
   ///
   /// Only when current ticket be issued from one-time code.
-  shopping_coupon_disposable_id String? @db.Uuid
+  shopping_coupon_disposable_id String?
 
   /// Creation time of record.
-  created_at DateTime @db.Timestamptz
+  created_at DateTime
 
   /// Expiration time of ticket.
-  expired_at DateTime? @db.Timestamptz
+  expired_at DateTime?
 
   //----
   // RELATIONS
@@ -471,25 +470,25 @@ model shopping_coupon_tickets {
 /// @author Samchon
 model shopping_coupon_ticket_payments {
   /// Primary Key.
-  id String @id @db.Uuid
+  id String @id
 
   /// Belonged ticket's {@link shopping_coupon_tickets.id}
-  shopping_coupon_ticket_id String @db.Uuid
+  shopping_coupon_ticket_id String
 
   /// Target order's {@link shopping_orders.id}
-  shopping_order_id String @db.Uuid
+  shopping_order_id String
 
   /// Sequence order(?) in belonged order.
-  sequence Int @db.Integer
+  sequence Int
 
   /// Creation time of record.
-  created_at DateTime @db.Timestamptz
+  created_at DateTime
 
   /// Deletion time of record.
   ///
   /// In other words, it means that the target order be erased or payment 
   /// be cancelled.
-  deleted_at DateTime? @db.Timestamptz
+  deleted_at DateTime?
 
   //----
   // RELATIONS
@@ -520,21 +519,21 @@ model shopping_coupon_ticket_payments {
 /// @author Samchon
 model shopping_coupon_disposables {
   /// Primary Key.
-  id String @id @db.Uuid
+  id String @id
 
   /// Belonged coupon's {@link shopping_coupons.id}
-  shopping_coupon_id String @db.Uuid
+  shopping_coupon_id String
 
   /// Identifier code.
   ///
   /// Another word, one-time password for issuance.
-  code String @db.VarChar
+  code String
 
   /// Creation time of record.
-  created_at DateTime @db.Timestamptz
+  created_at DateTime
 
   /// Expired time of record.
-  expired_at DateTime? @db.Timestamptz
+  expired_at DateTime?
 
   //----
   // RELATIONS
@@ -551,18 +550,18 @@ model shopping_coupon_disposables {
 
 /// @hidden
 model mv_shopping_coupon_inventories {
-  shopping_coupon_id String @id @db.Uuid
-  value              Int    @db.Integer
+  shopping_coupon_id String @id
+  value              Int   
 
   coupon shopping_coupons @relation(fields: [shopping_coupon_id], references: [id], onDelete: Cascade)
 }
 
 /// @hidden
 model mv_shopping_coupon_citizen_inventories {
-  id                  String @id @db.Uuid
-  shopping_coupon_id  String @db.Uuid
-  shopping_citizen_id String @db.Uuid
-  value               Int    @db.Integer
+  id                  String @id
+  shopping_coupon_id  String
+  shopping_citizen_id String
+  value               Int   
 
   citizen shopping_citizens @relation(fields: [shopping_citizen_id], references: [id], onDelete: Cascade)
   coupon  shopping_coupons  @relation(fields: [shopping_coupon_id], references: [id], onDelete: Cascade)

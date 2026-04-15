@@ -25,10 +25,6 @@ export namespace ShoppingSetupWizard {
       });
     execute("reset")("--force");
     execute("dev")("--name init");
-
-    await ShoppingGlobal.prisma.$executeRawUnsafe(
-      `GRANT SELECT ON ALL TABLES IN SCHEMA ${ShoppingGlobal.env.SHOPPING_POSTGRES_SCHEMA} TO ${ShoppingGlobal.env.SHOPPING_POSTGRES_USERNAME_READONLY}`,
-    );
   }
 
   export async function seed(): Promise<void> {

@@ -1,12 +1,10 @@
 datasource db {
-  provider   = "postgresql"
-  extensions = [pg_trgm]
+  provider = "sqlite"
 }
 
 generator client {
-  provider        = "prisma-client"
-  output          = "../../src/prisma"
-  previewFeatures = ["postgresqlExtensions", "views"]
+  provider = "prisma-client"
+  output   = "../../src/prisma"
 }
 
 generator markdown {

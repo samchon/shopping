@@ -13,42 +13,22 @@ Also, this project guides how to utilize below libraries in production, and demo
 - [nestia](https://github.com/samchon/nestia): NestJS helper libraries like SDK generation
 - [prisma-markdown](https://github.com/samchon/prisma-markdown): Markdown generator of Prisma, including ERD and descriptions
 
-For the quickest start with Docker Compose, see the [root README](../../README.md).
-
-## 1. Manual Setup
+## 1. Setup
 ### 1.1. NodeJS
 This backend server runs on NodeJS with TypeScript.
 
 - https://nodejs.org/en/
 
-### 1.2. PostgreSQL
-> ```bash
-> docker pull postgis/postgis:16-3.4
-> docker run --name postgres -p 5432:5432 -e POSTGRES_PASSWORD=root -d postgis/postgis:16-3.4
-> ```
->
-> If you have Docker, run the commands above.
-
-Otherwise, install PostgreSQL manually from the official site:
-
-- https://www.enterprisedb.com/downloads/postgres-postgresql-downloads
-
-After PostgreSQL is running, create the database schema and seed data with `pnpm schema`. Default root credentials are `postgres` / `root`.
+### 1.2. Install and Start
+No external database required — the backend uses SQLite. The database file and tables are created automatically on `pnpm install`, and demo data is seeded on first server launch.
 
 ```bash
 # from the monorepo root
 pnpm install
-
-cd packages/backend
-pnpm schema
+pnpm start
 ```
 
-### 1.3. Start
-```bash
-pnpm start:ts
-```
-
-The server listens on `http://127.0.0.1:37001` by default. All configuration lives in `.env.local` and is copied to `.env` automatically on first run.
+The server listens on `http://127.0.0.1:37001` by default.
 
 ## 2. Development
 > - A. Definition only
@@ -98,12 +78,7 @@ pnpm build:sdk    # regenerate SDK into packages/api/src
 
 After definition and SDK generation, design use-case scenarios and implement test automation under [test/features](test/features).
 
-Note that, the test program resets the local DB schema whenever being run. To avoid resetting, use the `reset` option.
-
 ```bash
-# test without db reset
-pnpm test -- --reset false
-
 # include or exclude some features
 pnpm test -- --include cart order issue
 pnpm test -- --include cart order issue --exclude index deposit
@@ -123,10 +98,10 @@ After all preparations, implement the main program. Do not write source code onl
 ## 4. Commands
 ```bash
 pnpm build            # prisma generate + SDK codegen + tsc
-pnpm start            # start compiled server (lib/)
-pnpm start:ts         # start via ts-node (src/)
-pnpm schema           # create DB schema and seed data
-pnpm test             # run E2E tests (requires PostgreSQL)
+pnpm start            # start via ts-node (src/)
+pnpm start:prod       # start compiled server (lib/)
+pnpm schema           # reset DB and seed data
+pnpm test             # run E2E tests
 pnpm build:swagger    # regenerate swagger.json
 ```
 

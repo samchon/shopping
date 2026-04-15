@@ -13,24 +13,24 @@ model shopping_sale_favorites {
   // COLUMNS
   //----
   /// Primary Key.
-  id String @id @db.Uuid
+  id String @id
 
   /// Belonged customer's {@link shopping_customers.id}
-  shopping_customer_id String @db.Uuid
+  shopping_customer_id String
 
   /// Target sale's {@link shopping_sales.id}
-  shopping_sale_id String @db.Uuid
+  shopping_sale_id String
 
   /// Target snapshot's {@link shopping_sale_snapshots.id}
   ///
   /// The snapshot of the sale at the time when the customer favorites it.
-  shopping_sale_snapshot_id String @db.Uuid
+  shopping_sale_snapshot_id String
 
   /// Creation time of record.
-  created_at DateTime @db.Timestamptz
+  created_at DateTime
 
   /// Deletion time of record.
-  deleted_at DateTime? @db.Timestamptz
+  deleted_at DateTime?
 
   //----
   // RELATIONS
@@ -60,24 +60,24 @@ model shopping_sale_snapshot_inquiry_favorites {
   // COLUMNS
   //----
   /// Primary Key.
-  id String @id @db.Uuid
+  id String @id
 
   /// Belonged customer's {@link shopping_customers.id}
-  shopping_customer_id String @db.Uuid
+  shopping_customer_id String
 
   /// Target inquiry's {@link shopping_sale_snapshot_inquiries.id}
-  shopping_sale_snapshot_inquiry_id String @db.Uuid
+  shopping_sale_snapshot_inquiry_id String
 
   /// Target snapshot's {@link shopping_sale_snapshots.id}
   ///
   /// The snapshot of the inquiry at the time when the customer favorites it.
-  bbs_article_snapshot_id String @db.Uuid
+  bbs_article_snapshot_id String
 
   /// Creation time of record.
-  created_at DateTime @db.Timestamptz
+  created_at DateTime
 
   /// Deletion time of record.
-  deleted_at DateTime? @db.Timestamptz
+  deleted_at DateTime?
 
   //----
   // RELATIONS
@@ -108,25 +108,25 @@ model shopping_address_favorites {
   // COLUMNS
   //----
   /// Primary Key.
-  id String @id @db.Uuid
+  id String @id
 
   /// Belonged customer's {@link shopping_customers.id}
-  shopping_customer_id String @db.Uuid
+  shopping_customer_id String
 
   /// Target address's {@link shopping_addresses.id}
-  shopping_address_id String @db.Uuid
+  shopping_address_id String
 
   /// Title of the favorite address.
-  title String @db.VarChar
+  title String
 
   /// Whether the favorite address is primary or not.
-  primary Boolean @db.Boolean
+  primary Boolean
 
   /// Creation time of record.
-  created_at DateTime @db.Timestamptz
+  created_at DateTime
 
   /// Deletion time of record.
-  deleted_at DateTime? @db.Timestamptz
+  deleted_at DateTime?
 
   //----
   // RELATIONS

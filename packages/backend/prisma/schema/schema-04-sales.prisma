@@ -24,29 +24,29 @@ model shopping_sales {
   // COLUMNS
   //----
   /// Primary Key.
-  id String @id @db.Uuid
+  id String @id
 
   /// Belonged section's {@link shopping_sections.id}
-  shopping_section_id String @db.Uuid
+  shopping_section_id String
 
   /// Belonged seller's {@link shopping_customers.id}
-  shopping_seller_customer_id String @db.Uuid
+  shopping_seller_customer_id String
 
   /// Creation time of record.
   ///
   /// Note that, this property is different with `opened_at`, which means
   /// the opening time of sale.
-  created_at DateTime @db.Timestamptz
+  created_at DateTime
 
   /// Opening time of sale.
   ///
   /// If `null` value assigned, it means not opened yet.
-  opened_at DateTime? @db.Timestamptz
+  opened_at DateTime?
 
   /// Closing time of sale.
   ///
   /// If `null` value assigned, the sale is forever.
-  closed_at DateTime? @db.Timestamptz
+  closed_at DateTime?
 
   /// Paused time.
   ///
@@ -55,7 +55,7 @@ model shopping_sales {
   /// {@link shopping_customers Customers} still can see the sale in list 
   /// and detail page, but a label "The sale is paused for a while by seller" 
   /// be attached.
-  paused_at DateTime? @db.Timestamptz
+  paused_at DateTime?
 
   /// Suspended time.
   ///
@@ -68,7 +68,7 @@ model shopping_sales {
   /// At 1st, seller and {@link shopping_administrators administrator} can
   /// see suspended sale in list and detail page. At 2nd, seller can
   /// resume the sale at any time.
-  suspended_at DateTime? @db.Timestamptz
+  suspended_at DateTime?
 
   //----
   // RELATIONS
@@ -110,15 +110,15 @@ model shopping_sale_snapshots {
   // COLUMNS
   //----
   /// Primary Key.
-  id String @id @db.Uuid
+  id String @id
 
   /// Belonged sale's {@link shopping_sales.id}
-  shopping_sale_id String @db.Uuid
+  shopping_sale_id String
 
   /// Creation time of record.
   ///
   /// It means the time when the seller created or updated the sale.
-  created_at DateTime @db.Timestamptz
+  created_at DateTime
 
   //----
   // RELATIONS
@@ -179,18 +179,18 @@ model shopping_sale_snapshot_units {
   // COLUMNS
   //----
   /// Primary Key.
-  id String @id @db.Uuid
+  id String @id
 
   /// Belonged snapshot's {@link shopping_sale_snapshots.id}
-  shopping_sale_snapshot_id String @db.Uuid
+  shopping_sale_snapshot_id String
 
   /// Representative name of the unit.
-  name String @db.VarChar
+  name String
 
   /// Whether the unit is primary or not.
   ///
   /// Just a labeling value.
-  primary Boolean @db.Boolean
+  primary Boolean
 
   /// Whether the unit is required or not.
   ///
@@ -200,10 +200,10 @@ model shopping_sale_snapshot_units {
   /// For example, if there's a sale "Macbook Set" and one of the unit is 
   /// the "Main Body", is it possible to buy the "Macbook Set" without the 
   /// "Main Body" unit? This property is for that case.
-  required Boolean @db.Boolean
+  required Boolean
 
   /// Sequence order in belonged snapshot.
-  sequence Int @db.Integer
+  sequence Int
 
   //----
   // RELATIONS
@@ -257,13 +257,13 @@ model shopping_sale_snapshot_unit_options {
   // COLUMNS
   //----
   /// Primary Key.
-  id String @id @db.Uuid
+  id String @id
 
   /// Belonged unit's {@link shopping_sale_snapshot_units.id}
-  shopping_sale_snapshot_unit_id String @db.Uuid
+  shopping_sale_snapshot_unit_id String
 
   /// Name of the option.
-  name String @db.VarChar
+  name String
 
   /// Type of the option.
   ///
@@ -271,7 +271,7 @@ model shopping_sale_snapshot_unit_options {
   /// - `boolean`
   /// - `number`
   /// - `string`
-  type String @db.VarChar
+  type String
 
   /// Whether the option is variable or not.
   ///
@@ -283,10 +283,10 @@ model shopping_sale_snapshot_unit_options {
   ///
   /// For reference, if `type` value is not `"select"`, this attribute
   /// is always `false`.
-  variable Boolean @db.Boolean
+  variable Boolean
 
   /// Sequence order in belonged unit.
-  sequence Int @db.Integer
+  sequence Int
 
   //----
   // RELATIONS
@@ -324,16 +324,16 @@ model shopping_sale_snapshot_unit_option_candidates {
   // COLUMNS
   //----
   /// Primary Key.
-  id String @id @db.Uuid
+  id String @id
 
   /// Belonged option's {@link shopping_sale_snapshot_unit_options.id}
-  shopping_sale_snapshot_unit_option_id String @db.Uuid
+  shopping_sale_snapshot_unit_option_id String
 
   /// Representative name of candidate value.
-  name String @db.VarChar
+  name String
 
   /// Sequence order in option.
-  sequence Int @db.Integer
+  sequence Int
 
   //----
   // RELATIONS
@@ -383,23 +383,23 @@ model shopping_sale_snapshot_unit_stocks {
   // COLUMNS
   //----
   /// Primary Key.
-  id String @id @db.Uuid
+  id String @id
 
   /// Belonged unit's {@link shopping_sale_snapshot_units.id}
-  shopping_sale_snapshot_unit_id String @db.Uuid
+  shopping_sale_snapshot_unit_id String
 
   /// Name of the final stock.
-  name String @db.VarChar
+  name String
 
   /// Nominal price.
   ///
   /// This is not real price to pay, but just a nominal price to show.
   /// If this value is greater than the `real_price`, it would be shown
   /// like seller is giving a discount.
-  nominal_price Float @db.DoublePrecision
+  nominal_price Float
 
   /// Real price to pay.
-  real_price Float @db.DoublePrecision
+  real_price Float
 
   /// Initial inventory quantity.
   ///
@@ -410,7 +410,7 @@ model shopping_sale_snapshot_unit_stocks {
   quantity Int
 
   /// Sequence order in belonged unit.
-  sequence Int @db.Integer
+  sequence Int
 
   //----
   // RELATIONS
@@ -453,30 +453,30 @@ model shopping_sale_snapshot_unit_stock_choices {
   // COLUMNS
   //----
   /// Primary Key.
-  id String @id @db.Uuid
+  id String @id
 
   /// Belonged stock's {@link shopping_sale_snapshot_unit_stocks.id}
-  shopping_sale_snapshot_unit_stock_id String @db.Uuid
+  shopping_sale_snapshot_unit_stock_id String
 
   /// Belonged option's {@link shopping_sale_snapshot_unit_options.id}
-  shopping_sale_snapshot_unit_option_id String @db.Uuid
+  shopping_sale_snapshot_unit_option_id String
 
   /// Belonged candidate's {@link shopping_sale_snapshot_unit_option_candidates.id}
-  shopping_sale_snapshot_unit_option_candidate_id String @db.Uuid
+  shopping_sale_snapshot_unit_option_candidate_id String
 
   /// Sequence order in belonged stock.
-  sequence Int @db.Integer
+  sequence Int
 
   //----
   // RELATIONS
   //----
   /// Belonged stock.
-  stock shopping_sale_snapshot_unit_stocks @relation(map: "fk_shopping_sale_snapshot_unit_stock_choices_stock", fields: [shopping_sale_snapshot_unit_stock_id], references: [id], onDelete: Cascade)
+  stock shopping_sale_snapshot_unit_stocks @relation(fields: [shopping_sale_snapshot_unit_stock_id], references: [id], onDelete: Cascade)
 
-  option shopping_sale_snapshot_unit_options? @relation(map: "fk_shopping_sale_snapshot_unit_stock_choices_option", fields: [shopping_sale_snapshot_unit_option_id], references: [id], onDelete: Cascade)
+  option shopping_sale_snapshot_unit_options? @relation(fields: [shopping_sale_snapshot_unit_option_id], references: [id], onDelete: Cascade)
 
   /// Belonged candidate.
-  candidate shopping_sale_snapshot_unit_option_candidates? @relation(map: "fk_shopping_sale_snapshot_unit_stock_choices_candidate", fields: [shopping_sale_snapshot_unit_option_candidate_id], references: [id], onDelete: Cascade)
+  candidate shopping_sale_snapshot_unit_option_candidates? @relation(fields: [shopping_sale_snapshot_unit_option_candidate_id], references: [id], onDelete: Cascade)
 
   @@unique([shopping_sale_snapshot_unit_stock_id, shopping_sale_snapshot_unit_option_candidate_id])
 }
@@ -501,10 +501,10 @@ model shopping_sale_snapshot_unit_stock_supplements {
   // COLUMNS
   //----
   /// Primary Key.
-  id String @id @db.Uuid
+  id String @id
 
   /// Belonged stock's {@link shopping_sale_snapshot_unit_stocks.id}
-  shopping_sale_snapshot_unit_stock_id String @db.Uuid
+  shopping_sale_snapshot_unit_stock_id String
 
   /// Supplemented inventory quantity.
   quantity Int
@@ -512,7 +512,7 @@ model shopping_sale_snapshot_unit_stock_supplements {
   /// Creation time of record.
   ///
   /// When the inventory be supplemented.
-  created_at DateTime @db.Timestamptz
+  created_at DateTime
 
   //----
   // RELATIONS
@@ -542,16 +542,16 @@ model shopping_sale_snapshot_categories {
   // COLUMNS
   //----
   /// Primary Key.
-  id String @id @db.Uuid
+  id String @id
 
   /// Belonged snapshot's {@link shopping_sale_snapshots.id}
-  shopping_sale_snapshot_id String @db.Uuid
+  shopping_sale_snapshot_id String
 
   /// Belonged category's {@link shopping_channel_categories.id}
-  shopping_channel_category_id String @db.Uuid
+  shopping_channel_category_id String
 
   /// Sequence order in belonged snapshot.
-  sequence Int @db.Integer
+  sequence Int
 
   //----
   // RELATIONS
@@ -576,28 +576,28 @@ model shopping_sale_snapshot_contents {
   // COLUMNS
   //----
   /// Primary Key.
-  id String @id @db.Uuid
+  id String @id
 
   /// Belonged snapshot's {@link shopping_sale_snapshots.id}
-  shopping_sale_snapshot_id String @db.Uuid
+  shopping_sale_snapshot_id String
 
   /// Title of the content.
-  title String @db.VarChar
+  title String
 
   /// Format of the body content.
   ///
   /// Same meaning with extension like `html`, `md`, `txt`.
-  format String @db.VarChar
+  format String
 
   /// The main body content.
-  body String @db.Text
+  body String
 
   /// Revert policy.
   ///
   /// This is essential in South Korea, but I don't know well in overseas.
   ///
   /// Just use when you need.
-  revert_policy String? @db.VarChar
+  revert_policy String?
 
   //----
   // RELATIONS
@@ -609,8 +609,6 @@ model shopping_sale_snapshot_contents {
   to_thumbnails shopping_sale_snapshot_content_thumbnails[]
 
   @@unique([shopping_sale_snapshot_id])
-  @@index([title(ops: raw("gin_trgm_ops"))], type: Gin)
-  @@index([body(ops: raw("gin_trgm_ops"))], type: Gin)
 }
 
 /// Attachment file of sale snapshot content.
@@ -618,10 +616,10 @@ model shopping_sale_snapshot_contents {
 /// @describe Sales
 /// @author Samchon
 model shopping_sale_snapshot_content_files {
-  id                                String @id @db.Uuid
-  shopping_sale_snapshot_content_id String @db.Uuid
-  attachment_file_id                String @db.Uuid
-  sequence                          Int    @db.Integer
+  id                                String @id
+  shopping_sale_snapshot_content_id String
+  attachment_file_id                String
+  sequence                          Int   
 
   content shopping_sale_snapshot_contents @relation(fields: [shopping_sale_snapshot_content_id], references: [id], onDelete: Cascade)
   file    attachment_files                @relation(fields: [attachment_file_id], references: [id], onDelete: Cascade)
@@ -635,10 +633,10 @@ model shopping_sale_snapshot_content_files {
 /// @describe Sales
 /// @author Samchon
 model shopping_sale_snapshot_content_thumbnails {
-  id                                String @id @db.Uuid
-  shopping_sale_snapshot_content_id String @db.Uuid
-  attachment_file_id                String @db.Uuid
-  sequence                          Int    @db.Integer
+  id                                String @id
+  shopping_sale_snapshot_content_id String
+  attachment_file_id                String
+  sequence                          Int   
 
   content shopping_sale_snapshot_contents @relation(fields: [shopping_sale_snapshot_content_id], references: [id], onDelete: Cascade)
   file    attachment_files                @relation(fields: [attachment_file_id], references: [id], onDelete: Cascade)
@@ -652,21 +650,20 @@ model shopping_sale_snapshot_content_thumbnails {
 /// @describe Sales
 /// @author Samchon
 model shopping_sale_snapshot_tags {
-  id                        String @id @db.Uuid
-  shopping_sale_snapshot_id String @db.Uuid
-  value                     String @db.VarChar
-  sequence                  Int    @db.Integer
+  id                        String @id
+  shopping_sale_snapshot_id String
+  value                     String
+  sequence                  Int   
 
   snapshot shopping_sale_snapshots @relation(fields: [shopping_sale_snapshot_id], references: [id], onDelete: Cascade)
 
   @@unique([shopping_sale_snapshot_id, value])
-  @@index([value(ops: raw("gin_trgm_ops"))], type: Gin)
 }
 
 /// @hidden
 model mv_shopping_sale_last_snapshots {
-  shopping_sale_id          String @id @db.Uuid
-  shopping_sale_snapshot_id String @db.Uuid
+  shopping_sale_id          String @id
+  shopping_sale_snapshot_id String
 
   sale     shopping_sales          @relation(fields: [shopping_sale_id], references: [id], onDelete: Cascade)
   snapshot shopping_sale_snapshots @relation(fields: [shopping_sale_snapshot_id], references: [id], onDelete: Cascade)
@@ -676,11 +673,11 @@ model mv_shopping_sale_last_snapshots {
 
 /// @hidden
 model mv_shopping_sale_snapshot_prices {
-  shopping_sale_snapshot_id String @id @db.Uuid
-  nominal_lowest            Float  @db.DoublePrecision
-  nominal_highest           Float  @db.DoublePrecision
-  real_lowest               Float  @db.DoublePrecision
-  real_highest              Float  @db.DoublePrecision
+  shopping_sale_snapshot_id String @id
+  nominal_lowest            Float 
+  nominal_highest           Float 
+  real_lowest               Float 
+  real_highest              Float 
 
   snapshot shopping_sale_snapshots @relation(fields: [shopping_sale_snapshot_id], references: [id], onDelete: Cascade)
 
@@ -689,20 +686,20 @@ model mv_shopping_sale_snapshot_prices {
 
 /// @hidden
 model mv_shopping_sale_snapshot_unit_prices {
-  shopping_sale_snapshot_unit_id String @id @db.Uuid
-  nominal_lowest                 Float  @db.DoublePrecision
-  nominal_highest                Float  @db.DoublePrecision
-  real_lowest                    Float  @db.DoublePrecision
-  real_highest                   Float  @db.DoublePrecision
+  shopping_sale_snapshot_unit_id String @id
+  nominal_lowest                 Float 
+  nominal_highest                Float 
+  real_lowest                    Float 
+  real_highest                   Float 
 
   unit shopping_sale_snapshot_units @relation(fields: [shopping_sale_snapshot_unit_id], references: [id], onDelete: Cascade)
 }
 
 /// @hidden
 model mv_shopping_sale_snapshot_unit_stock_inventories {
-  shopping_sale_snapshot_unit_stock_id String @id @db.Uuid
-  income                               Int    @db.Integer
-  outcome                              Int    @db.Integer
+  shopping_sale_snapshot_unit_stock_id String @id
+  income                               Int   
+  outcome                              Int   
 
   stock shopping_sale_snapshot_unit_stocks @relation(fields: [shopping_sale_snapshot_unit_stock_id], references: [id], onDelete: Cascade)
 

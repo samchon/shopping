@@ -7,12 +7,22 @@ import {
 } from "@nestjs/platform-fastify";
 
 import { ShoppingConfiguration } from "./ShoppingConfiguration";
+import { ShoppingGlobal } from "./ShoppingGlobal";
 import { ShoppingModule } from "./ShoppingModule";
+import { ShoppingSetupWizard } from "./setup/ShoppingSetupWizard";
 
 export class ShoppingBackend {
   private application_?: NestFastifyApplication;
 
   public async open(): Promise<void> {
+    // AUTO-SEED IF EMPTY
+    const count = await ShoppingGlobal.prisma.shopping_channels.count();
+    if (count === 0) {
+      console.log("Empty database detected, seeding demo data...");
+      await ShoppingSetupWizard.seed();
+      console.log("Seeding complete.");
+    }
+
     // MOUNT CONTROLLERS
     this.application_ = await NestFactory.create(
       ShoppingModule,

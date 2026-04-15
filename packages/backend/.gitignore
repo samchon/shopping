@@ -2,3 +2,6 @@ prisma/docs/
 prisma/migrations/
 prisma/schema/migrations/
 src/prisma/
+
+*.sqlite
+*.sqlite-journal

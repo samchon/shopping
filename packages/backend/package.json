@@ -15,7 +15,7 @@
     "build:swagger": "nestia swagger",
     "build:test": "tsc -p test/tsconfig.json",
     "dev": "tsc -p test/tsconfig.json --watch",
-    "prepare": "pnpm build:prisma",
+    "prepare": "pnpm build:prisma && prisma db push",
     "------------------------DEPLOYS------------------------": "",
     "start": "ts-node src/executable/server.ts",
     "start:prod": "node lib/executable/server",
@@ -65,7 +65,7 @@
     "@nestjs/core": "^11.1.12",
     "@nestjs/platform-fastify": "^11.1.12",
     "@samchon/shopping-api": "workspace:^",
-    "@prisma/adapter-pg": "^7.3.0",
+    "@prisma/adapter-better-sqlite3": "^7.3.0",
     "@prisma/client": "^7.3.0",
     "@prisma/internals": "^7.3.0",
     "@rollup/plugin-terser": "^0.4.4",
@@ -86,5 +86,10 @@
     "tstl": "catalog:samchon",
     "typia": "catalog:samchon",
     "uuid": "catalog:utils"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "better-sqlite3"
+    ]
   }
 }

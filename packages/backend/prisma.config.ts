@@ -1,12 +1,9 @@
-import dotenv from "dotenv";
-import dotenvExpand from "dotenv-expand";
-import { defineConfig, env } from "prisma/config";
-
-dotenvExpand.expand(dotenv.config());
+import path from "path";
+import { defineConfig } from "prisma/config";
 
 export default defineConfig({
   schema: "prisma/schema",
   datasource: {
-    url: env("SHOPPING_POSTGRES_URL"),
+    url: `file:${path.resolve(__dirname, "prisma", "db.sqlite")}`,
   },
 });

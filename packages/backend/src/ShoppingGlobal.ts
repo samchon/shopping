@@ -1,7 +1,9 @@
-import { PrismaPg } from "@prisma/adapter-pg";
+import { PrismaBetterSqlite3 } from "@prisma/adapter-better-sqlite3";
 import { PrismaClient } from "@prisma/sdk";
 import dotenv from "dotenv";
 import dotenvExpand from "dotenv-expand";
+import fs from "fs";
+import path from "path";
 import { Singleton } from "tstl";
 import typia from "typia";
 
@@ -12,15 +14,6 @@ interface IEnvironments {
   SHOPPING_SYSTEM_PASSWORD: string;
   SHOPPING_JWT_SECRET_KEY: string;
   SHOPPING_JWT_REFRESH_KEY: string;
-
-  SHOPPING_POSTGRES_HOST: string;
-  SHOPPING_POSTGRES_PORT: `${number}`;
-  SHOPPING_POSTGRES_DATABASE: string;
-  SHOPPING_POSTGRES_SCHEMA: string;
-  SHOPPING_POSTGRES_USERNAME: string;
-  SHOPPING_POSTGRES_USERNAME_READONLY: string;
-  SHOPPING_POSTGRES_PASSWORD: string;
-  SHOPPING_POSTGRES_URL: string;
 
   SHOPPING_ADDRESS_SECRET_KEY: string;
   SHOPPING_CITIZEN_SECRET_KEY: string;
@@ -38,6 +31,15 @@ interface IEnvironments {
 
   OPENAI_API_KEY?: string | undefined;
 }
+const ROOT = (() => {
+  const split: string[] = __dirname.split(path.sep);
+  return split.at(-1) === "src" && split.at(-2) === "bin"
+    ? path.resolve(__dirname + "/../..")
+    : fs.existsSync(__dirname + "/.env")
+      ? __dirname
+      : path.resolve(__dirname + "/..");
+})();
+
 const environments = new Singleton(() => {
   const env = dotenv.config();
   dotenvExpand.expand(env);
@@ -53,10 +55,9 @@ export class ShoppingGlobal {
   public static testing: boolean = false;
 
   public static readonly prisma: PrismaClient = new PrismaClient({
-    adapter: new PrismaPg(
-      { connectionString: environments.get().SHOPPING_POSTGRES_URL },
-      { schema: environments.get().SHOPPING_POSTGRES_SCHEMA },
-    ),
+    adapter: new PrismaBetterSqlite3({
+      url: `${ROOT}/prisma/db.sqlite`,
+    }),
   });
 
   public static get env(): IEnvironments {
