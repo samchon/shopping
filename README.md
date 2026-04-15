@@ -10,6 +10,7 @@ Well-designed backend + Nestia-generated SDK = AI automates the frontend.
 
 This repository proves the point: with a Nestia-generated SDK and a single prompt ([`CLAUDE.md`](packages/frontend/CLAUDE.md)), a well-designed backend was enough to produce an enterprise-scale shopping mall frontend in one shot.
 
+- **SDK**: collection of DTO types, typed fetch functions, and a mockup simulator
 - [Nestia](https://nestia.io): SDK generator for NestJS
 - [Nestia Editor](https://nestia.io/editor): SDK generator from Swagger/OpenAPI
 
@@ -93,13 +94,11 @@ For manual setup without Docker:
 
 ## 6. The Prompt
 
-The prompt was short enough to fit in a single file.
+The prompt fit in a single file.
 
-It did not try to micromanage every screen. It mostly set a few hard constraints: read the SDK broadly, treat code and comments as the source of truth, keep SDK-specific code behind an adapter layer, and finish the main product flows first.
+It set only a few hard constraints: read the SDK broadly, treat code and comments as the source of truth, and finish the main product flows first.
 
-It also told AI how to verify its own work. The frontend was reviewed through Playwright browser automation, so AI could inspect rendered screens and revise them instead of stopping at code generation.
-
-For testing, it did not have to depend on a live backend every time. Nestia SDK already supports `simulate: true`, so the SDK can validate inputs and return mock responses instead of calling the real server. That let AI keep iterating on frontend-focused tests without waiting on the backend.
+Playwright browser checks and SDK simulation let AI verify and revise its own frontend work.
 
 - [`packages/frontend/CLAUDE.md`](packages/frontend/CLAUDE.md)
 
