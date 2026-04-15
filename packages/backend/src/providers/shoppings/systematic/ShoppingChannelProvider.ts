@@ -5,7 +5,6 @@ import { v4 } from "uuid";
 import { IPage, IRecordMerge, IShoppingChannel } from "@samchon/shopping-api";
 
 import { ShoppingGlobal } from "../../../ShoppingGlobal";
-import { PaginationUtil } from "../../../utils/PaginationUtil";
 import { EntityMergeProvider } from "../../common/EntityMergeProvider";
 import { ShoppingChannelCategoryProvider } from "./ShoppingChannelCategoryProvider";
 
@@ -46,17 +45,11 @@ export namespace ShoppingChannelProvider {
   export const index = (
     input: IShoppingChannel.IRequest,
   ): Promise<IPage<IShoppingChannel>> =>
-    PaginationUtil.paginate({
-      schema: ShoppingGlobal.prisma.shopping_channels,
-      payload: json.select(),
-      transform: json.transform,
-    })({
+    paginate({
       where: {
         AND: search(input.search),
       },
-      orderBy: input.sort?.length
-        ? PaginationUtil.orderBy(orderBy)(input.sort)
-        : [{ created_at: "asc" }],
+      sort: input.sort?.length ? input.sort : ["+channel.created_at"],
     })(input);
 
   export const search = (
@@ -172,4 +165,58 @@ export namespace ShoppingChannelProvider {
       where: { id },
     });
   };
+
+  const paginate =
+    (props: {
+      where: Prisma.shopping_channelsWhereInput;
+      sort: IPage.Sort<IShoppingChannel.IRequest.SortableColumns>;
+    }) =>
+    async (input: IPage.IRequest): Promise<IPage<IShoppingChannel>> => {
+      input.limit ??= 100;
+
+      const records = await ShoppingGlobal.prisma.shopping_channels.findMany({
+        ...json.select(),
+        where: props.where,
+      });
+      const data = records.map(json.transform).sort(comparator(props.sort));
+
+      const pages =
+        input.limit !== 0 ? Math.ceil(data.length / input.limit) || 1 : 1;
+      input.page = input.page ? Math.max(1, Math.min(input.page, pages)) : 1;
+
+      const start: number = (input.page - 1) * input.limit;
+      const sliced =
+        input.limit !== 0 ? data.slice(start, start + input.limit) : data;
+      return {
+        data: sliced,
+        pagination: {
+          records: data.length,
+          pages,
+          current: input.page,
+          limit: input.limit,
+        },
+      };
+    };
+
+  const comparator =
+    (sort: IPage.Sort<IShoppingChannel.IRequest.SortableColumns>) =>
+    (x: IShoppingChannel, y: IShoppingChannel): number => {
+      for (const token of sort) {
+        const sign: number = token[0] === "+" ? 1 : -1;
+        const key = token.substring(1) as IShoppingChannel.IRequest.SortableColumns;
+        const value: number =
+          key === "channel.code"
+            ? compareStrings(x.code, y.code)
+            : key === "channel.name"
+              ? compareStrings(x.name, y.name)
+              : compareStrings(x.created_at, y.created_at);
+        if (value !== 0) return value * sign;
+      }
+      return compareStrings(x.id, y.id);
+    };
+
+  const compareStrings = (x: string, y: string): number =>
+    x.localeCompare(y, undefined, {
+      sensitivity: "base",
+    });
 }
