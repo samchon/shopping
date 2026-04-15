@@ -4,7 +4,7 @@ async function main(): Promise<void> {
   const start = (directory: string, script: string) =>
     new Promise<number | null>((resolve, reject) => {
       const child = cp.spawn(`pnpm ${script}`, {
-        cwd: `${process.cwd()}/packages/${directory}`,
+        cwd: `${__dirname}/../packages/${directory}`,
         shell: true,
         stdio: "inherit",
       });
