@@ -8,7 +8,7 @@ This project proves the point: with a Nestia-generated SDK and a single frontend
 
 That is why a good SDK is no longer just a developer convenience. When it is generated from a backend with careful design and documentation, it becomes high-quality context engineering for AI.
 
-- [Demonstration Repository](https://github.com/samchon/shopping)
+- Demonstration Repository: https://github.com/samchon/shopping
 - **SDK**: collection of DTO types, typed fetch functions, and a mockup simulator
   - [Nestia](https://github.com/samchon/nestia): SDK generator for NestJS
   - [Nestia Editor](https://nestia.io/editor): SDK generation from Swagger/OpenAPI
