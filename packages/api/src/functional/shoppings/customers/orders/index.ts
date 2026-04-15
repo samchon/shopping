@@ -31,11 +31,9 @@ export * as publish from "./publish/index";
  * just customer is applying the order. The order be completed only when customer
  * {@link IShoppingOrderPublish.paid_at pays} the order.
  *
- * > If you are an A.I. chatbot, don't take a mistake that writing
- * > the `commodity_id` with the user selected stock ID. The
- * > `commodity_id` is the ID of the shopping cart commodity, not the
- * > stock ID. The stock ID is already included in the shopping cart
- * > commodity.
+ * > Please note that `commodity_id` is the ID of the shopping cart
+ * > commodity, not the stock ID. The stock ID is already included in the
+ * > shopping cart commodity.
  *
  * @param input Creation info of the order
  * @returns Newly created order
@@ -106,8 +104,8 @@ export namespace create {
  *
  * Carete a new {@link IShoppingOrder order application} without a
  * {@link IShoppingCartCommodity shopping cart commodity} composition.
- * If you're an A.I. chatbot and user wants to directly purchase a product,
- * then select and call this function.
+ * Use this function when a customer wants to directly purchase a product
+ * without composing a shopping cart first.
  *
  * By the way, this function does not mean completion the order, but means
  * just customer is applying the order. The order be completed only when customer

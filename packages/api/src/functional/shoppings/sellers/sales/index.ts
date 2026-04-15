@@ -547,9 +547,8 @@ export namespace restore {
  * in the market. Instead, you can't see the unopened, closed, or suspended
  * sales.
  *
- * > If you're an A.I. chatbot, please don't summarize the
- * > {@link IShoppingSaleUnitStock stock information}. Just list up the
- * > every stocks in the sale with detailed information.
+ * > Please don't summarize the {@link IShoppingSaleUnitStock stock}
+ * > information. List every stock in the sale with detailed information.
  *
  * @param input Request info of pagination, searching and sorting
  * @returns Paginated sales with detailed information
@@ -627,11 +626,11 @@ export namespace details {
  * If you want to get such detailed information of a sale, use
  * `GET /shoppings/customers/sales/{id}` operation for each sale.
  *
- * > If you're an A.I. chatbot, and the user wants to buy or compose
- * > {@link IShoppingCartCommodity shopping cart} from a sale, please
- * > call the `GET /shoppings/customers/sales/{id}` operation at least once
- * > to the target sale to get detailed SKU information about the sale.
- * > It needs to be run at least once for the next steps.
+ * > If the user wants to buy or compose a
+ * > {@link IShoppingCartCommodity shopping cart} from a sale, call the
+ * > `GET /shoppings/customers/sales/{id}` operation at least once to get
+ * > detailed SKU information about the sale. It needs to be run at least
+ * > once for the next steps.
  *
  * @param input Request info of pagination, searching and sorting
  * @returns Paginated sales with summarized information
@@ -705,17 +704,16 @@ export namespace index {
  * the SKU (Stock Keeping Unit) information represented by the
  * {@link IShoppingSaleUnitOption} and {@link IShoppingSaleUnitStock} types.
  *
- * > If you're an A.I. chatbot, and the user wants to buy or compose a
- * > {@link IShoppingCartCommodity shopping cart} from a sale, please call
- * > this operation at least once to the target sale to get detailed SKU
- * > information about the sale.
+ * > If the user wants to buy or compose a
+ * > {@link IShoppingCartCommodity shopping cart} from a sale, call this
+ * > operation at least once to get detailed SKU information about the sale.
  * >
- * > It needs to be run at least once for the next steps. In other words,
- * > if you A.I. agent has called this operation to a specific sale, you
- * > don't need to call this operation again for the same sale.
+ * > It needs to be run at least once for the next steps. Once you have
+ * > called this operation for a specific sale, you do not need to call it
+ * > again for the same sale.
  * >
- * > Additionally, please do not summarize the SKU information. Just show
- * > the every options and stocks in the sale with detailed information.
+ * > Additionally, please do not summarize the SKU information. Show every
+ * > option and stock in the sale with detailed information.
  *
  * @param id Target sale's {@link IShoppingSale.id }
  * @returns Detailed sale information
