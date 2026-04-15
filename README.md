@@ -6,6 +6,8 @@
 
 ## 1. Prologue
 
+> [Detailed Article](https://dev.to/samchon/nestia-well-designed-backend-fully-automated-frontend-development-45d9)
+
 Well-designed backend + Nestia-generated SDK = AI automates the frontend.
 
 This repository proves the point: with a Nestia-generated SDK and a single prompt ([`CLAUDE.md`](packages/frontend/CLAUDE.md)), a well-designed backend was enough to produce an enterprise-scale shopping mall frontend in one shot.
@@ -89,7 +91,7 @@ These three close a loop: **read the SDK → write frontend code → verify with
 
 That is why the prompt ([`CLAUDE.md`](packages/frontend/CLAUDE.md)) could stay small. The SDK already carries the context. The prompt only sets priorities and workflow.
 
-> For a deeper walkthrough with code examples, see the [article](ARTICLE.md).
+> For a deeper walkthrough with code examples, see the [Blog Article](https://dev.to/samchon/nestia-well-designed-backend-fully-automated-frontend-development-45d9).
 
 ## 4. Packages
 
