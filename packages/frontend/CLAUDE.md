@@ -27,12 +27,16 @@ Before designing screens, make the SDK surface clear.
 ## Account Guidance
 This project has a default operator account that is shared by the seller and administrator flows.
 
-- Customer accounts are not fixed in advance. Create and use them directly in the product, and use membership signup when needed.
-- Seller accounts can also be joined through the product flow when seller onboarding is being tested.
-- The built-in fixed operator account is shared by seller and administrator flows:
-  Seller/administrator email: `robot@nestia.io`
-  Password: `samchon`
-- Preserve this built-in operator account anywhere the seller or administrator login flow is introduced.
+- Customer
+  - Not fixed in advance. Create and use them directly in the product, and use membership signup when needed.
+  - The backend also seeds 8 accounts with sample data (orders, reviews, etc.) on startup. Use these when you need to browse pre-existing data:
+    - Email: `customer1@nestia.io` through `customer8@nestia.io`
+    - Password: `seed1234`
+- Seller / Administrator
+  - The built-in fixed operator account is shared by both flows. Preserve it anywhere the login flow is introduced.
+    - Email: `robot@nestia.io`
+    - Password: `samchon`
+  - Seller accounts can also be joined through the product flow when seller onboarding is being tested.
 
 ## Design
 The code structure should keep replacement cost low if the SDK changes later.
