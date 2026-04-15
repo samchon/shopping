@@ -98,17 +98,11 @@ export namespace IShoppingOrderPublish {
     /**
      * The vendor code who will receive the payment.
      */
-    code: string &
-      tags.JsonSchemaPlugin<{
-        "x-wrtn-payment-vendor": true;
-      }>;
+    code: string;
 
     /**
      * The payment uid.
      */
-    uid: string &
-      tags.JsonSchemaPlugin<{
-        "x-wrtn-payment-uid": true;
-      }>;
+    uid: string;
   }
 }
