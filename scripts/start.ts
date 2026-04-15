@@ -1,9 +1,9 @@
 import cp from "child_process";
 
 async function main(): Promise<void> {
-  const start = (directory: string) =>
+  const start = (directory: string, script: string) =>
     new Promise<number | null>((resolve, reject) => {
-      const child = cp.spawn("pnpm start", {
+      const child = cp.spawn(`pnpm ${script}`, {
         cwd: `${process.cwd()}/packages/${directory}`,
         shell: true,
         stdio: "inherit",
@@ -13,10 +13,10 @@ async function main(): Promise<void> {
     });
 
   console.log("[fullstack] starting backend");
-  const backend = start("backend");
+  const backend = start("backend", "start");
 
-  console.log("[fullstack] starting frontend");
-  const frontend = start("frontend");
+  console.log("[fullstack] starting frontend (dev)");
+  const frontend = start("frontend", "dev");
 
   const code = await Promise.race([backend, frontend]);
   process.exit(code ?? 1);
