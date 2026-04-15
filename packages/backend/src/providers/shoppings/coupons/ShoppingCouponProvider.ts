@@ -230,7 +230,6 @@ export namespace ShoppingCouponProvider {
             {
               name: {
                 contains: input.name,
-                mode: "insensitive" as const,
               },
             },
           ]

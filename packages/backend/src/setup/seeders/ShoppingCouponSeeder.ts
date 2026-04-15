@@ -21,7 +21,6 @@ export namespace ShoppingCouponSeeder {
               content: {
                 title: {
                   contains: "Surface",
-                  mode: "insensitive",
                 },
               },
             },

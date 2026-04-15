@@ -24,7 +24,6 @@ export namespace ShoppingSaleSnapshotInquiryProvider {
                 member: {
                   nickname: {
                     contains: input.nickname,
-                    mode: "insensitive" as const,
                   },
                 },
               },

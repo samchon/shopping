@@ -19,16 +19,9 @@ export namespace ShoppingSetupWizard {
       throw new Error(
         "Erron on SetupWizard.schema(): unable to reset database in non-test mode.",
       );
-    const execute = (type: string) => (argv: string) =>
-      cp.execSync(`npx prisma migrate ${type} --schema=prisma/schema ${argv}`, {
-        stdio: "inherit",
-      });
-    execute("reset")("--force");
-    execute("dev")("--name init");
-
-    await ShoppingGlobal.prisma.$executeRawUnsafe(
-      `GRANT SELECT ON ALL TABLES IN SCHEMA ${ShoppingGlobal.env.SHOPPING_POSTGRES_SCHEMA} TO ${ShoppingGlobal.env.SHOPPING_POSTGRES_USERNAME_READONLY}`,
-    );
+    cp.execSync("npx prisma db push --force-reset --schema=prisma/schema", {
+      stdio: "inherit",
+    });
   }
 
   export async function seed(): Promise<void> {

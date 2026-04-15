@@ -1,54 +1,55 @@
-import cp from "child_process";
+import cp, { type ChildProcess } from "child_process";
 import net from "net";
 
-const waitForPostgres = () =>
-  new Promise<void>((resolve) => {
-    const check = () => {
-      const socket = net.connect(5432, "127.0.0.1");
-      socket.once("connect", () => {
-        socket.end();
+async function wait(port: number): Promise<void> {
+  await new Promise<void>((resolve: () => void) => {
+    const timer: NodeJS.Timeout = setInterval((): void => {
+      const socket: net.Socket = net.connect(port, "127.0.0.1");
+      socket.once("connect", (): void => {
+        clearInterval(timer);
+        socket.destroy();
         resolve();
       });
-      socket.once("error", () => {
+      socket.once("error", (): void => {
         socket.destroy();
-        setTimeout(check, 1000);
       });
-    };
-    check();
+    }, 500);
   });
+}
 
 async function main(): Promise<void> {
-  const start = (directory: string) =>
-    new Promise<number | null>((resolve, reject) => {
-      const child = cp.spawn("pnpm start", {
-        cwd: `${process.cwd()}/packages/${directory}`,
-        shell: true,
-        stdio: "inherit",
-      });
-      child.once("error", reject);
-      child.once("exit", resolve);
-    });
+  const start = (directory: string, script: string): Promise<number | null> =>
+    new Promise(
+      (
+        resolve: (value: number | null) => void,
+        reject: (reason?: unknown) => void,
+      ) => {
+        const child: ChildProcess = cp.spawn(`pnpm ${script}`, {
+          cwd: `${__dirname}/../packages/${directory}`,
+          shell: true,
+          stdio: "inherit",
+        });
+        child.once("error", reject);
+        child.once("exit", resolve);
+      },
+    );
 
-  console.log("[fullstack] waiting for PostgreSQL");
-  await waitForPostgres();
-
-  console.log("[fullstack] creating schema and seeding demo data");
-  cp.execSync("pnpm schema", {
-    cwd: `${process.cwd()}/packages/backend`,
-    stdio: "inherit",
-  });
-
+  console.log("------------------------------------------------");
   console.log("[fullstack] starting backend");
-  const backend = start("backend");
+  console.log("------------------------------------------------");
+  const backend: Promise<number | null> = start("backend", "start");
+  await wait(37001);
 
-  console.log("[fullstack] starting frontend");
-  const frontend = start("frontend");
+  console.log("------------------------------------------------");
+  console.log("[fullstack] starting frontend (dev)");
+  console.log("------------------------------------------------");
+  const frontend: Promise<number | null> = start("frontend", "dev");
 
-  const code = await Promise.race([backend, frontend]);
+  const code: number | null = await Promise.race([backend, frontend]);
   process.exit(code ?? 1);
 }
 
-main().catch((error) => {
+main().catch((error: unknown) => {
   console.error(error);
   process.exit(1);
 });

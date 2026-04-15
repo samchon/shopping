@@ -10,7 +10,7 @@ export class ApiRouteError extends Error {
   }
 }
 
-function getHttpStatus(error: unknown) {
+export function getHttpStatus(error: unknown) {
   if (error instanceof ApiRouteError) {
     return error.status;
   }
@@ -36,7 +36,7 @@ function getHttpStatus(error: unknown) {
   return 500;
 }
 
-function getHttpMessage(error: unknown) {
+export function getHttpMessage(error: unknown) {
   if (error instanceof ApiRouteError) {
     return error.message;
   }

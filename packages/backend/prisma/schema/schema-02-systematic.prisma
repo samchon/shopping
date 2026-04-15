@@ -15,22 +15,22 @@ model shopping_channels {
   // COLUMNS
   //----
   /// Primary Key.
-  id String @id @db.Uuid
+  id String @id
 
   /// Identifier code.
-  code String @db.VarChar
+  code String
 
   /// Name of channel.
-  name String @db.VarChar
+  name String
 
   /// Creation time of record.
-  created_at DateTime @db.Timestamptz
+  created_at DateTime
 
   /// Update time of record.
-  updated_at DateTime @db.Timestamptz
+  updated_at DateTime
 
   /// Deletion time of record.
-  deleted_at DateTime? @db.Timestamptz
+  deleted_at DateTime?
 
   //----
   // RELATIONS
@@ -84,30 +84,30 @@ model shopping_channel_categories {
   // COLUMNS
   //----
   /// Primary Key.
-  id String @id @db.Uuid
+  id String @id
 
   /// Belonged channel's {@link shopping_channels.id}.
-  shopping_channel_id String @db.Uuid
+  shopping_channel_id String
 
   /// Parent category's {@link shopping_channel_categories.id}.
   ///
   /// Only when the category is a subcategory of another one.
-  parent_id String? @db.Uuid
+  parent_id String?
 
   /// Identifier code.
-  code String @db.VarChar
+  code String
 
   /// Name of category.
-  name String @db.VarChar
+  name String
 
   /// Creation time of record.
-  created_at DateTime @db.Timestamptz
+  created_at DateTime
 
   /// Updadte time of record.
-  updated_at DateTime @db.Timestamptz
+  updated_at DateTime
 
   /// Deletion time of record.
-  deleted_at DateTime? @db.Timestamptz
+  deleted_at DateTime?
 
   //----
   // RELATIONS
@@ -144,22 +144,22 @@ model shopping_sections {
   // COLUMNS
   //----
   /// Primary Key.
-  id String @id @db.Uuid
+  id String @id
 
   /// Identifier code.
-  code String @db.VarChar
+  code String
 
   /// Name of section.
-  name String @db.VarChar
+  name String
 
   /// Creation time of record.
-  created_at DateTime @db.Timestamptz
+  created_at DateTime
 
   /// Update time of record.
-  updated_at DateTime @db.Timestamptz
+  updated_at DateTime
 
   /// Deletion time of record.
-  deleted_at DateTime? @db.Timestamptz
+  deleted_at DateTime?
 
   //----
   // RELATIONS
@@ -174,11 +174,11 @@ model shopping_sections {
 
 /// @hidden
 model mv_cache_times {
-  id     String   @id @db.Uuid
-  schema String   @db.VarChar
-  table  String   @db.VarChar
-  key    String   @db.VarChar
-  value  DateTime @db.Timestamptz
+  id     String   @id
+  schema String  
+  table  String  
+  key    String  
+  value  DateTime
 
   @@unique([schema, table, key])
 }

@@ -35,7 +35,6 @@ export namespace BbsArticleCommentProvider {
               some: {
                 body: {
                   contains: input.body,
-                  mode: "insensitive",
                 },
               },
             },

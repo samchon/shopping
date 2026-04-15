@@ -6,7 +6,12 @@ import type { IConnection } from "@samchon/shopping-api";
 import ShoppingApi from "@samchon/shopping-api";
 
 import { shoppingConfig } from "./config";
-import { ApiRouteError, isUnauthorizedError } from "./errors";
+import {
+  ApiRouteError,
+  getHttpMessage,
+  getHttpStatus,
+  isUnauthorizedError,
+} from "./errors";
 import { simulatedShoppingFetch } from "./simulate";
 
 const ACCESS_COOKIE = "shopping_access_token";
@@ -122,6 +127,13 @@ async function refreshCustomer(refreshToken: string): Promise<SessionContext> {
   return context;
 }
 
+function isTemperedCustomerTokenError(error: unknown): boolean {
+  return (
+    getHttpStatus(error) === 403 &&
+    getHttpMessage(error).toLowerCase().includes("tempered token")
+  );
+}
+
 async function getOrCreateContext(
   request: NextRequest,
 ): Promise<SessionContext> {
@@ -169,6 +181,11 @@ export async function jsonWithCustomerSession<T>(
     const data = await handler(context);
     return applyCookies(NextResponse.json(data), context);
   } catch (error) {
+    if (context.customer === null && isTemperedCustomerTokenError(error)) {
+      context = await bootstrapCustomer(request);
+      const data = await handler(context);
+      return applyCookies(NextResponse.json(data), context);
+    }
     if (isUnauthorizedError(error) && context.refreshToken) {
       context = await refreshCustomer(context.refreshToken);
       const data = await handler(context);
