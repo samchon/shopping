@@ -16,7 +16,7 @@ export class ShoppingBackend {
 
   public async open(): Promise<void> {
     // AUTO-SEED IF EMPTY
-    const count = await ShoppingGlobal.prisma.shopping_channels.count();
+    const count: number = await ShoppingGlobal.prisma.shopping_channels.count();
     if (count === 0) {
       console.log("Empty database detected, seeding demo data...");
       await ShoppingSetupWizard.seed();
@@ -27,7 +27,6 @@ export class ShoppingBackend {
     this.application_ = await NestFactory.create(
       ShoppingModule,
       new FastifyAdapter(),
-      { logger: false },
     );
 
     // THE SWAGGER EDITOR
@@ -56,6 +55,8 @@ export class ShoppingBackend {
     // DO OPEN
     this.application_.enableCors();
     await this.application_.listen(ShoppingConfiguration.API_PORT(), "0.0.0.0");
+
+    console.log("Backend Started");
   }
 
   public async close(): Promise<void> {
