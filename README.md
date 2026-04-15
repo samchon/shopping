@@ -12,7 +12,7 @@ This repository proves the point: with a Nestia-generated SDK and a single promp
 
 - **SDK**: collection of DTO types, typed fetch functions, and a mockup simulator
 - [Nestia](https://nestia.io): SDK generator for NestJS
-- [Nestia Editor](https://nestia.io/editor): SDK generator from Swagger/OpenAPI
+- [Nestia Editor](https://nestia.io/docs/swagger/editor): SDK generator from Swagger/OpenAPI
 
 ## 2. Demonstration
 

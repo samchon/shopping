@@ -11,7 +11,7 @@ That is why a good SDK is no longer just a developer convenience. When it is gen
 - Demonstration Repository: https://github.com/samchon/shopping
 - **SDK**: collection of DTO types, typed fetch functions, and a mockup simulator
   - [Nestia](https://github.com/samchon/nestia): SDK generator for NestJS
-  - [Nestia Editor](https://nestia.io/editor): SDK generation from Swagger/OpenAPI
+  - [Nestia Editor](https://nestia.io/docs/swagger/editor): SDK generation from Swagger/OpenAPI
 
 ## 2. Demonstration
 
@@ -240,11 +240,11 @@ export namespace create {
 
 ## 5. Try Nestia, Automate Frontend
 
-[![Nestia Editor](https://media2.dev.to/dynamic/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2F5faukr6jkjp9q2125h8o.png)](https://nestia.io/editor)
+[![Nestia Editor](https://media2.dev.to/dynamic/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2F5faukr6jkjp9q2125h8o.png)](https://nestia.io/docs/swagger/editor)
 
 If you already use NestJS, the path is simple. Install [Nestia](https://github.com/samchon/nestia) and generate the SDK directly from your backend.
 
-If you do not use NestJS, or if your backend is written in another language entirely, [Nestia Editor](https://nestia.io/editor) can generate the SDK from your `swagger.json` instead.
+If you do not use NestJS, or if your backend is written in another language entirely, [Nestia Editor](https://nestia.io/docs/swagger/editor) can generate the SDK from your `swagger.json` instead.
 
 It also comes with Mockup Simulator support, so the generated SDK can validate inputs and return mock responses without depending on a live server every time.
 
