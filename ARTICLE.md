@@ -249,3 +249,23 @@ If you do not use NestJS, or if your backend is written in another language enti
 It also comes with Mockup Simulator support, so the generated SDK can validate inputs and return mock responses without depending on a live server every time.
 
 That matters because frontend automation does not begin with pretty UI code. It begins with whether AI can read the backend clearly, call it safely, and test against it repeatedly. A generated SDK with simulation closes that loop.
+
+## Conclusion
+
+The main point of this article is not that AI suddenly became magical.
+
+The main point is that backend quality compounds. Careful contracts, explicit documentation, and a generated SDK turned one backend into something AI could read, trust, and build on top of.
+
+That is why this shopping mall frontend could be built in one shot. And that is why backend work matters even more in the age of AI coding.
+
+> ## AutoBe
+>
+> ![AutoBe Replay](https://autobe.dev/images/demonstrate/replay-qwen-qwen3.5-35b-a3b.png)
+>
+> Even small models like `qwen3.5-35b-a3b` can hit 100%.
+>
+> AutoBe is an open-source project that generates complete backends from natural-language requirements.
+>
+> It produces robust API design and documentation. If you want to automate the backend as well, this is the best next step.
+>
+> - [AutoBe Repository](https://github.com/wrtnlabs/autobe)

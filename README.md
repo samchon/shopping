@@ -107,7 +107,7 @@ For testing, it did not have to depend on a live backend every time. Nestia SDK 
 
 ![AutoBe Replay](https://autobe.dev/images/demonstrate/replay-qwen-qwen3.5-35b-a3b.png)
 
-> Even small models can hit 100%.
+> Even small models like `qwen3.5-35b-a3b` can hit 100%.
 
 AutoBe is an open-source project that generates complete backends from natural-language requirements.
 
