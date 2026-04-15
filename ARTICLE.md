@@ -1,4 +1,4 @@
-# [Nestia] Well-Designed Backend Fully Automates Frontend Development
+# [Nestia] Well-Designed Backend Fully Automated Frontend Development
 
 ## 1. Preface
 
@@ -49,7 +49,9 @@ I am not claiming this shopping mall backend is some perfect masterpiece.
 
 I built it years ago, long before the current AI coding wave. What I can say is simpler: I kept refactoring the APIs and tried to make the documentation and types more explicit. That effort turned out to matter much more than I expected.
 
-This is the kind of backend surface AI was reading.
+This is the kind of backend surface AI was reading. Notice how every field carries a JSDoc comment that explains its business meaning, and how the types are precise enough that AI does not need external documentation.
+
+The code is the documentation.
 
 ### 3.1. DTO Example
 
@@ -145,7 +147,15 @@ Nestia turned that backend surface into executable client code.
 
 Its Mockup Simulator is built around [`typia.assert<IShoppingOrder.ICreate>(input)`](https://typia.io/docs/validators/assert) for input validation and [`typia.random<IShoppingOrder>()`](https://typia.io/docs/random) for mock response data.
 
-That gave AI a much stronger harness than loose API prose. The SDK exposed exact types, safe call shapes, and a simulator where AI could keep experimenting without waiting on the real server.
+That gave AI a much stronger harness than loose API prose. The SDK serves three roles at once:
+
+**Context.** Every DTO type and JSDoc comment from the backend is carried into the SDK as-is. AI reads the SDK and gets the full backend surface — endpoints, fields, constraints, business rules — without needing separate documentation.
+
+**Constraint.** The TypeScript type system acts as a guardrail. If AI generates code that passes the wrong field or misreads a response shape, the compiler catches it immediately. Types replace the need for prose instructions like "do not forget this field."
+
+**Verification.** The Mockup Simulator lets AI test its own code without a running server. `typia.assert()` validates that the input matches the expected type; `typia.random()` returns a structurally correct mock response. AI can iterate fast without waiting on the backend.
+
+These three close a feedback loop: **read the SDK → write frontend code → verify with the simulator → repeat.** Playwright browser automation added visual verification on top — AI could inspect rendered screens and revise, not just stop at code generation. In the generated function below, all three roles are visible.
 
 ```ts
 /**
@@ -228,19 +238,7 @@ export namespace create {
 - It is used as `api.functional.shoppings.customers.orders.create(connection, input)`.
 - [packages/api/src/functional/shoppings/customers/orders/index.ts](https://github.com/samchon/shopping/blob/master/packages/api/src/functional/shoppings/customers/orders/index.ts)
 
-## 5. The Prompt
-
-The prompt fit in a single file.
-
-It did not micromanage screens. It set a few hard constraints: read the SDK broadly, treat code and comments as the source of truth, keep SDK-specific code behind an adapter layer, and finish the main product flows first.
-
-It also told AI how to verify its own work. Playwright browser automation let it inspect rendered screens and revise them instead of stopping at code generation.
-
-For testing, it did not have to depend on a live backend every time. Nestia SDK already supports `simulate: true`, so the SDK can validate inputs and return mock responses instead of calling the real server. That let AI keep iterating without waiting on the backend.
-
-- [`packages/frontend/CLAUDE.md`](https://github.com/samchon/shopping/blob/master/packages/frontend/CLAUDE.md)
-
-## 6. Try Nestia, Automate Frontend
+## 5. Try Nestia, Automate Frontend
 
 [![Nestia Editor](https://media2.dev.to/dynamic/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2F5faukr6jkjp9q2125h8o.png)](https://nestia.io/editor)
 
@@ -252,19 +250,17 @@ It also comes with Mockup Simulator support, so the generated SDK can validate i
 
 That matters because frontend automation does not begin with pretty UI code. It begins with whether AI can read the backend clearly, call it safely, and test it repeatedly. A generated SDK with simulation closes that loop.
 
-## 7. Conclusion
+## 6. Conclusion
 
 AI did not suddenly become magical.
 
-Backend quality compounded. Careful contracts, explicit documentation, and a generated SDK turned one backend into something AI could read, trust, and build on top of.
+What happened is simpler: a well-designed backend — explicit types, documented contracts, precise constraints — was turned into a generated SDK that AI could read as context, rely on as constraint, and test against as a simulator. Backend quality compounded into frontend automation.
 
 That is why this shopping mall frontend could be built in one shot.
 
-That is also why backend work matters even more in the age of AI coding.
+A good SDK is no longer just a developer convenience. When it is generated from a backend with careful design, it becomes context engineering for AI. That is also why backend work matters even more in the age of AI coding.
 
-## 8. Afterword
-
-> ## 8.1. AutoBe
+> ## AutoBe
 >
 > ![AutoBe Replay](https://autobe.dev/images/demonstrate/replay-qwen-qwen3.5-35b-a3b.png)
 >
