@@ -28,19 +28,20 @@ export namespace ShoppingCustomerSeeder {
     createFixture(8, "Taemin", "Moon Taemin", "01011119999"),
   ];
 
-  export const seed = async (): Promise<IShoppingCustomer[]> =>
-    Promise.all(
-      FIXTURES.map(async (fixture) => {
-        const customer = await ShoppingCustomerProvider.create({
-          request: { ip: fixture.ip },
-          input: {
-            href: fixture.href,
-            referrer: fixture.referrer,
-            channel_code: "samchon",
-            external_user: null,
-          },
-        });
-        return ShoppingMemberProvider.join({
+  export const seed = async (): Promise<IShoppingCustomer[]> => {
+    const output: IShoppingCustomer[] = [];
+    for (const fixture of FIXTURES) {
+      const customer = await ShoppingCustomerProvider.create({
+        request: { ip: fixture.ip },
+        input: {
+          href: fixture.href,
+          referrer: fixture.referrer,
+          channel_code: "samchon",
+          external_user: null,
+        },
+      });
+      output.push(
+        await ShoppingMemberProvider.join({
           customer,
           input: {
             email: fixture.email,
@@ -48,9 +49,11 @@ export namespace ShoppingCustomerSeeder {
             nickname: fixture.nickname,
             citizen: fixture.citizen,
           },
-        });
-      }),
-    );
+        }),
+      );
+    }
+    return output;
+  };
 
   function createFixture(
     index: number,

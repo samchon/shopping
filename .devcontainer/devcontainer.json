@@ -2,10 +2,15 @@
   "name": "Shopping Mall",
   "image": "mcr.microsoft.com/devcontainers/typescript-node:24",
   "postCreateCommand": "sudo corepack enable && pnpm install",
-  "postStartCommand": "pnpm start",
+  "postAttachCommand": "pnpm start",
   "forwardPorts": [3000, 37001],
   "portsAttributes": {
-    "3000": { "label": "Frontend", "onAutoForward": "openBrowser" },
-    "37001": { "label": "Backend" }
+    "3000": { "label": "Frontend", "onAutoForward": "openPreview" },
+    "37001": { "label": "Backend", "onAutoForward": "silent" }
+  },
+  "customizations": {
+    "codespaces": {
+      "openFiles": ["README.md"]
+    }
   }
 }

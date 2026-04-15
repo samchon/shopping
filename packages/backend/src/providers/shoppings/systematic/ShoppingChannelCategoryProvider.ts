@@ -170,6 +170,7 @@ const cache = new VariadicSingleton((channel_id: string) => {
       where: {
         shopping_channel_id: channel_id,
       },
+      orderBy: [{ created_at: "asc" }, { id: "asc" }],
     }),
   );
   const invert = new MutableSingleton(async () => {
