@@ -102,7 +102,7 @@ export namespace create {
 /**
  * Create a new order application without a shopping cart.
  *
- * Carete a new {@link IShoppingOrder order application} without a
+ * Create a new {@link IShoppingOrder order application} without a
  * {@link IShoppingCartCommodity shopping cart commodity} composition.
  * Use this function when a customer wants to directly purchase a product
  * without composing a shopping cart first.
