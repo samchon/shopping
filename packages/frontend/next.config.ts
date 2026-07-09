@@ -1,7 +1,7 @@
 import withTtsc from "@ttsc/unplugin/next";
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
+const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
@@ -13,6 +13,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-};
+} satisfies NextConfig;
 
 export default withTtsc(nextConfig);
