@@ -50,8 +50,7 @@
         "transform": "@ttsc/paths"
       },
       {
-        "transform": "@ttsc/lint",
-        "configFile": "lint.config.ts"
+        "transform": "@ttsc/lint"
       }
     ],
     // "rootDirs": [],                        /* List of root folders whose combined content represents the structure of the project at runtime. */
