@@ -48,6 +48,7 @@
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@types/sanitize-html": "^2.16.1",
+    "@typescript/native-preview": "catalog:typescript",
     "autoprefixer": "^10.4.27",
     "eslint": "9.38.0",
     "eslint-config-next": "^16.2.3",
