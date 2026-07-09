@@ -1,10 +1,6 @@
 import type { ITtscLintConfig } from "@ttsc/lint";
 
-export default async () => {
-  const base = (await import("@samchon/shopping-config/lint.config.ts"))
-    .default;
-  return {
-    ...base,
-    ignores: ["src/prisma/**/*.ts"],
-  } satisfies ITtscLintConfig;
-};
+export default {
+  extends: "../../config/lint.config.ts",
+  ignores: ["src/prisma/**/*.ts"],
+} satisfies ITtscLintConfig;

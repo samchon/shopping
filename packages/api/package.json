@@ -31,7 +31,6 @@
     "uuid": "catalog:utils"
   },
   "devDependencies": {
-    "@samchon/shopping-config": "workspace:^",
     "@rollup/plugin-terser": "^0.4.4",
     "@ttsc/lint": "catalog:typescript",
     "rollup": "^4.60.1",

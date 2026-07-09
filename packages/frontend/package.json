@@ -44,13 +44,11 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.59.1",
-    "@samchon/shopping-config": "workspace:^",
     "@ttsc/lint": "catalog:typescript",
     "@types/node": "^25.6.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@types/sanitize-html": "^2.16.1",
-    "@typescript/native-preview": "catalog:typescript",
     "autoprefixer": "^10.4.27",
     "playwright": "^1.59.1",
     "postcss": "^8.5.9",
