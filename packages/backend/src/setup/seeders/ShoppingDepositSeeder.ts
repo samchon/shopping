@@ -1,4 +1,4 @@
-import { IShoppingDeposit } from "@samchon/shopping-api";
+import type { IShoppingDeposit } from "@samchon/shopping-api";
 
 import { ShoppingDepositProvider } from "../../providers/shoppings/deposits/ShoppingDepositProvider";
 

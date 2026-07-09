@@ -91,7 +91,7 @@ export namespace index {
  *
  * Get a {@link IShoppingMileageHistory mileage history} information.
  *
- * @param id Target mileage history's {@link IShoppingMileageHistory.id }
+ * @param id Target mileage history's {@link IShoppingMileageHistory.id}
  * @returns Mileage history info
  * @tag Discount
  * @author Samchon
@@ -128,7 +128,9 @@ export namespace at {
   } as const;
 
   export const path = (id: string & tags.Format<"uuid">) =>
-    `/shoppings/customers/mileages/histories/${encodeURIComponent(id?.toString() ?? "null")}`;
+    `/shoppings/customers/mileages/histories/${encodeURIComponent(
+      id?.toString() ?? "null",
+    )}`;
   export const random = (): IShoppingMileageHistory =>
     typia.random<IShoppingMileageHistory>();
   export const simulate = (

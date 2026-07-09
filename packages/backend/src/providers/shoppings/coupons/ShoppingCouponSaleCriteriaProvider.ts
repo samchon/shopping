@@ -2,7 +2,7 @@ import { ArrayUtil } from "@nestia/e2e";
 import { Prisma } from "@prisma/sdk";
 import { IPointer } from "tstl";
 
-import {
+import type {
   IShoppingAdministrator,
   IShoppingCouponCriteria,
   IShoppingCouponSaleCriteria,

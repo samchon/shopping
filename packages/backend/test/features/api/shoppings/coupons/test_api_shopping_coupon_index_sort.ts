@@ -65,7 +65,7 @@ export const test_api_shopping_coupon_index_sort = async (
   const coupons: IShoppingCoupon[] = (
     await ArrayUtil.asyncMap(saleList, (sale) =>
       ArrayUtil.asyncMap(
-        typia.misc.literals<IShoppingCouponCriteria.Type>(),
+        typia.reflect.literals<IShoppingCouponCriteria.Type>(),
         (type) => generator(sale)([type]),
       ),
     )

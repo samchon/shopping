@@ -17,10 +17,12 @@
   },
   "homepage": "https://github.com/samchon/shopping#readme",
   "scripts": {
-    "build": "pnpm build:sdk && pnpm build:tsc && pnpm build:rollup",
+    "build": "pnpm build:sdk && pnpm build:ttsc && pnpm build:rollup",
     "build:sdk": "cd ../backend && pnpm build:sdk",
-    "build:tsc": "tsc",
+    "build:ttsc": "ttsc -p tsconfig.json",
     "build:rollup": "rollup -c",
+    "format": "ttsc format -p tsconfig.json",
+    "lint": "ttsc -p tsconfig.json --noEmit",
     "prepack": "pnpm build"
   },
   "dependencies": {
@@ -31,11 +33,10 @@
   "devDependencies": {
     "@samchon/shopping-api": "workspace:^",
     "@rollup/plugin-terser": "^0.4.4",
-    "@rollup/plugin-typescript": "^11.1.6",
+    "@ttsc/lint": "catalog:typescript",
     "rollup": "^4.60.1",
-    "ts-patch": "catalog:typescript",
-    "typescript": "catalog:typescript",
-    "typescript-transform-paths": "catalog:typescript"
+    "ttsc": "catalog:typescript",
+    "typescript": "catalog:typescript"
   },
   "include": [
     "lib",

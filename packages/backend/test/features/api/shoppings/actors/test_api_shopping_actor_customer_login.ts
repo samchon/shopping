@@ -28,7 +28,7 @@ export const test_api_shopping_actor_customer_login = async (
     );
   TestValidator.equals(
     "passed",
-    typia.misc.clone<Omit<IShoppingCustomer, "id" | "created_at">>(joined),
+    typia.plain.clone<Omit<IShoppingCustomer, "id" | "created_at">>(joined),
     passed,
   );
 };

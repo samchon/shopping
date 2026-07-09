@@ -1,7 +1,7 @@
 import fs from "fs";
 import typia from "typia";
 
-import { IShoppingSale, IShoppingSeller } from "@samchon/shopping-api";
+import type { IShoppingSale, IShoppingSeller } from "@samchon/shopping-api";
 
 import { ShoppingConfiguration } from "../../ShoppingConfiguration";
 import { ShoppingGlobal } from "../../ShoppingGlobal";

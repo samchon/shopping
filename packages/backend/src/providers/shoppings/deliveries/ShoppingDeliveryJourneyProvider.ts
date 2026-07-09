@@ -2,7 +2,7 @@ import { Prisma } from "@prisma/sdk";
 import typia from "typia";
 import { v4 } from "uuid";
 
-import {
+import type {
   IEntity,
   IShoppingDelivery,
   IShoppingDeliveryJourney,

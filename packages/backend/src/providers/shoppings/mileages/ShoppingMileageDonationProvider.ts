@@ -2,7 +2,7 @@ import { InternalServerErrorException } from "@nestjs/common";
 import { Prisma } from "@prisma/sdk";
 import { v4 } from "uuid";
 
-import {
+import type {
   IPage,
   IShoppingAdministrator,
   IShoppingMileageDonation,

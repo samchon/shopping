@@ -101,7 +101,7 @@ export namespace index {
  * {@link IShoppingSeller seller} or {@link IShoppingAdministrator administrator},
  * non-ticketable coupons are also accessible.
  *
- * @param id Target coupon's {@link IShoppingCoupon.id }
+ * @param id Target coupon's {@link IShoppingCoupon.id}
  * @returns Coupon info
  * @tag Discount
  * @author Samchon
@@ -138,7 +138,9 @@ export namespace at {
   } as const;
 
   export const path = (id: string) =>
-    `/shoppings/customers/coupons/${encodeURIComponent(id?.toString() ?? "null")}`;
+    `/shoppings/customers/coupons/${encodeURIComponent(
+      id?.toString() ?? "null",
+    )}`;
   export const random = (): IShoppingCoupon => typia.random<IShoppingCoupon>();
   export const simulate = (connection: IConnection, id: string): Output => {
     const assert = NestiaSimulator.assert({

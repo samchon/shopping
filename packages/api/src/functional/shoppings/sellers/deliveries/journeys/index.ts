@@ -22,7 +22,7 @@ import typia from "typia";
  * the related goods' states. If the property is not null, the state becomes
  * "arrived". Otherwise, the state becomes "delivering".
  *
- * @param deliveryId Belonged delivery's {@link IShoppingDelivery.id }
+ * @param deliveryId Belonged delivery's {@link IShoppingDelivery.id}
  * @param input Creation info of the journey
  * @returns Newly created journey
  * @tag Order
@@ -75,7 +75,9 @@ export namespace create {
   } as const;
 
   export const path = (deliveryId: string & tags.Format<"uuid">) =>
-    `/shoppings/sellers/deliveries/${encodeURIComponent(deliveryId?.toString() ?? "null")}/journeys`;
+    `/shoppings/sellers/deliveries/${encodeURIComponent(
+      deliveryId?.toString() ?? "null",
+    )}/journeys`;
   export const random = (): IShoppingDeliveryJourney =>
     typia.random<IShoppingDeliveryJourney>();
   export const simulate = (
@@ -105,8 +107,8 @@ export namespace create {
  * If the target journey's type is "delivering", this action may change
  * the related {@link IShoppingOrderGood.state goods' states} to be "arrived".
  *
- * @param deliveryId Belonged delivery's {@link IShoppingDelivery.id }
- * @param id Target journey's {@link IShoppingDeliveryJourney.id }
+ * @param deliveryId Belonged delivery's {@link IShoppingDelivery.id}
+ * @param id Target journey's {@link IShoppingDeliveryJourney.id}
  * @param input Completion time of the journey
  * @tag Order
  * @author Samchon
@@ -161,7 +163,9 @@ export namespace complete {
     deliveryId: string & tags.Format<"uuid">,
     id: string & tags.Format<"uuid">,
   ) =>
-    `/shoppings/sellers/deliveries/${encodeURIComponent(deliveryId?.toString() ?? "null")}/journeys/${encodeURIComponent(id?.toString() ?? "null")}/complete`;
+    `/shoppings/sellers/deliveries/${encodeURIComponent(
+      deliveryId?.toString() ?? "null",
+    )}/journeys/${encodeURIComponent(id?.toString() ?? "null")}/complete`;
   export const random = (): void => typia.random<void>();
   export const simulate = (
     connection: IConnection,
@@ -192,8 +196,8 @@ export namespace complete {
  * may change the related {@link IShoppingOrderGood.state}. By erasing the last
  * journey, the state rolls back to the previous.
  *
- * @param deliveryId Belonged delivery's {@link IShoppingDelivery.id }
- * @param id Target journey's {@link IShoppingDeliveryJourney.id }
+ * @param deliveryId Belonged delivery's {@link IShoppingDelivery.id}
+ * @param id Target journey's {@link IShoppingDeliveryJourney.id}
  * @returns Newly created journey
  * @tag Order
  * @author Samchon
@@ -232,7 +236,9 @@ export namespace erase {
     deliveryId: string & tags.Format<"uuid">,
     id: string & tags.Format<"uuid">,
   ) =>
-    `/shoppings/sellers/deliveries/${encodeURIComponent(deliveryId?.toString() ?? "null")}/journeys/${encodeURIComponent(id?.toString() ?? "null")}`;
+    `/shoppings/sellers/deliveries/${encodeURIComponent(
+      deliveryId?.toString() ?? "null",
+    )}/journeys/${encodeURIComponent(id?.toString() ?? "null")}`;
   export const random = (): void => typia.random<void>();
   export const simulate = (
     connection: IConnection,

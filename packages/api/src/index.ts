@@ -1,5 +1,13 @@
-import * as ShoppingApi from "./module";
+import * as api from "./module";
 
-export * from "./module";
+export type * from "./IConnection";
+export type * from "./Primitive";
+export type * from "./Resolved";
+export * from "./HttpError";
 
-export default ShoppingApi;
+export * from "./structures";
+export * from "./diagnosers";
+
+export * as functional from "./functional/index";
+
+export default api;

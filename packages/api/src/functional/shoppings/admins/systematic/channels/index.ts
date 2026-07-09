@@ -98,7 +98,7 @@ export namespace create {
  * Note that, it is not possible to change the channel's code. If you want to
  * to do it forcibly, then {@link create} new one and {@link merge} with it.
  *
- * @param id Target channel's {@link IShoppingChannel.code }
+ * @param id Target channel's {@link IShoppingChannel.code}
  * @param input Update info of the channel
  * @tag Systematic
  * @author Samchon
@@ -149,7 +149,9 @@ export namespace update {
   } as const;
 
   export const path = (id: string & tags.Format<"uuid">) =>
-    `/shoppings/admins/systematic/channels/${encodeURIComponent(id?.toString() ?? "null")}`;
+    `/shoppings/admins/systematic/channels/${encodeURIComponent(
+      id?.toString() ?? "null",
+    )}`;
   export const random = (): void => typia.random<void>();
   export const simulate = (
     connection: IConnection,
@@ -404,7 +406,7 @@ export namespace hierarchical {
  * {@link IShoppingChannelCategory.IHierarchical hierarchical category}
  * information.
  *
- * @param id Target channel's {@link IShoppingChannel.id }
+ * @param id Target channel's {@link IShoppingChannel.id}
  * @returns Detailed channel info
  * @tag Systematic
  * @author Samchon
@@ -441,7 +443,9 @@ export namespace at {
   } as const;
 
   export const path = (id: string & tags.Format<"uuid">) =>
-    `/shoppings/admins/systematic/channels/${encodeURIComponent(id?.toString() ?? "null")}`;
+    `/shoppings/admins/systematic/channels/${encodeURIComponent(
+      id?.toString() ?? "null",
+    )}`;
   export const random = (): IShoppingChannel.IHierarchical =>
     typia.random<IShoppingChannel.IHierarchical>();
   export const simulate = (
@@ -469,7 +473,7 @@ export namespace at {
  * {@link IShoppingChannelCategory.IHierarchical hierarchical category}
  * information.
  *
- * @param code Target channel's {@link IShoppingChannel.code }
+ * @param code Target channel's {@link IShoppingChannel.code}
  * @returns Detailed channel info
  * @tag Systematic
  * @author Samchon
@@ -506,7 +510,9 @@ export namespace get {
   } as const;
 
   export const path = (code: string) =>
-    `/shoppings/admins/systematic/channels/${encodeURIComponent(code?.toString() ?? "null")}/get`;
+    `/shoppings/admins/systematic/channels/${encodeURIComponent(
+      code?.toString() ?? "null",
+    )}/get`;
   export const random = (): IShoppingChannel.IHierarchical =>
     typia.random<IShoppingChannel.IHierarchical>();
   export const simulate = (connection: IConnection, code: string): Output => {

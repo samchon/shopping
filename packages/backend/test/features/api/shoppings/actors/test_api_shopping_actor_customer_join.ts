@@ -73,7 +73,7 @@ export const test_api_shopping_actor_customer_join = async (
     TestValidator.equals("joined.citizen", emended.citizen, joined.citizen);
     TestValidator.equals(
       "issued vs joined",
-      typia.misc.clone<Omit<IShoppingCustomer, "created_at">>({
+      typia.plain.clone<Omit<IShoppingCustomer, "created_at">>({
         ...issued,
         member: joined.member,
         citizen: joined.citizen,

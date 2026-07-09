@@ -375,7 +375,7 @@ function nextRuntimeId(state: SimulationState) {
 }
 
 function issueTokens(state: SimulationState, customer: CustomerRecord) {
-  const issuedAt = currentTimestamp(state);
+  const issuedAt = Math.max(Date.now(), Date.parse(currentTimestamp(state)));
   const access = `sim-access-${nextRuntimeId(state)}`;
   const refresh = `sim-refresh-${nextRuntimeId(state)}`;
 
@@ -390,10 +390,10 @@ function issueTokens(state: SimulationState, customer: CustomerRecord) {
       access,
       refresh,
       expired_at: new Date(
-        Date.parse(issuedAt) + 3 * 60 * 60 * 1000,
+        issuedAt + 3 * 60 * 60 * 1000,
       ).toISOString(),
       refreshable_until: new Date(
-        Date.parse(issuedAt) + 7 * 24 * 60 * 60 * 1000,
+        issuedAt + 7 * 24 * 60 * 60 * 1000,
       ).toISOString(),
     },
   };

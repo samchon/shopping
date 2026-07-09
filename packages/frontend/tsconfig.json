@@ -19,7 +19,8 @@
     "incremental": true,
     "plugins": [
       {
-        "name": "next"
+        "transform": "@ttsc/lint",
+        "configFile": "lint.config.ts"
       }
     ],
     "paths": {

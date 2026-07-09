@@ -32,7 +32,7 @@ import typia from "typia";
  * you can access to every snapshots of the sales even though the sale has
  * been closed or suspended.
  *
- * @param saleId Target sale's {@link IShoppingSale.id }
+ * @param saleId Target sale's {@link IShoppingSale.id}
  * @param input Requestion info of pagination
  * @returns Paginated snapshots with summarized information
  * @tag Sale
@@ -85,7 +85,9 @@ export namespace index {
   } as const;
 
   export const path = (saleId: string & tags.Format<"uuid">) =>
-    `/shoppings/customers/sales/${encodeURIComponent(saleId?.toString() ?? "null")}/snapshots`;
+    `/shoppings/customers/sales/${encodeURIComponent(
+      saleId?.toString() ?? "null",
+    )}/snapshots`;
   export const random = (): IPage<IShoppingSaleSnapshot.ISummary> =>
     typia.random<IPage<IShoppingSaleSnapshot.ISummary>>();
   export const simulate = (
@@ -119,8 +121,8 @@ export namespace index {
  * you can access to every snapshots of the sales even though the sale has
  * been closed or suspended.
  *
- * @param saleId Belonged sale's {@link IShoppingSale.id }
- * @param id Target snapshot's {@link IShoppingSaleSnapshot.id }
+ * @param saleId Belonged sale's {@link IShoppingSale.id}
+ * @param id Target snapshot's {@link IShoppingSaleSnapshot.id}
  * @returns Detailed information of the snapshot
  * @tag Sale
  * @author Samchon
@@ -161,7 +163,9 @@ export namespace at {
     saleId: string & tags.Format<"uuid">,
     id: string & tags.Format<"uuid">,
   ) =>
-    `/shoppings/customers/sales/${encodeURIComponent(saleId?.toString() ?? "null")}/snapshots/${encodeURIComponent(id?.toString() ?? "null")}`;
+    `/shoppings/customers/sales/${encodeURIComponent(
+      saleId?.toString() ?? "null",
+    )}/snapshots/${encodeURIComponent(id?.toString() ?? "null")}`;
   export const random = (): IShoppingSaleSnapshot =>
     typia.random<IShoppingSaleSnapshot>();
   export const simulate = (
@@ -195,8 +199,8 @@ export namespace at {
  * access to every snapshots of the sales even though the sale has been
  * closed or suspended.
  *
- * @param saleId Belonged sale's {@link IShoppingSale.id }
- * @param id Target snapshot's {@link IShoppingSaleSnapshot.id }
+ * @param saleId Belonged sale's {@link IShoppingSale.id}
+ * @param id Target snapshot's {@link IShoppingSaleSnapshot.id}
  * @returns Detailed sale information in the snapshot side
  * @tag Sale
  * @author Samchon
@@ -237,7 +241,9 @@ export namespace flip {
     saleId: string & tags.Format<"uuid">,
     id: string & tags.Format<"uuid">,
   ) =>
-    `/shoppings/customers/sales/${encodeURIComponent(saleId?.toString() ?? "null")}/snapshots/${encodeURIComponent(id?.toString() ?? "null")}/flip`;
+    `/shoppings/customers/sales/${encodeURIComponent(
+      saleId?.toString() ?? "null",
+    )}/snapshots/${encodeURIComponent(id?.toString() ?? "null")}/flip`;
   export const random = (): IShoppingSale => typia.random<IShoppingSale>();
   export const simulate = (
     connection: IConnection,

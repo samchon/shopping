@@ -1,7 +1,7 @@
 import core from "@nestia/core";
 import { Controller } from "@nestjs/common";
 
-import { ISystem } from "@samchon/shopping-api";
+import type { ISystem } from "@samchon/shopping-api";
 
 import { SystemProvider } from "../../providers/monitors/SystemProvider";
 import { DateUtil } from "../../utils/DateUtil";

@@ -212,7 +212,6 @@ export function ProductDetailPage({ productId }: { productId: string }) {
           <Card className="overflow-hidden">
             <div className="aspect-[4/3] overflow-hidden bg-muted">
               {primaryImage ? (
-                // eslint-disable-next-line @next/next/no-img-element
                 <img alt={data.title} className="h-full w-full object-cover" src={primaryImage} />
               ) : null}
             </div>

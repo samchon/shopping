@@ -91,7 +91,7 @@ export namespace index {
  *
  * Get a {@link IShoppingDeposit deposit} metadata information with its ID.
  *
- * @param id Target deposit's {@link IShoppingDeposit.id }
+ * @param id Target deposit's {@link IShoppingDeposit.id}
  * @returns Deposit metadata
  * @tag Discount
  * @author Samchon
@@ -128,7 +128,9 @@ export namespace at {
   } as const;
 
   export const path = (id: string & tags.Format<"uuid">) =>
-    `/shoppings/admins/deposits/${encodeURIComponent(id?.toString() ?? "null")}`;
+    `/shoppings/admins/deposits/${encodeURIComponent(
+      id?.toString() ?? "null",
+    )}`;
   export const random = (): IShoppingDeposit =>
     typia.random<IShoppingDeposit>();
   export const simulate = (
@@ -187,7 +189,9 @@ export namespace get {
   } as const;
 
   export const path = (code: string) =>
-    `/shoppings/admins/deposits/${encodeURIComponent(code?.toString() ?? "null")}/get`;
+    `/shoppings/admins/deposits/${encodeURIComponent(
+      code?.toString() ?? "null",
+    )}/get`;
   export const random = (): IShoppingDeposit =>
     typia.random<IShoppingDeposit>();
   export const simulate = (connection: IConnection, code: string): Output => {
@@ -285,7 +289,7 @@ export namespace create {
  * {@link IShoppingCustomer customer}'s balance does not be increased or
  * decreased by the deposit's reason why.
  *
- * @param id Target deposit's {@link IShoppingDeposit.id }
+ * @param id Target deposit's {@link IShoppingDeposit.id}
  * @tag Discount
  * @author Samchon
  *
@@ -319,7 +323,9 @@ export namespace erase {
   } as const;
 
   export const path = (id: string & tags.Format<"uuid">) =>
-    `/shoppings/admins/deposits/${encodeURIComponent(id?.toString() ?? "null")}`;
+    `/shoppings/admins/deposits/${encodeURIComponent(
+      id?.toString() ?? "null",
+    )}`;
   export const random = (): void => typia.random<void>();
   export const simulate = (
     connection: IConnection,

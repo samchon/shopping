@@ -104,7 +104,7 @@ export namespace index {
  * {@link IShoppingCouponTicketPayment pay} for the {@link IShoppingOrder order},
  * 410 gone exception would be thrown.
  *
- * @param id Target coupon ticket's {@link IShoppingCouponTicket.id }
+ * @param id Target coupon ticket's {@link IShoppingCouponTicket.id}
  * @returns Coupon ticket info
  * @tag Discount
  * @author Samchon
@@ -141,7 +141,9 @@ export namespace at {
   } as const;
 
   export const path = (id: string & tags.Format<"uuid">) =>
-    `/shoppings/customers/coupons/tickets/${encodeURIComponent(id?.toString() ?? "null")}`;
+    `/shoppings/customers/coupons/tickets/${encodeURIComponent(
+      id?.toString() ?? "null",
+    )}`;
   export const random = (): IShoppingCouponTicket =>
     typia.random<IShoppingCouponTicket>();
   export const simulate = (

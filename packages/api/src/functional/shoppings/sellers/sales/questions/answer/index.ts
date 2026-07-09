@@ -25,8 +25,8 @@ import typia from "typia";
  * the question article as many as he/she wants, it would be useful for
  * additional communication.
  *
- * @param saleId Belonged sale's {@link IShoppingSale.id }
- * @param questionId Target question's {@link IShoppingSaleQuestion.id }
+ * @param saleId Belonged sale's {@link IShoppingSale.id}
+ * @param questionId Target question's {@link IShoppingSaleQuestion.id}
  * @param input Creation info of the answer article
  * @returns Newly created answer article
  * @tag Sale
@@ -83,7 +83,9 @@ export namespace create {
     saleId: string & tags.Format<"uuid">,
     questionId: string & tags.Format<"uuid">,
   ) =>
-    `/shoppings/sellers/sales/${encodeURIComponent(saleId?.toString() ?? "null")}/questions/${encodeURIComponent(questionId?.toString() ?? "null")}/answer`;
+    `/shoppings/sellers/sales/${encodeURIComponent(
+      saleId?.toString() ?? "null",
+    )}/questions/${encodeURIComponent(questionId?.toString() ?? "null")}/answer`;
   export const random = (): IShoppingSaleInquiryAnswer =>
     typia.random<IShoppingSaleInquiryAnswer>();
   export const simulate = (
@@ -125,8 +127,8 @@ export namespace create {
  * manipulating the circumstances due to the nature of e-commerce, where
  * disputes easily arise. That is, to preserve evidence.
  *
- * @param saleId Belonged sale's {@link IShoppingSale.id }
- * @param questionId Target question's {@link IShoppingSaleQuestion.id }
+ * @param saleId Belonged sale's {@link IShoppingSale.id}
+ * @param questionId Target question's {@link IShoppingSaleQuestion.id}
  * @param input Update info of the answer article
  * @returns Newly created snapshot record of the answer article
  * @tag Sale
@@ -183,7 +185,9 @@ export namespace update {
     saleId: string & tags.Format<"uuid">,
     questionId: string & tags.Format<"uuid">,
   ) =>
-    `/shoppings/sellers/sales/${encodeURIComponent(saleId?.toString() ?? "null")}/questions/${encodeURIComponent(questionId?.toString() ?? "null")}/answer`;
+    `/shoppings/sellers/sales/${encodeURIComponent(
+      saleId?.toString() ?? "null",
+    )}/questions/${encodeURIComponent(questionId?.toString() ?? "null")}/answer`;
   export const random = (): IShoppingSaleInquiryAnswer.ISnapshot =>
     typia.random<IShoppingSaleInquiryAnswer.ISnapshot>();
   export const simulate = (

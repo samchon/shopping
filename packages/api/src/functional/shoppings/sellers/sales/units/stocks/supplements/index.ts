@@ -25,9 +25,9 @@ import typia from "typia";
  * records by configuring {@link IShoppingSaleUnitStockSupplement.IRequest.sort}
  * property.
  *
- * @param saleId Belonged sale's {@link IShoppingSale.id }
- * @param unitId Belonged unit's {@link IShoppingSaleUnit.id }
- * @param stockId Target stock's {@link IShoppingSaleUnitStock.id }
+ * @param saleId Belonged sale's {@link IShoppingSale.id}
+ * @param unitId Belonged unit's {@link IShoppingSaleUnit.id}
+ * @param stockId Target stock's {@link IShoppingSaleUnitStock.id}
  * @param input Request info of pagination, searching and sorting
  * @returns Paginated supplements
  * @tag Sale
@@ -86,7 +86,11 @@ export namespace index {
     unitId: string & tags.Format<"uuid">,
     stockId: string & tags.Format<"uuid">,
   ) =>
-    `/shoppings/sellers/sales/${encodeURIComponent(saleId?.toString() ?? "null")}/units/${encodeURIComponent(unitId?.toString() ?? "null")}/stocks/${encodeURIComponent(stockId?.toString() ?? "null")}/supplements`;
+    `/shoppings/sellers/sales/${encodeURIComponent(
+      saleId?.toString() ?? "null",
+    )}/units/${encodeURIComponent(
+      unitId?.toString() ?? "null",
+    )}/stocks/${encodeURIComponent(stockId?.toString() ?? "null")}/supplements`;
   export const random = (): IPage<IShoppingSaleUnitStockSupplement> =>
     typia.random<IPage<IShoppingSaleUnitStockSupplement>>();
   export const simulate = (
@@ -120,9 +124,9 @@ export namespace index {
  * target stock will be increased by the
  * {@link IShoppingSaleUnitStockSupplement.value supplement's value}.
  *
- * @param saleId Belonged sale's {@link IShoppingSale.id }
- * @param unitId Belonged unit's {@link IShoppingSaleUnit.id }
- * @param stockId Target stock's {@link IShoppingSaleUnitStock.id }
+ * @param saleId Belonged sale's {@link IShoppingSale.id}
+ * @param unitId Belonged unit's {@link IShoppingSaleUnit.id}
+ * @param stockId Target stock's {@link IShoppingSaleUnitStock.id}
  * @param input Create info of the supplement
  * @returns Created supplement
  * @tag Sale
@@ -181,7 +185,11 @@ export namespace create {
     unitId: string & tags.Format<"uuid">,
     stockId: string & tags.Format<"uuid">,
   ) =>
-    `/shoppings/sellers/sales/${encodeURIComponent(saleId?.toString() ?? "null")}/units/${encodeURIComponent(unitId?.toString() ?? "null")}/stocks/${encodeURIComponent(stockId?.toString() ?? "null")}/supplements`;
+    `/shoppings/sellers/sales/${encodeURIComponent(
+      saleId?.toString() ?? "null",
+    )}/units/${encodeURIComponent(
+      unitId?.toString() ?? "null",
+    )}/stocks/${encodeURIComponent(stockId?.toString() ?? "null")}/supplements`;
   export const random = (): IShoppingSaleUnitStockSupplement =>
     typia.random<IShoppingSaleUnitStockSupplement>();
   export const simulate = (
@@ -215,10 +223,10 @@ export namespace create {
  * target stock will be changed by the
  * {@link IShoppingSaleUnitStockSupplement.value supplement's value}.
  *
- * @param saleId Belonged sale's {@link IShoppingSale.id }
- * @param unitId Belonged unit's {@link IShoppingSaleUnit.id }
- * @param stockId Target stock's {@link IShoppingSaleUnitStock.id }
- * @param id Target supplement's {@link IShoppingSaleUnitStockSupplement.id }
+ * @param saleId Belonged sale's {@link IShoppingSale.id}
+ * @param unitId Belonged unit's {@link IShoppingSaleUnit.id}
+ * @param stockId Target stock's {@link IShoppingSaleUnitStock.id}
+ * @param id Target supplement's {@link IShoppingSaleUnitStockSupplement.id}
  * @param input Update info (quantity) of the supplement
  * @tag Sale
  * @author Samchon
@@ -277,7 +285,13 @@ export namespace update {
     stockId: string & tags.Format<"uuid">,
     id: string & tags.Format<"uuid">,
   ) =>
-    `/shoppings/sellers/sales/${encodeURIComponent(saleId?.toString() ?? "null")}/units/${encodeURIComponent(unitId?.toString() ?? "null")}/stocks/${encodeURIComponent(stockId?.toString() ?? "null")}/supplements/${encodeURIComponent(id?.toString() ?? "null")}`;
+    `/shoppings/sellers/sales/${encodeURIComponent(
+      saleId?.toString() ?? "null",
+    )}/units/${encodeURIComponent(
+      unitId?.toString() ?? "null",
+    )}/stocks/${encodeURIComponent(
+      stockId?.toString() ?? "null",
+    )}/supplements/${encodeURIComponent(id?.toString() ?? "null")}`;
   export const random = (): void => typia.random<void>();
   export const simulate = (
     connection: IConnection,
@@ -312,10 +326,10 @@ export namespace update {
  * target stock will be decreased by the
  * {@link IShoppingSaleUnitStockSupplement.value supplement's value}.
  *
- * @param saleId Belonged sale's {@link IShoppingSale.id }
- * @param unitId Belonged unit's {@link IShoppingSaleUnit.id }
- * @param stockId Target stock's {@link IShoppingSaleUnitStock.id }
- * @param id Target supplement's {@link IShoppingSaleUnitStockSupplement.id }
+ * @param saleId Belonged sale's {@link IShoppingSale.id}
+ * @param unitId Belonged unit's {@link IShoppingSaleUnit.id}
+ * @param stockId Target stock's {@link IShoppingSaleUnitStock.id}
+ * @param id Target supplement's {@link IShoppingSaleUnitStockSupplement.id}
  * @tag Sale
  * @author Samchon
  *
@@ -357,7 +371,13 @@ export namespace erase {
     stockId: string & tags.Format<"uuid">,
     id: string & tags.Format<"uuid">,
   ) =>
-    `/shoppings/sellers/sales/${encodeURIComponent(saleId?.toString() ?? "null")}/units/${encodeURIComponent(unitId?.toString() ?? "null")}/stocks/${encodeURIComponent(stockId?.toString() ?? "null")}/supplements/${encodeURIComponent(id?.toString() ?? "null")}`;
+    `/shoppings/sellers/sales/${encodeURIComponent(
+      saleId?.toString() ?? "null",
+    )}/units/${encodeURIComponent(
+      unitId?.toString() ?? "null",
+    )}/stocks/${encodeURIComponent(
+      stockId?.toString() ?? "null",
+    )}/supplements/${encodeURIComponent(id?.toString() ?? "null")}`;
   export const random = (): void => typia.random<void>();
   export const simulate = (
     connection: IConnection,

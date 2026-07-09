@@ -197,7 +197,7 @@ export namespace index {
  * > Additionally, please do not summarize the SKU information. Show every
  * > option and stock in the sale with detailed information.
  *
- * @param id Target sale's {@link IShoppingSale.id }
+ * @param id Target sale's {@link IShoppingSale.id}
  * @returns Detailed sale information
  * @tag Sale
  * @author Samchon

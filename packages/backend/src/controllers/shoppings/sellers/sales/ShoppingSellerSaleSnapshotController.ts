@@ -1,14 +1,11 @@
 import core from "@nestia/core";
 import { tags } from "typia";
 
-import {
-  IShoppingSale,
-  IShoppingSeller,
-  ShoppingSaleDiagnoser,
-} from "@samchon/shopping-api";
+import type { IShoppingSale, IShoppingSeller } from "@samchon/shopping-api";
 
 import { ShoppingSellerAuth } from "../../../../decorators/ShoppingSellerAuth";
 import { ShoppingSaleSnapshotProvider } from "../../../../providers/shoppings/sales/ShoppingSaleSnapshotProvider";
+import { ShoppingSaleDiagnoser } from "../../../../utils/ShoppingApiDiagnoser";
 import { ShoppingSaleSnapshotController } from "../../base/sales/ShoppingSaleSnapshotController";
 
 export class ShoppingSellerSaleSnapshotController extends ShoppingSaleSnapshotController(

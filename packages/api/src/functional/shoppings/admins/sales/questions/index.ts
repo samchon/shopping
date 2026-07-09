@@ -38,7 +38,7 @@ export * as comments from "./comments/index";
  * request body. Also, it is possible to customize sequence order of records
  * by configuring {@link IShoppingSaleQuestion.IRequest.sort sort condition}.
  *
- * @param saleId Belonged sale's {@link IShoppingSale.id }
+ * @param saleId Belonged sale's {@link IShoppingSale.id}
  * @param input Request info of pagination, searching and sorting
  * @returns Paginated questions with summarized information
  * @tag Sale
@@ -91,7 +91,9 @@ export namespace index {
   } as const;
 
   export const path = (saleId: string & tags.Format<"uuid">) =>
-    `/shoppings/admins/sales/${encodeURIComponent(saleId?.toString() ?? "null")}/questions`;
+    `/shoppings/admins/sales/${encodeURIComponent(
+      saleId?.toString() ?? "null",
+    )}/questions`;
   export const random = (): IPage<IShoppingSaleQuestion.ISummary> =>
     typia.random<IPage<IShoppingSaleQuestion.ISummary>>();
   export const simulate = (
@@ -137,7 +139,7 @@ export namespace index {
  * request body. Also, it is possible to customize sequence order of records
  * by configuring {@link IShoppingSaleQuestion.IRequest.sort sort condition}.
  *
- * @param saleId Belonged sale's {@link IShoppingSale.id }
+ * @param saleId Belonged sale's {@link IShoppingSale.id}
  * @param input Request info of pagination, searching and sorting
  * @returns Paginated questions with abridged information
  * @tag Sale
@@ -190,7 +192,9 @@ export namespace abridges {
   } as const;
 
   export const path = (saleId: string & tags.Format<"uuid">) =>
-    `/shoppings/admins/sales/${encodeURIComponent(saleId?.toString() ?? "null")}/questions/abridges`;
+    `/shoppings/admins/sales/${encodeURIComponent(
+      saleId?.toString() ?? "null",
+    )}/questions/abridges`;
   export const random = (): IPage<IShoppingSaleQuestion.IAbridge> =>
     typia.random<IPage<IShoppingSaleQuestion.IAbridge>>();
   export const simulate = (
@@ -222,8 +226,8 @@ export namespace abridges {
  * questions of the sales except the {@link IShoppingSaleQuestion.secret}
  * value is `false`.
  *
- * @param saleId Belonged sale's {@link IShoppingSale.id }
- * @param id Target question's {@link IShoppingSaleQuestion.id }
+ * @param saleId Belonged sale's {@link IShoppingSale.id}
+ * @param id Target question's {@link IShoppingSaleQuestion.id}
  * @returns Detailed question info
  * @tag Sale
  * @author Samchon
@@ -264,7 +268,9 @@ export namespace at {
     saleId: string & tags.Format<"uuid">,
     id: string & tags.Format<"uuid">,
   ) =>
-    `/shoppings/admins/sales/${encodeURIComponent(saleId?.toString() ?? "null")}/questions/${encodeURIComponent(id?.toString() ?? "null")}`;
+    `/shoppings/admins/sales/${encodeURIComponent(
+      saleId?.toString() ?? "null",
+    )}/questions/${encodeURIComponent(id?.toString() ?? "null")}`;
   export const random = (): IShoppingSaleQuestion =>
     typia.random<IShoppingSaleQuestion>();
   export const simulate = (

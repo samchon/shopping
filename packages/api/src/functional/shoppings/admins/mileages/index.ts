@@ -93,7 +93,7 @@ export namespace index {
  *
  * Get a {@link IShoppingMileage mileage} metadata information with its ID.
  *
- * @param id Target mileage's {@link IShoppingMileage.id }
+ * @param id Target mileage's {@link IShoppingMileage.id}
  * @returns Mileage metadata
  * @tag Discount
  * @author Samchon
@@ -130,7 +130,9 @@ export namespace at {
   } as const;
 
   export const path = (id: string & tags.Format<"uuid">) =>
-    `/shoppings/admins/mileages/${encodeURIComponent(id?.toString() ?? "null")}`;
+    `/shoppings/admins/mileages/${encodeURIComponent(
+      id?.toString() ?? "null",
+    )}`;
   export const random = (): IShoppingMileage =>
     typia.random<IShoppingMileage>();
   export const simulate = (
@@ -189,7 +191,9 @@ export namespace get {
   } as const;
 
   export const path = (code: string) =>
-    `/shoppings/admins/mileages/${encodeURIComponent(code?.toString() ?? "null")}/get`;
+    `/shoppings/admins/mileages/${encodeURIComponent(
+      code?.toString() ?? "null",
+    )}/get`;
   export const random = (): IShoppingMileage =>
     typia.random<IShoppingMileage>();
   export const simulate = (connection: IConnection, code: string): Output => {
@@ -287,7 +291,7 @@ export namespace create {
  * {@link IShoppingCustomer customer}'s balance does not be increased or
  * decreased by the mileage's reason why.
  *
- * @param id Target mileage's {@link IShoppingMileage.id }
+ * @param id Target mileage's {@link IShoppingMileage.id}
  * @tag Discount
  * @author Samchon
  *
@@ -321,7 +325,9 @@ export namespace erase {
   } as const;
 
   export const path = (id: string & tags.Format<"uuid">) =>
-    `/shoppings/admins/mileages/${encodeURIComponent(id?.toString() ?? "null")}`;
+    `/shoppings/admins/mileages/${encodeURIComponent(
+      id?.toString() ?? "null",
+    )}`;
   export const random = (): void => typia.random<void>();
   export const simulate = (
     connection: IConnection,

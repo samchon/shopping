@@ -63,7 +63,7 @@ const validate = (
 ) =>
   TestValidator.equals(
     title,
-    typia.misc.clone<Omit<IShoppingAdministrator, "customer">>(x),
+    typia.plain.clone<Omit<IShoppingAdministrator, "customer">>(x),
     y,
   );
 

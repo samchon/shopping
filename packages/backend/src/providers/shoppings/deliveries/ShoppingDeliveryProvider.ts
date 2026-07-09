@@ -3,7 +3,7 @@ import { Prisma } from "@prisma/sdk";
 import typia from "typia";
 import { v4 } from "uuid";
 
-import {
+import type {
   IDiagnosis,
   IEntity,
   IPage,
@@ -525,5 +525,12 @@ export namespace ShoppingDeliveryProvider {
   };
 }
 
-const STATES: IShoppingDelivery.State[] =
-  typia.misc.literals<IShoppingDelivery.State>();
+const STATES: IShoppingDelivery.State[] = [
+  "none",
+  "underway",
+  "preparing",
+  "manufacturing",
+  "shipping",
+  "delivering",
+  "arrived",
+];

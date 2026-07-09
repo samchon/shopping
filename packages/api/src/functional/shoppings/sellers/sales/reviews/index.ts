@@ -35,7 +35,7 @@ export * as comments from "./comments/index";
  * request body. Also, it is possible to customize sequence order of records
  * by configuring {@link IShoppingSaleReview.IRequest.sort sort condition}.
  *
- * @param saleId Belonged sale's {@link IShoppingSale.id }
+ * @param saleId Belonged sale's {@link IShoppingSale.id}
  * @param input Request info of pagination, searching and sorting
  * @returns Paginated reviews with summarized information
  * @tag Sale
@@ -88,7 +88,9 @@ export namespace index {
   } as const;
 
   export const path = (saleId: string & tags.Format<"uuid">) =>
-    `/shoppings/sellers/sales/${encodeURIComponent(saleId?.toString() ?? "null")}/reviews`;
+    `/shoppings/sellers/sales/${encodeURIComponent(
+      saleId?.toString() ?? "null",
+    )}/reviews`;
   export const random = (): IPage<IShoppingSaleReview.ISummary> =>
     typia.random<IPage<IShoppingSaleReview.ISummary>>();
   export const simulate = (
@@ -130,7 +132,7 @@ export namespace index {
  * request body. Also, it is possible to customize sequence order of records
  * by configuring {@link IShoppingSaleReview.IRequest.sort sort condition}.
  *
- * @param saleId Belonged sale's {@link IShoppingSale.id }
+ * @param saleId Belonged sale's {@link IShoppingSale.id}
  * @param input Request info of pagination, searching and sorting
  * @returns Paginated reviews with abridged information
  * @tag Sale
@@ -183,7 +185,9 @@ export namespace abridges {
   } as const;
 
   export const path = (saleId: string & tags.Format<"uuid">) =>
-    `/shoppings/sellers/sales/${encodeURIComponent(saleId?.toString() ?? "null")}/reviews/abridges`;
+    `/shoppings/sellers/sales/${encodeURIComponent(
+      saleId?.toString() ?? "null",
+    )}/reviews/abridges`;
   export const random = (): IPage<IShoppingSaleReview.IAbridge> =>
     typia.random<IPage<IShoppingSaleReview.IAbridge>>();
   export const simulate = (
@@ -214,8 +218,8 @@ export namespace abridges {
  * you are a {@link IShoppingCustomer customer}, you can access to every
  * reviews of the sales.
  *
- * @param saleId Belonged sale's {@link IShoppingSale.id }
- * @param id Target review's {@link IShoppingSaleReview.id }
+ * @param saleId Belonged sale's {@link IShoppingSale.id}
+ * @param id Target review's {@link IShoppingSaleReview.id}
  * @returns Detailed review info
  * @tag Sale
  * @author Samchon
@@ -256,7 +260,9 @@ export namespace at {
     saleId: string & tags.Format<"uuid">,
     id: string & tags.Format<"uuid">,
   ) =>
-    `/shoppings/sellers/sales/${encodeURIComponent(saleId?.toString() ?? "null")}/reviews/${encodeURIComponent(id?.toString() ?? "null")}`;
+    `/shoppings/sellers/sales/${encodeURIComponent(
+      saleId?.toString() ?? "null",
+    )}/reviews/${encodeURIComponent(id?.toString() ?? "null")}`;
   export const random = (): IShoppingSaleReview =>
     typia.random<IShoppingSaleReview>();
   export const simulate = (

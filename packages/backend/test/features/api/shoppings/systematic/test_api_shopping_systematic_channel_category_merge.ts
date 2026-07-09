@@ -74,8 +74,8 @@
 //     );
 //   TestValidator.equals(
 //     "categories",
-//     typia.misc.clone<RouteWithoutCode[]>([expected]),
-//     typia.misc.clone<RouteWithoutCode[]>(entire),
+//     typia.plain.clone<RouteWithoutCode[]>([expected]),
+//     typia.plain.clone<RouteWithoutCode[]>(entire),
 //   );
 // };
 

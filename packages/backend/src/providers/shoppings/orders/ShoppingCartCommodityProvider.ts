@@ -2,7 +2,7 @@ import { ArrayUtil, MapUtil } from "@nestia/e2e";
 import { Prisma } from "@prisma/sdk";
 import { v4 } from "uuid";
 
-import {
+import type {
   IDiagnosis,
   IEntity,
   IPage,
@@ -12,13 +12,15 @@ import {
   IShoppingSale,
   IShoppingSaleSnapshot,
   IShoppingSaleUnit,
-  ShoppingCartCommodityDiagnoser,
-  ShoppingCartDiscountableDiagnoser,
 } from "@samchon/shopping-api";
 
 import { ShoppingGlobal } from "../../../ShoppingGlobal";
 import { ErrorProvider } from "../../../utils/ErrorProvider";
 import { PaginationUtil } from "../../../utils/PaginationUtil";
+import {
+  ShoppingCartCommodityDiagnoser,
+  ShoppingCartDiscountableDiagnoser,
+} from "../../../utils/ShoppingApiDiagnoser";
 import { ShoppingCustomerProvider } from "../actors/ShoppingCustomerProvider";
 import { ShoppingCouponProvider } from "../coupons/ShoppingCouponProvider";
 import { ShoppingCouponTicketProvider } from "../coupons/ShoppingCouponTicketProvider";

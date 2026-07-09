@@ -197,7 +197,7 @@ export namespace index {
  * > Additionally, please do not summarize the SKU information. Show every
  * > option and stock in the sale with detailed information.
  *
- * @param id Target sale's {@link IShoppingSale.id }
+ * @param id Target sale's {@link IShoppingSale.id}
  * @returns Detailed sale information
  * @tag Sale
  * @author Samchon
@@ -234,7 +234,9 @@ export namespace at {
   } as const;
 
   export const path = (id: string & tags.Format<"uuid">) =>
-    `/shoppings/customers/sales/${encodeURIComponent(id?.toString() ?? "null")}`;
+    `/shoppings/customers/sales/${encodeURIComponent(
+      id?.toString() ?? "null",
+    )}`;
   export const random = (): IShoppingSale => typia.random<IShoppingSale>();
   export const simulate = (
     connection: IConnection,

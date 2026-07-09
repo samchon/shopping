@@ -1,6 +1,6 @@
 import core from "@nestia/core";
 
-import {
+import type {
   IShoppingAdministrator,
   IShoppingCoupon,
   IShoppingSeller,

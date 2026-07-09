@@ -225,7 +225,6 @@ export function OrderDetailPage({ orderId }: { orderId: string }) {
                       <div className="flex flex-col gap-4 md:flex-row">
                         <div className="h-24 w-24 overflow-hidden rounded-3xl bg-muted">
                           {item.thumbnailUrl ? (
-                            // eslint-disable-next-line @next/next/no-img-element
                             <img
                               alt={item.title}
                               className="h-full w-full object-cover"

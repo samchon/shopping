@@ -106,7 +106,7 @@ export namespace index {
  * {@link IShoppingOrder.IInvertFromDelivery order} information. Of course,
  * only related {@link IShoppingOrderGood goods} are contained in the orders.
  *
- * @param id Target delivery's {@link IShoppingDelivery.id }
+ * @param id Target delivery's {@link IShoppingDelivery.id}
  * @returns Delivery info with target orders
  * @tag Order
  * @author Samchon
@@ -143,7 +143,9 @@ export namespace at {
   } as const;
 
   export const path = (id: string & tags.Format<"uuid">) =>
-    `/shoppings/sellers/deliveries/${encodeURIComponent(id?.toString() ?? "null")}`;
+    `/shoppings/sellers/deliveries/${encodeURIComponent(
+      id?.toString() ?? "null",
+    )}`;
   export const random = (): IShoppingDelivery.IInvert =>
     typia.random<IShoppingDelivery.IInvert>();
   export const simulate = (
@@ -254,7 +256,7 @@ export namespace create {
  * for integrated delivering, and also possible to make multiple deliveries for
  * split delivering.
  *
- * @param input List of target orders' {@link IShoppingOrderPublish.id }s
+ * @param input List of target orders' {@link IShoppingOrderPublish.id}s
  * @returns List of incomplete pieces
  * @tag Order
  * @author Samchon

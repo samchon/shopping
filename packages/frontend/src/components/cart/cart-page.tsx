@@ -65,7 +65,6 @@ function CartRow({
             />
             <div className="h-24 w-24 overflow-hidden rounded-3xl bg-muted">
               {thumbnailUrl ? (
-                // eslint-disable-next-line @next/next/no-img-element
                 <img alt={title} className="h-full w-full object-cover" src={thumbnailUrl} />
               ) : null}
             </div>

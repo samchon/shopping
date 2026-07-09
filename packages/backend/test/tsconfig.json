@@ -2,6 +2,12 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "noEmit": true,
+    "plugins": [
+      {
+        "transform": "@ttsc/paths"
+      }
+    ],
+    "rootDir": "..",
   },
   "include": [".", "../src"]
 }

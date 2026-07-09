@@ -127,7 +127,9 @@ export namespace at {
   } as const;
 
   export const path = (id: string & tags.Format<"uuid">) =>
-    `/shoppings/customers/deposits/histories/${encodeURIComponent(id?.toString() ?? "null")}`;
+    `/shoppings/customers/deposits/histories/${encodeURIComponent(
+      id?.toString() ?? "null",
+    )}`;
   export const random = (): IShoppingDepositHistory =>
     typia.random<IShoppingDepositHistory>();
   export const simulate = (

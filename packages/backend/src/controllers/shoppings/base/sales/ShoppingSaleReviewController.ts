@@ -2,7 +2,7 @@ import core from "@nestia/core";
 import { Controller } from "@nestjs/common";
 import { tags } from "typia";
 
-import {
+import type {
   IPage,
   IShoppingActorEntity,
   IShoppingSaleReview,

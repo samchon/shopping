@@ -3,7 +3,7 @@ import { Prisma } from "@prisma/sdk";
 import { IPointer } from "tstl";
 import { v4 } from "uuid";
 
-import {
+import type {
   IDiagnosis,
   IPage,
   IShoppingActorEntity,
@@ -11,12 +11,12 @@ import {
   IShoppingCustomer,
   IShoppingOrder,
   IShoppingOrderPrice,
-  ShoppingOrderDiagnoser,
 } from "@samchon/shopping-api";
 
 import { ShoppingGlobal } from "../../../ShoppingGlobal";
 import { ErrorProvider } from "../../../utils/ErrorProvider";
 import { PaginationUtil } from "../../../utils/PaginationUtil";
+import { ShoppingOrderDiagnoser } from "../../../utils/ShoppingApiDiagnoser";
 import { ShoppingCustomerProvider } from "../actors/ShoppingCustomerProvider";
 import { ShoppingDepositHistoryProvider } from "../deposits/ShoppingDepositHistoryProvider";
 import { ShoppingMileageHistoryProvider } from "../mileages/ShoppingMileageHistoryProvider";

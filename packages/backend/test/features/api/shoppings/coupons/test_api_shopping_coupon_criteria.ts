@@ -31,7 +31,7 @@ export const test_api_shopping_coupon_criteria = async (
   const inside: IGroup = await generate_group(pool, 1);
 
   // CREATE COUPONS FOR EACH CRITERIA AND VALIDATE THEM
-  for (const type of typia.misc.literals<IShoppingCouponCriteria.Type>()) {
+  for (const type of typia.reflect.literals<IShoppingCouponCriteria.Type>()) {
     await generate_random_coupon({
       types: [type],
       direction: "include",

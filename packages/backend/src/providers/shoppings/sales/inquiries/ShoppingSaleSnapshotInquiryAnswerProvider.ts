@@ -1,7 +1,7 @@
 import { InternalServerErrorException } from "@nestjs/common";
 import { Prisma } from "@prisma/sdk";
 
-import {
+import type {
   IEntity,
   IShoppingSaleInquiryAnswer,
   IShoppingSeller,

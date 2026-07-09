@@ -4,7 +4,7 @@ import { IPointer } from "tstl";
 import typia from "typia";
 import { v4 } from "uuid";
 
-import {
+import type {
   IShoppingAdministrator,
   IShoppingCouponCriteria,
   IShoppingCouponFunnelCriteria,

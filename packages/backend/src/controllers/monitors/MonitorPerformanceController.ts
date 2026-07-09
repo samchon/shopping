@@ -1,7 +1,7 @@
 import core from "@nestia/core";
 import { Controller } from "@nestjs/common";
 
-import { IPerformance } from "@samchon/shopping-api";
+import type { IPerformance } from "@samchon/shopping-api";
 
 @Controller("monitors/performance")
 export class MonitorPerformanceController {

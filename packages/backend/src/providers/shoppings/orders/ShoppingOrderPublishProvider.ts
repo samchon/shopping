@@ -1,10 +1,10 @@
 import { RandomGenerator } from "@nestia/e2e";
-import { AesPkcs5 } from "@nestia/fetcher";
+import { AesPkcs5 } from "@nestia/fetcher/lib/AesPkcs5";
 import { Prisma } from "@prisma/sdk";
 import typia from "typia";
 import { v4 } from "uuid";
 
-import {
+import type {
   IEntity,
   IShoppingActorEntity,
   IShoppingCustomer,

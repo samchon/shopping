@@ -2,8 +2,7 @@ import { mapSession } from "@/server/shopping/mappers";
 import { type NextRequest, NextResponse } from "next/server";
 import "server-only";
 
-import type { IConnection } from "@samchon/shopping-api";
-import ShoppingApi from "@samchon/shopping-api";
+import ShoppingApi, { type IConnection } from "@samchon/shopping-api";
 
 import { shoppingConfig } from "./config";
 import {
@@ -20,7 +19,7 @@ const REFRESH_COOKIE = "shopping_refresh_token";
 const cookieOptions = {
   httpOnly: true,
   sameSite: "lax" as const,
-  secure: process.env.NODE_ENV === "production",
+  secure: process.env.NODE_ENV === "production" && !shoppingConfig.simulate,
   path: "/",
 };
 

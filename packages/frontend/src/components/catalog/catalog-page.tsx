@@ -68,7 +68,6 @@ function ProductCard({ product }: { product: ProductCardView }) {
       <Card className="h-full overflow-hidden transition-transform duration-200 hover:-translate-y-1">
         <div className="aspect-[4/3] overflow-hidden bg-muted">
           {product.thumbnailUrl ? (
-            // eslint-disable-next-line @next/next/no-img-element
             <img
               alt={product.title}
               className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"

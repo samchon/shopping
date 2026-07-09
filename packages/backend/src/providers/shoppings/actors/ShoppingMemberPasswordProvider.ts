@@ -1,4 +1,4 @@
-import { IShoppingCustomer, IShoppingMember } from "@samchon/shopping-api";
+import type { IShoppingCustomer, IShoppingMember } from "@samchon/shopping-api";
 
 import { ShoppingGlobal } from "../../../ShoppingGlobal";
 import { BcryptUtil } from "../../../utils/BcryptUtil";

@@ -98,7 +98,7 @@ export namespace create {
  * which are already issued from the target coupon, they would not be affected.
  * Those tickets are still valid until their expiration time.
  *
- * @param id Target coupon's {@link IShoppingCoupon.id }
+ * @param id Target coupon's {@link IShoppingCoupon.id}
  * @tag Discount
  * @author Samchon
  *
@@ -132,7 +132,9 @@ export namespace erase {
   } as const;
 
   export const path = (id: string) =>
-    `/shoppings/sellers/coupons/${encodeURIComponent(id?.toString() ?? "null")}`;
+    `/shoppings/sellers/coupons/${encodeURIComponent(
+      id?.toString() ?? "null",
+    )}`;
   export const random = (): void => typia.random<void>();
   export const simulate = (connection: IConnection, id: string): void => {
     const assert = NestiaSimulator.assert({
@@ -236,7 +238,7 @@ export namespace index {
  * {@link IShoppingSeller seller} or {@link IShoppingAdministrator administrator},
  * non-ticketable coupons are also accessible.
  *
- * @param id Target coupon's {@link IShoppingCoupon.id }
+ * @param id Target coupon's {@link IShoppingCoupon.id}
  * @returns Coupon info
  * @tag Discount
  * @author Samchon
@@ -273,7 +275,9 @@ export namespace at {
   } as const;
 
   export const path = (id: string) =>
-    `/shoppings/sellers/coupons/${encodeURIComponent(id?.toString() ?? "null")}`;
+    `/shoppings/sellers/coupons/${encodeURIComponent(
+      id?.toString() ?? "null",
+    )}`;
   export const random = (): IShoppingCoupon => typia.random<IShoppingCoupon>();
   export const simulate = (connection: IConnection, id: string): Output => {
     const assert = NestiaSimulator.assert({
