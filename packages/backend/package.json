@@ -7,7 +7,7 @@
     "test": "rimraf prisma/migrations && ttsx --project test/tsconfig.json test/index.ts",
     "benchmark:performance": "node test/benchmark/performance",
     "------------------------BUILDS------------------------": "",
-    "build": "pnpm build:prisma && pnpm build:sdk && pnpm build:main",
+    "build": "pnpm build:prisma && pnpm build:main",
     "build:env": "node build/env.js",
     "build:main": "rimraf lib && ttsc -p tsconfig.json",
     "build:prisma": "pnpm build:env && prisma generate --schema=prisma/schema",
