@@ -69,7 +69,6 @@ export namespace ShoppingChannelSeeder {
   };
 
   const getLevel = (name: string): [string, number] => {
-    // eslint-disable-next-line
     let spaces: number = 0;
     while (name[spaces] === " ") ++spaces;
     return [name.slice(spaces), spaces / 2];

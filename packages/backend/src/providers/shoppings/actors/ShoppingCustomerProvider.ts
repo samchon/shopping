@@ -184,7 +184,7 @@ export namespace ShoppingCustomerProvider {
         })(props.input.external_user)
       : null;
     const record = await ShoppingGlobal.prisma.shopping_customers.create({
-      data: await collect({
+      data: collect({
         channel,
         external_user,
         request: props.request,

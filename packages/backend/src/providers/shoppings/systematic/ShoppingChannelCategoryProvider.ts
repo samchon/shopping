@@ -24,16 +24,15 @@ export namespace ShoppingChannelCategoryProvider {
   ----------------------------------------------------------- */
   export namespace hierarchical {
     export const entire = async (channel: IEntity) =>
-      (await (await cache.get(channel.id)).hierarchical())[0];
+      (await cache.get(channel.id).hierarchical())[0];
 
     export const at = async (props: {
       channel: IEntity;
       id: string;
     }): Promise<IShoppingChannelCategory.IHierarchical> => {
       const record =
-        (await (await cache.get(props.channel.id)).hierarchical())[1].get(
-          props.id,
-        ) ?? null;
+        (await cache.get(props.channel.id).hierarchical())[1].get(props.id) ??
+        null;
       if (record === null)
         throw ErrorProvider.notFound("Unable to find the matched category.");
       return record;
@@ -44,7 +43,7 @@ export namespace ShoppingChannelCategoryProvider {
     channel: IEntity;
     id: string;
   }): Promise<IShoppingChannelCategory> => {
-    const record = await (await cache.get(props.channel.id)).at(props.id);
+    const record = await cache.get(props.channel.id).at(props.id);
     if (record === null)
       throw ErrorProvider.notFound("Unable to find the matched category.");
     return record;
@@ -55,8 +54,7 @@ export namespace ShoppingChannelCategoryProvider {
     id: string;
   }): Promise<IShoppingChannelCategory.IInvert> => {
     const record =
-      (await (await cache.get(props.channel.id)).invert()).get(props.id) ??
-      null;
+      (await cache.get(props.channel.id).invert()).get(props.id) ?? null;
     if (record === null)
       throw ErrorProvider.notFound("Unable to find the matched category.");
     return record;
