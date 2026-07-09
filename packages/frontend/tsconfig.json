@@ -10,7 +10,6 @@
     "jsx": "react-jsx",
     "incremental": true,
     "allowSyntheticDefaultImports": true,
-    "allowImportingTsExtensions": true,
     "paths": {
       "*": ["./*"],
       "@/*": ["./src/*"]
