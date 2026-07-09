@@ -85,9 +85,6 @@ importers:
       '@rollup/plugin-terser':
         specifier: ^0.4.4
         version: 0.4.4(rollup@4.60.1)
-      '@samchon/shopping-api':
-        specifier: workspace:^
-        version: 'link:'
       '@samchon/shopping-config':
         specifier: workspace:^
         version: link:../../config
