@@ -525,5 +525,12 @@ export namespace ShoppingDeliveryProvider {
   };
 }
 
-const STATES: IShoppingDelivery.State[] =
-  typia.reflect.literals<IShoppingDelivery.State>();
+const STATES: IShoppingDelivery.State[] = [
+  "none",
+  "underway",
+  "preparing",
+  "manufacturing",
+  "shipping",
+  "delivering",
+  "arrived",
+];
