@@ -1,5 +1,5 @@
 {
-  "extends": "@samchon/shopping-config/tsconfig",
+  "extends": "@samchon/shopping-config/tsconfig.json",
   "compilerOptions": {
     "declaration": true,
     "stripInternal": true,

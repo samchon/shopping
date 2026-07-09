@@ -3,15 +3,6 @@
   "name": "@samchon/shopping-config",
   "version": "0.1.0",
   "description": "Shared TypeScript and @ttsc/lint configuration for the shopping workspace",
-  "exports": {
-    "./lint": {
-      "types": "./lint.config.ts",
-      "default": "./lint.config.ts"
-    },
-    "./tsconfig": "./tsconfig.json",
-    "./tsconfig.json": "./tsconfig.json",
-    "./package.json": "./package.json"
-  },
   "files": [
     "lint.config.ts",
     "tsconfig.json"

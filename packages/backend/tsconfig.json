@@ -1,10 +1,9 @@
 {
-  "extends": "@samchon/shopping-config/tsconfig",
+  "extends": "@samchon/shopping-config/tsconfig.json",
   "compilerOptions": {
     "outDir": "lib",
     "rootDir": "src",
     "paths": {
-      "*": ["./*"],
       "@prisma/sdk": ["./src/prisma/client.ts"]
     },
     "experimentalDecorators": true,
