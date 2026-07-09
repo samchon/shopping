@@ -17,9 +17,8 @@
   },
   "homepage": "https://github.com/samchon/shopping#readme",
   "scripts": {
-    "build": "pnpm build:sdk && pnpm build:ttsc && pnpm build:rollup",
+    "build": "ttsc && pnpm build:rollup",
     "build:sdk": "cd ../backend && pnpm build:sdk",
-    "build:ttsc": "ttsc -p tsconfig.json",
     "build:rollup": "rollup -c",
     "format": "ttsc format -p tsconfig.json",
     "lint": "ttsc -p tsconfig.json --noEmit",
