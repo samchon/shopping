@@ -6,7 +6,6 @@
     "outDir": "lib",
     "rootDir": "src",
     "paths": {
-      "*": ["./*"],
       "@samchon/shopping-api": ["./src"]
     },
     "experimentalDecorators": true,
