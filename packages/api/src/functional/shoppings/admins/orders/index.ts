@@ -104,7 +104,7 @@ export namespace index {
  * {@link IShoppingOrderPublish.paid_at paid} yet. In that case,
  * 404 not found error would be thrown.
  *
- * @param id Target order's {@link IShoppingOrder.id }
+ * @param id Target order's {@link IShoppingOrder.id}
  * @returns Order info
  * @tag Order
  * @author Samchon

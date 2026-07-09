@@ -1,7 +1,7 @@
 import { Prisma } from "@prisma/sdk";
 import { v4 } from "uuid";
 
-import { IPage, IRecordMerge, IShoppingSection } from "@samchon/shopping-api";
+import type { IPage, IRecordMerge, IShoppingSection } from "@samchon/shopping-api";
 
 import { ShoppingGlobal } from "../../../ShoppingGlobal";
 import { EntityMergeProvider } from "../../common/EntityMergeProvider";

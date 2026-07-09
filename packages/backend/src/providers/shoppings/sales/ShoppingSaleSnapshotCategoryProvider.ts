@@ -1,6 +1,6 @@
 import { Prisma } from "@prisma/sdk";
 
-import { IShoppingChannelCategory } from "@samchon/shopping-api";
+import type { IShoppingChannelCategory } from "@samchon/shopping-api";
 
 import { ShoppingChannelCategoryProvider } from "../systematic/ShoppingChannelCategoryProvider";
 

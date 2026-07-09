@@ -69,7 +69,7 @@ const validate =
   (y: IShoppingSeller.IInvert) =>
     TestValidator.equals(
       title,
-      typia.misc.clone<Omit<IShoppingSeller.IInvert, "customer">>(x),
+      typia.plain.clone<Omit<IShoppingSeller.IInvert, "customer">>(x),
       y,
     );
 

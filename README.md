@@ -110,15 +110,3 @@ That is why the prompt ([`CLAUDE.md`](packages/frontend/CLAUDE.md)) could stay s
 ![Entity Relationship Diagram](https://github-production-user-asset-6210df.s3.amazonaws.com/13158709/268175441-80ca9c8e-4c96-4deb-a8cb-674e9845ebf6.png)
 
 > [ERD and its documentation](packages/backend/docs/ERD.md)
-
-## 5. AutoBe
-
-![AutoBe Replay](https://autobe.dev/images/demonstrate/replay-qwen-qwen3.5-35b-a3b.png)
-
-> Even small models like `qwen3.5-35b-a3b` can hit 100%.
-
-AutoBe is an open-source project that generates complete backends from natural-language requirements.
-
-It produces robust API design and documentation. If you want to automate the backend as well, this is the best next step.
-
-- [AutoBe Repository](https://github.com/wrtnlabs/autobe)

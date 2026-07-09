@@ -111,7 +111,7 @@ export namespace index {
  * with the {@link create} method, it still can be failed when you access the
  * commodity with this {@link at} method.
  *
- * @param id Target commodity's {@link IShoppingCartCommodity.id }
+ * @param id Target commodity's {@link IShoppingCartCommodity.id}
  * @returns Detailed commodity info
  * @tag Order
  * @author Samchon
@@ -148,7 +148,9 @@ export namespace at {
   } as const;
 
   export const path = (id: string & tags.Format<"uuid">) =>
-    `/shoppings/customers/carts/commodities/${encodeURIComponent(id?.toString() ?? "null")}`;
+    `/shoppings/customers/carts/commodities/${encodeURIComponent(
+      id?.toString() ?? "null",
+    )}`;
   export const random = (): IShoppingCartCommodity =>
     typia.random<IShoppingCartCommodity>();
   export const simulate = (
@@ -257,7 +259,7 @@ export namespace create {
  * {@link IShoppingSaleUnitStockInventory out of stock} suddenly, then 410
  * gone error would be thrown, either.
  *
- * @param id Target commodity's {@link IShoppingCartCommodity.id }
+ * @param id Target commodity's {@link IShoppingCartCommodity.id}
  * @param input Update info of the commodity (volume)
  * @tag Order
  * @author Samchon
@@ -308,7 +310,9 @@ export namespace update {
   } as const;
 
   export const path = (id: string & tags.Format<"uuid">) =>
-    `/shoppings/customers/carts/commodities/${encodeURIComponent(id?.toString() ?? "null")}`;
+    `/shoppings/customers/carts/commodities/${encodeURIComponent(
+      id?.toString() ?? "null",
+    )}`;
   export const random = (): void => typia.random<void>();
   export const simulate = (
     connection: IConnection,
@@ -337,7 +341,7 @@ export namespace update {
  * {@link IShoppingSaleUnitStockInventory out of stock} suddenly,
  * then 410 gone error would be thrown, either.
  *
- * @param id Target commodity's {@link IShoppingCartCommodity.id }
+ * @param id Target commodity's {@link IShoppingCartCommodity.id}
  * @returns Creation info of the commodity for replication
  * @tag Order
  * @author Samchon
@@ -374,7 +378,9 @@ export namespace replica {
   } as const;
 
   export const path = (id: string & tags.Format<"uuid">) =>
-    `/shoppings/customers/carts/commodities/${encodeURIComponent(id?.toString() ?? "null")}/replica`;
+    `/shoppings/customers/carts/commodities/${encodeURIComponent(
+      id?.toString() ?? "null",
+    )}/replica`;
   export const random = (): IShoppingCartCommodity.ICreate =>
     typia.random<IShoppingCartCommodity.ICreate>();
   export const simulate = (
@@ -403,7 +409,7 @@ export namespace replica {
  * the shopping cart more. If the order be erased, then you also can continue
  * erasinng the commodity, neither.
  *
- * @param id Target commodity's {@link IShoppingCartCommodity.id }
+ * @param id Target commodity's {@link IShoppingCartCommodity.id}
  * @returns Newly created commodity
  * @tag Order
  * @author Samchon
@@ -438,7 +444,9 @@ export namespace erase {
   } as const;
 
   export const path = (id: string & tags.Format<"uuid">) =>
-    `/shoppings/customers/carts/commodities/${encodeURIComponent(id?.toString() ?? "null")}`;
+    `/shoppings/customers/carts/commodities/${encodeURIComponent(
+      id?.toString() ?? "null",
+    )}`;
   export const random = (): void => typia.random<void>();
   export const simulate = (
     connection: IConnection,
@@ -459,7 +467,7 @@ export namespace erase {
  * Get discountable info.
  *
  * Compute discountable features about the
- *  {@link IShoppingCartCommodity shopping cart} even including
+ * {@link IShoppingCartCommodity shopping cart} even including
  * non-carted {@link IShoppingSale sales}.
  *
  * Returned {@link IShoppingCartDiscountable} contains including

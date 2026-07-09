@@ -1,6 +1,6 @@
 import { HttpException } from "@nestjs/common";
 
-import { IDiagnosis } from "@samchon/shopping-api";
+import type { IDiagnosis } from "@samchon/shopping-api";
 
 export namespace ErrorProvider {
   const http =

@@ -33,7 +33,7 @@ export const test_api_shopping_actor_seller_login = async (
   const passed: IShoppingSeller.IInvert = await login(TestGlobal.PASSWORD);
   TestValidator.equals(
     "passed",
-    typia.misc.clone<Omit<IShoppingSeller.IInvert, "customer">>(joined),
+    typia.plain.clone<Omit<IShoppingSeller.IInvert, "customer">>(joined),
     passed,
   );
 

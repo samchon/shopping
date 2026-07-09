@@ -1,4 +1,4 @@
-import { IShoppingMileage } from "@samchon/shopping-api";
+import type { IShoppingMileage } from "@samchon/shopping-api";
 
 import { ShoppingMileageProvider } from "../../providers/shoppings/mileages/ShoppingMileageProvider";
 

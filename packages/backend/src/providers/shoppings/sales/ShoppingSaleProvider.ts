@@ -1,7 +1,7 @@
 import { Prisma } from "@prisma/sdk";
 import { v4 } from "uuid";
 
-import {
+import type {
   IDiagnosis,
   IPage,
   IShoppingActorEntity,
@@ -9,13 +9,15 @@ import {
   IShoppingSaleSnapshot,
   IShoppingSection,
   IShoppingSeller,
-  ShoppingCustomerDiagnoser,
-  ShoppingSaleDiagnoser,
 } from "@samchon/shopping-api";
 
 import { ShoppingGlobal } from "../../../ShoppingGlobal";
 import { ErrorProvider } from "../../../utils/ErrorProvider";
 import { PaginationUtil } from "../../../utils/PaginationUtil";
+import {
+  ShoppingCustomerDiagnoser,
+  ShoppingSaleDiagnoser,
+} from "../../../utils/ShoppingApiDiagnoser";
 import { ShoppingSellerProvider } from "../actors/ShoppingSellerProvider";
 import { ShoppingSectionProvider } from "../systematic/ShoppingSectionProvider";
 import { ShoppingSaleSnapshotProvider } from "./ShoppingSaleSnapshotProvider";

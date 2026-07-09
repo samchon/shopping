@@ -1,7 +1,7 @@
 import core from "@nestia/core";
 import { Controller } from "@nestjs/common";
 
-import {
+import type {
   IShoppingAdministrator,
   IShoppingCustomer,
   IShoppingMember,

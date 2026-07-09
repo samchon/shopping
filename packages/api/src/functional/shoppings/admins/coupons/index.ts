@@ -42,7 +42,9 @@ export namespace destroy {
   } as const;
 
   export const path = (id: string & tags.Format<"uuid">) =>
-    `/shoppings/admins/coupons/${encodeURIComponent(id?.toString() ?? "null")}/destroy`;
+    `/shoppings/admins/coupons/${encodeURIComponent(
+      id?.toString() ?? "null",
+    )}/destroy`;
   export const random = (): void => typia.random<void>();
   export const simulate = (
     connection: IConnection,
@@ -148,7 +150,7 @@ export namespace create {
  * which are already issued from the target coupon, they would not be affected.
  * Those tickets are still valid until their expiration time.
  *
- * @param id Target coupon's {@link IShoppingCoupon.id }
+ * @param id Target coupon's {@link IShoppingCoupon.id}
  * @tag Discount
  * @author Samchon
  *
@@ -286,7 +288,7 @@ export namespace index {
  * {@link IShoppingSeller seller} or {@link IShoppingAdministrator administrator},
  * non-ticketable coupons are also accessible.
  *
- * @param id Target coupon's {@link IShoppingCoupon.id }
+ * @param id Target coupon's {@link IShoppingCoupon.id}
  * @returns Coupon info
  * @tag Discount
  * @author Samchon

@@ -1,7 +1,7 @@
 import { ArrayUtil } from "@nestia/e2e";
 import { Prisma } from "@prisma/sdk";
 
-import {
+import type {
   IEntity,
   IPage,
   IShoppingActorEntity,
@@ -12,12 +12,14 @@ import {
   IShoppingOrderDiscountable,
   IShoppingOrderGood,
   IShoppingOrderPrice,
-  ShoppingCouponTicketDiagnoser,
-  ShoppingOrderDiscountableDiagnoser,
 } from "@samchon/shopping-api";
 
 import { ShoppingGlobal } from "../../../ShoppingGlobal";
 import { ErrorProvider } from "../../../utils/ErrorProvider";
+import {
+  ShoppingCouponTicketDiagnoser,
+  ShoppingOrderDiscountableDiagnoser,
+} from "../../../utils/ShoppingApiDiagnoser";
 import { ShoppingCouponProvider } from "../coupons/ShoppingCouponProvider";
 import { ShoppingCouponTicketPaymentProvider } from "../coupons/ShoppingCouponTicketPaymentProvider";
 import { ShoppingCouponTicketProvider } from "../coupons/ShoppingCouponTicketProvider";

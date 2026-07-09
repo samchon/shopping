@@ -1,7 +1,7 @@
 import core from "@nestia/core";
 import { tags } from "typia";
 
-import { IShoppingCustomer, IShoppingSaleReview } from "@samchon/shopping-api";
+import type { IShoppingCustomer, IShoppingSaleReview } from "@samchon/shopping-api";
 
 import { ShoppingCustomerAuth } from "../../../../decorators/ShoppingCustomerAuth";
 import { ShoppingSaleReviewProvider } from "../../../../providers/shoppings/sales/inquiries/ShoppingSaleSnapshotReviewProvider";

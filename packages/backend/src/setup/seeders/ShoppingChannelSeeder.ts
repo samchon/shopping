@@ -1,7 +1,7 @@
 import { ArrayUtil } from "@nestia/e2e";
 import fs from "fs";
 
-import {
+import type {
   IShoppingChannel,
   IShoppingChannelCategory,
 } from "@samchon/shopping-api";

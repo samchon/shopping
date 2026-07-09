@@ -1,6 +1,6 @@
 import { Prisma } from "@prisma/sdk";
 
-import { IShoppingSaleInquiry } from "@samchon/shopping-api";
+import type { IShoppingSaleInquiry } from "@samchon/shopping-api";
 
 import { BbsArticleProvider } from "../../../common/BbsArticleProvider";
 import { ShoppingCitizenProvider } from "../../actors/ShoppingCitizenProvider";

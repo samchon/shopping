@@ -97,8 +97,8 @@ After all preparations, implement the main program. Do not write source code onl
 
 ## 4. Commands
 ```bash
-pnpm build            # prisma generate + SDK codegen + tsc
-pnpm start            # start via ts-node (src/)
+pnpm build            # prisma generate + SDK codegen + ttsc
+pnpm start            # start via ttsx (src/)
 pnpm start:prod       # start compiled server (lib/)
 pnpm schema           # reset DB and seed data
 pnpm test             # run E2E tests

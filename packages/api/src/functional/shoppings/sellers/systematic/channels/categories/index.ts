@@ -22,7 +22,7 @@ import type { tags } from "typia";
  * request body. Also, it is possible to customize sequence order of records
  * by configuring {@link IShoppingChannelCategory.IRequest.sort sort condition}.
  *
- * @param channelCode Belonged channel's {@link IShoppingChannel.code }
+ * @param channelCode Belonged channel's {@link IShoppingChannel.code}
  * @returns Paginated categories with children categories
  * @tag Systematic
  * @author Samchon
@@ -59,7 +59,9 @@ export namespace index {
   } as const;
 
   export const path = (channelCode: string) =>
-    `/shoppings/sellers/systematic/channels/${encodeURIComponent(channelCode?.toString() ?? "null")}/categories`;
+    `/shoppings/sellers/systematic/channels/${encodeURIComponent(
+      channelCode?.toString() ?? "null",
+    )}/categories`;
   export const random = (): Array<IShoppingChannelCategory.IHierarchical> =>
     typia.random<Array<IShoppingChannelCategory.IHierarchical>>();
   export const simulate = (
@@ -85,8 +87,8 @@ export namespace index {
  * Returned category contains hierarchical children categories, and also
  * contains the recursive parent categories, too.
  *
- * @param channelCode Belonged channel's {@link IShoppingChannel.code }
- * @param id Target category's {@link IShoppingChannelCategory.id }
+ * @param channelCode Belonged channel's {@link IShoppingChannel.code}
+ * @param id Target category's {@link IShoppingChannelCategory.id}
  * @returns Detailed category info
  * @tag Systematic
  * @author Samchon
@@ -124,7 +126,9 @@ export namespace at {
   } as const;
 
   export const path = (channelCode: string, id: string & tags.Format<"uuid">) =>
-    `/shoppings/sellers/systematic/channels/${encodeURIComponent(channelCode?.toString() ?? "null")}/categories/${encodeURIComponent(id?.toString() ?? "null")}`;
+    `/shoppings/sellers/systematic/channels/${encodeURIComponent(
+      channelCode?.toString() ?? "null",
+    )}/categories/${encodeURIComponent(id?.toString() ?? "null")}`;
   export const random = (): IShoppingChannelCategory =>
     typia.random<IShoppingChannelCategory>();
   export const simulate = (
@@ -152,8 +156,8 @@ export namespace at {
  * Returned category contains the recursive parent categories, but not contains
  * the hierarchical children categories.
  *
- * @param channelCode Belonged channel's {@link IShoppingChannel.code }
- * @param id Target category's {@link IShoppingChannelCategory.id }
+ * @param channelCode Belonged channel's {@link IShoppingChannel.code}
+ * @param id Target category's {@link IShoppingChannelCategory.id}
  * @returns Detailed category info
  * @tag Systematic
  * @author Samchon
@@ -191,7 +195,9 @@ export namespace invert {
   } as const;
 
   export const path = (channelCode: string, id: string & tags.Format<"uuid">) =>
-    `/shoppings/sellers/systematic/channels/${encodeURIComponent(channelCode?.toString() ?? "null")}/categories/${encodeURIComponent(id?.toString() ?? "null")}/invert`;
+    `/shoppings/sellers/systematic/channels/${encodeURIComponent(
+      channelCode?.toString() ?? "null",
+    )}/categories/${encodeURIComponent(id?.toString() ?? "null")}/invert`;
   export const random = (): IShoppingChannelCategory.IInvert =>
     typia.random<IShoppingChannelCategory.IInvert>();
   export const simulate = (

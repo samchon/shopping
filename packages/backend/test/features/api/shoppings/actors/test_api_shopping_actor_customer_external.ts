@@ -96,6 +96,6 @@ export const test_api_shopping_actor_customer_external = async (
 const validate = (title: string, x: IShoppingCustomer, y: IShoppingCustomer) =>
   TestValidator.equals(
     title,
-    typia.misc.clone<Omit<IShoppingCustomer, "created_at">>(x),
+    typia.plain.clone<Omit<IShoppingCustomer, "created_at">>(x),
     y,
   );

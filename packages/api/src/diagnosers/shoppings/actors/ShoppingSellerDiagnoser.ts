@@ -17,8 +17,8 @@ export namespace ShoppingSellerDiagnoser {
       id: seller.id,
       type: "seller",
       citizen,
-      customer: typia.misc.assertClone<IShoppingCustomer.IInvert>(customer),
-      member: typia.misc.assertClone<IShoppingMember.IInvert>(member),
+      customer: typia.plain.assertClone<IShoppingCustomer.IInvert>(customer),
+      member: typia.plain.assertClone<IShoppingMember.IInvert>(member),
       created_at: seller.created_at,
     };
   };

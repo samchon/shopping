@@ -1,6 +1,6 @@
 import { v4 } from "uuid";
 
-import {
+import type {
   IPage,
   IShoppingAddress,
   IShoppingCustomer,

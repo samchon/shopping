@@ -21,8 +21,8 @@ import typia from "typia";
  * the good must be {@link IShoppingDeliveryJourney arrived} to the
  * customer. If not, 428 unprocessable entity error would be thrown.
  *
- * @param orderId Belonged order's {@link IShoppingOrder.id }
- * @param id Target good's {@link IShoppingOrderGood.id }
+ * @param orderId Belonged order's {@link IShoppingOrder.id}
+ * @param id Target good's {@link IShoppingOrderGood.id}
  * @tag Order
  * @author Samchon
  *
@@ -60,7 +60,9 @@ export namespace confirm {
     orderId: string & tags.Format<"uuid">,
     id: string & tags.Format<"uuid">,
   ) =>
-    `/shoppings/customers/orders/${encodeURIComponent(orderId?.toString() ?? "null")}/goods/${encodeURIComponent(id?.toString() ?? "null")}/confirm`;
+    `/shoppings/customers/orders/${encodeURIComponent(
+      orderId?.toString() ?? "null",
+    )}/goods/${encodeURIComponent(id?.toString() ?? "null")}/confirm`;
   export const random = (): void => typia.random<void>();
   export const simulate = (
     connection: IConnection,

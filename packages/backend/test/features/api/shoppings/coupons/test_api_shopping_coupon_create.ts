@@ -25,7 +25,7 @@ export const test_api_shopping_coupon_create = async (pool: ConnectionPool) => {
   const coupons: IShoppingCoupon[] = (
     await ArrayUtil.asyncMap(
       ArrayUtil.subsets(
-        typia.misc
+        typia.reflect
           .literals<IShoppingCouponCriteria.Type>()
           .filter((row) => row.length !== 0),
       ),

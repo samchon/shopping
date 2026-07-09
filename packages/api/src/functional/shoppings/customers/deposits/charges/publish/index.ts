@@ -18,7 +18,7 @@ import typia from "typia";
  * If the charge has not been {@link IShoppingDepositChargePublish published} and
  * not deleted yet, then it is possible to publish the charge
  *
- * @param chargeId Target charge's {@link IShoppingDepositCharge.id }
+ * @param chargeId Target charge's {@link IShoppingDepositCharge.id}
  * @returns Whether the charge is publishable or not
  * @tag Discount
  * @author Samchon
@@ -55,7 +55,9 @@ export namespace able {
   } as const;
 
   export const path = (chargeId: string & tags.Format<"uuid">) =>
-    `/shoppings/customers/deposits/charges/${encodeURIComponent(chargeId?.toString() ?? "null")}/publish/able`;
+    `/shoppings/customers/deposits/charges/${encodeURIComponent(
+      chargeId?.toString() ?? "null",
+    )}/publish/able`;
   export const random = (): boolean => typia.random<boolean>();
   export const simulate = (
     connection: IConnection,
@@ -86,7 +88,7 @@ export namespace able {
  * case, {@link IShoppingDepositChargePublish.paid_at} would be `null` value,
  * so that you have to check it after calling this publish function.
  *
- * @param chargeId Target charge's {@link IShoppingDepositCharge.id }
+ * @param chargeId Target charge's {@link IShoppingDepositCharge.id}
  * @param input Creation info of the publish
  * @returns Newly created publish
  * @tag Discount
@@ -139,7 +141,9 @@ export namespace create {
   } as const;
 
   export const path = (chargeId: string & tags.Format<"uuid">) =>
-    `/shoppings/customers/deposits/charges/${encodeURIComponent(chargeId?.toString() ?? "null")}/publish`;
+    `/shoppings/customers/deposits/charges/${encodeURIComponent(
+      chargeId?.toString() ?? "null",
+    )}/publish`;
   export const random = (): IShoppingDepositChargePublish =>
     typia.random<IShoppingDepositChargePublish>();
   export const simulate = (

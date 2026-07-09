@@ -1,8 +1,8 @@
-import { AesPkcs5 } from "@nestia/fetcher";
+import { AesPkcs5 } from "@nestia/fetcher/lib/AesPkcs5";
 import { Prisma } from "@prisma/sdk";
 import { v4 } from "uuid";
 
-import { IEntity, IShoppingExternalUser } from "@samchon/shopping-api";
+import type { IEntity, IShoppingExternalUser } from "@samchon/shopping-api";
 
 import { ShoppingGlobal } from "../../../ShoppingGlobal";
 import { BcryptUtil } from "../../../utils/BcryptUtil";

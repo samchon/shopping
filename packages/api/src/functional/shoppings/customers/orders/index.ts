@@ -185,7 +185,7 @@ export namespace direct {
  * not possible to erase the order. In that case, you've to cancel the
  * payment by calling the {@link publish.cancel} function.
  *
- * @param id Target order's {@link IShoppingOrder.id }
+ * @param id Target order's {@link IShoppingOrder.id}
  * @tag Order
  * @author Samchon
  *
@@ -219,7 +219,9 @@ export namespace erase {
   } as const;
 
   export const path = (id: string & tags.Format<"uuid">) =>
-    `/shoppings/customers/orders/${encodeURIComponent(id?.toString() ?? "null")}`;
+    `/shoppings/customers/orders/${encodeURIComponent(
+      id?.toString() ?? "null",
+    )}`;
   export const random = (): void => typia.random<void>();
   export const simulate = (
     connection: IConnection,
@@ -246,7 +248,7 @@ export namespace erase {
  * {@link IShoppingDepositHistory deposits} and
  * {@link IShoppingMileageHistory mileages}.
  *
- * @param id Target order's {@link IShoppingOrder.id }
+ * @param id Target order's {@link IShoppingOrder.id}
  * @returns Detailed price info with discount
  * @tag Order
  * @author Samchon
@@ -283,7 +285,9 @@ export namespace price {
   } as const;
 
   export const path = (id: string & tags.Format<"uuid">) =>
-    `/shoppings/customers/orders/${encodeURIComponent(id?.toString() ?? "null")}/price`;
+    `/shoppings/customers/orders/${encodeURIComponent(
+      id?.toString() ?? "null",
+    )}/price`;
   export const random = (): IShoppingOrderPrice =>
     typia.random<IShoppingOrderPrice>();
   export const simulate = (
@@ -315,7 +319,7 @@ export namespace price {
  * been {@link IShoppingOrderPublish published} yet. If the order has
  * already been published, then no way to discount the price more.
  *
- * @param id Target order's {@link IShoppingOrder.id }
+ * @param id Target order's {@link IShoppingOrder.id}
  * @param input Request info for discountable
  * @returns Discountable info
  * @tag Order
@@ -368,7 +372,9 @@ export namespace discountable {
   } as const;
 
   export const path = (id: string & tags.Format<"uuid">) =>
-    `/shoppings/customers/orders/${encodeURIComponent(id?.toString() ?? "null")}/discountable`;
+    `/shoppings/customers/orders/${encodeURIComponent(
+      id?.toString() ?? "null",
+    )}/discountable`;
   export const random = (): IShoppingOrderDiscountable =>
     typia.random<IShoppingOrderDiscountable>();
   export const simulate = (
@@ -402,7 +408,7 @@ export namespace discountable {
  * adjustable or withdrawable, call the {@link discountable} function
  * before.
  *
- * @param id Target order's {@link IShoppingOrder.id }
+ * @param id Target order's {@link IShoppingOrder.id}
  * @param input Discount info
  * @returns Detailed price info with discount
  * @tag Order
@@ -455,7 +461,9 @@ export namespace discount {
   } as const;
 
   export const path = (id: string & tags.Format<"uuid">) =>
-    `/shoppings/customers/orders/${encodeURIComponent(id?.toString() ?? "null")}/discount`;
+    `/shoppings/customers/orders/${encodeURIComponent(
+      id?.toString() ?? "null",
+    )}/discount`;
   export const random = (): IShoppingOrderPrice =>
     typia.random<IShoppingOrderPrice>();
   export const simulate = (
@@ -569,7 +577,7 @@ export namespace index {
  * {@link IShoppingOrderPublish.paid_at paid} yet. In that case,
  * 404 not found error would be thrown.
  *
- * @param id Target order's {@link IShoppingOrder.id }
+ * @param id Target order's {@link IShoppingOrder.id}
  * @returns Order info
  * @tag Order
  * @author Samchon
@@ -606,7 +614,9 @@ export namespace at {
   } as const;
 
   export const path = (id: string & tags.Format<"uuid">) =>
-    `/shoppings/customers/orders/${encodeURIComponent(id?.toString() ?? "null")}`;
+    `/shoppings/customers/orders/${encodeURIComponent(
+      id?.toString() ?? "null",
+    )}`;
   export const random = (): IShoppingOrder => typia.random<IShoppingOrder>();
   export const simulate = (
     connection: IConnection,

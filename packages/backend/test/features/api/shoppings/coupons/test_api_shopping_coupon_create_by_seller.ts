@@ -47,7 +47,7 @@ export const test_api_shopping_coupon_create_by_seller = async (
 
   // PREPARE COMBINATIONS
   const subsets: IShoppingCouponCriteria.Type[][] = ArrayUtil.subsets(
-    typia.misc
+    typia.reflect
       .literals<IShoppingCouponCriteria.Type>()
       .filter((row) => row.length !== 0),
   );

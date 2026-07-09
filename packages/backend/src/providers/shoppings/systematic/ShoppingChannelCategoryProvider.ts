@@ -7,7 +7,7 @@ import {
 } from "tstl";
 import { v4 } from "uuid";
 
-import {
+import type {
   IEntity,
   IRecordMerge,
   IShoppingChannelCategory,

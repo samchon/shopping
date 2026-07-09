@@ -21,7 +21,7 @@ import typia from "typia";
  * {@link IShoppingSaleUnitStockInventory out of stock}, it is still possible
  * to publish because the order already has been applied.
  *
- * @param orderId Target order's {@link IShoppingOrder.id }
+ * @param orderId Target order's {@link IShoppingOrder.id}
  * @returns Whether the order is publishable or not
  * @tag Order
  * @author Samchon
@@ -58,7 +58,9 @@ export namespace able {
   } as const;
 
   export const path = (orderId: string & tags.Format<"uuid">) =>
-    `/shoppings/customers/orders/${encodeURIComponent(orderId?.toString() ?? "null")}/publish/able`;
+    `/shoppings/customers/orders/${encodeURIComponent(
+      orderId?.toString() ?? "null",
+    )}/publish/able`;
   export const random = (): boolean => typia.random<boolean>();
   export const simulate = (
     connection: IConnection,
@@ -92,7 +94,7 @@ export namespace able {
  * case, {@link IShoppingOrderPublish.paid_at} would be `null` value, so
  * that you have to check it after calling this publish function.
  *
- * @param orderId Target order's {@link IShoppingOrder.id }
+ * @param orderId Target order's {@link IShoppingOrder.id}
  * @param input Creation info of the publish
  * @returns Newly created publish
  * @tag Order
@@ -145,7 +147,9 @@ export namespace create {
   } as const;
 
   export const path = (orderId: string & tags.Format<"uuid">) =>
-    `/shoppings/customers/orders/${encodeURIComponent(orderId?.toString() ?? "null")}/publish`;
+    `/shoppings/customers/orders/${encodeURIComponent(
+      orderId?.toString() ?? "null",
+    )}/publish`;
   export const random = (): IShoppingOrderPublish =>
     typia.random<IShoppingOrderPublish>();
   export const simulate = (
@@ -175,7 +179,7 @@ export namespace create {
  * then it would be cancelled directly. If not, then payment cancel
  * request would be sent to the payment vendor system.
  *
- * @param orderId Target order's {@link IShoppingOrder.id }
+ * @param orderId Target order's {@link IShoppingOrder.id}
  * @tag Order
  * @author Samchon
  *
@@ -209,7 +213,9 @@ export namespace cancel {
   } as const;
 
   export const path = (orderId: string & tags.Format<"uuid">) =>
-    `/shoppings/customers/orders/${encodeURIComponent(orderId?.toString() ?? "null")}/publish`;
+    `/shoppings/customers/orders/${encodeURIComponent(
+      orderId?.toString() ?? "null",
+    )}/publish`;
   export const random = (): void => typia.random<void>();
   export const simulate = (
     connection: IConnection,

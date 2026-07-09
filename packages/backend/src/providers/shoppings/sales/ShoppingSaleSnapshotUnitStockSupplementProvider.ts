@@ -1,7 +1,7 @@
 import { Prisma } from "@prisma/sdk";
 import { v4 } from "uuid";
 
-import {
+import type {
   IEntity,
   IPage,
   IShoppingSaleUnitStockSupplement,

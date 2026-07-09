@@ -1,17 +1,19 @@
 import { Prisma } from "@prisma/sdk";
 
-import {
+import type {
   IEntity,
   IPage,
   IShoppingActorEntity,
   IShoppingSaleInquiryComment,
-  ShoppingAdministratorDiagnoser,
-  ShoppingSellerDiagnoser,
 } from "@samchon/shopping-api";
 
 import { ShoppingGlobal } from "../../../../ShoppingGlobal";
 import { ErrorProvider } from "../../../../utils/ErrorProvider";
 import { PaginationUtil } from "../../../../utils/PaginationUtil";
+import {
+  ShoppingAdministratorDiagnoser,
+  ShoppingSellerDiagnoser,
+} from "../../../../utils/ShoppingApiDiagnoser";
 import { BbsArticleCommentProvider } from "../../../common/BbsArticleCommentProvider";
 import { BbsArticleCommentSnapshotProvider } from "../../../common/BbsArticleCommentSnapshotProvider";
 import { ShoppingActorProvider } from "../../actors/ShoppingActorProvider";

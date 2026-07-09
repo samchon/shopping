@@ -174,7 +174,7 @@ export namespace hierarchical {
  * {@link IShoppingChannelCategory.IHierarchical hierarchical category}
  * information.
  *
- * @param id Target channel's {@link IShoppingChannel.id }
+ * @param id Target channel's {@link IShoppingChannel.id}
  * @returns Detailed channel info
  * @tag Systematic
  * @author Samchon
@@ -211,7 +211,9 @@ export namespace at {
   } as const;
 
   export const path = (id: string & tags.Format<"uuid">) =>
-    `/shoppings/sellers/systematic/channels/${encodeURIComponent(id?.toString() ?? "null")}`;
+    `/shoppings/sellers/systematic/channels/${encodeURIComponent(
+      id?.toString() ?? "null",
+    )}`;
   export const random = (): IShoppingChannel.IHierarchical =>
     typia.random<IShoppingChannel.IHierarchical>();
   export const simulate = (
@@ -239,7 +241,7 @@ export namespace at {
  * {@link IShoppingChannelCategory.IHierarchical hierarchical category}
  * information.
  *
- * @param code Target channel's {@link IShoppingChannel.code }
+ * @param code Target channel's {@link IShoppingChannel.code}
  * @returns Detailed channel info
  * @tag Systematic
  * @author Samchon
@@ -276,7 +278,9 @@ export namespace get {
   } as const;
 
   export const path = (code: string) =>
-    `/shoppings/sellers/systematic/channels/${encodeURIComponent(code?.toString() ?? "null")}/get`;
+    `/shoppings/sellers/systematic/channels/${encodeURIComponent(
+      code?.toString() ?? "null",
+    )}/get`;
   export const random = (): IShoppingChannel.IHierarchical =>
     typia.random<IShoppingChannel.IHierarchical>();
   export const simulate = (connection: IConnection, code: string): Output => {

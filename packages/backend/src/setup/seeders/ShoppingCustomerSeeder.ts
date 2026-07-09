@@ -1,4 +1,4 @@
-import { IShoppingCustomer } from "@samchon/shopping-api";
+import type { IShoppingCustomer } from "@samchon/shopping-api";
 
 import { ShoppingCustomerProvider } from "../../providers/shoppings/actors/ShoppingCustomerProvider";
 import { ShoppingMemberProvider } from "../../providers/shoppings/actors/ShoppingMemberProvider";

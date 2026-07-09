@@ -1,7 +1,7 @@
 import core from "@nestia/core";
 import { tags } from "typia";
 
-import {
+import type {
   IShoppingCartCommodity,
   IShoppingCustomer,
   IShoppingOrder,

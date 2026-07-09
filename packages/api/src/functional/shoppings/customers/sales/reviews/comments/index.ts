@@ -26,8 +26,8 @@ import typia from "typia";
  * to the your own {@link IShoppingSale sale}'s inquiries. Otherwise, you
  * can access to every inquiries of the sales.
  *
- * @param saleId Belonged sale's {@link IShoppingSale.id }
- * @param inquiryId Belonged inquiry's {@link IShoppingSaleInquiry.id }
+ * @param saleId Belonged sale's {@link IShoppingSale.id}
+ * @param inquiryId Belonged inquiry's {@link IShoppingSaleInquiry.id}
  * @param input Request info of pagination, searching and sorting
  * @returns Paginated inquiry comments
  * @tag Sale
@@ -84,7 +84,9 @@ export namespace index {
     saleId: string & tags.Format<"uuid">,
     inquiryId: string & tags.Format<"uuid">,
   ) =>
-    `/shoppings/customers/sales/${encodeURIComponent(saleId?.toString() ?? "null")}/reviews/${encodeURIComponent(inquiryId?.toString() ?? "null")}/comments`;
+    `/shoppings/customers/sales/${encodeURIComponent(
+      saleId?.toString() ?? "null",
+    )}/reviews/${encodeURIComponent(inquiryId?.toString() ?? "null")}/comments`;
   export const random = (): IPage<IShoppingSaleInquiryComment> =>
     typia.random<IPage<IShoppingSaleInquiryComment>>();
   export const simulate = (
@@ -117,9 +119,9 @@ export namespace index {
  * access to the your own {@link IShoppingSale sale}'s inquiry comment.
  * Otherwise, you can access to every inquiry comments of the sales.
  *
- * @param saleId Belonged sale's {@link IShoppingSale.id }
- * @param inquiryId Belonged inquiry's {@link IShoppingSaleInquiry.id }
- * @param id Target inquiry comment's {@link IShoppingSaleInquiryComment.id }
+ * @param saleId Belonged sale's {@link IShoppingSale.id}
+ * @param inquiryId Belonged inquiry's {@link IShoppingSaleInquiry.id}
+ * @param id Target inquiry comment's {@link IShoppingSaleInquiryComment.id}
  * @returns Detailed inquiry comment info
  * @tag Sale
  * @author Samchon
@@ -162,7 +164,11 @@ export namespace at {
     inquiryId: string & tags.Format<"uuid">,
     id: string & tags.Format<"uuid">,
   ) =>
-    `/shoppings/customers/sales/${encodeURIComponent(saleId?.toString() ?? "null")}/reviews/${encodeURIComponent(inquiryId?.toString() ?? "null")}/comments/${encodeURIComponent(id?.toString() ?? "null")}`;
+    `/shoppings/customers/sales/${encodeURIComponent(
+      saleId?.toString() ?? "null",
+    )}/reviews/${encodeURIComponent(
+      inquiryId?.toString() ?? "null",
+    )}/comments/${encodeURIComponent(id?.toString() ?? "null")}`;
   export const random = (): IShoppingSaleInquiryComment =>
     typia.random<IShoppingSaleInquiryComment>();
   export const simulate = (
@@ -194,8 +200,8 @@ export namespace at {
  * create an inquiry comment to your own {@link IShoppingSale sale}'s inquiry.
  * Otherwise, you can create an inquiry comment to every inquiries of the sales.
  *
- * @param saleId Belonged sale's {@link IShoppingSale.id }
- * @param inquiryId Target inquiry's {@link IShoppingSaleInquiry.id }
+ * @param saleId Belonged sale's {@link IShoppingSale.id}
+ * @param inquiryId Target inquiry's {@link IShoppingSaleInquiry.id}
  * @param input Creation info of the inquiry comment
  * @returns Newly created inquiry comment
  * @tag Sale
@@ -252,7 +258,9 @@ export namespace create {
     saleId: string & tags.Format<"uuid">,
     inquiryId: string & tags.Format<"uuid">,
   ) =>
-    `/shoppings/customers/sales/${encodeURIComponent(saleId?.toString() ?? "null")}/reviews/${encodeURIComponent(inquiryId?.toString() ?? "null")}/comments`;
+    `/shoppings/customers/sales/${encodeURIComponent(
+      saleId?.toString() ?? "null",
+    )}/reviews/${encodeURIComponent(inquiryId?.toString() ?? "null")}/comments`;
   export const random = (): IShoppingSaleInquiryComment =>
     typia.random<IShoppingSaleInquiryComment>();
   export const simulate = (
@@ -290,9 +298,9 @@ export namespace create {
  * manipulating the circumstances due to the nature of e-commerce, where
  * disputes easily arise. That is, to preserve evidence.
  *
- * @param saleId Belonged sale's {@link IShoppingSale.id }
- * @param inquiryId Belonged inquiry's {@link IShoppingSaleInquiry.id }
- * @param id Target inquiry comment's {@link IShoppingSaleInquiryComment.id }
+ * @param saleId Belonged sale's {@link IShoppingSale.id}
+ * @param inquiryId Belonged inquiry's {@link IShoppingSaleInquiry.id}
+ * @param id Target inquiry comment's {@link IShoppingSaleInquiryComment.id}
  * @param input Update info of the inquiry comment
  * @returns Newly created snapshot record of the inquiry comment
  * @tag Sale
@@ -351,7 +359,11 @@ export namespace update {
     inquiryId: string & tags.Format<"uuid">,
     id: string & tags.Format<"uuid">,
   ) =>
-    `/shoppings/customers/sales/${encodeURIComponent(saleId?.toString() ?? "null")}/reviews/${encodeURIComponent(inquiryId?.toString() ?? "null")}/comments/${encodeURIComponent(id?.toString() ?? "null")}`;
+    `/shoppings/customers/sales/${encodeURIComponent(
+      saleId?.toString() ?? "null",
+    )}/reviews/${encodeURIComponent(
+      inquiryId?.toString() ?? "null",
+    )}/comments/${encodeURIComponent(id?.toString() ?? "null")}`;
   export const random = (): IShoppingSaleInquiryComment.ISnapshot =>
     typia.random<IShoppingSaleInquiryComment.ISnapshot>();
   export const simulate = (

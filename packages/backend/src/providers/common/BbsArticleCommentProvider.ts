@@ -1,7 +1,7 @@
 import { Prisma } from "@prisma/sdk";
 import { v4 } from "uuid";
 
-import { IBbsArticleComment, IEntity } from "@samchon/shopping-api";
+import type { IBbsArticleComment, IEntity } from "@samchon/shopping-api";
 
 import { BbsArticleCommentSnapshotProvider } from "./BbsArticleCommentSnapshotProvider";
 

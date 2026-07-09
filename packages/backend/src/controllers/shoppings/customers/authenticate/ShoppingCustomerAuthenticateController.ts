@@ -2,7 +2,7 @@ import core from "@nestia/core";
 import { Controller, Request } from "@nestjs/common";
 import { FastifyRequest } from "fastify";
 
-import {
+import type {
   IShoppingCitizen,
   IShoppingCustomer,
   IShoppingExternalUser,

@@ -92,7 +92,7 @@ export namespace index {
  *
  * Get a {@link IShoppingDepositCharge deposit charge} information.
  *
- * @param id Target deposit charge's {@link IShoppingDepositCharge.id }
+ * @param id Target deposit charge's {@link IShoppingDepositCharge.id}
  * @returns Deposit charge info
  * @tag Discount
  * @author Samchon
@@ -129,7 +129,9 @@ export namespace at {
   } as const;
 
   export const path = (id: string) =>
-    `/shoppings/customers/deposits/charges/${encodeURIComponent(id?.toString() ?? "null")}`;
+    `/shoppings/customers/deposits/charges/${encodeURIComponent(
+      id?.toString() ?? "null",
+    )}`;
   export const random = (): IShoppingDepositCharge =>
     typia.random<IShoppingDepositCharge>();
   export const simulate = (connection: IConnection, id: string): Output => {
@@ -229,7 +231,7 @@ export namespace create {
  * then it is not possible to update the deposit charge. Only 410 gone exception
  * would be thrown.
  *
- * @param id Target deposit charge's {@link IShoppingDepositCharge.id }
+ * @param id Target deposit charge's {@link IShoppingDepositCharge.id}
  * @param input Value to change
  * @tag Discount
  * @author Samchon
@@ -280,7 +282,9 @@ export namespace update {
   } as const;
 
   export const path = (id: string) =>
-    `/shoppings/customers/deposits/charges/${encodeURIComponent(id?.toString() ?? "null")}`;
+    `/shoppings/customers/deposits/charges/${encodeURIComponent(
+      id?.toString() ?? "null",
+    )}`;
   export const random = (): void => typia.random<void>();
   export const simulate = (
     connection: IConnection,
@@ -309,7 +313,7 @@ export namespace update {
  * it is not possible to erase the deposit charge. In that case, you've to cancel
  * the payment by calling the {@link publish.cancel} function.
  *
- * @param id Target deposit charge's {@link IShoppingDepositCharge.id }
+ * @param id Target deposit charge's {@link IShoppingDepositCharge.id}
  * @tag Discount
  * @author Samchon
  *
@@ -343,7 +347,9 @@ export namespace erase {
   } as const;
 
   export const path = (id: string) =>
-    `/shoppings/customers/deposits/charges/${encodeURIComponent(id?.toString() ?? "null")}`;
+    `/shoppings/customers/deposits/charges/${encodeURIComponent(
+      id?.toString() ?? "null",
+    )}`;
   export const random = (): void => typia.random<void>();
   export const simulate = (connection: IConnection, id: string): void => {
     const assert = NestiaSimulator.assert({

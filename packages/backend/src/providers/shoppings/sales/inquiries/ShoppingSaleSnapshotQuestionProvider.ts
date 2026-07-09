@@ -1,6 +1,6 @@
 import { Prisma } from "@prisma/sdk";
 
-import {
+import type {
   IBbsArticle,
   IEntity,
   IPage,

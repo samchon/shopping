@@ -2,7 +2,7 @@ import { ArrayUtil } from "@nestia/e2e";
 import { Prisma } from "@prisma/sdk";
 import { v4 } from "uuid";
 
-import {
+import type {
   IDiagnosis,
   IShoppingActorEntity,
   IShoppingDelivery,

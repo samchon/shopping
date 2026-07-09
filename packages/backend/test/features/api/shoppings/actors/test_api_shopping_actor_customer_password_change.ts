@@ -65,7 +65,7 @@ export const test_api_shopping_actor_customer_password_change = async (
 const validate = (title: string, x: IShoppingCustomer, y: IShoppingCustomer) =>
   TestValidator.equals(
     title,
-    typia.misc.clone<Omit<IShoppingCustomer, "id" | "created_at">>(x),
+    typia.plain.clone<Omit<IShoppingCustomer, "id" | "created_at">>(x),
     y,
   );
 

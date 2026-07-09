@@ -1,7 +1,7 @@
 import { Prisma } from "@prisma/sdk";
 import { v4 } from "uuid";
 
-import { IShoppingSaleContent } from "@samchon/shopping-api";
+import type { IShoppingSaleContent } from "@samchon/shopping-api";
 
 import { AttachmentFileProvider } from "../../common/AttachmentFileProvider";
 

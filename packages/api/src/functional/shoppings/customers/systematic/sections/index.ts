@@ -90,7 +90,7 @@ export namespace index {
  *
  * Get a detailed {@link IShoppingSection section} information.
  *
- * @param id Target section's {@link IShoppingSection.id }
+ * @param id Target section's {@link IShoppingSection.id}
  * @returns Detailed section info
  * @tag Section
  * @author Samchon
@@ -127,7 +127,9 @@ export namespace at {
   } as const;
 
   export const path = (id: string & tags.Format<"uuid">) =>
-    `/shoppings/customers/systematic/sections/${encodeURIComponent(id?.toString() ?? "null")}`;
+    `/shoppings/customers/systematic/sections/${encodeURIComponent(
+      id?.toString() ?? "null",
+    )}`;
   export const random = (): IShoppingSection =>
     typia.random<IShoppingSection>();
   export const simulate = (
@@ -150,7 +152,7 @@ export namespace at {
  *
  * Get a detailed {@link IShoppingSection section} information by its code.
  *
- * @param code Target section's {@link IShoppingSection.code }
+ * @param code Target section's {@link IShoppingSection.code}
  * @returns Detailed section info
  * @tag Section
  * @author Samchon
@@ -187,7 +189,9 @@ export namespace get {
   } as const;
 
   export const path = (code: string) =>
-    `/shoppings/customers/systematic/sections/${encodeURIComponent(code?.toString() ?? "null")}/get`;
+    `/shoppings/customers/systematic/sections/${encodeURIComponent(
+      code?.toString() ?? "null",
+    )}/get`;
   export const random = (): IShoppingSection =>
     typia.random<IShoppingSection>();
   export const simulate = (connection: IConnection, code: string): Output => {

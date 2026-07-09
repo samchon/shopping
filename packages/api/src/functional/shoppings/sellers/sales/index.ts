@@ -109,7 +109,7 @@ export namespace create {
  * to demonstrate operating performance by changing price, content, and
  * composition of the product. This snapshot concept would be helpful for it.
  *
- * @param id Target sale's {@link IShoppingSale.id }
+ * @param id Target sale's {@link IShoppingSale.id}
  * @param input New information of the sale
  * @returns Updated sale with new snapshot
  * @tag Sale
@@ -193,7 +193,7 @@ export namespace update {
  * Of course, if closing time is less than opening time or not,
  * 428 unprocessable entity error would be thrown.
  *
- * @param id Target sale's {@link IShoppingSale.id }
+ * @param id Target sale's {@link IShoppingSale.id}
  * @param input New opening and closing time
  * @tag Sale
  * @author Samchon
@@ -244,7 +244,9 @@ export namespace open {
   } as const;
 
   export const path = (id: string & tags.Format<"uuid">) =>
-    `/shoppings/sellers/sales/${encodeURIComponent(id?.toString() ?? "null")}/open`;
+    `/shoppings/sellers/sales/${encodeURIComponent(
+      id?.toString() ?? "null",
+    )}/open`;
   export const random = (): void => typia.random<void>();
   export const simulate = (
     connection: IConnection,
@@ -272,7 +274,7 @@ export namespace open {
  * It would be useful for creating a new replication
  * {@link IShoppingSale sale} with similar innformatiopn.
  *
- * @param id Target sale's {@link IShoppingSale.id }
+ * @param id Target sale's {@link IShoppingSale.id}
  * @returns Creation info of the sale for replication
  * @tag Sale
  * @author Samchon
@@ -309,7 +311,9 @@ export namespace replica {
   } as const;
 
   export const path = (id: string & tags.Format<"uuid">) =>
-    `/shoppings/sellers/sales/${encodeURIComponent(id?.toString() ?? "null")}/replica`;
+    `/shoppings/sellers/sales/${encodeURIComponent(
+      id?.toString() ?? "null",
+    )}/replica`;
   export const random = (): IShoppingSale.ICreate =>
     typia.random<IShoppingSale.ICreate>();
   export const simulate = (
@@ -347,7 +351,7 @@ export namespace replica {
  * {@link IShoppingSeller seller} must {@link IShoppingDelivery deliver} the
  * good to the customer.
  *
- * @param id Target sale's {@link IShoppingSale.id }
+ * @param id Target sale's {@link IShoppingSale.id}
  * @tag Sale
  * @author Samchon
  *
@@ -381,7 +385,9 @@ export namespace pause {
   } as const;
 
   export const path = (id: string & tags.Format<"uuid">) =>
-    `/shoppings/sellers/sales/${encodeURIComponent(id?.toString() ?? "null")}/pause`;
+    `/shoppings/sellers/sales/${encodeURIComponent(
+      id?.toString() ?? "null",
+    )}/pause`;
   export const random = (): void => typia.random<void>();
   export const simulate = (
     connection: IConnection,
@@ -417,7 +423,7 @@ export namespace pause {
  * {@link IShoppingSeller seller} must {@link IShoppingDelivery deliver} the
  * good to the customer.
  *
- * @param id Target sale's {@link IShoppingSale.id }
+ * @param id Target sale's {@link IShoppingSale.id}
  * @tag Sale
  * @author Samchon
  *
@@ -451,7 +457,9 @@ export namespace suspend {
   } as const;
 
   export const path = (id: string & tags.Format<"uuid">) =>
-    `/shoppings/sellers/sales/${encodeURIComponent(id?.toString() ?? "null")}/suspend`;
+    `/shoppings/sellers/sales/${encodeURIComponent(
+      id?.toString() ?? "null",
+    )}/suspend`;
   export const random = (): void => typia.random<void>();
   export const simulate = (
     connection: IConnection,
@@ -481,7 +489,7 @@ export namespace suspend {
  * {@link IShoppingCartCommodity commodity} will be listed again on the
  * shopping cart.
  *
- * @param id Target sale's {@link IShoppingSale.id }
+ * @param id Target sale's {@link IShoppingSale.id}
  * @tag Sale
  * @author Samchon
  *
@@ -515,7 +523,9 @@ export namespace restore {
   } as const;
 
   export const path = (id: string & tags.Format<"uuid">) =>
-    `/shoppings/sellers/sales/${encodeURIComponent(id?.toString() ?? "null")}/restore`;
+    `/shoppings/sellers/sales/${encodeURIComponent(
+      id?.toString() ?? "null",
+    )}/restore`;
   export const random = (): void => typia.random<void>();
   export const simulate = (
     connection: IConnection,
@@ -715,7 +725,7 @@ export namespace index {
  * > Additionally, please do not summarize the SKU information. Show every
  * > option and stock in the sale with detailed information.
  *
- * @param id Target sale's {@link IShoppingSale.id }
+ * @param id Target sale's {@link IShoppingSale.id}
  * @returns Detailed sale information
  * @tag Sale
  * @author Samchon

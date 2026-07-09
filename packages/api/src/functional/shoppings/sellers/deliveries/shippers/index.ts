@@ -21,7 +21,7 @@ import typia from "typia";
  * or {@link IShoppingDeliveryPiece} case, but just informs to the
  * {@link IShoppingCustomer customer}.
  *
- * @param deliveryId Belonged delivery's {@link IShoppingDelivery.id }
+ * @param deliveryId Belonged delivery's {@link IShoppingDelivery.id}
  * @param input Creation info of the shipper
  * @returns Newly created shipper
  * @tag Order
@@ -74,7 +74,9 @@ export namespace create {
   } as const;
 
   export const path = (deliveryId: string & tags.Format<"uuid">) =>
-    `/shoppings/sellers/deliveries/${encodeURIComponent(deliveryId?.toString() ?? "null")}/shippers`;
+    `/shoppings/sellers/deliveries/${encodeURIComponent(
+      deliveryId?.toString() ?? "null",
+    )}/shippers`;
   export const random = (): IShoppingDeliveryShipper =>
     typia.random<IShoppingDeliveryShipper>();
   export const simulate = (
