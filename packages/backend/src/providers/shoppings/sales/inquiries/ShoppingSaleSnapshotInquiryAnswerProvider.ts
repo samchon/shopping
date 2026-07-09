@@ -1,12 +1,10 @@
-import { InternalServerErrorException } from "@nestjs/common";
-import { Prisma } from "@prisma/sdk";
-
 import type {
   IEntity,
   IShoppingSaleInquiryAnswer,
   IShoppingSeller,
 } from "@samchon/shopping-api";
-
+import { InternalServerErrorException } from "@nestjs/common";
+import { Prisma } from "@prisma/sdk";
 import { ShoppingGlobal } from "../../../../ShoppingGlobal";
 import { BbsArticleProvider } from "../../../common/BbsArticleProvider";
 import { BbsArticleSnapshotProvider } from "../../../common/BbsArticleSnapshotProvider";

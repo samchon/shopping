@@ -1,12 +1,9 @@
-import { ArrayUtil, TestValidator } from "@nestia/e2e";
-
-import ShoppingApi from "@samchon/shopping-api";
-import {
+import ShoppingApi, {
   IShoppingCartCommodity,
   IShoppingOrder,
   IShoppingOrderDiscountable,
 } from "@samchon/shopping-api";
-
+import { ArrayUtil, TestValidator } from "@nestia/e2e";
 import { generate_random_order } from "./internal/generate_random_order";
 import { validate_api_shopping_order_discountable } from "./internal/validate_api_shopping_order_discountable";
 

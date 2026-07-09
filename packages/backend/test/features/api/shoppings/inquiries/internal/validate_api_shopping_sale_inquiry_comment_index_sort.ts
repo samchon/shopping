@@ -1,7 +1,4 @@
-import { GaffComparator, TestValidator } from "@nestia/e2e";
-
-import ShoppingApi from "@samchon/shopping-api";
-import {
+import ShoppingApi, {
   IPage,
   IShoppingAdministrator,
   IShoppingCustomer,
@@ -10,7 +7,7 @@ import {
   IShoppingSaleInquiryComment,
   IShoppingSeller,
 } from "@samchon/shopping-api";
-
+import { GaffComparator, TestValidator } from "@nestia/e2e";
 import { ConnectionPool } from "../../../../../ConnectionPool";
 import { generate_random_sale_inquiry_comment } from "./generate_random_sale_inquiry_comment";
 

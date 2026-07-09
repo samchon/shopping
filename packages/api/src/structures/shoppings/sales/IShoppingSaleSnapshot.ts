@@ -1,5 +1,4 @@
 import { tags } from "typia";
-
 import { IShoppingSeller } from "../actors/IShoppingSeller";
 import { IShoppingChannelCategory } from "../systematic/IShoppingChannelCategory";
 import { IShoppingSection } from "../systematic/IShoppingSection";

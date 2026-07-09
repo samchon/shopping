@@ -1,5 +1,4 @@
-import cp from "child_process";
-
+import cp from "node:child_process";
 import { ShoppingGlobal } from "../ShoppingGlobal";
 import { ShoppingAdministratorSeeder } from "./seeders/ShoppingAdministratorSeeder";
 import { ShoppingChannelSeeder } from "./seeders/ShoppingChannelSeeder";

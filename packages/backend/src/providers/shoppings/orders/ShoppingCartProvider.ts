@@ -1,7 +1,5 @@
-import { v4 } from "uuid";
-
 import type { IEntity, IShoppingActorEntity } from "@samchon/shopping-api";
-
+import { v4 } from "uuid";
 import { ShoppingGlobal } from "../../../ShoppingGlobal";
 import { ShoppingCustomerProvider } from "../actors/ShoppingCustomerProvider";
 

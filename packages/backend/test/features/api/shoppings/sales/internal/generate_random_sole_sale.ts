@@ -1,11 +1,9 @@
-import ShoppingApi from "@samchon/shopping-api";
-import {
+import ShoppingApi, {
   IShoppingPrice,
   IShoppingSale,
   IShoppingSaleUnit,
   IShoppingSaleUnitStock,
 } from "@samchon/shopping-api";
-
 import { ConnectionPool } from "../../../../../ConnectionPool";
 import { prepare_random_sale } from "./prepare_random_sale";
 

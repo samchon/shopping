@@ -1,13 +1,11 @@
-import core from "@nestia/core";
-import { Controller } from "@nestjs/common";
-import { tags } from "typia";
-
 import type {
   IPage,
   IShoppingActorEntity,
   IShoppingSaleReview,
 } from "@samchon/shopping-api";
-
+import core from "@nestia/core";
+import { Controller } from "@nestjs/common";
+import { tags } from "typia";
 import { ShoppingSaleReviewProvider } from "../../../../providers/shoppings/sales/inquiries/ShoppingSaleSnapshotReviewProvider";
 import { IShoppingControllerProps } from "../IShoppingControllerProps";
 

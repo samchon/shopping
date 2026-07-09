@@ -1,5 +1,3 @@
-import { v4 } from "uuid";
-
 import type {
   IAttachmentFile,
   IDiagnosis,
@@ -28,6 +26,7 @@ import type {
   IShoppingSaleUnitStockChoice,
   IShoppingSeller,
 } from "@samchon/shopping-api";
+import { v4 } from "uuid";
 
 export namespace ShoppingCustomerDiagnoser {
   export const invert = (
@@ -392,7 +391,9 @@ namespace ShoppingCartCommodityStockDiagnoser {
     const stock: IShoppingSaleUnitStock | undefined = props.unit.stocks.find(
       (stock) => stock.id === props.input.stock_id,
     );
-    if (stock === undefined) throw new Error("Unable to find the matched stock.");
+    if (stock === undefined) throw new Error(
+      "Unable to find the matched stock.",
+    );
     return {
       id: stock.id,
       name: stock.name,
@@ -584,7 +585,12 @@ namespace ShoppingSaleUnitStockChoiceDiagnoser {
       throw new Error(
         "Error on ShoppingSaleUnitStockChoiceDiagnoser.replica(): unable to find the matched option.",
       );
-    const option: IShoppingSaleUnitOption = props.options[optionIndex];
+    const option: IShoppingSaleUnitOption | undefined =
+      props.options[optionIndex];
+    if (option === undefined)
+      throw new Error(
+        "Error on ShoppingSaleUnitStockChoiceDiagnoser.replica(): unable to find the matched option.",
+      );
     if (option.type !== "select")
       throw new Error(
         "Error on ShoppingSaleUnitStockChoiceDiagnoser.replica(): option type must be 'select'.",
@@ -815,22 +821,29 @@ namespace ShoppingDiscountableDiagnoser {
         coupons,
       }),
     );
-    return combinations.map((comb, i) => ({
-      coupons: matrix[i].filter((x) => coupons.some((y) => x.id === y.id)),
-      tickets: tickets.filter((t) =>
-        matrix[i].some((c) => c.id === t.coupon.id),
-      ),
-      entries: [...comb.coupon_to_elem_dict.entries()]
-        .map(([coupon_id, elements]) =>
-          [...elements.entries()].map(([item_id, amount]) => ({
-            coupon_id,
-            item_id,
-            amount,
-          })),
-        )
-        .flat(),
-      amount: comb.amount,
-    }));
+    return combinations.map((comb, i) => {
+      const row: IShoppingCoupon[] | undefined = matrix[i];
+      if (row === undefined)
+        throw new Error(
+          "Error on ShoppingDiscountableDiagnoser.combine(): unable to find the matched coupon row.",
+        );
+      return {
+        coupons: row.filter((x) => coupons.some((y) => x.id === y.id)),
+        tickets: tickets.filter((t) =>
+          row.some((c) => c.id === t.coupon.id),
+        ),
+        entries: [...comb.coupon_to_elem_dict.entries()]
+          .map(([coupon_id, elements]) =>
+            [...elements.entries()].map(([item_id, amount]) => ({
+              coupon_id,
+              item_id,
+              amount,
+            })),
+          )
+          .flat(),
+        amount: comb.amount,
+      };
+    });
   };
 }
 

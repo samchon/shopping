@@ -1,8 +1,5 @@
+import ShoppingApi, { IShoppingSale } from "@samchon/shopping-api";
 import { ArrayUtil, TestValidator } from "@nestia/e2e";
-
-import ShoppingApi from "@samchon/shopping-api";
-import { IShoppingSale } from "@samchon/shopping-api";
-
 import { ConnectionPool } from "../../../../ConnectionPool";
 import { test_api_shopping_actor_admin_login } from "../actors/test_api_shopping_actor_admin_login";
 import { test_api_shopping_actor_customer_create } from "../actors/test_api_shopping_actor_customer_create";
@@ -28,7 +25,9 @@ export const test_api_shopping_sale_update = async (
       ),
     )),
   ];
-  total.forEach((sale, i) => (sale.latest = i === total.length - 1));
+  total.forEach((sale, i) => {
+    sale.latest = i === total.length - 1;
+  });
 
   const read: IShoppingSale[] = await ArrayUtil.asyncMap(total, (s) =>
     ShoppingApi.functional.shoppings.sellers.sales.snapshots.flip(

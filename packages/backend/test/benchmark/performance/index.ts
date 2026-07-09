@@ -1,13 +1,12 @@
 import { DynamicBenchmarker } from "@nestia/benchmark";
 import cliProgress from "cli-progress";
-import fs from "fs";
-import os from "os";
+import fs from "node:fs";
+import os from "node:os";
 import { IPointer } from "tstl";
-
+import { ShoppingSetupWizard } from "../../../src/setup/ShoppingSetupWizard";
 import { ShoppingBackend } from "../../../src/ShoppingBackend";
 import { ShoppingConfiguration } from "../../../src/ShoppingConfiguration";
 import { ShoppingGlobal } from "../../../src/ShoppingGlobal";
-import { ShoppingSetupWizard } from "../../../src/setup/ShoppingSetupWizard";
 import { ArgumentParser } from "../../internal/ArgumentParser";
 import { StopWatch } from "../../internal/StopWatch";
 
@@ -101,14 +100,15 @@ const main = async (): Promise<void> => {
       recursive: true,
     });
   } catch {}
+  const cpu: os.CpuInfo | undefined = os.cpus()[0];
+  const benchmarkName: string = (cpu?.model ?? "unknown")
+    .trim()
+    .split("\\")
+    .join("")
+    .split("/")
+    .join("");
   await fs.promises.writeFile(
-    `${ShoppingConfiguration.ROOT}/docs/benchmarks/${os
-      .cpus()[0]
-      .model.trim()
-      .split("\\")
-      .join("")
-      .split("/")
-      .join("")}.md`,
+    `${ShoppingConfiguration.ROOT}/docs/benchmarks/${benchmarkName}.md`,
     DynamicBenchmarker.markdown(report),
     "utf8",
   );
@@ -116,7 +116,7 @@ const main = async (): Promise<void> => {
   // CLOSE
   await backend.close();
 };
-main().catch((exp) => {
+main().catch((exp: unknown) => {
   console.error(exp);
   process.exit(-1);
 });

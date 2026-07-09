@@ -12,7 +12,7 @@ TestAutomation.execute({
   close: async (backend) => {
     await backend.close();
   },
-}).catch((exp) => {
+}).catch((exp: unknown) => {
   console.log(exp);
   process.exit(-1);
 });

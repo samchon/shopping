@@ -13,7 +13,7 @@ import ShoppingApi from "@samchon/shopping-api";
 
 import { shoppingConfig } from "./config";
 import { ApiRouteError } from "./errors";
-import { type SessionContext, requireCurrentCustomer } from "./session";
+import { requireCurrentCustomer, type SessionContext } from "./session";
 
 function getSort(sort: CatalogSortKey) {
   switch (sort) {

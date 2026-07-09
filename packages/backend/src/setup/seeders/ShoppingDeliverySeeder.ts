@@ -5,13 +5,12 @@ import type {
   IShoppingDeliveryPiece,
   IShoppingSeller,
 } from "@samchon/shopping-api";
-
-import { ShoppingGlobal } from "../../ShoppingGlobal";
 import { ShoppingCustomerProvider } from "../../providers/shoppings/actors/ShoppingCustomerProvider";
 import { ShoppingSellerProvider } from "../../providers/shoppings/actors/ShoppingSellerProvider";
 import { ShoppingDeliveryPieceProvider } from "../../providers/shoppings/deliveries/ShoppingDeliveryPieceProvider";
 import { ShoppingDeliveryProvider } from "../../providers/shoppings/deliveries/ShoppingDeliveryProvider";
 import { ShoppingDeliveryShipperProvider } from "../../providers/shoppings/deliveries/ShoppingDeliveryShipperProvider";
+import { ShoppingGlobal } from "../../ShoppingGlobal";
 
 export namespace ShoppingDeliverySeeder {
   export const seed = async (): Promise<void> => {

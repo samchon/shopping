@@ -159,7 +159,9 @@ export function SessionDialog({
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="citizen-mobile">Mobile</Label>
-                <Input id="citizen-mobile" {...citizenForm.register("mobile")} />
+                <Input id="citizen-mobile" {...citizenForm.register(
+                  "mobile",
+                )} />
                 <FormMessage message={citizenForm.formState.errors.mobile?.message} />
               </div>
               <Button type="submit" disabled={activateCitizen.isPending}>

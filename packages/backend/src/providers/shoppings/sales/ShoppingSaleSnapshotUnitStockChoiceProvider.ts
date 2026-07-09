@@ -1,8 +1,7 @@
+import type { IShoppingSaleUnitStockChoice } from "@samchon/shopping-api";
 import { Prisma } from "@prisma/sdk";
 import { v4 } from "uuid";
-
-import type { IShoppingSaleUnitStockChoice } from "@samchon/shopping-api";
-
+import { ErrorProvider } from "../../../utils/ErrorProvider";
 import { ShoppingSaleSnapshotUnitOptionProvider } from "./ShoppingSaleSnapshotUnitOptionProvider";
 
 export namespace ShoppingSaleSnapshotUnitStockChoiceProvider {
@@ -28,7 +27,11 @@ export namespace ShoppingSaleSnapshotUnitStockChoiceProvider {
     sequence: number;
   }) => {
     const option = props.options[props.input.option_index];
+    if (option === undefined)
+      throw ErrorProvider.internal("No sale stock choice option found.");
     const candidate = option.candidates.create[props.input.candidate_index];
+    if (candidate === undefined)
+      throw ErrorProvider.internal("No sale stock choice candidate found.");
     return {
       id: v4(),
       option: { connect: { id: option.id } },

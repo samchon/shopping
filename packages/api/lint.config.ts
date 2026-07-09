@@ -1,13 +1,9 @@
 import type { ITtscLintConfig } from "@ttsc/lint";
-import shared from "../../config/lint.config";
 
-const config = {
-  ...shared,
-  ignores: ["src/functional/**/*.ts"],
-  rules: {
-    ...shared.rules,
-    "no-duplicate-imports": "off",
-  },
-} satisfies ITtscLintConfig;
-
-export default config;
+export default async () => {
+  const base = (await import("@samchon/shopping-config/lint")).default;
+  return {
+    ...base,
+    ignores: ["src/functional/**/*.ts"],
+  } satisfies ITtscLintConfig;
+};

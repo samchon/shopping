@@ -1,5 +1,4 @@
 import { v4 } from "uuid";
-
 import { IDiagnosis } from "../../../structures/common/IDiagnosis";
 import { IShoppingCartCommodity } from "../../../structures/shoppings/orders/IShoppingCartCommodity";
 import { IShoppingSale } from "../../../structures/shoppings/sales/IShoppingSale";

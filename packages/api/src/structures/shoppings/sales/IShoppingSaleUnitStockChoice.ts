@@ -1,5 +1,4 @@
 import { tags } from "typia";
-
 import { IShoppingSaleUnitOption } from "./IShoppingSaleUnitOption";
 import { IShoppingSaleUnitOptionCandidate } from "./IShoppingSaleUnitOptionCandidate";
 

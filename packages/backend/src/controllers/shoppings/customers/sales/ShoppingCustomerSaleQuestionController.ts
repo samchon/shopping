@@ -1,11 +1,9 @@
-import core from "@nestia/core";
-import { tags } from "typia";
-
 import type {
   IShoppingCustomer,
   IShoppingSaleQuestion,
 } from "@samchon/shopping-api";
-
+import core from "@nestia/core";
+import { tags } from "typia";
 import { ShoppingCustomerAuth } from "../../../../decorators/ShoppingCustomerAuth";
 import { ShoppingSaleQuestionProvider } from "../../../../providers/shoppings/sales/inquiries/ShoppingSaleSnapshotQuestionProvider";
 import { ShoppingSaleQuestionController } from "../../base/sales/ShoppingSaleQuestionController";

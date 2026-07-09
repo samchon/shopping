@@ -71,9 +71,19 @@ function getFieldOptions(unit: ProductUnitView) {
   );
 }
 
-function stockChoiceMap(unit: ProductUnitView, stockId: string) {
-  const stock = unit.stocks.find((candidate) => candidate.id === stockId) ?? unit.stocks[0];
-  return Object.fromEntries(stock?.choices.map((choice) => [choice.optionId, choice.candidateId]));
+function stockChoiceMap(
+  unit: ProductUnitView,
+  stockId: string,
+): Record<string, string> {
+  const stock = unit.stocks.find(
+    (candidate) => candidate.id === stockId,
+  ) ?? unit.stocks[0];
+  if (stock === undefined) {
+    return {};
+  }
+  return Object.fromEntries(
+    stock.choices.map((choice) => [choice.optionId, choice.candidateId]),
+  );
 }
 
 function findMatchingStock(
@@ -171,16 +181,23 @@ export function ProductDetailPage({ productId }: { productId: string }) {
       saleId: data.id,
       volume: 1,
       selections: data.units
-        .filter((unit) => selection[unit.id]?.enabled)
-        .map((unit) => ({
-          unitId: unit.id,
-          stockId: selection[unit.id].stockId,
-          quantity: selection[unit.id].quantity,
-          optionValues: getFieldOptions(unit).map((option) => ({
-            optionId: option.id,
-            value: selection[unit.id].fields[option.id] ?? null,
-          })),
-        })),
+        .flatMap((unit) => {
+          const unitSelection = selection[unit.id];
+          if (!unitSelection?.enabled) {
+            return [];
+          }
+          return [
+            {
+              unitId: unit.id,
+              stockId: unitSelection.stockId,
+              quantity: unitSelection.quantity,
+              optionValues: getFieldOptions(unit).map((option) => ({
+                optionId: option.id,
+                value: unitSelection.fields[option.id] ?? null,
+              })),
+            },
+          ];
+        }),
     };
 
     try {
@@ -188,7 +205,9 @@ export function ProductDetailPage({ productId }: { productId: string }) {
       toast.success("Added to cart.");
       router.push("/cart");
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Could not add the product.");
+      toast.error(
+        error instanceof Error ? error.message : "Could not add the product.",
+      );
     }
   }
 
@@ -319,6 +338,9 @@ export function ProductDetailPage({ productId }: { productId: string }) {
 
                 const activeStock =
                   unit.stocks.find((stock) => stock.id === unitState.stockId) ?? unit.stocks[0];
+                if (activeStock === undefined) {
+                  return null;
+                }
                 const variantOptions = getVariantOptions(unit);
                 const fieldOptions = getFieldOptions(unit);
                 const currentChoices = stockChoiceMap(unit, unitState.stockId);
@@ -380,6 +402,9 @@ export function ProductDetailPage({ productId }: { productId: string }) {
                                       option.id,
                                       candidateId,
                                     );
+                                    if (matched === undefined) {
+                                      return;
+                                    }
                                     setSelectionOverrides((current) => {
                                       const safeUnitState = {
                                         ...unitState,

@@ -1,10 +1,9 @@
 import type { IShoppingCustomer, IShoppingSeller } from "@samchon/shopping-api";
-
-import { ShoppingGlobal } from "../../ShoppingGlobal";
 import { ShoppingAdministratorProvider } from "../../providers/shoppings/actors/ShoppingAdministratorProvider";
 import { ShoppingCustomerProvider } from "../../providers/shoppings/actors/ShoppingCustomerProvider";
 import { ShoppingSellerProvider } from "../../providers/shoppings/actors/ShoppingSellerProvider";
 import { ShoppingCouponProvider } from "../../providers/shoppings/coupons/ShoppingCouponProvider";
+import { ShoppingGlobal } from "../../ShoppingGlobal";
 
 export namespace ShoppingCouponSeeder {
   export const seed = async (): Promise<void> => {

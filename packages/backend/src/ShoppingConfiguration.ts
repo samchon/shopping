@@ -5,9 +5,8 @@ import {
   NotFoundException,
 } from "@nestjs/common";
 import { Prisma } from "@prisma/sdk";
-import fs from "fs";
-import path from "path";
-
+import fs from "node:fs";
+import path from "node:path";
 import { ShoppingGlobal } from "./ShoppingGlobal";
 
 const EXTENSION = __filename.substr(-2);

@@ -75,11 +75,17 @@ export function AdminDashboardPage() {
   const createAdminMileage = useCreateAdminMileage();
 
   const [couponUnit, setCouponUnit] = useState<"amount" | "percent">("percent");
-  const [couponAccess, setCouponAccess] = useState<"public" | "private">("public");
+  const [couponAccess, setCouponAccess] = useState<"public" | "private">(
+    "public",
+  );
   const [couponExclusive, setCouponExclusive] = useState(false);
   const [couponMultiplicative, setCouponMultiplicative] = useState(false);
-  const [depositDirection, setDepositDirection] = useState<"income" | "outcome">("income");
-  const [mileageDirection, setMileageDirection] = useState<"income" | "outcome">("income");
+  const [depositDirection, setDepositDirection] = useState<"income" | "outcome">(
+    "income",
+  );
+  const [mileageDirection, setMileageDirection] = useState<"income" | "outcome">(
+    "income",
+  );
 
   const loginForm = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
@@ -173,7 +179,9 @@ export function AdminDashboardPage() {
                   >
                     <div className="grid gap-2">
                       <Label htmlFor="admin-email">Admin email</Label>
-                      <Input id="admin-email" {...loginForm.register("email")} />
+                      <Input id="admin-email" {...loginForm.register(
+                        "email",
+                      )} />
                       <FormMessage message={loginForm.formState.errors.email?.message} />
                     </div>
                     <div className="grid gap-2">

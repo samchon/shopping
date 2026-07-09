@@ -1,13 +1,11 @@
-import { Prisma } from "@prisma/sdk";
-import { v4 } from "uuid";
-
 import type {
   IDiagnosis,
   IShoppingCitizen,
   IShoppingCustomer,
   IShoppingMember,
 } from "@samchon/shopping-api";
-
+import { Prisma } from "@prisma/sdk";
+import { v4 } from "uuid";
 import { ShoppingGlobal } from "../../../ShoppingGlobal";
 import { BcryptUtil } from "../../../utils/BcryptUtil";
 import { ErrorProvider } from "../../../utils/ErrorProvider";

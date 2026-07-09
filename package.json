@@ -3,11 +3,10 @@
   "version": "0.1.0",
   "description": "Shopping monorepo",
   "scripts": {
-    "build": "pnpm -r build",
-    "lint": "pnpm --filter @samchon/shopping-api lint && pnpm --filter @samchon/shopping-backend lint && pnpm --filter @samchon/shopping-frontend lint",
-    "format": "pnpm --filter @samchon/shopping-api format && pnpm --filter @samchon/shopping-backend format && pnpm --filter @samchon/shopping-frontend format",
-    "format:check": "pnpm lint",
-    "start": "ttsx scripts/start.ts"
+    "build": "pnpm -r --if-present build",
+    "lint": "pnpm -r --if-present lint",
+    "format": "pnpm -r --if-present format",
+    "start": "node scripts/start.js"
   },
   "repository": {
     "type": "git",
@@ -28,11 +27,5 @@
       "sharp",
       "unrs-resolver"
     ]
-  },
-  "devDependencies": {
-    "@ttsc/lint": "catalog:typescript",
-    "@types/node": "^25.6.0",
-    "ttsc": "catalog:typescript",
-    "typescript": "catalog:typescript"
   }
 }

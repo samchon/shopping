@@ -1,7 +1,3 @@
-import { ArrayUtil } from "@nestia/e2e";
-import { Prisma } from "@prisma/sdk";
-import { v4 } from "uuid";
-
 import type {
   IEntity,
   IPage,
@@ -12,7 +8,9 @@ import type {
   IShoppingSaleSnapshot,
   IShoppingSaleUnit,
 } from "@samchon/shopping-api";
-
+import { ArrayUtil } from "@nestia/e2e";
+import { Prisma } from "@prisma/sdk";
+import { v4 } from "uuid";
 import { ShoppingGlobal } from "../../../ShoppingGlobal";
 import { ErrorProvider } from "../../../utils/ErrorProvider";
 import { PaginationUtil } from "../../../utils/PaginationUtil";
@@ -45,17 +43,17 @@ export namespace ShoppingSaleSnapshotProvider {
         id: input.shopping_sale_id,
         snapshot_id: input.id,
         categories: await ArrayUtil.asyncMap(
-          input.to_categories.sort((a, b) => (a.sequence = b.sequence)),
+          input.to_categories.sort((a, b) => a.sequence - b.sequence),
           ShoppingSaleSnapshotCategoryProvider.json.transform,
         ),
         units: input.units
-          .sort((a, b) => (a.sequence = b.sequence))
+          .sort((a, b) => a.sequence - b.sequence)
           .map(ShoppingSaleSnapshotUnitProvider.summary.transform),
         content: ShoppingSaleSnapshotContentProvider.summary.transform(
           input.content,
         ),
         tags: input.tags
-          .sort((a, b) => (a.sequence = b.sequence))
+          .sort((a, b) => a.sequence - b.sequence)
           .map((tag) => tag.value),
         price_range: {
           lowest: {
@@ -95,7 +93,7 @@ export namespace ShoppingSaleSnapshotProvider {
         id: input.shopping_sale_id,
         snapshot_id: input.id,
         categories: await ArrayUtil.asyncMap(
-          input.to_categories.sort((a, b) => (a.sequence = b.sequence)),
+          input.to_categories.sort((a, b) => a.sequence - b.sequence),
           ShoppingSaleSnapshotCategoryProvider.json.transform,
         ),
         units: input.units
@@ -105,7 +103,7 @@ export namespace ShoppingSaleSnapshotProvider {
           input.content,
         ),
         tags: input.tags
-          .sort((a, b) => (a.sequence = b.sequence))
+          .sort((a, b) => a.sequence - b.sequence)
           .map((tag) => tag.value),
       };
     };
@@ -169,14 +167,14 @@ export namespace ShoppingSaleSnapshotProvider {
         id: input.shopping_sale_id,
         snapshot_id: input.id,
         categories: await ArrayUtil.asyncMap(
-          input.to_categories.sort((a, b) => (a.sequence = b.sequence)),
+          input.to_categories.sort((a, b) => a.sequence - b.sequence),
           ShoppingSaleSnapshotCategoryProvider.json.transform,
         ),
         content: ShoppingSaleSnapshotContentProvider.summary.transform(
           input.content,
         ),
         tags: input.tags
-          .sort((a, b) => (a.sequence = b.sequence))
+          .sort((a, b) => a.sequence - b.sequence)
           .map((tag) => tag.value),
         updated_at: input.created_at.toISOString(),
         latest: input.mv_last !== null,

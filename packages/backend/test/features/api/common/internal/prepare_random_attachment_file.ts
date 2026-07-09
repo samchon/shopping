@@ -1,6 +1,5 @@
-import { RandomGenerator } from "@nestia/e2e";
-
 import { IAttachmentFile } from "@samchon/shopping-api";
+import { RandomGenerator } from "@nestia/e2e";
 
 export const prepare_random_attachment_file = (
   input?: Partial<IAttachmentFile.ICreate>,

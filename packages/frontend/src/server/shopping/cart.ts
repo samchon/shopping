@@ -9,7 +9,7 @@ import "server-only";
 import ShoppingApi from "@samchon/shopping-api";
 
 import { ApiRouteError } from "./errors";
-import { type SessionContext, requireCurrentCustomer } from "./session";
+import { requireCurrentCustomer, type SessionContext } from "./session";
 
 export async function getCartData(context: SessionContext): Promise<CartView> {
   const customer = await requireCurrentCustomer(context);

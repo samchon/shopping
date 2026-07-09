@@ -1,12 +1,9 @@
-import { ArrayUtil, RandomGenerator, TestValidator } from "@nestia/e2e";
-import { randint } from "tstl";
-
-import ShoppingApi from "@samchon/shopping-api";
-import {
+import ShoppingApi, {
   IShoppingChannel,
   IShoppingChannelCategory,
 } from "@samchon/shopping-api";
-
+import { ArrayUtil, RandomGenerator, TestValidator } from "@nestia/e2e";
+import { randint } from "tstl";
 import { ConnectionPool } from "../../../../ConnectionPool";
 import { test_api_shopping_actor_admin_login } from "../actors/test_api_shopping_actor_admin_login";
 import { generate_random_channel } from "./internal/generate_random_channel";

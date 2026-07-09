@@ -1,6 +1,7 @@
-import ShoppingApi from "@samchon/shopping-api";
-import { IShoppingSale, IShoppingSaleQuestion } from "@samchon/shopping-api";
-
+import ShoppingApi, {
+  IShoppingSale,
+  IShoppingSaleQuestion,
+} from "@samchon/shopping-api";
 import { ConnectionPool } from "../../../../../ConnectionPool";
 import { prepare_random_bbs_article } from "../../../common/internal/prepare_random_bbs_article";
 

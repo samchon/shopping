@@ -1,5 +1,4 @@
 import { tags } from "typia";
-
 import { IShoppingPrice } from "../base/IShoppingPrice";
 import { IShoppingSaleUnitStockChoice } from "./IShoppingSaleUnitStockChoice";
 import { IShoppingSaleUnitStockInventory } from "./IShoppingSaleUnitStockInventory";

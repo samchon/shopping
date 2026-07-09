@@ -13,7 +13,7 @@ import "server-only";
 
 import ShoppingApi from "@samchon/shopping-api";
 
-import { type SessionContext, requireCurrentCustomer } from "./session";
+import { requireCurrentCustomer, type SessionContext } from "./session";
 
 function isForbiddenError(error: unknown) {
   return (

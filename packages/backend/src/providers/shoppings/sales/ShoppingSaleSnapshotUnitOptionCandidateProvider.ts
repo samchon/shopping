@@ -1,7 +1,6 @@
+import type { IShoppingSaleUnitOptionCandidate } from "@samchon/shopping-api";
 import { Prisma } from "@prisma/sdk";
 import { v4 } from "uuid";
-
-import type { IShoppingSaleUnitOptionCandidate } from "@samchon/shopping-api";
 
 export namespace ShoppingSaleSnapshotUnitOptionCandidateProvider {
   export namespace json {

@@ -1,5 +1,4 @@
 import { DynamicBenchmarker } from "@nestia/benchmark";
-
 import { ShoppingConfiguration } from "../../../src/ShoppingConfiguration";
 import { ConnectionPool } from "../../ConnectionPool";
 
@@ -10,7 +9,7 @@ DynamicBenchmarker.servant({
   location: `${__dirname}/../../features`,
   parameters: (connection) => [new ConnectionPool(connection)],
   prefix: "test_api_",
-}).catch((exp) => {
+}).catch((exp: unknown) => {
   console.error(exp);
   process.exit(-1);
 });

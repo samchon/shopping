@@ -1,8 +1,6 @@
+import { IShoppingSale } from "@samchon/shopping-api";
 import { TestValidator } from "@nestia/e2e";
 import { sleep_until } from "tstl";
-
-import { IShoppingSale } from "@samchon/shopping-api";
-
 import { ConnectionPool } from "../../../../ConnectionPool";
 import { test_api_shopping_actor_customer_create } from "../actors/test_api_shopping_actor_customer_create";
 import { test_api_shopping_actor_seller_join } from "../actors/test_api_shopping_actor_seller_join";

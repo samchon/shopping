@@ -1,8 +1,6 @@
+import type { IRecordMerge } from "@samchon/shopping-api";
 import { DMMF } from "@prisma/client/runtime/client";
 import { Prisma } from "@prisma/sdk";
-
-import type { IRecordMerge } from "@samchon/shopping-api";
-
 import { ShoppingGlobal } from "../../ShoppingGlobal";
 import { EntityUtil } from "../../utils/EntityUtil";
 import { ErrorProvider } from "./ErrorProvider";

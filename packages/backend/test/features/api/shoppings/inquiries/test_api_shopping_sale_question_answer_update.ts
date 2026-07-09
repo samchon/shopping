@@ -1,6 +1,7 @@
-import ShoppingApi from "@samchon/shopping-api";
-import { IShoppingSale, IShoppingSaleQuestion } from "@samchon/shopping-api";
-
+import ShoppingApi, {
+  IShoppingSale,
+  IShoppingSaleQuestion,
+} from "@samchon/shopping-api";
 import { ConnectionPool } from "../../../../ConnectionPool";
 import { test_api_shopping_actor_customer_join } from "../actors/test_api_shopping_actor_customer_join";
 import { test_api_shopping_actor_seller_join } from "../actors/test_api_shopping_actor_seller_join";

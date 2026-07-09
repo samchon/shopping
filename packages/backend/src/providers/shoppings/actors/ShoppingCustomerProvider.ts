@@ -1,6 +1,3 @@
-import { Prisma } from "@prisma/sdk";
-import { v4 } from "uuid";
-
 import type {
   IDiagnosis,
   IShoppingChannel,
@@ -8,9 +5,10 @@ import type {
   IShoppingCustomer,
   IShoppingExternalUser,
 } from "@samchon/shopping-api";
-
-import { ShoppingGlobal } from "../../../ShoppingGlobal";
+import { Prisma } from "@prisma/sdk";
+import { v4 } from "uuid";
 import { JwtTokenService } from "../../../services/JwtTokenService";
+import { ShoppingGlobal } from "../../../ShoppingGlobal";
 import { ErrorProvider } from "../../../utils/ErrorProvider";
 import { JwtTokenManager } from "../../../utils/JwtTokenManager";
 import { ShoppingChannelProvider } from "../systematic/ShoppingChannelProvider";

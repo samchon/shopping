@@ -4,7 +4,6 @@ import {
   IShoppingCustomer,
   IShoppingSale,
 } from "@samchon/shopping-api";
-
 import { prepare_random_coupon_criteria } from "./prepare_random_coupon_criteria";
 
 export const generate_random_coupon = async (

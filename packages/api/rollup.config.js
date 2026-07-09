@@ -22,12 +22,6 @@ const compileProject = () => {
           declaration: false,
           declarationMap: false,
           module: "ESNext",
-          plugins: [
-            {
-              transform: "@ttsc/lint",
-              configFile: normalize(path.join(PROJECT_DIR, "lint.config.ts")),
-            },
-          ],
           target: "ESNext",
         },
       },

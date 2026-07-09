@@ -1,7 +1,3 @@
-import { ArrayUtil } from "@nestia/e2e";
-import { Prisma } from "@prisma/sdk";
-import { v4 } from "uuid";
-
 import type {
   IDiagnosis,
   IShoppingActorEntity,
@@ -10,7 +6,9 @@ import type {
   IShoppingOrder,
   IShoppingSeller,
 } from "@samchon/shopping-api";
-
+import { ArrayUtil } from "@nestia/e2e";
+import { Prisma } from "@prisma/sdk";
+import { v4 } from "uuid";
 import { ShoppingGlobal } from "../../../ShoppingGlobal";
 import { ErrorProvider } from "../../../utils/ErrorProvider";
 import { ShoppingAddressProvider } from "../actors/ShoppingAddressProvider";
@@ -105,12 +103,11 @@ export namespace ShoppingDeliveryPieceProvider {
             },
           }),
         );
-      orders.forEach(
-        (o) =>
-          (o.goods = o.goods.filter((good) =>
-            inputList.some((p) => p.shopping_order_good_id === good.id),
-          )),
-      );
+      orders.forEach((order) => {
+        order.goods = order.goods.filter((good) =>
+          inputList.some((piece) => piece.shopping_order_good_id === good.id),
+        );
+      });
       return {
         orders,
         pieces: inputList.map(json.transform),

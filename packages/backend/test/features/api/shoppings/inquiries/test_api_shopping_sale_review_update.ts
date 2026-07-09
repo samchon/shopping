@@ -1,8 +1,4 @@
-import { ArrayUtil, TestValidator } from "@nestia/e2e";
-import { randint } from "tstl";
-
-import ShoppingApi from "@samchon/shopping-api";
-import {
+import ShoppingApi, {
   IShoppingCartCommodity,
   IShoppingCustomer,
   IShoppingOrder,
@@ -10,7 +6,8 @@ import {
   IShoppingSale,
   IShoppingSaleReview,
 } from "@samchon/shopping-api";
-
+import { ArrayUtil, TestValidator } from "@nestia/e2e";
+import { randint } from "tstl";
 import { ConnectionPool } from "../../../../ConnectionPool";
 import { prepare_random_bbs_article } from "../../common/internal/prepare_random_bbs_article";
 import { test_api_shopping_actor_customer_join } from "../actors/test_api_shopping_actor_customer_join";

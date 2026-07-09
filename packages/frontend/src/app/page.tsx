@@ -1,6 +1,8 @@
+import {
+  CatalogPage,
+  CatalogPageFallback,
+} from "@/components/catalog/catalog-page";
 import { Suspense } from "react";
-
-import { CatalogPage, CatalogPageFallback } from "@/components/catalog/catalog-page";
 
 export default function HomePage() {
   return (

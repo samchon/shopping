@@ -1,11 +1,8 @@
-import { v4 } from "uuid";
-
-import ShoppingApi from "@samchon/shopping-api";
-import {
+import ShoppingApi, {
   IShoppingDepositCharge,
   IShoppingDepositChargePublish,
 } from "@samchon/shopping-api";
-
+import { v4 } from "uuid";
 import { ConnectionPool } from "../../../../../ConnectionPool";
 
 export const generate_random_deposit_charge_publish = async (

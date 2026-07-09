@@ -1,13 +1,10 @@
+import ShoppingApi, { IShoppingChannel } from "@samchon/shopping-api";
 import { DynamicExecutor, RandomGenerator } from "@nestia/e2e";
 import chalk from "chalk";
 import { sleep_for } from "tstl";
-
-import ShoppingApi from "@samchon/shopping-api";
-import { IShoppingChannel } from "@samchon/shopping-api";
-
-import { ShoppingConfiguration } from "../src/ShoppingConfiguration";
 import { ShoppingChannelProvider } from "../src/providers/shoppings/systematic/ShoppingChannelProvider";
 import { ShoppingSetupWizard } from "../src/setup/ShoppingSetupWizard";
+import { ShoppingConfiguration } from "../src/ShoppingConfiguration";
 import { ConnectionPool } from "./ConnectionPool";
 import { ArgumentParser } from "./internal/ArgumentParser";
 import { StopWatch } from "./internal/StopWatch";

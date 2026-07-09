@@ -1,7 +1,4 @@
-import { TestValidator } from "@nestia/e2e";
-
-import ShoppingApi from "@samchon/shopping-api";
-import {
+import ShoppingApi, {
   IPage,
   IShoppingCartCommodity,
   IShoppingCustomer,
@@ -10,7 +7,7 @@ import {
   IShoppingSale,
   IShoppingSaleReview,
 } from "@samchon/shopping-api";
-
+import { TestValidator } from "@nestia/e2e";
 import { ConnectionPool } from "../../../../ConnectionPool";
 import { test_api_shopping_actor_customer_join } from "../actors/test_api_shopping_actor_customer_join";
 import { test_api_shopping_actor_seller_join } from "../actors/test_api_shopping_actor_seller_join";

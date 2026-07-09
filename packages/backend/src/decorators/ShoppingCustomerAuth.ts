@@ -1,7 +1,6 @@
 import { SwaggerCustomizer } from "@nestia/core";
-import { ExecutionContext, createParamDecorator } from "@nestjs/common";
+import { createParamDecorator, ExecutionContext } from "@nestjs/common";
 import { VariadicSingleton } from "tstl";
-
 import { ShoppingCustomerProvider } from "../providers/shoppings/actors/ShoppingCustomerProvider";
 
 export const ShoppingCustomerAuth =

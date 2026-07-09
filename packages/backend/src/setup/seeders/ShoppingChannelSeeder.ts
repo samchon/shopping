@@ -1,14 +1,12 @@
-import { ArrayUtil } from "@nestia/e2e";
-import fs from "fs";
-
 import type {
   IShoppingChannel,
   IShoppingChannelCategory,
 } from "@samchon/shopping-api";
-
-import { ShoppingConfiguration } from "../../ShoppingConfiguration";
+import { ArrayUtil } from "@nestia/e2e";
+import fs from "node:fs";
 import { ShoppingChannelCategoryProvider } from "../../providers/shoppings/systematic/ShoppingChannelCategoryProvider";
 import { ShoppingChannelProvider } from "../../providers/shoppings/systematic/ShoppingChannelProvider";
+import { ShoppingConfiguration } from "../../ShoppingConfiguration";
 import { CsvUtil } from "../../utils/CsvUtil";
 
 export namespace ShoppingChannelSeeder {

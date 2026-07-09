@@ -1,7 +1,3 @@
-import { ArrayUtil } from "@nestia/e2e";
-import { Prisma } from "@prisma/sdk";
-import { IPointer } from "tstl";
-
 import type {
   IShoppingAdministrator,
   IShoppingCouponCriteria,
@@ -9,7 +5,9 @@ import type {
   IShoppingSale,
   IShoppingSeller,
 } from "@samchon/shopping-api";
-
+import { ArrayUtil } from "@nestia/e2e";
+import { Prisma } from "@prisma/sdk";
+import { IPointer } from "tstl";
 import { ShoppingGlobal } from "../../../ShoppingGlobal";
 import { ErrorProvider } from "../../../utils/ErrorProvider";
 import { ShoppingSaleProvider } from "../sales/ShoppingSaleProvider";

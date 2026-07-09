@@ -1,6 +1,7 @@
-import ShoppingApi from "@samchon/shopping-api";
-import { IShoppingCartCommodity, IShoppingOrder } from "@samchon/shopping-api";
-
+import ShoppingApi, {
+  IShoppingCartCommodity,
+  IShoppingOrder,
+} from "@samchon/shopping-api";
 import { ConnectionPool } from "../../../../../ConnectionPool";
 
 export const generate_random_order = async (

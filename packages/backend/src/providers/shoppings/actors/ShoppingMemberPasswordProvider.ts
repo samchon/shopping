@@ -1,5 +1,4 @@
 import type { IShoppingCustomer, IShoppingMember } from "@samchon/shopping-api";
-
 import { ShoppingGlobal } from "../../../ShoppingGlobal";
 import { BcryptUtil } from "../../../utils/BcryptUtil";
 import { ErrorProvider } from "../../../utils/ErrorProvider";

@@ -1,13 +1,10 @@
-import { ArrayUtil, RandomGenerator, TestValidator } from "@nestia/e2e";
-
-import ShoppingApi from "@samchon/shopping-api";
-import {
+import ShoppingApi, {
   IPage,
   IShoppingCoupon,
   IShoppingCustomer,
   IShoppingSale,
 } from "@samchon/shopping-api";
-
+import { ArrayUtil, RandomGenerator, TestValidator } from "@nestia/e2e";
 import { ActorPath } from "../../../../../src/typings/ActorPath";
 import { ConnectionPool } from "../../../../ConnectionPool";
 import { test_api_shopping_actor_admin_login } from "../actors/test_api_shopping_actor_admin_login";

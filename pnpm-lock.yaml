@@ -59,15 +59,11 @@ catalogs:
 
 importers:
 
-  .:
+  .: {}
+
+  config:
     devDependencies:
       '@ttsc/lint':
-        specifier: catalog:typescript
-        version: 0.18.0
-      '@types/node':
-        specifier: ^25.6.0
-        version: 25.6.0
-      ttsc:
         specifier: catalog:typescript
         version: 0.18.0
       typescript:
@@ -81,7 +77,7 @@ importers:
         version: 12.0.0-rc.3
       typia:
         specifier: catalog:samchon
-        version: 13.0.0(@types/node@25.6.0)
+        version: 13.0.0(@types/node@24.12.2)
       uuid:
         specifier: catalog:utils
         version: 13.0.0
@@ -92,6 +88,9 @@ importers:
       '@samchon/shopping-api':
         specifier: workspace:^
         version: 'link:'
+      '@samchon/shopping-config':
+        specifier: workspace:^
+        version: link:../../config
       '@ttsc/lint':
         specifier: catalog:typescript
         version: 0.18.0
@@ -201,6 +200,9 @@ importers:
       '@nestjs/cli':
         specifier: ^11.0.16
         version: 11.0.19(@types/node@24.12.2)
+      '@samchon/shopping-config':
+        specifier: workspace:^
+        version: link:../../config
       '@ttsc/lint':
         specifier: catalog:typescript
         version: 0.18.0
@@ -337,6 +339,9 @@ importers:
       '@playwright/test':
         specifier: ^1.59.1
         version: 1.59.1
+      '@samchon/shopping-config':
+        specifier: workspace:^
+        version: link:../../config
       '@ttsc/lint':
         specifier: catalog:typescript
         version: 0.18.0
@@ -370,6 +375,9 @@ importers:
       tailwindcss-animate:
         specifier: ^1.0.7
         version: 1.0.7(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@25.6.0)(typescript@7.0.2)))
+      ttsc:
+        specifier: catalog:typescript
+        version: 0.18.0
       typescript:
         specifier: catalog:typescript
         version: 7.0.2
@@ -5198,13 +5206,6 @@ snapshots:
     optionalDependencies:
       '@types/node': 24.12.2
 
-  '@inquirer/external-editor@1.0.3(@types/node@25.6.0)':
-    dependencies:
-      chardet: 2.1.1
-      iconv-lite: 0.7.2
-    optionalDependencies:
-      '@types/node': 25.6.0
-
   '@inquirer/figures@1.0.15': {}
 
   '@inquirer/input@4.3.1(@types/node@24.12.2)':
@@ -7587,26 +7588,6 @@ snapshots:
     transitivePeerDependencies:
       - '@types/node'
 
-  inquirer@8.2.7(@types/node@25.6.0):
-    dependencies:
-      '@inquirer/external-editor': 1.0.3(@types/node@25.6.0)
-      ansi-escapes: 4.3.2
-      chalk: 4.1.2
-      cli-cursor: 3.1.0
-      cli-width: 3.0.0
-      figures: 3.2.0
-      lodash: 4.18.1
-      mute-stream: 0.0.8
-      ora: 5.4.1
-      run-async: 2.4.1
-      rxjs: 7.8.2
-      string-width: 4.2.3
-      strip-ansi: 6.0.1
-      through: 2.3.8
-      wrap-ansi: 6.2.0
-    transitivePeerDependencies:
-      - '@types/node'
-
   ipaddr.js@1.9.1: {}
 
   ipaddr.js@2.3.0: {}
@@ -9098,18 +9079,6 @@ snapshots:
       '@typia/utils': 13.0.0
       commander: 10.0.1
       inquirer: 8.2.7(@types/node@24.12.2)
-      randexp: 0.5.3
-      tinyglobby: 0.2.16
-    transitivePeerDependencies:
-      - '@types/node'
-
-  typia@13.0.0(@types/node@25.6.0):
-    dependencies:
-      '@standard-schema/spec': 1.1.0
-      '@typia/interface': 13.0.0
-      '@typia/utils': 13.0.0
-      commander: 10.0.1
-      inquirer: 8.2.7(@types/node@25.6.0)
       randexp: 0.5.3
       tinyglobby: 0.2.16
     transitivePeerDependencies:

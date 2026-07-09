@@ -1,8 +1,10 @@
+import type {
+  IPage,
+  IRecordMerge,
+  IShoppingSection,
+} from "@samchon/shopping-api";
 import { Prisma } from "@prisma/sdk";
 import { v4 } from "uuid";
-
-import type { IPage, IRecordMerge, IShoppingSection } from "@samchon/shopping-api";
-
 import { ShoppingGlobal } from "../../../ShoppingGlobal";
 import { EntityMergeProvider } from "../../common/EntityMergeProvider";
 
@@ -161,7 +163,9 @@ export namespace ShoppingSectionProvider {
     (x: IShoppingSection, y: IShoppingSection): number => {
       for (const token of sort) {
         const sign: number = token[0] === "+" ? 1 : -1;
-        const key = token.substring(1) as IShoppingSection.IRequest.SortableColumns;
+        const key = token.substring(
+          1,
+        ) as IShoppingSection.IRequest.SortableColumns;
         const value: number =
           key === "section.code"
             ? compareStrings(x.code, y.code)

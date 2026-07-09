@@ -1,8 +1,5 @@
+import ShoppingApi, { IShoppingCartDiscountable } from "@samchon/shopping-api";
 import { ArrayUtil, TestValidator } from "@nestia/e2e";
-
-import ShoppingApi from "@samchon/shopping-api";
-import { IShoppingCartDiscountable } from "@samchon/shopping-api";
-
 import { validate_api_shopping_cart_discountable } from "./internal/validate_api_shopping_cart_discountable";
 
 export const test_api_shopping_cart_discountable_ticket_duplicated =

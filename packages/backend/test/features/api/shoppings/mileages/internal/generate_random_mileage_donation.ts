@@ -1,9 +1,7 @@
-import ShoppingApi from "@samchon/shopping-api";
-import {
+import ShoppingApi, {
   IShoppingCitizen,
   IShoppingMileageDonation,
 } from "@samchon/shopping-api";
-
 import { ConnectionPool } from "../../../../../ConnectionPool";
 
 export const generate_random_mileage_donation = async (

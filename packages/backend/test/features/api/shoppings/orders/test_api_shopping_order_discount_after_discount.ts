@@ -1,11 +1,8 @@
-import { TestValidator } from "@nestia/e2e";
-
-import ShoppingApi from "@samchon/shopping-api";
-import {
+import ShoppingApi, {
   IShoppingOrderDiscountable,
   IShoppingOrderPrice,
 } from "@samchon/shopping-api";
-
+import { TestValidator } from "@nestia/e2e";
 import { validate_api_shopping_order_discountable } from "./internal/validate_api_shopping_order_discountable";
 
 export const test_api_shopping_order_discount_after_discount =

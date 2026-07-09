@@ -1,8 +1,4 @@
-import { RandomGenerator, TestValidator } from "@nestia/e2e";
-import typia from "typia";
-
-import ShoppingApi from "@samchon/shopping-api";
-import {
+import ShoppingApi, {
   IShoppingCartCommodity,
   IShoppingCartDiscountable,
   IShoppingCouponCriteria,
@@ -12,7 +8,8 @@ import {
   IShoppingSale,
   IShoppingSection,
 } from "@samchon/shopping-api";
-
+import { RandomGenerator, TestValidator } from "@nestia/e2e";
+import typia from "typia";
 import { ConnectionPool } from "../../../../ConnectionPool";
 import { test_api_shopping_actor_admin_login } from "../actors/test_api_shopping_actor_admin_login";
 import { test_api_shopping_actor_seller_join } from "../actors/test_api_shopping_actor_seller_join";

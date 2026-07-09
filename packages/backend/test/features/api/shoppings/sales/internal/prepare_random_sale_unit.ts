@@ -1,8 +1,7 @@
+import { IShoppingPrice, IShoppingSaleUnit } from "@samchon/shopping-api";
 import { ArrayUtil, RandomGenerator } from "@nestia/e2e";
 import { CartesianProduct } from "cagen";
 import { randint } from "tstl";
-
-import { IShoppingPrice, IShoppingSaleUnit } from "@samchon/shopping-api";
 
 export const prepare_random_sale_unit = (
   input?: Partial<IShoppingSaleUnit.ICreate>,

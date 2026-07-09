@@ -19,7 +19,12 @@ import {
 import { Skeleton } from "@/components/ui/skeleton";
 import { useCatalog } from "@/lib/shopping/hooks";
 import type { CategoryTreeNode, ProductCardView } from "@/lib/shopping/types";
-import { cn, formatCompactNumber, formatCurrency, formatDateTime } from "@/lib/utils";
+import {
+  cn,
+  formatCompactNumber,
+  formatCurrency,
+  formatDateTime,
+} from "@/lib/utils";
 
 function CategoryTree({
   nodes,

@@ -1,8 +1,6 @@
+import type { IShoppingSaleContent } from "@samchon/shopping-api";
 import { Prisma } from "@prisma/sdk";
 import { v4 } from "uuid";
-
-import type { IShoppingSaleContent } from "@samchon/shopping-api";
-
 import { AttachmentFileProvider } from "../../common/AttachmentFileProvider";
 
 export namespace ShoppingSaleSnapshotContentProvider {

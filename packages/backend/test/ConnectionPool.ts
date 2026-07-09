@@ -1,6 +1,5 @@
-import { RandomGenerator } from "@nestia/e2e";
-
 import ShoppingApi from "@samchon/shopping-api";
+import { RandomGenerator } from "@nestia/e2e";
 
 export class ConnectionPool {
   public readonly channel: string;

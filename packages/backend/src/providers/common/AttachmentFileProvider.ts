@@ -1,7 +1,6 @@
+import type { IAttachmentFile } from "@samchon/shopping-api";
 import { Prisma } from "@prisma/sdk";
 import { v4 } from "uuid";
-
-import type { IAttachmentFile } from "@samchon/shopping-api";
 
 export namespace AttachmentFileProvider {
   export namespace json {

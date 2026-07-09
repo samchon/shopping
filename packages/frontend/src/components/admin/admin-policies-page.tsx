@@ -70,10 +70,16 @@ export function AdminPoliciesPage() {
     );
   }
 
-  const publicCoupons = coupons.filter((coupon) => coupon.access === "public").length;
+  const publicCoupons = coupons.filter(
+    (coupon) => coupon.access === "public",
+  ).length;
   const privateCoupons = coupons.length - publicCoupons;
-  const incomeDeposits = deposits.filter((item) => item.direction === "income").length;
-  const outcomeMileages = mileages.filter((item) => item.direction === "outcome").length;
+  const incomeDeposits = deposits.filter(
+    (item) => item.direction === "income",
+  ).length;
+  const outcomeMileages = mileages.filter(
+    (item) => item.direction === "outcome",
+  ).length;
   const policyMoments = coupons.slice(0, 3).map((coupon, index) => ({
     ...coupon,
     accent:

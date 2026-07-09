@@ -1,8 +1,9 @@
+import type {
+  IShoppingCustomer,
+  IShoppingSaleReview,
+} from "@samchon/shopping-api";
 import core from "@nestia/core";
 import { tags } from "typia";
-
-import type { IShoppingCustomer, IShoppingSaleReview } from "@samchon/shopping-api";
-
 import { ShoppingCustomerAuth } from "../../../../decorators/ShoppingCustomerAuth";
 import { ShoppingSaleReviewProvider } from "../../../../providers/shoppings/sales/inquiries/ShoppingSaleSnapshotReviewProvider";
 import { ShoppingSaleReviewController } from "../../base/sales/ShoppingSaleReviewController";

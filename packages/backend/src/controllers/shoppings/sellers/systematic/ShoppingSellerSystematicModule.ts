@@ -1,5 +1,4 @@
 import { Module } from "@nestjs/common";
-
 import { ShoppingSellerSystematicChannelCategoryController } from "./ShoppingSellerSystematicChannelCategoryController";
 import { ShoppingSellerSystematicChannelController } from "./ShoppingSellerSystematicChannelController";
 import { ShoppingSellerSystematicSectionController } from "./ShoppingSellerSystematicSectionController";

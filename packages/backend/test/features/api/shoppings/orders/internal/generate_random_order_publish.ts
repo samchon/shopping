@@ -1,15 +1,12 @@
-import { TestValidator } from "@nestia/e2e";
-import { v4 } from "uuid";
-
-import ShoppingApi from "@samchon/shopping-api";
-import {
+import ShoppingApi, {
   IShoppingAddress,
   IShoppingCustomer,
   IShoppingOrder,
   IShoppingOrderPrice,
   IShoppingOrderPublish,
 } from "@samchon/shopping-api";
-
+import { TestValidator } from "@nestia/e2e";
+import { v4 } from "uuid";
 import { ConnectionPool } from "../../../../../ConnectionPool";
 import { prepare_random_address } from "./prepare_random_address";
 

@@ -1,9 +1,9 @@
 import {
+  expect,
+  test,
   type Browser,
   type Locator,
   type Page,
-  expect,
-  test,
 } from "@playwright/test";
 import { mkdir } from "node:fs/promises";
 import path from "node:path";

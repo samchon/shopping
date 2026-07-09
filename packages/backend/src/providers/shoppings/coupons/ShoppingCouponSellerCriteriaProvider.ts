@@ -1,13 +1,11 @@
-import { Prisma } from "@prisma/sdk";
-import { IPointer } from "tstl";
-
 import type {
   IShoppingAdministrator,
   IShoppingCouponCriteria,
   IShoppingCouponSellerCriteria,
   IShoppingSeller,
 } from "@samchon/shopping-api";
-
+import { Prisma } from "@prisma/sdk";
+import { IPointer } from "tstl";
 import { ShoppingGlobal } from "../../../ShoppingGlobal";
 import { ErrorProvider } from "../../../utils/ErrorProvider";
 import { ShoppingSellerProvider } from "../actors/ShoppingSellerProvider";

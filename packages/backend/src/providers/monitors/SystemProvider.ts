@@ -1,9 +1,7 @@
-import fs from "fs";
-import git from "git-last-commit";
-import { Singleton, randint } from "tstl";
-
 import type { ISystem } from "@samchon/shopping-api";
-
+import git from "git-last-commit";
+import fs from "node:fs";
+import { randint, Singleton } from "tstl";
 import { ShoppingConfiguration } from "../../ShoppingConfiguration";
 import { DateUtil } from "../../utils/DateUtil";
 

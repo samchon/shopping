@@ -1,8 +1,5 @@
+import ShoppingApi, { IShoppingSale } from "@samchon/shopping-api";
 import { TestValidator } from "@nestia/e2e";
-
-import ShoppingApi from "@samchon/shopping-api";
-import { IShoppingSale } from "@samchon/shopping-api";
-
 import { ConnectionPool } from "../../../../../ConnectionPool";
 
 export const validate_sale_at = async (props: {
