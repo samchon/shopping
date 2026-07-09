@@ -20,7 +20,7 @@ const REFRESH_COOKIE = "shopping_refresh_token";
 const cookieOptions = {
   httpOnly: true,
   sameSite: "lax" as const,
-  secure: process.env.NODE_ENV === "production",
+  secure: process.env.NODE_ENV === "production" && !shoppingConfig.simulate,
   path: "/",
 };
 
