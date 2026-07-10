@@ -224,7 +224,7 @@ export function AdminDashboardPage() {
                     disabled={!session.canJoin || joinAdmin.isPending}
                     onClick={async () => {
                       try {
-                        await joinAdmin.mutateAsync();
+                        await joinAdmin.mutateAsync(undefined);
                         toast.success("This customer session is now an administrator.");
                       } catch (error) {
                         toast.error(

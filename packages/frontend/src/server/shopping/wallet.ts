@@ -128,7 +128,7 @@ export async function getWalletData(
     : Promise.resolve([0, 0, { data: [] }, { data: [] }] as const);
 
   const [walletData, coupons, tickets] = await Promise.all([
-    walletCore.catch((error) => {
+    walletCore.catch((error: unknown) => {
       if (!isForbiddenError(error)) {
         throw error;
       }

@@ -182,7 +182,7 @@ function SellerSaleCard({ sale }: { sale: SellerSaleView }) {
               disabled={restoreSellerSale.isPending}
               onClick={async () => {
                 try {
-                  await restoreSellerSale.mutateAsync();
+                  await restoreSellerSale.mutateAsync(undefined);
                   toast.success("Sale restored.");
                 } catch (error) {
                   toast.error(error instanceof Error ? error.message : "Sale restore failed.");
@@ -197,7 +197,7 @@ function SellerSaleCard({ sale }: { sale: SellerSaleView }) {
               disabled={pauseSellerSale.isPending}
               onClick={async () => {
                 try {
-                  await pauseSellerSale.mutateAsync();
+                  await pauseSellerSale.mutateAsync(undefined);
                   toast.success("Sale paused.");
                 } catch (error) {
                   toast.error(error instanceof Error ? error.message : "Sale pause failed.");
@@ -367,7 +367,7 @@ export function SellerDashboardPage() {
                     disabled={!session.canJoin || joinSeller.isPending}
                     onClick={async () => {
                       try {
-                        await joinSeller.mutateAsync();
+                        await joinSeller.mutateAsync(undefined);
                         toast.success("This customer session is now a seller.");
                       } catch (error) {
                         toast.error(

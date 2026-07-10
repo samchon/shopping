@@ -19,7 +19,7 @@ function ClaimCouponButton({ couponId }: { couponId: string }) {
       disabled={claimCoupon.isPending}
       onClick={async () => {
         try {
-          await claimCoupon.mutateAsync();
+          await claimCoupon.mutateAsync(undefined);
           toast.success("Coupon claimed.");
         } catch (error) {
           toast.error(error instanceof Error ? error.message : "Coupon claim failed.");

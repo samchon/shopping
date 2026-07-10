@@ -128,7 +128,7 @@ export function useAdminDashboard() {
   });
 }
 
-function useShoppingMutation<TData, TVariables>(
+function useShoppingMutation<TData, TVariables = undefined>(
   options: UseMutationOptions<TData, Error, TVariables>,
 ) {
   const queryClient = useQueryClient();
@@ -192,7 +192,7 @@ export function useLoginSeller() {
 }
 
 export function useJoinSeller() {
-  return useShoppingMutation<SellerSessionView, void>({
+  return useShoppingMutation<SellerSessionView>({
     mutationFn: () =>
       requestJson("/api/seller/session/join", {
         method: "POST",
@@ -211,7 +211,7 @@ export function useReplicateSellerSale() {
 }
 
 export function usePauseSellerSale(saleId: string) {
-  return useShoppingMutation<SellerDashboardView, void>({
+  return useShoppingMutation<SellerDashboardView>({
     mutationFn: () =>
       requestJson(`/api/seller/sales/${saleId}/pause`, {
         method: "DELETE",
@@ -220,7 +220,7 @@ export function usePauseSellerSale(saleId: string) {
 }
 
 export function useRestoreSellerSale(saleId: string) {
-  return useShoppingMutation<SellerDashboardView, void>({
+  return useShoppingMutation<SellerDashboardView>({
     mutationFn: () =>
       requestJson(`/api/seller/sales/${saleId}/restore`, {
         method: "PUT",
@@ -239,7 +239,7 @@ export function useOpenSellerSale(saleId: string) {
 }
 
 export function useClaimCoupon(couponId: string) {
-  return useShoppingMutation<WalletView, void>({
+  return useShoppingMutation<WalletView>({
     mutationFn: () =>
       requestJson(`/api/wallet/coupons/${couponId}/claim`, {
         method: "POST",
@@ -258,7 +258,7 @@ export function useLoginAdmin() {
 }
 
 export function useJoinAdmin() {
-  return useShoppingMutation<AdminSessionView, void>({
+  return useShoppingMutation<AdminSessionView>({
     mutationFn: () =>
       requestJson("/api/admin/session/join", {
         method: "POST",
@@ -324,7 +324,7 @@ export function useUpdateCartItem(commodityId: string) {
 }
 
 export function useDeleteCartItem(commodityId: string) {
-  return useShoppingMutation<CartView, void>({
+  return useShoppingMutation<CartView>({
     mutationFn: () =>
       requestJson(`/api/cart/${commodityId}`, {
         method: "DELETE",
