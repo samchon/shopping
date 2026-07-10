@@ -1,8 +1,3 @@
-"use client";
-
-import Link from "next/link";
-import { ArrowRight, ReceiptText } from "lucide-react";
-
 import { ErrorState } from "@/components/error-state";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -11,6 +6,8 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useOrders } from "@/lib/shopping/hooks";
 import type { OrderListItemView } from "@/lib/shopping/types";
 import { formatCurrency, formatDateTime } from "@/lib/utils";
+import { ArrowRight, ReceiptText } from "lucide-react";
+import { Link } from "react-router-dom";
 
 function statusLabel(status: OrderListItemView["status"]) {
   switch (status) {
@@ -95,7 +92,7 @@ export function OrdersPage() {
             </div>
 
             <Button asChild variant="outline">
-              <Link href="/cart">
+              <Link to="/cart">
                 Go to cart
                 <ArrowRight className="h-4 w-4" />
               </Link>
@@ -134,7 +131,7 @@ export function OrdersPage() {
       {items.length ? (
         <div className="grid gap-4">
           {items.map((item) => (
-            <Link key={item.id} href={`/orders/${item.id}`} className="group block">
+            <Link key={item.id} to={`/orders/${item.id}`} className="group block">
               <Card className="transition-transform duration-200 hover:-translate-y-1">
                 <CardContent className="grid gap-4 p-6">
                   <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
@@ -182,7 +179,7 @@ export function OrdersPage() {
             </div>
             <div>
               <Button asChild>
-                <Link href="/">Browse catalog</Link>
+                <Link to="/">Browse catalog</Link>
               </Button>
             </div>
           </CardContent>

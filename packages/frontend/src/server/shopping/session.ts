@@ -1,9 +1,4 @@
-import { mapSession } from "@/server/shopping/mappers";
-import { NextResponse, type NextRequest } from "next/server";
-import "server-only";
-
 import ShoppingApi, { type IConnection } from "@samchon/shopping-api";
-
 import { shoppingConfig } from "./config";
 import {
   ApiRouteError,
@@ -11,17 +6,11 @@ import {
   getHttpStatus,
   isUnauthorizedError,
 } from "./errors";
+import { mapSession } from "./mappers";
 import { simulatedShoppingFetch } from "./simulate";
 
 const ACCESS_COOKIE = "shopping_access_token";
 const REFRESH_COOKIE = "shopping_refresh_token";
-
-const cookieOptions = {
-  httpOnly: true,
-  sameSite: "lax" as const,
-  secure: process.env.NODE_ENV === "production" && !shoppingConfig.simulate,
-  path: "/",
-};
 
 type AuthorizedCustomer =
   ShoppingApi.functional.shoppings.customers.authenticate.create.Output;
@@ -38,6 +27,44 @@ export interface SessionContext {
     value: string;
     expires: Date;
   }>;
+}
+
+function parseCookies(header: string | null): Map<string, string> {
+  const cookies = new Map<string, string>();
+  if (!header) {
+    return cookies;
+  }
+
+  for (const segment of header.split(";")) {
+    const separator = segment.indexOf("=");
+    if (separator <= 0) {
+      continue;
+    }
+    const name = segment.slice(0, separator).trim();
+    const value = segment.slice(separator + 1).trim();
+    try {
+      cookies.set(name, decodeURIComponent(value));
+    } catch {
+      cookies.set(name, value);
+    }
+  }
+  return cookies;
+}
+
+function serializeCookie(
+  cookie: SessionContext["cookieUpdates"][number],
+): string {
+  const attributes = [
+    `${cookie.name}=${encodeURIComponent(cookie.value)}`,
+    "Path=/",
+    "HttpOnly",
+    "SameSite=Lax",
+    `Expires=${cookie.expires.toUTCString()}`,
+  ];
+  if (process.env.NODE_ENV === "production" && !shoppingConfig.simulate) {
+    attributes.push("Secure");
+  }
+  return attributes.join("; ");
 }
 
 function createConnection(accessToken?: string): IConnection {
@@ -78,12 +105,12 @@ function queueTokenCookies(
 }
 
 async function bootstrapCustomer(
-  request: NextRequest,
+  request: Request,
 ): Promise<SessionContext> {
   const connection = createConnection();
   const referer = request.headers.get("referer");
   const forwardedFor = request.headers.get("x-forwarded-for");
-  const href = referer ?? request.nextUrl.origin;
+  const href = referer ?? new URL(request.url).origin;
 
   const customer =
     await ShoppingApi.functional.shoppings.customers.authenticate.create(
@@ -134,10 +161,11 @@ function isTemperedCustomerTokenError(error: unknown): boolean {
 }
 
 async function getOrCreateContext(
-  request: NextRequest,
+  request: Request,
 ): Promise<SessionContext> {
-  const accessToken = request.cookies.get(ACCESS_COOKIE)?.value;
-  const refreshToken = request.cookies.get(REFRESH_COOKIE)?.value ?? null;
+  const cookies = parseCookies(request.headers.get("cookie"));
+  const accessToken = cookies.get(ACCESS_COOKIE);
+  const refreshToken = cookies.get(REFRESH_COOKIE) ?? null;
 
   if (!accessToken && refreshToken) {
     try {
@@ -159,36 +187,33 @@ async function getOrCreateContext(
   };
 }
 
-function applyCookies(response: NextResponse, context: SessionContext) {
+function applyCookies(response: Response, context: SessionContext) {
   for (const cookie of context.cookieUpdates) {
-    response.cookies.set(cookie.name, cookie.value, {
-      ...cookieOptions,
-      expires: cookie.expires,
-    });
+    response.headers.append("Set-Cookie", serializeCookie(cookie));
   }
 
   return response;
 }
 
 export async function jsonWithCustomerSession<T>(
-  request: NextRequest,
+  request: Request,
   handler: (context: SessionContext) => Promise<T>,
 ) {
   let context = await getOrCreateContext(request);
 
   try {
     const data = await handler(context);
-    return applyCookies(NextResponse.json(data), context);
+    return applyCookies(Response.json(data), context);
   } catch (error) {
     if (context.customer === null && isTemperedCustomerTokenError(error)) {
       context = await bootstrapCustomer(request);
       const data = await handler(context);
-      return applyCookies(NextResponse.json(data), context);
+      return applyCookies(Response.json(data), context);
     }
     if (isUnauthorizedError(error) && context.refreshToken) {
       context = await refreshCustomer(context.refreshToken);
       const data = await handler(context);
-      return applyCookies(NextResponse.json(data), context);
+      return applyCookies(Response.json(data), context);
     }
     throw error;
   }

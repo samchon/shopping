@@ -1,12 +1,3 @@
-"use client";
-
-import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { ChevronLeft, PackagePlus, ShieldAlert } from "lucide-react";
-import { useState } from "react";
-import { toast } from "sonner";
-
 import { ContentBody } from "@/components/content-body";
 import { ErrorState } from "@/components/error-state";
 import { Badge } from "@/components/ui/badge";
@@ -31,6 +22,10 @@ import type {
   ProductUnitView,
 } from "@/lib/shopping/types";
 import { formatCurrency, formatDateTime } from "@/lib/utils";
+import { ChevronLeft, PackagePlus, ShieldAlert } from "lucide-react";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 type UnitSelectionState = {
   enabled: boolean;
@@ -119,7 +114,7 @@ function formatSnapshotTimestamp(value: string | null) {
 }
 
 export function ProductDetailPage({ productId }: { productId: string }) {
-  const router = useRouter();
+  const navigate = useNavigate();
   const product = useProduct(productId);
   const addToCart = useAddToCart();
   const [selectionOverrides, setSelectionOverrides] = useState<
@@ -130,7 +125,7 @@ export function ProductDetailPage({ productId }: { productId: string }) {
     return (
       <div className="grid gap-6">
         <Link
-          href="/"
+          to="/"
           className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm"
         >
           <ChevronLeft className="h-4 w-4" />
@@ -204,7 +199,7 @@ export function ProductDetailPage({ productId }: { productId: string }) {
     try {
       await addToCart.mutateAsync(payload);
       toast.success("Added to cart.");
-      router.push("/cart");
+      void navigate("/cart");
     } catch (error) {
       toast.error(
         error instanceof Error ? error.message : "Could not add the product.",
@@ -216,7 +211,7 @@ export function ProductDetailPage({ productId }: { productId: string }) {
     <div className="grid gap-6">
       <div className="flex flex-wrap items-center gap-3">
         <Link
-          href="/"
+          to="/"
           className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm"
         >
           <ChevronLeft className="h-4 w-4" />
@@ -232,10 +227,9 @@ export function ProductDetailPage({ productId }: { productId: string }) {
           <Card className="overflow-hidden">
             <div className="relative aspect-[4/3] overflow-hidden bg-muted">
               {primaryImage ? (
-                <Image
+                <img
                   alt={data.title}
-                  className="object-cover"
-                  fill
+                  className="h-full w-full object-cover"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   src={primaryImage}
                 />

@@ -1,6 +1,10 @@
-"use client";
-
-import Link from "next/link";
+import { ErrorState } from "@/components/error-state";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
+import { useAdminDashboard } from "@/lib/shopping/hooks";
+import { formatCurrency, formatDateTime } from "@/lib/utils";
 import {
   ArrowRight,
   BadgePercent,
@@ -11,14 +15,7 @@ import {
   ShieldCheck,
   TicketPercent,
 } from "lucide-react";
-
-import { ErrorState } from "@/components/error-state";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton";
-import { useAdminDashboard } from "@/lib/shopping/hooks";
-import { formatCurrency, formatDateTime } from "@/lib/utils";
+import { Link } from "react-router-dom";
 
 export function AdminPoliciesPage() {
   const dashboard = useAdminDashboard();
@@ -59,7 +56,7 @@ export function AdminPoliciesPage() {
           </p>
           <div>
             <Button asChild>
-              <Link href="/admin">
+              <Link to="/admin">
                 Open admin console
                 <ArrowRight className="h-4 w-4" />
               </Link>

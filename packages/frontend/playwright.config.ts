@@ -27,7 +27,7 @@ export default defineConfig({
     video: "retain-on-failure",
   },
   webServer: {
-    command: `pnpm exec next start --port ${port}`,
+    command: "pnpm start",
     url: baseURL,
     reuseExistingServer: false,
     timeout: 120_000,
@@ -35,13 +35,13 @@ export default defineConfig({
       ? {
           ...process.env,
           PORT: String(port),
-          NEXT_PUBLIC_SHOPPING_API_SIMULATE: "false",
+          VITE_SHOPPING_API_SIMULATE: "false",
           SHOPPING_API_SIMULATE: "false",
         }
       : {
           ...process.env,
           PORT: String(port),
-          NEXT_PUBLIC_SHOPPING_API_SIMULATE: "true",
+          VITE_SHOPPING_API_SIMULATE: "true",
           SHOPPING_API_SIMULATE: "true",
         },
   },

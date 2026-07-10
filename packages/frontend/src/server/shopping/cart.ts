@@ -1,14 +1,11 @@
+import ShoppingApi from "@samchon/shopping-api";
 import type {
   AddToCartPayload,
   CartView,
   UpdateCartPayload,
-} from "@/lib/shopping/types";
-import { mapCartItem, mapSession } from "@/server/shopping/mappers";
-import "server-only";
-
-import ShoppingApi from "@samchon/shopping-api";
-
+} from "../../lib/shopping/types";
 import { ApiRouteError } from "./errors";
+import { mapCartItem, mapSession } from "./mappers";
 import { requireCurrentCustomer, type SessionContext } from "./session";
 
 export async function getCartData(context: SessionContext): Promise<CartView> {

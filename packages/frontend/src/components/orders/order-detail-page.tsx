@@ -1,11 +1,3 @@
-"use client";
-
-import Image from "next/image";
-import Link from "next/link";
-import { ChevronLeft, ShieldCheck, Truck, WalletCards } from "lucide-react";
-import { useState } from "react";
-import { toast } from "sonner";
-
 import { ErrorState } from "@/components/error-state";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -24,6 +16,10 @@ import type {
   PublishOrderPayload,
 } from "@/lib/shopping/types";
 import { formatCurrency, formatDateTime } from "@/lib/utils";
+import { ChevronLeft, ShieldCheck, Truck, WalletCards } from "lucide-react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { toast } from "sonner";
 
 function statusLabel(status: OrderDetailView["status"]) {
   switch (status) {
@@ -119,7 +115,7 @@ export function OrderDetailPage({ orderId }: { orderId: string }) {
     return (
       <div className="grid gap-6">
         <Link
-          href="/orders"
+          to="/orders"
           className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm"
         >
           <ChevronLeft className="h-4 w-4" />
@@ -202,7 +198,7 @@ export function OrderDetailPage({ orderId }: { orderId: string }) {
     <div className="grid gap-6">
       <div className="flex flex-wrap items-center gap-3">
         <Link
-          href="/orders"
+          to="/orders"
           className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm"
         >
           <ChevronLeft className="h-4 w-4" />
@@ -243,10 +239,10 @@ export function OrderDetailPage({ orderId }: { orderId: string }) {
                       <div className="flex flex-col gap-4 md:flex-row">
                         <div className="relative h-24 w-24 overflow-hidden rounded-3xl bg-muted">
                           {item.thumbnailUrl ? (
-                            <Image
+                            <img
                               alt={item.title}
-                              className="object-cover"
-                              fill
+                              className="h-full w-full object-cover"
+                              loading="lazy"
                               sizes="96px"
                               src={item.thumbnailUrl}
                             />

@@ -1,16 +1,3 @@
-"use client";
-
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { toast } from "sonner";
-import { z } from "zod";
-
-import {
-  useActivateCitizen,
-  useJoinMember,
-  useLoginMember,
-} from "@/lib/shopping/hooks";
-import type { SessionView } from "@/lib/shopping/types";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -23,6 +10,16 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  useActivateCitizen,
+  useJoinMember,
+  useLoginMember,
+} from "@/lib/shopping/hooks";
+import type { SessionView } from "@/lib/shopping/types";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { z } from "zod";
 
 const citizenSchema = z.object({
   name: z.string().min(2, "Enter your name."),

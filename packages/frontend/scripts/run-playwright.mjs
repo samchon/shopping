@@ -9,10 +9,10 @@ const env = {
 };
 
 if (mode !== "readme") {
-  env.NEXT_PUBLIC_SHOPPING_API_SIMULATE = "true";
+  env.VITE_SHOPPING_API_SIMULATE = "true";
   env.SHOPPING_API_SIMULATE = "true";
 } else {
-  env.NEXT_PUBLIC_SHOPPING_API_SIMULATE = "false";
+  env.VITE_SHOPPING_API_SIMULATE = "false";
   env.SHOPPING_API_SIMULATE = "false";
 }
 
@@ -53,8 +53,8 @@ function assertReadmeScreenshotEnv(currentEnv) {
   if (currentEnv.README_SCREENSHOTS !== "true") {
     throw new Error("README screenshot mode must set README_SCREENSHOTS=true.");
   }
-  if (currentEnv.NEXT_PUBLIC_SHOPPING_API_SIMULATE !== "false") {
-    throw new Error("README screenshots must run with NEXT_PUBLIC_SHOPPING_API_SIMULATE=false.");
+  if (currentEnv.VITE_SHOPPING_API_SIMULATE !== "false") {
+    throw new Error("README screenshots must run with VITE_SHOPPING_API_SIMULATE=false.");
   }
   if (currentEnv.SHOPPING_API_SIMULATE !== "false") {
     throw new Error("README screenshots must run with SHOPPING_API_SIMULATE=false.");

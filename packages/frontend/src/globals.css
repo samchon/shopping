@@ -4,6 +4,8 @@
 
 @layer base {
   :root {
+    --font-sans: "Manrope", sans-serif;
+    --font-mono: "IBM Plex Mono", monospace;
     --background: 44 33% 97%;
     --foreground: 220 26% 16%;
     --card: 0 0% 100%;

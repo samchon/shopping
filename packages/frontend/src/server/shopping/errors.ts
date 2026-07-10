@@ -1,6 +1,3 @@
-import { NextResponse } from "next/server";
-import "server-only";
-
 export class ApiRouteError extends Error {
   public readonly status: number;
 
@@ -75,5 +72,5 @@ export function toErrorResponse(error: unknown) {
     console.error(error);
   }
 
-  return NextResponse.json({ message }, { status });
+  return Response.json({ message }, { status });
 }

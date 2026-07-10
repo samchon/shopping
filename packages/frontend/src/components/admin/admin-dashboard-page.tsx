@@ -1,21 +1,3 @@
-"use client";
-
-import { zodResolver } from "@hookform/resolvers/zod";
-import Link from "next/link";
-import {
-  BadgeDollarSign,
-  Gift,
-  ShieldCheck,
-  ShoppingBag,
-  Tags,
-  TicketPercent,
-  WalletCards,
-} from "lucide-react";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { toast } from "sonner";
-import { z } from "zod";
-
 import { ErrorState } from "@/components/error-state";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -40,6 +22,21 @@ import {
   useLoginAdmin,
 } from "@/lib/shopping/hooks";
 import { formatCurrency, formatDateTime } from "@/lib/utils";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  BadgeDollarSign,
+  Gift,
+  ShieldCheck,
+  ShoppingBag,
+  Tags,
+  TicketPercent,
+  WalletCards,
+} from "lucide-react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
+import { toast } from "sonner";
+import { z } from "zod";
 
 const loginSchema = z.object({
   email: z.string().email("Enter a valid email."),
@@ -272,7 +269,7 @@ export function AdminDashboardPage() {
                 </p>
               </div>
               <Button asChild variant="outline">
-                <Link href="/admin/policies">Open policy board</Link>
+                <Link to="/admin/policies">Open policy board</Link>
               </Button>
             </div>
           </div>

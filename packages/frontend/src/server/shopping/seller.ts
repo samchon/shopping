@@ -1,3 +1,4 @@
+import ShoppingApi from "@samchon/shopping-api";
 import type {
   LoginMemberPayload,
   SellerDashboardView,
@@ -7,12 +8,8 @@ import type {
   SellerReplicaSalePayload,
   SellerSaleView,
   SellerSessionView,
-} from "@/lib/shopping/types";
-import { mapMoney, mapSession } from "@/server/shopping/mappers";
-import "server-only";
-
-import ShoppingApi from "@samchon/shopping-api";
-
+} from "../../lib/shopping/types";
+import { mapMoney, mapSession } from "./mappers";
 import { requireCurrentCustomer, type SessionContext } from "./session";
 
 function isForbiddenError(error: unknown) {

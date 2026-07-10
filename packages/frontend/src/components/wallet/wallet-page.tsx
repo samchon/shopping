@@ -1,8 +1,3 @@
-"use client";
-
-import { Coins, Gift, TicketPercent, WalletCards } from "lucide-react";
-import { toast } from "sonner";
-
 import { ErrorState } from "@/components/error-state";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -10,6 +5,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useClaimCoupon, useWallet } from "@/lib/shopping/hooks";
 import { formatCurrency, formatDateTime } from "@/lib/utils";
+import { Coins, Gift, TicketPercent, WalletCards } from "lucide-react";
+import { toast } from "sonner";
 
 function ClaimCouponButton({ couponId }: { couponId: string }) {
   const claimCoupon = useClaimCoupon(couponId);

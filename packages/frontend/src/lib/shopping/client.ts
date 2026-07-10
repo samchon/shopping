@@ -1,5 +1,3 @@
-"use client";
-
 export class ClientRequestError extends Error {
   public readonly status: number;
 

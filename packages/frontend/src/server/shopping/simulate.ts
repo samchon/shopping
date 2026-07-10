@@ -1,5 +1,3 @@
-import "server-only";
-
 import type { IConnection } from "@samchon/shopping-api";
 
 type Price = {
@@ -3220,6 +3218,12 @@ export const simulatedShoppingFetch: NonNullable<IConnection["fetch"]> = async (
   input,
   init,
 ) => {
-  const url = new URL(typeof input === "string" ? input : input.toString());
+  const url = new URL(
+    typeof input === "string"
+      ? input
+      : input instanceof URL
+        ? input.href
+        : input.url,
+  );
   return routeSimulation(url, init);
 };

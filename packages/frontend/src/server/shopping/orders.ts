@@ -1,19 +1,12 @@
+import ShoppingApi from "@samchon/shopping-api";
 import type {
   CreateOrderPayload,
   OrderCollectionView,
   OrderDetailView,
   PublishOrderPayload,
-} from "@/lib/shopping/types";
-import {
-  mapOrderDetail,
-  mapOrderListItem,
-  mapSession,
-} from "@/server/shopping/mappers";
-import "server-only";
-
-import ShoppingApi from "@samchon/shopping-api";
-
+} from "../../lib/shopping/types";
 import { ApiRouteError } from "./errors";
+import { mapOrderDetail, mapOrderListItem, mapSession } from "./mappers";
 import {
   requireCitizen,
   requireCurrentCustomer,
