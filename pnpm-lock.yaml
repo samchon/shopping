@@ -31,8 +31,8 @@ catalogs:
       specifier: ^3.0.0
       version: 3.0.0
     typia:
-      specifier: ^13.0.0
-      version: 13.0.0
+      specifier: ^13.0.1
+      version: 13.0.1
   typescript:
     '@ttsc/lint':
       specifier: ^0.18.2
@@ -77,7 +77,7 @@ importers:
         version: 12.0.0-rc.4
       typia:
         specifier: catalog:samchon
-        version: 13.0.0(@types/node@24.13.3)
+        version: 13.0.1(@types/node@24.13.3)
       uuid:
         specifier: catalog:utils
         version: 13.0.2
@@ -108,7 +108,7 @@ importers:
     dependencies:
       '@nestia/core':
         specifier: catalog:samchon
-        version: 12.0.0-rc.4(@nestia/fetcher@12.0.0-rc.4)(@nestjs/common@11.1.28(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.28(@nestjs/common@11.1.28(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)(rxjs@7.8.2)(typia@13.0.0(@types/node@24.13.3))
+        version: 12.0.0-rc.4(@nestia/fetcher@12.0.0-rc.4)(@nestjs/common@11.1.28(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.28(@nestjs/common@11.1.28(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)(rxjs@7.8.2)(typia@13.0.1(@types/node@24.13.3))
       '@nestia/editor':
         specifier: catalog:samchon
         version: 12.0.0-rc.4(@emotion/react@11.14.0(@types/react@19.2.17)(react@19.2.7))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.17)(react@19.2.7))(@types/react@19.2.17)(react@19.2.7))(@mui/icons-material@5.18.0(@mui/material@5.18.0(@emotion/react@11.14.0(@types/react@19.2.17)(react@19.2.7))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.17)(react@19.2.7))(@types/react@19.2.17)(react@19.2.7))(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(@types/react@19.2.17)(react@19.2.7))(@types/node@24.13.3)(@types/react@19.2.17)(prop-types@15.8.1)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
@@ -117,7 +117,7 @@ importers:
         version: 12.0.0-rc.4
       '@nestia/sdk':
         specifier: catalog:samchon
-        version: 12.0.0-rc.4(@nestia/core@12.0.0-rc.4(@nestia/fetcher@12.0.0-rc.4)(@nestjs/common@11.1.28(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.28(@nestjs/common@11.1.28(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)(rxjs@7.8.2)(typia@13.0.0(@types/node@24.13.3)))(@types/node@24.13.3)
+        version: 12.0.0-rc.4(@nestia/core@12.0.0-rc.4(@nestia/fetcher@12.0.0-rc.4)(@nestjs/common@11.1.28(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.28(@nestjs/common@11.1.28(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)(rxjs@7.8.2)(typia@13.0.1(@types/node@24.13.3)))(@types/node@24.13.3)
       '@nestjs/common':
         specifier: ^11.1.12
         version: 11.1.28(reflect-metadata@0.2.2)(rxjs@7.8.2)
@@ -186,7 +186,7 @@ importers:
         version: 3.0.0
       typia:
         specifier: catalog:samchon
-        version: 13.0.0(@types/node@24.13.3)
+        version: 13.0.1(@types/node@24.13.3)
       uuid:
         specifier: catalog:utils
         version: 13.0.2
@@ -2299,14 +2299,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@typia/interface@13.0.0':
-    resolution: {integrity: sha512-wP0wRjhistlkOaKG/M7TsDMVixhMxewcDRRKvld3DzdReqEe1Dy8vXn7MBIqA+yIfxXg404ZuvxVuSii46G/dg==}
-
   '@typia/interface@13.0.1':
     resolution: {integrity: sha512-dgy2HIus1pd4iLriyXJuGogqZEMaNKU4LSlxlIZp8xWdto5VTIJr4Ivy1lSZ65OcjioeRxixpAqXPFuBDeaSWQ==}
-
-  '@typia/utils@13.0.0':
-    resolution: {integrity: sha512-eYd+MkIuClU+J0jMQHsQ/Ji/9SXa9s553UqZUb9rzYqpW7oFp9QNMuMTGwEE6/pxclv1R03MhCd2a3eIkthiKg==}
 
   '@typia/utils@13.0.1':
     resolution: {integrity: sha512-HWWxmkVrN1PE5oWD31G/z9C6yD5Q1Ebm0iZB92ncW+mwdHco3DZdj4oMe+RoFmHhlCS8NJ+MxSX4UchKwT683A==}
@@ -4623,10 +4617,6 @@ packages:
     engines: {node: '>=16.20.0'}
     hasBin: true
 
-  typia@13.0.0:
-    resolution: {integrity: sha512-Ab8kNv+5Z5owY1bUVoN6qPB6jn+hVgza8ZqBdooHzrh0PmCoKiJUtyT0MgotNhk+eoozIVAdmxKmqAJEKDEGMA==}
-    hasBin: true
-
   typia@13.0.1:
     resolution: {integrity: sha512-JVAncWJs/5dkBx4Q0NKN4WTVmFp5FmM8PeQ/3cCpkgE5lioTryKlqg96sN5JtkWl5nNyPCiU/fUQHGh9f2eOpA==}
     hasBin: true
@@ -5541,7 +5531,7 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  '@nestia/core@12.0.0-rc.4(@nestia/fetcher@12.0.0-rc.4)(@nestjs/common@11.1.28(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.28(@nestjs/common@11.1.28(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)(rxjs@7.8.2)(typia@13.0.0(@types/node@24.13.3))':
+  '@nestia/core@12.0.0-rc.4(@nestia/fetcher@12.0.0-rc.4)(@nestjs/common@11.1.28(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.28(@nestjs/common@11.1.28(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)(rxjs@7.8.2)(typia@13.0.1(@types/node@24.13.3))':
     dependencies:
       '@nestia/fetcher': 12.0.0-rc.4
       '@nestjs/common': 11.1.28(reflect-metadata@0.2.2)(rxjs@7.8.2)
@@ -5555,7 +5545,7 @@ snapshots:
       reflect-metadata: 0.2.2
       rxjs: 7.8.2
       tgrid: 1.2.1
-      typia: 13.0.0(@types/node@24.13.3)
+      typia: 13.0.1(@types/node@24.13.3)
       ws: 7.5.11
     transitivePeerDependencies:
       - bufferutil
@@ -5607,9 +5597,9 @@ snapshots:
       - '@vue/compiler-sfc'
       - supports-color
 
-  '@nestia/sdk@12.0.0-rc.4(@nestia/core@12.0.0-rc.4(@nestia/fetcher@12.0.0-rc.4)(@nestjs/common@11.1.28(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.28(@nestjs/common@11.1.28(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)(rxjs@7.8.2)(typia@13.0.0(@types/node@24.13.3)))(@types/node@24.13.3)':
+  '@nestia/sdk@12.0.0-rc.4(@nestia/core@12.0.0-rc.4(@nestia/fetcher@12.0.0-rc.4)(@nestjs/common@11.1.28(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.28(@nestjs/common@11.1.28(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)(rxjs@7.8.2)(typia@13.0.1(@types/node@24.13.3)))(@types/node@24.13.3)':
     dependencies:
-      '@nestia/core': 12.0.0-rc.4(@nestia/fetcher@12.0.0-rc.4)(@nestjs/common@11.1.28(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.28(@nestjs/common@11.1.28(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)(rxjs@7.8.2)(typia@13.0.0(@types/node@24.13.3))
+      '@nestia/core': 12.0.0-rc.4(@nestia/fetcher@12.0.0-rc.4)(@nestjs/common@11.1.28(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.28(@nestjs/common@11.1.28(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)(rxjs@7.8.2)(typia@13.0.1(@types/node@24.13.3))
       '@nestia/fetcher': 12.0.0-rc.4
       '@ttsc/factory': 0.18.1
       '@typia/interface': 13.0.1
@@ -6721,13 +6711,7 @@ snapshots:
   '@typescript/typescript-win32-x64@7.0.2':
     optional: true
 
-  '@typia/interface@13.0.0': {}
-
   '@typia/interface@13.0.1': {}
-
-  '@typia/utils@13.0.0':
-    dependencies:
-      '@typia/interface': 13.0.0
 
   '@typia/utils@13.0.1':
     dependencies:
@@ -9252,18 +9236,6 @@ snapshots:
       '@typescript/typescript-sunos-x64': 7.0.2
       '@typescript/typescript-win32-arm64': 7.0.2
       '@typescript/typescript-win32-x64': 7.0.2
-
-  typia@13.0.0(@types/node@24.13.3):
-    dependencies:
-      '@standard-schema/spec': 1.1.0
-      '@typia/interface': 13.0.0
-      '@typia/utils': 13.0.0
-      commander: 10.0.1
-      inquirer: 8.2.7(@types/node@24.13.3)
-      randexp: 0.5.3
-      tinyglobby: 0.2.17
-    transitivePeerDependencies:
-      - '@types/node'
 
   typia@13.0.1(@types/node@24.13.3):
     dependencies:
