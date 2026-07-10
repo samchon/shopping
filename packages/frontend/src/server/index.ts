@@ -53,8 +53,9 @@ function resolveClientFile(pathname: string): string | null {
   }
   const relative = decoded.replace(/^\/+/, "");
   const candidate = path.resolve(clientRoot, relative || "index.html");
-  const rootPrefix = `${path.resolve(clientRoot)}${path.sep}`;
-  if (candidate !== path.resolve(clientRoot) && !candidate.startsWith(rootPrefix)) {
+  const resolvedRoot = path.resolve(clientRoot);
+  const rootPrefix = `${resolvedRoot}${path.sep}`;
+  if (candidate !== resolvedRoot && !candidate.startsWith(rootPrefix)) {
     return null;
   }
   if (existsSync(candidate) && statSync(candidate).isFile()) {
