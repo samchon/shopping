@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { ShoppingCart, Trash2 } from "lucide-react";
 import { useState } from "react";
@@ -63,9 +64,9 @@ function CartRow({
               disabled={!orderable}
               onCheckedChange={(checked) => onSelect(checked === true)}
             />
-            <div className="h-24 w-24 overflow-hidden rounded-3xl bg-muted">
+            <div className="relative h-24 w-24 overflow-hidden rounded-3xl bg-muted">
               {thumbnailUrl ? (
-                <img alt={title} className="h-full w-full object-cover" src={thumbnailUrl} />
+                <Image alt={title} className="object-cover" fill sizes="96px" src={thumbnailUrl} />
               ) : null}
             </div>
           </div>

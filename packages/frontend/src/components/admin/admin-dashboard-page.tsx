@@ -432,14 +432,19 @@ export function AdminDashboardPage() {
                 </div>
               </div>
               <div className="flex flex-wrap gap-4">
-                <label className="flex items-center gap-2 text-sm">
-                  <Checkbox checked={couponExclusive} onCheckedChange={(value) => setCouponExclusive(value === true)} />
+                <label className="flex items-center gap-2 text-sm" htmlFor="coupon-exclusive">
+                  <Checkbox
+                    checked={couponExclusive}
+                    id="coupon-exclusive"
+                    onCheckedChange={(value) => setCouponExclusive(value === true)}
+                  />
                   Exclusive coupon
                 </label>
                 {couponUnit === "amount" ? (
-                  <label className="flex items-center gap-2 text-sm">
+                  <label className="flex items-center gap-2 text-sm" htmlFor="coupon-multiplicative">
                     <Checkbox
                       checked={couponMultiplicative}
+                      id="coupon-multiplicative"
                       onCheckedChange={(value) => setCouponMultiplicative(value === true)}
                     />
                     Multiplicative amount

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft, ShieldCheck, Truck, WalletCards } from "lucide-react";
 import { useState } from "react";
@@ -240,11 +241,13 @@ export function OrderDetailPage({ orderId }: { orderId: string }) {
                       className="grid gap-4 rounded-[24px] border border-border/70 bg-muted/30 p-4"
                     >
                       <div className="flex flex-col gap-4 md:flex-row">
-                        <div className="h-24 w-24 overflow-hidden rounded-3xl bg-muted">
+                        <div className="relative h-24 w-24 overflow-hidden rounded-3xl bg-muted">
                           {item.thumbnailUrl ? (
-                            <img
+                            <Image
                               alt={item.title}
-                              className="h-full w-full object-cover"
+                              className="object-cover"
+                              fill
+                              sizes="96px"
                               src={item.thumbnailUrl}
                             />
                           ) : null}
