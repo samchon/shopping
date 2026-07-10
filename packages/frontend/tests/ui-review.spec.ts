@@ -18,9 +18,9 @@ const featuredProductName = readmeMode
   : "MacBook Pro 16 Creator Bundle";
 
 if (readmeMode) {
-  if (process.env.NEXT_PUBLIC_SHOPPING_API_SIMULATE !== "false") {
+  if (process.env.VITE_SHOPPING_API_SIMULATE !== "false") {
     throw new Error(
-      "README screenshots must run with NEXT_PUBLIC_SHOPPING_API_SIMULATE=false.",
+      "README screenshots must run with VITE_SHOPPING_API_SIMULATE=false.",
     );
   }
   if (process.env.SHOPPING_API_SIMULATE !== "false") {

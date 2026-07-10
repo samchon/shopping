@@ -1,4 +1,11 @@
 import type {
+  IShoppingCartCommodity,
+  IShoppingOrder,
+  IShoppingOrderPublish,
+  IShoppingSale,
+  IShoppingSaleSnapshot,
+} from "@samchon/shopping-api";
+import type {
   CartItemView,
   CartSelectionView,
   CategoryTreeNode,
@@ -14,16 +21,7 @@ import type {
   SectionFilter,
   SessionView,
   SnapshotView,
-} from "@/lib/shopping/types";
-import "server-only";
-
-import type {
-  IShoppingCartCommodity,
-  IShoppingOrder,
-  IShoppingOrderPublish,
-  IShoppingSale,
-  IShoppingSaleSnapshot,
-} from "@samchon/shopping-api";
+} from "../../lib/shopping/types";
 
 function sellerNameOf(seller: {
   member?: { nickname: string } | null;

@@ -1,11 +1,3 @@
-"use client";
-
-import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { ShoppingCart, Trash2 } from "lucide-react";
-import { useState } from "react";
-import { toast } from "sonner";
-
 import { ErrorState } from "@/components/error-state";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -20,6 +12,10 @@ import {
   useUpdateCartItem,
 } from "@/lib/shopping/hooks";
 import { formatCurrency, formatDateTime } from "@/lib/utils";
+import { ShoppingCart, Trash2 } from "lucide-react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 function CartRow({
   itemId,
@@ -66,7 +62,13 @@ function CartRow({
             />
             <div className="relative h-24 w-24 overflow-hidden rounded-3xl bg-muted">
               {thumbnailUrl ? (
-                <Image alt={title} className="object-cover" fill sizes="96px" src={thumbnailUrl} />
+                <img
+                  alt={title}
+                  className="h-full w-full object-cover"
+                  loading="lazy"
+                  sizes="96px"
+                  src={thumbnailUrl}
+                />
               ) : null}
             </div>
           </div>
@@ -185,7 +187,7 @@ function CartRow({
 }
 
 export function CartPage() {
-  const router = useRouter();
+  const navigate = useNavigate();
   const cart = useCart();
   const createOrder = useCreateOrder();
   const [selectionOverrides, setSelectionOverrides] = useState<
@@ -316,7 +318,7 @@ export function CartPage() {
                     onError: (error) => toast.error(error.message),
                     onSuccess: ({ orderId }) => {
                       toast.success("Order draft created.");
-                      router.push(`/orders/${orderId}`);
+                      void navigate(`/orders/${orderId}`);
                     },
                   },
                 )

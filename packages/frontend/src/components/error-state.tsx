@@ -1,9 +1,6 @@
-"use client";
-
-import { AlertTriangle, RefreshCw } from "lucide-react";
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { AlertTriangle, RefreshCw } from "lucide-react";
 
 export function ErrorState({
   title,

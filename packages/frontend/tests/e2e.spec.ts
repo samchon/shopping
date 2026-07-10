@@ -92,7 +92,12 @@ test("catalog flow publishes an order", async ({ page }) => {
   await publishMacbookOrder(page);
   await page.getByRole("link", { name: "Orders", exact: true }).click();
   await expect(page).toHaveURL(/\/orders$/);
-  await expect(page.getByText("MacBook Pro 16 Creator Bundle")).toBeVisible();
+  await expect(
+    page.getByRole("heading", {
+      level: 2,
+      name: "MacBook Pro 16 Creator Bundle",
+    }),
+  ).toBeVisible();
   await expect(page.getByText("Paid").first()).toBeVisible();
 });
 

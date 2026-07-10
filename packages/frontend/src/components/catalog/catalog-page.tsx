@@ -1,11 +1,3 @@
-"use client";
-
-import Image from "next/image";
-import Link from "next/link";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { Search, SlidersHorizontal } from "lucide-react";
-import { useEffect, useState } from "react";
-
 import { ErrorState } from "@/components/error-state";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -26,6 +18,14 @@ import {
   formatCurrency,
   formatDateTime,
 } from "@/lib/utils";
+import { Search, SlidersHorizontal } from "lucide-react";
+import { useEffect, useState } from "react";
+import {
+  Link,
+  useLocation,
+  useNavigate,
+  useSearchParams,
+} from "react-router-dom";
 
 function CategoryTree({
   nodes,
@@ -70,14 +70,14 @@ function CategoryTree({
 
 function ProductCard({ product }: { product: ProductCardView }) {
   return (
-    <Link href={`/products/${product.id}`} className="group block">
+    <Link to={`/products/${product.id}`} className="group block">
       <Card className="h-full overflow-hidden transition-transform duration-200 hover:-translate-y-1">
         <div className="relative aspect-[4/3] overflow-hidden bg-muted">
           {product.thumbnailUrl ? (
-            <Image
+            <img
               alt={product.title}
-              className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-              fill
+              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+              loading="lazy"
               sizes="(max-width: 768px) 100vw, 33vw"
               src={product.thumbnailUrl}
             />
@@ -192,9 +192,9 @@ export function CatalogPageFallback() {
 }
 
 export function CatalogPage() {
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const [searchParams] = useSearchParams();
   const activeSearch = searchParams.get("q") ?? "";
   const [searchDraft, setSearchDraft] = useState(activeSearch);
   const search = searchParams.toString() ? `?${searchParams.toString()}` : "";
@@ -220,7 +220,9 @@ export function CatalogPage() {
     }
 
     const query = next.toString();
-    router.push(query ? `${pathname}?${query}` : pathname, { scroll: false });
+    void navigate(query ? `${pathname}?${query}` : pathname, {
+      preventScrollReset: true,
+    });
   }
 
   const data = catalog.data;

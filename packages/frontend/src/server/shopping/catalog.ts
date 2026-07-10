@@ -1,18 +1,14 @@
-import type { CatalogSortKey } from "@/lib/shopping/types";
+import ShoppingApi from "@samchon/shopping-api";
+import type { CatalogSortKey } from "../../lib/shopping/types";
+import { shoppingConfig } from "./config";
+import { ApiRouteError } from "./errors";
 import {
   mapCategoryTree,
   mapProductCard,
   mapProductDetail,
   mapSectionsFromSales,
   mapSession,
-} from "@/server/shopping/mappers";
-import type { NextRequest } from "next/server";
-import "server-only";
-
-import ShoppingApi from "@samchon/shopping-api";
-
-import { shoppingConfig } from "./config";
-import { ApiRouteError } from "./errors";
+} from "./mappers";
 import { requireCurrentCustomer, type SessionContext } from "./session";
 
 function getSort(sort: CatalogSortKey) {
@@ -29,8 +25,8 @@ function getSort(sort: CatalogSortKey) {
   }
 }
 
-function parseQuery(request: NextRequest) {
-  const searchParams = request.nextUrl.searchParams;
+function parseQuery(request: Request) {
+  const searchParams = new URL(request.url).searchParams;
   const q = searchParams.get("q")?.trim() ?? "";
   const section = searchParams.get("section")?.trim() || null;
   const category = searchParams.get("category")?.trim() || null;
@@ -87,7 +83,7 @@ function findCategoryIdByCode(
 }
 
 export async function getCatalogData(
-  request: NextRequest,
+  request: Request,
   context: SessionContext,
 ) {
   const customer = await requireCurrentCustomer(context);

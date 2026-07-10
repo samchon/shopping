@@ -1,6 +1,6 @@
 # `@samchon/shopping-frontend`
 
-Frontend package of the [`@samchon/shopping`](https://github.com/samchon/shopping) monorepo — a Next.js storefront built on the auto-generated SDK (`@samchon/shopping-api`).
+Frontend package of the [`@samchon/shopping`](https://github.com/samchon/shopping) monorepo — a Vite storefront built on the auto-generated SDK (`@samchon/shopping-api`).
 
 This package was built **entirely by AI** Starting from an empty directory, Claude Code read only the SDK source code and a single [`CLAUDE.md`](./CLAUDE.md) prompt file, then produced every package, component, page, and test on its own. No human wrote any frontend code or configured any tooling.
 

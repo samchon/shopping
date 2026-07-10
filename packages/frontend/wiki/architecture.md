@@ -2,7 +2,8 @@
 
 ## Stack
 
-- `TypeScript + Next.js 16 + App Router`
+- `TypeScript + Vite + React Router`
+- `@ttsc/unplugin/vite` for ttsc-powered client and server transforms
 - `Tailwind CSS` with lightweight `shadcn/ui`-style primitives in `src/components/ui`
 - `@tanstack/react-query` for client-side query and mutation orchestration
 - `@samchon/shopping-api` as the backend SDK
@@ -10,14 +11,14 @@
 
 ## Environment
 
-- API host is configured through `NEXT_PUBLIC_SHOPPING_API_HOST`
-- Channel bootstrap is configured through `NEXT_PUBLIC_SHOPPING_CHANNEL_CODE`
-- Frontend-only simulation is configured through `NEXT_PUBLIC_SHOPPING_API_SIMULATE` or `SHOPPING_API_SIMULATE`
-- Defaults are documented in [.env.example](/d:/github/samchon/shopping-frontend/.env.example:1)
+- API host is configured through `VITE_SHOPPING_API_HOST`
+- Channel bootstrap is configured through `VITE_SHOPPING_CHANNEL_CODE`
+- Frontend-only simulation is configured through `VITE_SHOPPING_API_SIMULATE` or `SHOPPING_API_SIMULATE`
+- Defaults are documented in [`.env.example`](../.env.example)
 
 ## Layering
 
-The app keeps SDK-specific behavior in the server adapter layer so the UI does not depend on raw SDK DTOs.
+The app keeps SDK-specific behavior in a Vite-bundled Node adapter so the UI does not depend on raw SDK DTOs.
 
 - `src/server/shopping/*`
   - owns SDK calls, customer session bootstrapping, cookie refresh, and error translation
@@ -33,13 +34,13 @@ The app keeps SDK-specific behavior in the server adapter layer so the UI does n
 
 - `/`
   - catalog with search, sort, section/category filters, and pagination controls
-- `/products/[id]`
+- `/products/:id`
   - sale detail, snapshot history, SKU-aware unit selection, and add-to-cart flow
 - `/cart`
   - cart snapshot review, quantity updates, delete, and order draft creation
 - `/orders`
   - order timeline and status summaries
-- `/orders/[id]`
+- `/orders/:id`
   - identity verification, shipping address entry, and publish flow
 - `/wallet`
   - deposit balance, mileage balance, coupon discovery, and coupon ticket ownership
@@ -54,7 +55,8 @@ The app keeps SDK-specific behavior in the server adapter layer so the UI does n
 - Order detail does not call `orders.publish.able` before citizen verification, because the backend returns `403` for non-citizens.
 - Snapshot history uses summary data only. The summary endpoint does not expose timestamps, so the UI says that the timestamp is unavailable instead of inventing one.
 - Payment publishing uses a generated prototype vendor UID internally. The UI does not expose backend-only payment vendor details as a user-facing control.
-- `Suspense` wraps the catalog page because `useSearchParams()` is used in a client component under the App Router.
+- React Router owns browser history, query parameters, and deep-link fallback routing.
+- The production server serves the Vite client bundle and the same `/api/*` adapter used by the development server.
 - The frontend test program runs in a deterministic SDK-boundary simulation mode so Playwright and README screenshots do not depend on backend uptime or random simulator payloads.
 - Local Playwright was added as a dev dependency because browser verification is part of done-ness for this project.
 - Seller authentication reuses the customer connection and upgrades it into seller scope through dedicated seller endpoints, which keeps the SDK-specific role switching inside the server adapter layer.

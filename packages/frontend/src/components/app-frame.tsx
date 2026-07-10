@@ -1,7 +1,8 @@
-"use client";
-
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { SessionDialog } from "@/components/session/session-dialog";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
+import { useCart, useSession } from "@/lib/shopping/hooks";
+import { cn } from "@/lib/utils";
 import {
   Home,
   ShieldCheck,
@@ -11,12 +12,7 @@ import {
   Wallet,
   WalletCards,
 } from "lucide-react";
-
-import { SessionDialog } from "@/components/session/session-dialog";
-import { Button, buttonVariants } from "@/components/ui/button";
-import { Skeleton } from "@/components/ui/skeleton";
-import { useCart, useSession } from "@/lib/shopping/hooks";
-import { cn } from "@/lib/utils";
+import { Link, useLocation } from "react-router-dom";
 
 const navItems = [
   { href: "/", label: "Catalog", icon: Home },
@@ -28,7 +24,7 @@ const navItems = [
 ];
 
 export function AppFrame({ children }: { children: React.ReactNode }) {
-  const pathname = usePathname();
+  const { pathname } = useLocation();
   const session = useSession();
   const cart = useCart();
 
@@ -41,7 +37,7 @@ export function AppFrame({ children }: { children: React.ReactNode }) {
               shopping-api
             </div>
             <div>
-              <Link href="/" className="text-lg font-semibold">
+              <Link to="/" className="text-lg font-semibold">
                 Samchon Storefront
               </Link>
               <p className="text-sm text-muted-foreground">
@@ -59,7 +55,7 @@ export function AppFrame({ children }: { children: React.ReactNode }) {
               return (
                 <Link
                   key={item.href}
-                  href={item.href}
+                  to={item.href}
                   className={cn(
                     buttonVariants({
                       variant: active ? "default" : "ghost",
@@ -109,7 +105,7 @@ export function AppFrame({ children }: { children: React.ReactNode }) {
             return (
               <Link
                 key={item.href}
-                href={item.href}
+                to={item.href}
                 className={cn(
                   buttonVariants({
                     variant: active ? "default" : "outline",

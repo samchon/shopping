@@ -1,18 +1,3 @@
-"use client";
-
-import Link from "next/link";
-import {
-  ArrowRight,
-  CalendarRange,
-  CopyPlus,
-  PackageCheck,
-  Rocket,
-  Sparkles,
-  Tag,
-} from "lucide-react";
-import { useState } from "react";
-import { toast } from "sonner";
-
 import { ErrorState } from "@/components/error-state";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -33,6 +18,18 @@ import {
 } from "@/lib/shopping/hooks";
 import type { SellerReplicaSalePayload } from "@/lib/shopping/types";
 import { cn, formatCurrency, formatDateTime } from "@/lib/utils";
+import {
+  ArrowRight,
+  CalendarRange,
+  CopyPlus,
+  PackageCheck,
+  Rocket,
+  Sparkles,
+  Tag,
+} from "lucide-react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { toast } from "sonner";
 
 function toDateTimeLocalValue(value: string | null) {
   if (!value) return "";
@@ -97,7 +94,7 @@ export function SellerStudioPage() {
           </p>
           <div>
             <Button asChild>
-              <Link href="/seller">
+              <Link to="/seller">
                 Open seller console
                 <ArrowRight className="h-4 w-4" />
               </Link>

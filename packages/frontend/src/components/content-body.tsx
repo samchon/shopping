@@ -1,5 +1,3 @@
-"use client";
-
 import ReactMarkdown from "react-markdown";
 import sanitizeHtml from "sanitize-html";
 

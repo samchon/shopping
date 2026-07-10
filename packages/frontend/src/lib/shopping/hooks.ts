@@ -1,20 +1,11 @@
-"use client";
-
-import {
-  useMutation,
-  useQuery,
-  useQueryClient,
-  type UseMutationOptions,
-} from "@tanstack/react-query";
-
 import type {
   ActivateCitizenPayload,
-  AdminDashboardView,
+  AddToCartPayload,
   AdminCreateCouponPayload,
   AdminCreateDepositPayload,
   AdminCreateMileagePayload,
+  AdminDashboardView,
   AdminSessionView,
-  AddToCartPayload,
   CartView,
   CatalogView,
   CreateOrderPayload,
@@ -32,7 +23,12 @@ import type {
   UpdateCartPayload,
   WalletView,
 } from "@/lib/shopping/types";
-
+import {
+  useMutation,
+  useQuery,
+  useQueryClient,
+  type UseMutationOptions,
+} from "@tanstack/react-query";
 import { requestJson } from "./client";
 
 const shoppingKeys = {

@@ -9,7 +9,7 @@ Do not let raw SDK shapes take over the UI.
 ## Stack
 Use a fixed base unless the user explicitly wants something else.
 
-- Use `TypeScript + Next.js + shadcn/ui` unless the user approves another stack.
+- Use `TypeScript + Vite + React Router + shadcn/ui` unless the user approves another stack.
 - Use environment variables for the API host.
 - Default API host: `http://127.0.0.1:37001`.
 - Add libraries only when they solve a real problem.

@@ -1,14 +1,11 @@
+import ShoppingApi from "@samchon/shopping-api";
 import type {
   WalletCouponTicketView,
   WalletCouponView,
   WalletHistoryEntryView,
   WalletView,
-} from "@/lib/shopping/types";
-import { mapSession } from "@/server/shopping/mappers";
-import "server-only";
-
-import ShoppingApi from "@samchon/shopping-api";
-
+} from "../../lib/shopping/types";
+import { mapSession } from "./mappers";
 import { requireCurrentCustomer, type SessionContext } from "./session";
 
 function isForbiddenError(error: unknown) {

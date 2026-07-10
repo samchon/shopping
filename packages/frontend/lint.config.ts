@@ -2,31 +2,8 @@ import type { ITtscLintConfig } from "@ttsc/lint";
 
 export default {
   extends: "../../config/lint.config.ts",
-  ignores: [".next/**/*.ts", ".next/**/*.tsx", "next-env.d.ts"],
+  ignores: ["dist/**/*.js", "dist/**/*.mjs"],
   rules: {
-    // Next.js: framework-specific runtime and performance traps.
-    "nextjs/google-font-display": "error",
-    "nextjs/google-font-preconnect": "error",
-    "nextjs/inline-script-id": "error",
-    "nextjs/next-script-for-ga": "error",
-    "nextjs/no-assign-module-variable": "error",
-    "nextjs/no-async-client-component": "error",
-    "nextjs/no-before-interactive-script-outside-document": "error",
-    "nextjs/no-css-tags": "error",
-    "nextjs/no-document-import-in-page": "error",
-    "nextjs/no-duplicate-head": "error",
-    "nextjs/no-head-element": "error",
-    "nextjs/no-head-import-in-document": "error",
-    "nextjs/no-html-link-for-pages": "error",
-    "nextjs/no-img-element": "error",
-    "nextjs/no-page-custom-font": "error",
-    "nextjs/no-script-component-in-head": "error",
-    "nextjs/no-styled-jsx-in-document": "error",
-    "nextjs/no-sync-scripts": "error",
-    "nextjs/no-title-in-document-head": "error",
-    "nextjs/no-typos": "error",
-    "nextjs/no-unwanted-polyfillio": "error",
-
     // TanStack Query: cache key, callback ordering, and stable-client rules.
     "tanstack-query/exhaustive-deps": "error",
     "tanstack-query/infinite-query-property-order": "error",

@@ -105,7 +105,7 @@ That is why the prompt ([`CLAUDE.md`](packages/frontend/CLAUDE.md)) could stay s
 |---------|------------|
 | [`packages/api`](packages/api) | SDK auto-generated from the backend by Nestia |
 | [`packages/backend`](packages/backend) | NestJS + Fastify backend with SQLite and Prisma |
-| [`packages/frontend`](packages/frontend) | Next.js storefront, built entirely by AI |
+| [`packages/frontend`](packages/frontend) | Vite storefront, built entirely by AI |
 
 ![Entity Relationship Diagram](https://github-production-user-asset-6210df.s3.amazonaws.com/13158709/268175441-80ca9c8e-4c96-4deb-a8cb-674e9845ebf6.png)
 

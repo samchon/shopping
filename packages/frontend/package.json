@@ -4,12 +4,12 @@
   "private": true,
   "packageManager": "pnpm@10.10.0",
   "scripts": {
-    "dev": "next dev",
-    "build": "pnpm typecheck && next build --webpack",
-    "start": "next start --hostname 0.0.0.0 --port 3000",
+    "dev": "vite --host 0.0.0.0",
+    "build": "rimraf dist && pnpm typecheck && vite build && vite build --config vite.server.config.ts",
+    "start": "node dist/server/server.mjs",
     "format": "ttsc format -p tsconfig.json",
     "lint": "ttsc -p tsconfig.json --noEmit",
-    "typecheck": "next typegen && tsc --noEmit",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
     "check": "pnpm run typecheck && pnpm run lint",
     "test:e2e": "node scripts/run-playwright.mjs e2e",
     "ui:review": "node scripts/run-playwright.mjs ui-review",
@@ -32,11 +32,11 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^1.8.0",
-    "next": "^16.2.3",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
     "react-hook-form": "^7.72.1",
     "react-markdown": "^10.1.0",
+    "react-router-dom": "^7.18.1",
     "sanitize-html": "^2.17.2",
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.5.0",
@@ -53,9 +53,11 @@
     "autoprefixer": "^10.4.27",
     "playwright": "^1.59.1",
     "postcss": "^8.5.9",
+    "rimraf": "catalog:utils",
     "tailwindcss": "3.4.17",
     "tailwindcss-animate": "^1.0.7",
     "ttsc": "catalog:typescript",
-    "typescript": "catalog:typescript"
+    "typescript": "catalog:typescript",
+    "vite": "^8.1.4"
   }
 }
