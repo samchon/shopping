@@ -10,7 +10,7 @@
     "format": "ttsc format -p tsconfig.json",
     "lint": "ttsc -p tsconfig.json --noEmit",
     "typecheck": "next typegen && tsc --noEmit",
-    "check": "npm run typecheck && npm run lint",
+    "check": "pnpm run typecheck && pnpm run lint",
     "test:e2e": "node scripts/run-playwright.mjs e2e",
     "ui:review": "node scripts/run-playwright.mjs ui-review",
     "readme:screens": "node scripts/run-playwright.mjs readme",

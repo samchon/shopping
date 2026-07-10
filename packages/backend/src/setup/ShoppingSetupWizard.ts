@@ -18,9 +18,12 @@ export namespace ShoppingSetupWizard {
       throw new Error(
         "Erron on SetupWizard.schema(): unable to reset database in non-test mode.",
       );
-    cp.execSync("npx prisma db push --force-reset --schema=prisma/schema", {
-      stdio: "inherit",
-    });
+    cp.execSync(
+      "pnpm exec prisma db push --force-reset --schema=prisma/schema",
+      {
+        stdio: "inherit",
+      },
+    );
   }
 
   export async function seed(): Promise<void> {

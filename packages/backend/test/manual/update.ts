@@ -9,11 +9,11 @@ async function main(): Promise<void> {
   // PREPARATIONS
   //----
   // START UPDATOR SERVER
-  await Terminal.execute("npm run start:updator:master");
+  await Terminal.execute("pnpm run start:updator:master");
   await sleep_for(1000);
 
   // START BACKEND SERVER
-  await Terminal.execute("npm run start local xxxx yyyy zzzz");
+  await Terminal.execute("pnpm run start local xxxx yyyy zzzz");
   await sleep_for(4000);
 
   // API LIBRARY
@@ -24,7 +24,7 @@ async function main(): Promise<void> {
   sleep_for(1000)
     .then(async () => {
       console.log("Start updating");
-      await Terminal.execute("npm run update");
+      await Terminal.execute("pnpm run update");
       console.log("The update has been completed");
     })
     .catch(() => {});
@@ -35,8 +35,8 @@ async function main(): Promise<void> {
       await ShoppingApi.functional.monitors.system.get(connection);
     }),
   );
-  await Terminal.execute("npm run stop");
-  await Terminal.execute("npm run stop:updator:master");
+  await Terminal.execute("pnpm run stop");
+  await Terminal.execute("pnpm run stop:updator:master");
 }
 main().catch((exp: unknown) => {
   console.log(exp);
