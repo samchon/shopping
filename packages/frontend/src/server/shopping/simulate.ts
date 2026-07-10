@@ -307,6 +307,16 @@ type SimulationState = {
 const GLOBAL_STATE_KEY = "__shopping_frontend_simulation__";
 const BASE_TIME = Date.parse("2026-04-13T00:00:00.000Z");
 
+function atOrThrow<T>(items: readonly T[], index: number, message: string): T {
+  const value = items[index];
+  if (value === undefined) throw new Error(message);
+  return value;
+}
+
+function routeCapture(match: RegExpMatchArray, index = 1): string {
+  return atOrThrow(match, index, "Route match is missing a capture group.");
+}
+
 function getSimulationState(): SimulationState {
   const globalScope = globalThis as typeof globalThis & {
     [GLOBAL_STATE_KEY]?: SimulationState;
@@ -1209,6 +1219,16 @@ function createVariantStock(
   right: SelectOptionFixture,
   rightIndex: number,
 ): StockFixture {
+  const leftCandidate = atOrThrow(
+    left.candidates,
+    leftIndex,
+    "Missing left stock option candidate.",
+  );
+  const rightCandidate = atOrThrow(
+    right.candidates,
+    rightIndex,
+    "Missing right stock option candidate.",
+  );
   return {
     id: nextRuntimeId(state),
     name,
@@ -1217,11 +1237,11 @@ function createVariantStock(
     choices: [
       {
         optionId: left.id,
-        candidateId: left.candidates[leftIndex].id,
+        candidateId: leftCandidate.id,
       },
       {
         optionId: right.id,
-        candidateId: right.candidates[rightIndex].id,
+        candidateId: rightCandidate.id,
       },
     ],
   };
@@ -1585,7 +1605,7 @@ function toApiSaleSummary(state: SimulationState, sale: SaleFixture) {
       (snapshot) => snapshot.snapshot_id === sale.snapshotId,
     ) ??
     sale.snapshots.find((snapshot) => snapshot.latest) ??
-    sale.snapshots[0];
+    atOrThrow(sale.snapshots, 0, "Sale summary is missing a snapshot.");
 
   return {
     id: sale.id,
@@ -1914,14 +1934,22 @@ function createGuestCustomer(
   state.depositHistories.set(customer.id, [
     {
       id: nextRuntimeId(state),
-      source_id: state.depositMetas[0].id,
+      source_id: atOrThrow(
+        state.depositMetas,
+        0,
+        "Missing first deposit metadata.",
+      ).id,
       value: 250000,
       balance: 250000,
       created_at: advanceTimestamp(state, 3),
     },
     {
       id: nextRuntimeId(state),
-      source_id: state.depositMetas[1].id,
+      source_id: atOrThrow(
+        state.depositMetas,
+        1,
+        "Missing second deposit metadata.",
+      ).id,
       value: -70000,
       balance: 180000,
       created_at: advanceTimestamp(state, 3),
@@ -1930,14 +1958,22 @@ function createGuestCustomer(
   state.mileageHistories.set(customer.id, [
     {
       id: nextRuntimeId(state),
-      source_id: state.mileageMetas[0].id,
+      source_id: atOrThrow(
+        state.mileageMetas,
+        0,
+        "Missing first mileage metadata.",
+      ).id,
       value: 5000,
       balance: 5000,
       created_at: advanceTimestamp(state, 3),
     },
     {
       id: nextRuntimeId(state),
-      source_id: state.mileageMetas[1].id,
+      source_id: atOrThrow(
+        state.mileageMetas,
+        1,
+        "Missing second mileage metadata.",
+      ).id,
       value: 2000,
       balance: 7000,
       created_at: advanceTimestamp(state, 3),
@@ -2383,7 +2419,7 @@ async function routeSimulation(url: URL, init?: RequestInit) {
       /^\/shoppings\/customers\/systematic\/channels\/([^/]+)\/get$/,
     );
     if (method === "GET" && channelMatch) {
-      return channelMatch[1] === state.channel.code
+      return routeCapture(channelMatch) === state.channel.code
         ? Response.json(toApiChannel(state), { status: 200 })
         : httpError(404, "The requested channel was not found.");
     }
@@ -2446,7 +2482,7 @@ async function routeSimulation(url: URL, init?: RequestInit) {
     );
     if (method === "GET" && saleMatch) {
       requireCustomer(state, headers);
-      const sale = state.salesById.get(saleMatch[1]);
+      const sale = state.salesById.get(routeCapture(saleMatch));
       return sale
         ? Response.json(toApiSaleDetail(state, sale), { status: 200 })
         : httpError(404, "The requested sale could not be found.");
@@ -2457,7 +2493,7 @@ async function routeSimulation(url: URL, init?: RequestInit) {
     );
     if (method === "PATCH" && snapshotMatch) {
       requireCustomer(state, headers);
-      const sale = state.salesById.get(snapshotMatch[1]);
+      const sale = state.salesById.get(routeCapture(snapshotMatch));
       return sale
         ? Response.json(
             pageOf(
@@ -2585,8 +2621,9 @@ async function routeSimulation(url: URL, init?: RequestInit) {
     );
     if (commodityMatch && method === "PUT") {
       const customer = requireCustomer(state, headers);
+      const commodityId = routeCapture(commodityMatch);
       const commodity = (state.carts.get(customer.id) ?? []).find(
-        (item) => item.id === commodityMatch[1],
+        (item) => item.id === commodityId,
       );
       if (!commodity) {
         return httpError(404, "The cart commodity could not be found.");
@@ -2600,10 +2637,11 @@ async function routeSimulation(url: URL, init?: RequestInit) {
 
     if (commodityMatch && method === "DELETE") {
       const customer = requireCustomer(state, headers);
+      const commodityId = routeCapture(commodityMatch);
       state.carts.set(
         customer.id,
         (state.carts.get(customer.id) ?? []).filter(
-          (item) => item.id !== commodityMatch[1],
+          (item) => item.id !== commodityId,
         ),
       );
       return Response.json(null, { status: 200 });
@@ -2652,13 +2690,18 @@ async function routeSimulation(url: URL, init?: RequestInit) {
       if (!goods.length) {
         return httpError(404, "The selected commodities could not be found.");
       }
+      const firstGood = atOrThrow(
+        goods,
+        0,
+        "Order creation requires at least one good.",
+      );
 
       const order: OrderRecord = {
         id: nextRuntimeId(state),
         name:
           goods.length === 1
-            ? goods[0].commodity.sale.content.title
-            : `${goods[0].commodity.sale.content.title} and ${goods.length - 1} more items`,
+            ? firstGood.commodity.sale.content.title
+            : `${firstGood.commodity.sale.content.title} and ${goods.length - 1} more items`,
         customer_id: customer.id,
         goods,
         publish: null,
@@ -2690,8 +2733,9 @@ async function routeSimulation(url: URL, init?: RequestInit) {
     );
     if (method === "GET" && orderMatch) {
       const customer = requireCustomer(state, headers);
+      const orderId = routeCapture(orderMatch);
       const order = (state.orders.get(customer.id) ?? []).find(
-        (item) => item.id === orderMatch[1],
+        (item) => item.id === orderId,
       );
       return order
         ? Response.json(toApiOrder(state, order), { status: 200 })
@@ -2703,8 +2747,9 @@ async function routeSimulation(url: URL, init?: RequestInit) {
     );
     if (method === "GET" && ableMatch) {
       const customer = requireCustomer(state, headers);
+      const orderId = routeCapture(ableMatch);
       const order = (state.orders.get(customer.id) ?? []).find(
-        (item) => item.id === ableMatch[1],
+        (item) => item.id === orderId,
       );
       return order
         ? Response.json(!order.publish, { status: 200 })
@@ -2716,6 +2761,7 @@ async function routeSimulation(url: URL, init?: RequestInit) {
     );
     if (method === "POST" && publishMatch) {
       const customer = requireCustomer(state, headers);
+      const orderId = routeCapture(publishMatch);
       if (!customer.citizen) {
         return httpError(
           428,
@@ -2724,7 +2770,7 @@ async function routeSimulation(url: URL, init?: RequestInit) {
       }
 
       const order = (state.orders.get(customer.id) ?? []).find(
-        (item) => item.id === publishMatch[1],
+        (item) => item.id === orderId,
       );
       const address =
         body.address && typeof body.address === "object"
@@ -2813,7 +2859,7 @@ async function routeSimulation(url: URL, init?: RequestInit) {
     );
     if (method === "POST" && sellerSaleReplicaMatch) {
       requireSeller(state, headers);
-      const sale = state.salesById.get(sellerSaleReplicaMatch[1]);
+      const sale = state.salesById.get(routeCapture(sellerSaleReplicaMatch));
       if (!sale) {
         return httpError(404, "The requested seller sale could not be found.");
       }
@@ -2878,7 +2924,7 @@ async function routeSimulation(url: URL, init?: RequestInit) {
     );
     if (method === "GET" && sellerSaleMatch) {
       requireSeller(state, headers);
-      const sale = state.salesById.get(sellerSaleMatch[1]);
+      const sale = state.salesById.get(routeCapture(sellerSaleMatch));
       return sale
         ? Response.json(toApiSaleDetail(state, sale), { status: 200 })
         : httpError(404, "The requested seller sale could not be found.");
@@ -2889,7 +2935,7 @@ async function routeSimulation(url: URL, init?: RequestInit) {
     );
     if (method === "DELETE" && sellerSalePauseMatch) {
       requireSeller(state, headers);
-      const sale = state.salesById.get(sellerSalePauseMatch[1]);
+      const sale = state.salesById.get(routeCapture(sellerSalePauseMatch));
       if (!sale) {
         return httpError(404, "The requested seller sale could not be found.");
       }
@@ -2903,7 +2949,7 @@ async function routeSimulation(url: URL, init?: RequestInit) {
     );
     if (method === "PUT" && sellerSaleRestoreMatch) {
       requireSeller(state, headers);
-      const sale = state.salesById.get(sellerSaleRestoreMatch[1]);
+      const sale = state.salesById.get(routeCapture(sellerSaleRestoreMatch));
       if (!sale) {
         return httpError(404, "The requested seller sale could not be found.");
       }
@@ -2918,7 +2964,7 @@ async function routeSimulation(url: URL, init?: RequestInit) {
     );
     if (method === "PUT" && sellerSaleOpenMatch) {
       requireSeller(state, headers);
-      const sale = state.salesById.get(sellerSaleOpenMatch[1]);
+      const sale = state.salesById.get(routeCapture(sellerSaleOpenMatch));
       if (!sale) {
         return httpError(404, "The requested seller sale could not be found.");
       }
@@ -2951,11 +2997,12 @@ async function routeSimulation(url: URL, init?: RequestInit) {
     );
     if (method === "GET" && sellerOrderMatch) {
       requireSeller(state, headers);
+      const orderId = routeCapture(sellerOrderMatch);
       const order = [...state.orders.values()]
         .flat()
         .find(
           (candidate) =>
-            candidate.id === sellerOrderMatch[1] && candidate.publish?.paid_at,
+            candidate.id === orderId && candidate.publish?.paid_at,
         );
       return order
         ? Response.json(toApiOrder(state, order), { status: 200 })

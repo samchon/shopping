@@ -1,5 +1,4 @@
 import { Module } from "@nestjs/common";
-
 import { ShoppingCustomerCartCommodityController } from "./ShoppingCustomerCartCommodityController";
 import { ShoppingCustomerOrderController } from "./ShoppingCustomerOrderController";
 import { ShoppingCustomerOrderGoodController } from "./ShoppingCustomerOrderGoodController";

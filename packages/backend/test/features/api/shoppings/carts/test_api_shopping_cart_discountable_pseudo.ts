@@ -1,11 +1,8 @@
-import { ArrayUtil, TestValidator } from "@nestia/e2e";
-
-import ShoppingApi from "@samchon/shopping-api";
-import {
+import ShoppingApi, {
   IShoppingCartCommodity,
   IShoppingCartDiscountable,
 } from "@samchon/shopping-api";
-
+import { ArrayUtil, TestValidator } from "@nestia/e2e";
 import { validate_api_shopping_cart_discountable } from "./internal/validate_api_shopping_cart_discountable";
 
 export const test_api_shopping_cart_discountable_pseudo =

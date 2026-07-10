@@ -1,8 +1,6 @@
+import type { IBbsArticle, IEntity } from "@samchon/shopping-api";
 import { Prisma } from "@prisma/sdk";
 import { v4 } from "uuid";
-
-import type { IBbsArticle, IEntity } from "@samchon/shopping-api";
-
 import { ShoppingGlobal } from "../../ShoppingGlobal";
 import { AttachmentFileProvider } from "./AttachmentFileProvider";
 

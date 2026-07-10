@@ -1,13 +1,10 @@
-import { RandomGenerator, TestValidator } from "@nestia/e2e";
-import typia from "typia";
-
-import ShoppingApi from "@samchon/shopping-api";
-import {
+import ShoppingApi, {
   IShoppingCitizen,
   IShoppingCustomer,
   IShoppingMember,
 } from "@samchon/shopping-api";
-
+import { RandomGenerator, TestValidator } from "@nestia/e2e";
+import typia from "typia";
 import { ConnectionPool } from "../../../../ConnectionPool";
 import { TestGlobal } from "../../../../TestGlobal";
 import { test_api_shopping_actor_customer_create } from "./test_api_shopping_actor_customer_create";

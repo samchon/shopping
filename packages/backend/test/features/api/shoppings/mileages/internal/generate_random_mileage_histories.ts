@@ -1,5 +1,4 @@
-import ShoppingApi from "@samchon/shopping-api";
-import {
+import ShoppingApi, {
   IShoppingCartCommodity,
   IShoppingCustomer,
   IShoppingMileageDonation,
@@ -8,7 +7,6 @@ import {
   IShoppingSale,
   IShoppingSaleReview,
 } from "@samchon/shopping-api";
-
 import { ConnectionPool } from "../../../../../ConnectionPool";
 import { prepare_random_attachment_file } from "../../../common/internal/prepare_random_attachment_file";
 import { generate_random_cart_commodity } from "../../carts/internal/generate_random_cart_commodity";

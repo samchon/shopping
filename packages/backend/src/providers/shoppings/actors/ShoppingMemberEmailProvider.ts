@@ -1,6 +1,5 @@
-import { Prisma } from "@prisma/sdk";
-
 import type { IShoppingMemberEmail } from "@samchon/shopping-api";
+import { Prisma } from "@prisma/sdk";
 
 export namespace ShoppingMemberEmailProvider {
   export namespace json {

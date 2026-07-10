@@ -1,8 +1,3 @@
-import { ArrayUtil } from "@nestia/e2e";
-import { Prisma } from "@prisma/sdk";
-import { IPointer } from "tstl";
-import { v4 } from "uuid";
-
 import type {
   IDiagnosis,
   IPage,
@@ -12,7 +7,10 @@ import type {
   IShoppingOrder,
   IShoppingOrderPrice,
 } from "@samchon/shopping-api";
-
+import { ArrayUtil } from "@nestia/e2e";
+import { Prisma } from "@prisma/sdk";
+import { IPointer } from "tstl";
+import { v4 } from "uuid";
 import { ShoppingGlobal } from "../../../ShoppingGlobal";
 import { ErrorProvider } from "../../../utils/ErrorProvider";
 import { PaginationUtil } from "../../../utils/PaginationUtil";
@@ -373,7 +371,7 @@ export namespace ShoppingOrderProvider {
 
 const getDefaultName = (commodities: IShoppingCartCommodity[]): string => {
   if (commodities.length === 0) return "nothing";
-  const first: string = commodities[0].sale.content.title.substring(0, 30);
+  const first: string = commodities[0]!.sale.content.title.substring(0, 30);
   if (commodities.length === 1) return first;
   return `${first} and ${commodities.length - 1} more goods`;
 };

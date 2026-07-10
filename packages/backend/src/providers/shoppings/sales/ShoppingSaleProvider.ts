@@ -1,6 +1,3 @@
-import { Prisma } from "@prisma/sdk";
-import { v4 } from "uuid";
-
 import type {
   IDiagnosis,
   IPage,
@@ -10,7 +7,8 @@ import type {
   IShoppingSection,
   IShoppingSeller,
 } from "@samchon/shopping-api";
-
+import { Prisma } from "@prisma/sdk";
+import { v4 } from "uuid";
 import { ShoppingGlobal } from "../../../ShoppingGlobal";
 import { ErrorProvider } from "../../../utils/ErrorProvider";
 import { PaginationUtil } from "../../../utils/PaginationUtil";

@@ -1,9 +1,7 @@
+import type { IShoppingChannelCategory } from "@samchon/shopping-api";
 import core from "@nestia/core";
 import { Controller } from "@nestjs/common";
 import { tags } from "typia";
-
-import type { IShoppingChannelCategory } from "@samchon/shopping-api";
-
 import { ShoppingChannelCategoryProvider } from "../../../../providers/shoppings/systematic/ShoppingChannelCategoryProvider";
 import { ShoppingChannelProvider } from "../../../../providers/shoppings/systematic/ShoppingChannelProvider";
 import { IShoppingControllerProps } from "../IShoppingControllerProps";

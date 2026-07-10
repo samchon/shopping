@@ -1,12 +1,9 @@
-import { randint } from "tstl";
-
-import ShoppingApi from "@samchon/shopping-api";
-import {
+import ShoppingApi, {
   IShoppingOrderGood,
   IShoppingSale,
   IShoppingSaleReview,
 } from "@samchon/shopping-api";
-
+import { randint } from "tstl";
 import { ConnectionPool } from "../../../../../ConnectionPool";
 import { prepare_random_bbs_article } from "../../../common/internal/prepare_random_bbs_article";
 

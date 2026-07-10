@@ -1,13 +1,10 @@
-import { ArrayUtil, TestValidator } from "@nestia/e2e";
-
-import ShoppingApi from "@samchon/shopping-api";
-import {
+import ShoppingApi, {
   IShoppingCustomer,
   IShoppingSale,
   IShoppingSaleInquiry,
   IShoppingSaleInquiryComment,
 } from "@samchon/shopping-api";
-
+import { ArrayUtil, TestValidator } from "@nestia/e2e";
 import { ConnectionPool } from "../../../../../ConnectionPool";
 import { prepare_random_bbs_article_comment } from "../../../common/internal/prepare_random_bbs_article_comment";
 import { generate_random_sale_inquiry_comment } from "./generate_random_sale_inquiry_comment";

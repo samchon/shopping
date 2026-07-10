@@ -2,8 +2,8 @@ import { PrismaBetterSqlite3 } from "@prisma/adapter-better-sqlite3";
 import { PrismaClient } from "@prisma/sdk";
 import dotenv from "dotenv";
 import dotenvExpand from "dotenv-expand";
-import fs from "fs";
-import path from "path";
+import fs from "node:fs";
+import path from "node:path";
 import { Singleton } from "tstl";
 import typia from "typia";
 
@@ -72,7 +72,9 @@ export class ShoppingGlobal {
    *   - real: The server is for the real service.
    */
   public static get mode(): "local" | "dev" | "real" {
-    return (modeWrapper.value ??= environments.get().SHOPPING_MODE);
+    if (modeWrapper.value === undefined)
+      modeWrapper.value = environments.get().SHOPPING_MODE;
+    return modeWrapper.value;
   }
 
   /**

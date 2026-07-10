@@ -1,5 +1,4 @@
 import { tags } from "typia";
-
 import { IPage } from "../../common/IPage";
 
 export interface IShoppingMileage extends IShoppingMileage.ICreate {

@@ -1,24 +1,24 @@
 packages:
-  - 'packages/*'
+  - "config"
+  - "packages/*"
 catalogs:
   samchon:
-    '@nestia/benchmark': &nestia ^12.0.0-rc.3
-    '@nestia/core': *nestia
-    '@nestia/fetcher': *nestia
-    '@nestia/e2e': *nestia
-    '@nestia/editor': *nestia
-    '@nestia/migrate': *nestia
-    '@nestia/sdk': *nestia
-    nestia: *nestia
+    nestia: &nestia ^12.0.0-rc.4
+    "@nestia/benchmark": *nestia
+    "@nestia/core": *nestia
+    "@nestia/fetcher": *nestia
+    "@nestia/e2e": *nestia
+    "@nestia/editor": *nestia
+    "@nestia/migrate": *nestia
+    "@nestia/sdk": *nestia
     tstl: ^3.0.0
-    typia: ^13.0.0
+    typia: ^13.0.1
   utils:
     uuid: ^13.0.0
     rimraf: ^6.1.3
   typescript:
-    '@ttsc/unplugin': &ttsc ^0.18.0
-    '@ttsc/paths': *ttsc
-    '@ttsc/lint': *ttsc
-    '@typescript/native-preview': 7.0.0-dev.20260707.2
-    ttsc: *ttsc
+    ttsc: &ttsc ^0.18.2
+    "@ttsc/unplugin": *ttsc
+    "@ttsc/paths": *ttsc
+    "@ttsc/lint": *ttsc
     typescript: ^7.0.2

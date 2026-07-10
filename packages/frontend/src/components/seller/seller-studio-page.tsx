@@ -27,7 +27,10 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useReplicateSellerSale, useSellerDashboard } from "@/lib/shopping/hooks";
+import {
+  useReplicateSellerSale,
+  useSellerDashboard,
+} from "@/lib/shopping/hooks";
 import type { SellerReplicaSalePayload } from "@/lib/shopping/types";
 import { cn, formatCurrency, formatDateTime } from "@/lib/utils";
 
@@ -106,7 +109,9 @@ export function SellerStudioPage() {
   }
 
   const selectedSourceSaleId = sourceSaleId || sales[0]?.id || "";
-  const sourceSale = sales.find((sale) => sale.id === selectedSourceSaleId) ?? sales[0] ?? null;
+  const sourceSale = sales.find(
+    (sale) => sale.id === selectedSourceSaleId,
+  ) ?? sales[0] ?? null;
   const launchCards = sales.slice(0, 3).map((sale, index) => ({
     ...sale,
     accent:
@@ -119,7 +124,9 @@ export function SellerStudioPage() {
 
   const readySales = sales.filter((sale) => sale.status === "live").length;
   const pausedSales = sales.filter((sale) => sale.status === "paused").length;
-  const avgTicket = orders.length ? Math.round(metrics.revenue / orders.length) : 0;
+  const avgTicket = orders.length
+    ? Math.round(metrics.revenue / orders.length)
+    : 0;
   const topTags = Array.from(
     new Set(sales.flatMap((sale) => sale.tags.map((tag) => tag.toLowerCase()))),
   ).slice(0, 8);
@@ -140,7 +147,9 @@ export function SellerStudioPage() {
       await replicateSellerSale.mutateAsync(payload);
       toast.success("Copied sale created.");
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Copied sale creation failed.");
+      toast.error(
+        error instanceof Error ? error.message : "Copied sale creation failed.",
+      );
     }
   }
 

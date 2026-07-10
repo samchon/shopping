@@ -1,5 +1,4 @@
 import { tags } from "typia";
-
 import { IBbsArticle } from "../../../common/IBbsArticle";
 import { IShoppingSaleInquiry } from "./IShoppingSaleInquiry";
 

@@ -1,5 +1,5 @@
 import { mapSession } from "@/server/shopping/mappers";
-import { type NextRequest, NextResponse } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
 import "server-only";
 
 import ShoppingApi, { type IConnection } from "@samchon/shopping-api";

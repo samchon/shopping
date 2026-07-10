@@ -1,5 +1,3 @@
-import { v4 } from "uuid";
-
 import type {
   IPage,
   IShoppingAddress,
@@ -8,7 +6,7 @@ import type {
   IShoppingOrder,
   IShoppingSale,
 } from "@samchon/shopping-api";
-
+import { v4 } from "uuid";
 import { ShoppingCustomerProvider } from "../../providers/shoppings/actors/ShoppingCustomerProvider";
 import { ShoppingMemberProvider } from "../../providers/shoppings/actors/ShoppingMemberProvider";
 import { ShoppingDepositChargeProvider } from "../../providers/shoppings/deposits/ShoppingDepositChargeProvider";

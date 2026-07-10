@@ -1,5 +1,4 @@
 import { tags } from "typia";
-
 import { IPage } from "../../common/IPage";
 import { IShoppingSeller } from "../actors/IShoppingSeller";
 import { IShoppingDeliveryJourney } from "./IShoppingDeliveryJourney";

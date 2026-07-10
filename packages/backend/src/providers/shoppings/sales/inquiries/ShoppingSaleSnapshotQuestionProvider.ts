@@ -1,5 +1,3 @@
-import { Prisma } from "@prisma/sdk";
-
 import type {
   IBbsArticle,
   IEntity,
@@ -8,7 +6,7 @@ import type {
   IShoppingCustomer,
   IShoppingSaleQuestion,
 } from "@samchon/shopping-api";
-
+import { Prisma } from "@prisma/sdk";
 import { ShoppingGlobal } from "../../../../ShoppingGlobal";
 import { ErrorProvider } from "../../../../utils/ErrorProvider";
 import { PaginationUtil } from "../../../../utils/PaginationUtil";

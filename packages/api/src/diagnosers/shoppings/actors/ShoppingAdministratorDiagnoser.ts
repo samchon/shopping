@@ -1,5 +1,4 @@
 import typia from "typia";
-
 import { IShoppingAdministrator } from "../../../structures/shoppings/actors/IShoppingAdministrator";
 import { IShoppingCustomer } from "../../../structures/shoppings/actors/IShoppingCustomer";
 import { IShoppingMember } from "../../../structures/shoppings/actors/IShoppingMember";

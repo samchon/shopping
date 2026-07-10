@@ -1,10 +1,9 @@
-import { RandomGenerator } from "@nestia/e2e";
-
 import {
   IShoppingCartCommodityStock,
   IShoppingSaleUnit,
   IShoppingSaleUnitStock,
 } from "@samchon/shopping-api";
+import { RandomGenerator } from "@nestia/e2e";
 
 export const prepare_random_cart_commodity_stock = (
   unit: IShoppingSaleUnit,

@@ -53,7 +53,12 @@ export namespace ShoppingSaleUnitStockChoiceDiagnoser {
         "Error on ShoppingSaleUnitStockChoiceDiagnoser.replica(): unable to find the matched option.",
       );
 
-    const option: IShoppingSaleUnitOption = props.options[optionIndex];
+    const option: IShoppingSaleUnitOption | undefined =
+      props.options[optionIndex];
+    if (option === undefined)
+      throw new Error(
+        "Error on ShoppingSaleUnitStockChoiceDiagnoser.replica(): unable to resolve the matched option.",
+      );
     if (option.type !== "select")
       throw new Error(
         "Error on ShoppingSaleUnitStockChoiceDiagnoser.replica(): option type must be 'select'.",

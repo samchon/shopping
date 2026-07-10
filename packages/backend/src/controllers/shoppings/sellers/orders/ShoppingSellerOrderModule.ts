@@ -1,5 +1,4 @@
 import { Module } from "@nestjs/common";
-
 import { ShoppingSellerOrderController } from "./ShoppingSellerOrderController";
 
 @Module({

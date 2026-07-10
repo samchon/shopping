@@ -1,7 +1,3 @@
-import { ArrayUtil, MapUtil } from "@nestia/e2e";
-import { Prisma } from "@prisma/sdk";
-import { v4 } from "uuid";
-
 import type {
   IDiagnosis,
   IEntity,
@@ -13,7 +9,9 @@ import type {
   IShoppingSaleSnapshot,
   IShoppingSaleUnit,
 } from "@samchon/shopping-api";
-
+import { ArrayUtil, MapUtil } from "@nestia/e2e";
+import { Prisma } from "@prisma/sdk";
+import { v4 } from "uuid";
 import { ShoppingGlobal } from "../../../ShoppingGlobal";
 import { ErrorProvider } from "../../../utils/ErrorProvider";
 import { PaginationUtil } from "../../../utils/PaginationUtil";
@@ -59,10 +57,22 @@ export namespace ShoppingCartCommodityProvider {
         id: input.id,
         sale: {
           ...snapshot,
-          units: Array.from(dict.values()).map((units) => ({
-            ...units[0],
-            stocks: units.map((u) => u.stocks[0]),
-          })),
+          units: Array.from(dict.values()).map((units) => {
+            const unit: IShoppingSaleUnit.IInvert | undefined = units[0];
+            if (unit === undefined)
+              throw ErrorProvider.internal("No cart commodity unit found.");
+            return {
+              ...unit,
+              stocks: units.map((u) => {
+                const stock = u.stocks[0];
+                if (stock === undefined)
+                  throw ErrorProvider.internal(
+                    "No cart commodity stock found.",
+                  );
+                return stock;
+              }),
+            };
+          }),
         },
         pseudo: false,
         price: {

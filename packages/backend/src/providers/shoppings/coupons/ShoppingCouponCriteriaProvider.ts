@@ -1,9 +1,3 @@
-import { ArrayUtil, MapUtil } from "@nestia/e2e";
-import { Prisma } from "@prisma/sdk";
-import { IPointer } from "tstl";
-import typia from "typia";
-import { v4 } from "uuid";
-
 import type {
   IShoppingAdministrator,
   IShoppingCouponCriteria,
@@ -13,7 +7,11 @@ import type {
   IShoppingCouponSellerCriteria,
   IShoppingSeller,
 } from "@samchon/shopping-api";
-
+import { ArrayUtil, MapUtil } from "@nestia/e2e";
+import { Prisma } from "@prisma/sdk";
+import { IPointer } from "tstl";
+import typia from "typia";
+import { v4 } from "uuid";
 import { ErrorProvider } from "../../../utils/ErrorProvider";
 import { ShoppingCouponFunnelCriteriaProvider } from "./ShoppingCouponFunnelCriteriaProvider";
 import { ShoppingCouponSaleCriteriaProvider } from "./ShoppingCouponSaleCriteriaProvider";

@@ -1,8 +1,3 @@
-import { ArrayUtil } from "@nestia/e2e";
-import { Prisma } from "@prisma/sdk";
-import typia from "typia";
-import { v4 } from "uuid";
-
 import type {
   IDiagnosis,
   IEntity,
@@ -13,7 +8,10 @@ import type {
   IShoppingDeliveryPiece,
   IShoppingSeller,
 } from "@samchon/shopping-api";
-
+import { ArrayUtil } from "@nestia/e2e";
+import { Prisma } from "@prisma/sdk";
+import typia from "typia";
+import { v4 } from "uuid";
 import { ShoppingGlobal } from "../../../ShoppingGlobal";
 import { ErrorProvider } from "../../../utils/ErrorProvider";
 import { PaginationUtil } from "../../../utils/PaginationUtil";
@@ -515,8 +513,10 @@ export namespace ShoppingDeliveryProvider {
 
   const computeMinimumState = (stateList: IShoppingDelivery.State[]) => {
     if (stateList.length === 0) return "none";
-    const minimum: IShoppingDelivery.State =
-      STATES[Math.min(...stateList.map((elem) => STATES.indexOf(elem)))];
+    const index: number = Math.min(
+      ...stateList.map((elem) => STATES.indexOf(elem)),
+    );
+    const minimum: IShoppingDelivery.State = STATES[index] ?? "none";
     return stateList.some((elem) => elem === "underway") ||
       (stateList.some((elem) => elem === "none") &&
         stateList.some((elem) => elem !== "none"))

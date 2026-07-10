@@ -1,6 +1,4 @@
-import ShoppingApi from "@samchon/shopping-api";
-import { IShoppingSale } from "@samchon/shopping-api";
-
+import ShoppingApi, { IShoppingSale } from "@samchon/shopping-api";
 import { ConnectionPool } from "../../../../../ConnectionPool";
 import { prepare_random_sale } from "./prepare_random_sale";
 

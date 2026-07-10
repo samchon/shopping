@@ -1,5 +1,4 @@
 import { IShoppingCartCommodity, IShoppingSale } from "@samchon/shopping-api";
-
 import { prepare_random_cart_commodity_stock } from "./prepare_random_cart_commodity_stock";
 
 export const prepare_random_cart_commodity = (

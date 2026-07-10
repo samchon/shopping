@@ -1,9 +1,6 @@
+import ShoppingApi, { IShoppingAdministrator } from "@samchon/shopping-api";
 import { TestValidator } from "@nestia/e2e";
 import typia from "typia";
-
-import ShoppingApi from "@samchon/shopping-api";
-import { IShoppingAdministrator } from "@samchon/shopping-api";
-
 import { ConnectionPool } from "../../../../ConnectionPool";
 import { TestGlobal } from "../../../../TestGlobal";
 import { test_api_shopping_actor_admin_login } from "./test_api_shopping_actor_admin_login";

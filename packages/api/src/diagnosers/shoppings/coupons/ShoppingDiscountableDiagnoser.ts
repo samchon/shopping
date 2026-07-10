@@ -260,22 +260,29 @@ export namespace ShoppingDiscountableDiagnoser {
         coupons,
       }),
     );
-    return combinations.map((comb, i) => ({
-      coupons: matrix[i].filter((x) => coupons.some((y) => x.id === y.id)),
-      tickets: tickets.filter((t) =>
-        matrix[i].some((c) => c.id === t.coupon.id),
-      ),
-      entries: [...comb.coupon_to_elem_dict.entries()]
-        .map(([coupon_id, elements]) =>
-          [...elements.entries()].map(([item_id, amount]) => ({
-            coupon_id,
-            item_id,
-            amount,
-          })),
-        )
-        .flat(),
-      amount: comb.amount,
-    }));
+    return combinations.map((comb, i) => {
+      const row = matrix[i];
+      if (row === undefined)
+        throw new Error(
+          "Error on ShoppingDiscountableDiagnoser.combine(): missing coupon matrix row.",
+        );
+      return {
+        coupons: row.filter((x) => coupons.some((y) => x.id === y.id)),
+        tickets: tickets.filter((t) =>
+          row.some((c) => c.id === t.coupon.id),
+        ),
+        entries: [...comb.coupon_to_elem_dict.entries()]
+          .map(([coupon_id, elements]) =>
+            [...elements.entries()].map(([item_id, amount]) => ({
+              coupon_id,
+              item_id,
+              amount,
+            })),
+          )
+          .flat(),
+        amount: comb.amount,
+      };
+    });
   };
 }
 

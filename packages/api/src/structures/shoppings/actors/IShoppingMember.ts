@@ -1,5 +1,4 @@
 import { tags } from "typia";
-
 import { IShoppingAdministrator } from "./IShoppingAdministrator";
 import { IShoppingCitizen } from "./IShoppingCitizen";
 import { IShoppingMemberEmail } from "./IShoppingMemberEmail";

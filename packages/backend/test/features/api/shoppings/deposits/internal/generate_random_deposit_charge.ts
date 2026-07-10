@@ -1,8 +1,5 @@
+import ShoppingApi, { IShoppingDepositCharge } from "@samchon/shopping-api";
 import { randint } from "tstl";
-
-import ShoppingApi from "@samchon/shopping-api";
-import { IShoppingDepositCharge } from "@samchon/shopping-api";
-
 import { ConnectionPool } from "../../../../../ConnectionPool";
 
 export const generate_random_deposit_charge = async (

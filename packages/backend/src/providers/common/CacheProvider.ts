@@ -1,5 +1,4 @@
 import { v4 } from "uuid";
-
 import { ShoppingGlobal } from "../../ShoppingGlobal";
 
 export namespace CacheProvider {

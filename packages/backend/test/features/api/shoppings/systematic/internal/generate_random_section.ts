@@ -1,8 +1,5 @@
+import ShoppingApi, { IShoppingSection } from "@samchon/shopping-api";
 import { RandomGenerator } from "@nestia/e2e";
-
-import ShoppingApi from "@samchon/shopping-api";
-import { IShoppingSection } from "@samchon/shopping-api";
-
 import { ConnectionPool } from "../../../../../ConnectionPool";
 
 export const generate_random_section = async (

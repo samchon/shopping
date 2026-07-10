@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft, ShieldCheck, Truck, WalletCards } from "lucide-react";
 import { useState } from "react";
@@ -13,8 +14,15 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Textarea } from "@/components/ui/textarea";
-import { useActivateCitizen, useOrder, usePublishOrder } from "@/lib/shopping/hooks";
-import type { OrderDetailView, PublishOrderPayload } from "@/lib/shopping/types";
+import {
+  useActivateCitizen,
+  useOrder,
+  usePublishOrder,
+} from "@/lib/shopping/hooks";
+import type {
+  OrderDetailView,
+  PublishOrderPayload,
+} from "@/lib/shopping/types";
 import { formatCurrency, formatDateTime } from "@/lib/utils";
 
 function statusLabel(status: OrderDetailView["status"]) {
@@ -67,7 +75,7 @@ function buildAddressDraft(order: OrderDetailView): PublishOrderPayload {
 }
 
 function validateAddress(payload: PublishOrderPayload) {
-  const requiredEntries = [
+  const requiredEntries: Array<[string, string]> = [
     ["name", payload.name],
     ["mobile", payload.mobile],
     ["country", payload.country],
@@ -103,7 +111,9 @@ export function OrderDetailPage({ orderId }: { orderId: string }) {
     name?: string;
     mobile?: string;
   }>({});
-  const [addressDraft, setAddressDraft] = useState<Partial<PublishOrderPayload>>({});
+  const [addressDraft, setAddressDraft] = useState<Partial<PublishOrderPayload>>(
+    {},
+  );
 
   if (order.isError) {
     return (
@@ -146,7 +156,9 @@ export function OrderDetailPage({ orderId }: { orderId: string }) {
 
   async function handleCitizenActivation() {
     if (!citizenName.trim() || !citizenMobile.trim()) {
-      toast.error("Enter your name and mobile number before verifying identity.");
+      toast.error(
+        "Enter your name and mobile number before verifying identity.",
+      );
       return;
     }
 
@@ -157,7 +169,9 @@ export function OrderDetailPage({ orderId }: { orderId: string }) {
       });
       setCitizenDraft({});
       await order.refetch();
-      toast.success("Identity verified. You can now continue to publish the order.");
+      toast.success(
+        "Identity verified. You can now continue to publish the order.",
+      );
     } catch (error) {
       toast.error(
         error instanceof Error ? error.message : "Identity verification failed.",
@@ -174,9 +188,13 @@ export function OrderDetailPage({ orderId }: { orderId: string }) {
       });
       setAddressDraft({});
       await order.refetch();
-      toast.success("Order published. Delivery and payment state are now attached.");
+      toast.success(
+        "Order published. Delivery and payment state are now attached.",
+      );
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Order publish failed.");
+      toast.error(
+        error instanceof Error ? error.message : "Order publish failed.",
+      );
     }
   }
 
@@ -223,11 +241,13 @@ export function OrderDetailPage({ orderId }: { orderId: string }) {
                       className="grid gap-4 rounded-[24px] border border-border/70 bg-muted/30 p-4"
                     >
                       <div className="flex flex-col gap-4 md:flex-row">
-                        <div className="h-24 w-24 overflow-hidden rounded-3xl bg-muted">
+                        <div className="relative h-24 w-24 overflow-hidden rounded-3xl bg-muted">
                           {item.thumbnailUrl ? (
-                            <img
+                            <Image
                               alt={item.title}
-                              className="h-full w-full object-cover"
+                              className="object-cover"
+                              fill
+                              sizes="96px"
                               src={item.thumbnailUrl}
                             />
                           ) : null}

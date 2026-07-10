@@ -1,14 +1,12 @@
-import { Prisma } from "@prisma/sdk";
-import typia from "typia";
-import { v4 } from "uuid";
-
 import type {
   IEntity,
   IShoppingDelivery,
   IShoppingDeliveryJourney,
   IShoppingSeller,
 } from "@samchon/shopping-api";
-
+import { Prisma } from "@prisma/sdk";
+import typia from "typia";
+import { v4 } from "uuid";
 import { ShoppingGlobal } from "../../../ShoppingGlobal";
 import { ErrorProvider } from "../../../utils/ErrorProvider";
 import { ShoppingDeliveryPieceProvider } from "./ShoppingDeliveryPieceProvider";

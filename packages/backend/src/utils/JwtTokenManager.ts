@@ -1,5 +1,4 @@
 import jwt from "jsonwebtoken";
-
 import { ShoppingGlobal } from "../ShoppingGlobal";
 
 export namespace JwtTokenManager {
@@ -29,10 +28,14 @@ export namespace JwtTokenManager {
         props.refreshable_until ??
         new Date(Date.now() + EXPIRATIONS.REFRESH).toISOString(),
     };
-    const [access, refresh] = [
+    const access: string = jwt.sign(
+      asset,
       ShoppingGlobal.env.SHOPPING_JWT_SECRET_KEY,
+    );
+    const refresh: string = jwt.sign(
+      asset,
       ShoppingGlobal.env.SHOPPING_JWT_REFRESH_KEY,
-    ].map((key) => jwt.sign(asset, key));
+    );
     return {
       ...asset,
       access,

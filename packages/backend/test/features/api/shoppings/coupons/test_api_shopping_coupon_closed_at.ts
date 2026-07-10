@@ -1,9 +1,10 @@
+import ShoppingApi, {
+  IPage,
+  IShoppingCoupon,
+  IShoppingSale,
+} from "@samchon/shopping-api";
 import { RandomGenerator, TestValidator } from "@nestia/e2e";
 import { sleep_until } from "tstl";
-
-import ShoppingApi from "@samchon/shopping-api";
-import { IPage, IShoppingCoupon, IShoppingSale } from "@samchon/shopping-api";
-
 import { ActorPath } from "../../../../../src/typings/ActorPath";
 import { ConnectionPool } from "../../../../ConnectionPool";
 import { test_api_shopping_actor_admin_login } from "../actors/test_api_shopping_actor_admin_login";

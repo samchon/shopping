@@ -1,9 +1,9 @@
+import ShoppingApi, {
+  IShoppingChannel,
+  IShoppingSale,
+} from "@samchon/shopping-api";
 import { ArrayUtil, RandomGenerator } from "@nestia/e2e";
 import { randint } from "tstl";
-
-import ShoppingApi from "@samchon/shopping-api";
-import { IShoppingChannel, IShoppingSale } from "@samchon/shopping-api";
-
 import { ConnectionPool } from "../../../../../ConnectionPool";
 import { TestGlobal } from "../../../../../TestGlobal";
 import { prepare_random_attachment_file } from "../../../common/internal/prepare_random_attachment_file";

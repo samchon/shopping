@@ -1,7 +1,6 @@
-import type { HTMLAttributes } from "react";
-import { cva, type VariantProps } from "class-variance-authority";
-
 import { cn } from "@/lib/utils";
+import { cva, type VariantProps } from "class-variance-authority";
+import type { HTMLAttributes } from "react";
 
 const badgeVariants = cva(
   "inline-flex items-center rounded-full border px-2.5 py-1 text-xs font-semibold transition-colors",
@@ -22,8 +21,7 @@ const badgeVariants = cva(
 );
 
 export interface BadgeProps
-  extends HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof badgeVariants> {}
+  extends HTMLAttributes<HTMLDivElement>, VariantProps<typeof badgeVariants> {}
 
 export function Badge({ className, variant, ...props }: BadgeProps) {
   return (

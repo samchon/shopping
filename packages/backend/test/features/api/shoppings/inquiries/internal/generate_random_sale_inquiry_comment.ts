@@ -1,11 +1,9 @@
-import ShoppingApi from "@samchon/shopping-api";
-import {
+import ShoppingApi, {
   IShoppingActorEntity,
   IShoppingSale,
   IShoppingSaleInquiry,
   IShoppingSaleInquiryComment,
 } from "@samchon/shopping-api";
-
 import { ConnectionPool } from "../../../../../ConnectionPool";
 import { prepare_random_bbs_article_comment } from "../../../common/internal/prepare_random_bbs_article_comment";
 

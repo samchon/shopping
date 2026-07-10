@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Search, SlidersHorizontal } from "lucide-react";
@@ -19,7 +20,12 @@ import {
 import { Skeleton } from "@/components/ui/skeleton";
 import { useCatalog } from "@/lib/shopping/hooks";
 import type { CategoryTreeNode, ProductCardView } from "@/lib/shopping/types";
-import { cn, formatCompactNumber, formatCurrency, formatDateTime } from "@/lib/utils";
+import {
+  cn,
+  formatCompactNumber,
+  formatCurrency,
+  formatDateTime,
+} from "@/lib/utils";
 
 function CategoryTree({
   nodes,
@@ -66,11 +72,13 @@ function ProductCard({ product }: { product: ProductCardView }) {
   return (
     <Link href={`/products/${product.id}`} className="group block">
       <Card className="h-full overflow-hidden transition-transform duration-200 hover:-translate-y-1">
-        <div className="aspect-[4/3] overflow-hidden bg-muted">
+        <div className="relative aspect-[4/3] overflow-hidden bg-muted">
           {product.thumbnailUrl ? (
-            <img
+            <Image
               alt={product.title}
-              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+              className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+              fill
+              sizes="(max-width: 768px) 100vw, 33vw"
               src={product.thumbnailUrl}
             />
           ) : (

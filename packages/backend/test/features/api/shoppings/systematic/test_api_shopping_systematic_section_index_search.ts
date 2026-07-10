@@ -1,8 +1,5 @@
+import ShoppingApi, { IPage, IShoppingSection } from "@samchon/shopping-api";
 import { ArrayUtil, TestValidator } from "@nestia/e2e";
-
-import ShoppingApi from "@samchon/shopping-api";
-import { IPage, IShoppingSection } from "@samchon/shopping-api";
-
 import { ConnectionPool } from "../../../../ConnectionPool";
 import { test_api_shopping_actor_admin_login } from "../actors/test_api_shopping_actor_admin_login";
 import { generate_random_section } from "./internal/generate_random_section";

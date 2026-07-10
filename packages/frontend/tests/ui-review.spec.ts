@@ -1,9 +1,9 @@
 import {
+  expect,
+  test,
   type Browser,
   type Locator,
   type Page,
-  expect,
-  test,
 } from "@playwright/test";
 import { mkdir } from "node:fs/promises";
 import path from "node:path";
@@ -42,12 +42,18 @@ async function waitForImages(page: Page) {
   );
 }
 
+async function waitForSkeletonsHidden(page: Page) {
+  // Loading states render <Skeleton> placeholders with the `animate-pulse`
+  // class; waiting for them to disappear means every query has settled.
+  await page.locator(".animate-pulse").first().waitFor({ state: "hidden" });
+}
+
 async function capture(page: Page, filename: string) {
   await waitForImages(page);
   const outputDir = path.resolve(reviewTarget);
   await mkdir(outputDir, { recursive: true });
   await hideToaster(page);
-  await page.waitForLoadState("networkidle");
+  await waitForSkeletonsHidden(page);
   await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
   await page.screenshot({
     path: path.join(outputDir, filename),
@@ -64,7 +70,7 @@ async function captureViewportAt(
   const outputDir = path.resolve(reviewTarget);
   await mkdir(outputDir, { recursive: true });
   await hideToaster(page);
-  await page.waitForLoadState("networkidle");
+  await waitForSkeletonsHidden(page);
   await target.evaluate((element: Element) => {
     const top: number =
       element.getBoundingClientRect().top + window.scrollY - 112;
@@ -100,7 +106,11 @@ async function openSellerConsole(page: Page) {
             password: "samchon",
           },
         });
-      expect(response.ok()).toBeTruthy();
+      if (!response.ok()) {
+        throw new Error(
+          `Seller operator login failed with status ${response.status()}.`,
+        );
+      }
       await page.goto(appUrl("/seller"));
     } else {
       await page.locator("#seller-email").fill("robot@nestia.io");
@@ -108,17 +118,17 @@ async function openSellerConsole(page: Page) {
       await page.getByRole("button", { name: "Log in as seller" }).click();
     }
   }
-  await expect(sellerHeading).toBeVisible();
+  await sellerHeading.waitFor();
 }
 
 async function openSellerStudio(page: Page) {
   await openSellerConsole(page);
   await page.goto(appUrl("/seller/studio"));
-  await expect(
-    page.getByRole("heading", {
+  await page
+    .getByRole("heading", {
       name: /Copy an existing sale and prepare it for publishing/i,
-    }),
-  ).toBeVisible();
+    })
+    .waitFor();
 }
 
 async function openAdminConsole(page: Page) {
@@ -136,7 +146,11 @@ async function openAdminConsole(page: Page) {
             password: "samchon",
           },
         });
-      expect(response.ok()).toBeTruthy();
+      if (!response.ok()) {
+        throw new Error(
+          `Admin operator login failed with status ${response.status()}.`,
+        );
+      }
       await page.goto(appUrl("/admin"));
     } else {
       const loginButton = page.getByRole("button", { name: "Log in as admin" });
@@ -147,7 +161,7 @@ async function openAdminConsole(page: Page) {
       }
     }
   }
-  await expect(adminHeading).toBeVisible();
+  await adminHeading.waitFor();
 }
 
 async function openAdminPolicies(page: Page) {
@@ -187,11 +201,11 @@ async function openAdminPolicies(page: Page) {
     });
   }
   await page.goto(appUrl("/admin/policies"));
-  await expect(
-    page.getByRole("heading", {
+  await page
+    .getByRole("heading", {
       name: /Govern discounts, wallet rails, and commerce guardrails in one view/i,
-    }),
-  ).toBeVisible();
+    })
+    .waitFor();
 }
 
 async function newIsolatedPage(browser: Browser) {
@@ -204,18 +218,18 @@ async function newIsolatedPage(browser: Browser) {
 
 async function openWallet(page: Page) {
   await page.goto(appUrl("/wallet"));
-  await expect(
-    page.getByRole("heading", {
+  await page
+    .getByRole("heading", {
       name: /Track balances, issued tickets, and claimable coupons/i,
-    }),
-  ).toBeVisible();
+    })
+    .waitFor();
   if (readmeMode) {
     const claimButton = page
       .getByRole("button", { name: "Claim coupon" })
       .first();
     if (await claimButton.isVisible().catch(() => false)) {
       await claimButton.click();
-      await expect(page.getByText("Coupon claimed.")).toBeVisible();
+      await page.getByText("Coupon claimed.").waitFor();
       await hideToaster(page);
     }
   }
@@ -223,11 +237,11 @@ async function openWallet(page: Page) {
 
 async function openOrders(page: Page) {
   await page.goto(appUrl("/orders"));
-  await expect(
-    page.getByRole("heading", {
+  await page
+    .getByRole("heading", {
       name: /Track every draft and publish attempt/i,
-    }),
-  ).toBeVisible();
+    })
+    .waitFor();
 }
 
 test("desktop flow @ui-review", async ({ browser, page }) => {
@@ -359,28 +373,24 @@ test("desktop flow @ui-review", async ({ browser, page }) => {
   }
 });
 
-test("tablet layout @ui-review", async ({ page }) => {
-  test.skip(
-    readmeMode,
-    "README screenshots only need curated desktop captures.",
-  );
-  await page.setViewportSize({ width: 834, height: 1112 });
-  await page.goto(appUrl("/"));
-  await page.getByRole("button", { name: /Smart Phones/ }).click();
-  await expect(page.getByText("iPhone 16 Pro Field Kit")).toBeVisible();
-  await capture(page, "catalog-tablet.png");
-});
+// README screenshots only need curated desktop captures, so the responsive
+// layout checks are registered only for the regular UI review run.
+if (!readmeMode) {
+  test("tablet layout @ui-review", async ({ page }) => {
+    await page.setViewportSize({ width: 834, height: 1112 });
+    await page.goto(appUrl("/"));
+    await page.getByRole("button", { name: /Smart Phones/ }).click();
+    await expect(page.getByText("iPhone 16 Pro Field Kit")).toBeVisible();
+    await capture(page, "catalog-tablet.png");
+  });
 
-test("mobile layout @ui-review", async ({ page }) => {
-  test.skip(
-    readmeMode,
-    "README screenshots only need curated desktop captures.",
-  );
-  await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto(appUrl("/"));
-  await expect(page.getByRole("link", { name: "Catalog" })).toBeVisible();
-  await page.getByPlaceholder("Search title or description").fill("iPhone");
-  await page.getByPlaceholder("Search title or description").press("Enter");
-  await expect(page.getByText("iPhone 16 Pro Field Kit")).toBeVisible();
-  await capture(page, "catalog-mobile.png");
-});
+  test("mobile layout @ui-review", async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto(appUrl("/"));
+    await expect(page.getByRole("link", { name: "Catalog" })).toBeVisible();
+    await page.getByPlaceholder("Search title or description").fill("iPhone");
+    await page.getByPlaceholder("Search title or description").press("Enter");
+    await expect(page.getByText("iPhone 16 Pro Field Kit")).toBeVisible();
+    await capture(page, "catalog-mobile.png");
+  });
+}

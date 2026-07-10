@@ -1,5 +1,4 @@
 import { tags } from "typia";
-
 import { IAttachmentFile } from "../../common/IAttachmentFile";
 
 /**

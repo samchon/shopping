@@ -1,11 +1,10 @@
-import { RandomGenerator } from "@nestia/e2e";
-
 import {
   IShoppingCoupon,
   IShoppingCouponCriteria,
   IShoppingCouponDiscount,
   IShoppingCouponRestriction,
 } from "@samchon/shopping-api";
+import { RandomGenerator } from "@nestia/e2e";
 
 export const prepare_random_coupon = (
   input?: Partial<Omit<IShoppingCoupon.ICreate, "discount" | "restriction">> &

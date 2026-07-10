@@ -1,5 +1,4 @@
 import type { IShoppingMileage } from "@samchon/shopping-api";
-
 import { ShoppingMileageProvider } from "../../providers/shoppings/mileages/ShoppingMileageProvider";
 
 export namespace ShoppingMileageSeeder {

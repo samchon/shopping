@@ -84,7 +84,7 @@ export namespace DateUtil {
       !(year % 100 === 0 && year % 400 !== 0)
     )
       return 29;
-    else return LAST_DATES[month];
+    else return LAST_DATES[month] ?? 31;
   }
 
   export function addYears(date: Date, value: number): Date {

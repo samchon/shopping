@@ -5,11 +5,10 @@ import {
   FastifyAdapter,
   NestFastifyApplication,
 } from "@nestjs/platform-fastify";
-
+import { ShoppingSetupWizard } from "./setup/ShoppingSetupWizard";
 import { ShoppingConfiguration } from "./ShoppingConfiguration";
 import { ShoppingGlobal } from "./ShoppingGlobal";
 import { ShoppingModule } from "./ShoppingModule";
-import { ShoppingSetupWizard } from "./setup/ShoppingSetupWizard";
 
 export class ShoppingBackend {
   private application_?: NestFastifyApplication;

@@ -1,6 +1,3 @@
-import { ArrayUtil } from "@nestia/e2e";
-import { Prisma } from "@prisma/sdk";
-
 import type {
   IEntity,
   IPage,
@@ -13,7 +10,8 @@ import type {
   IShoppingOrderGood,
   IShoppingOrderPrice,
 } from "@samchon/shopping-api";
-
+import { ArrayUtil } from "@nestia/e2e";
+import { Prisma } from "@prisma/sdk";
 import { ShoppingGlobal } from "../../../ShoppingGlobal";
 import { ErrorProvider } from "../../../utils/ErrorProvider";
 import {
@@ -369,7 +367,7 @@ export namespace ShoppingOrderPriceProvider {
     });
     return {
       order,
-      combination,
+      combination: combination ?? null,
     };
   };
 }

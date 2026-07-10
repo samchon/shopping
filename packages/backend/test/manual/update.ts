@@ -1,8 +1,6 @@
+import ShoppingApi from "@samchon/shopping-api";
 import { ArrayUtil } from "@nestia/e2e";
 import { sleep_for } from "tstl";
-
-import ShoppingApi from "@samchon/shopping-api";
-
 import { ShoppingConfiguration } from "../../src/ShoppingConfiguration";
 import { Terminal } from "../../src/utils/Terminal";
 
@@ -31,20 +29,16 @@ async function main(): Promise<void> {
     })
     .catch(() => {});
 
-  try {
-    await Promise.all(
-      ArrayUtil.repeat(600, async (i) => {
-        await sleep_for(i * 10);
-        await ShoppingApi.functional.monitors.system.get(connection);
-      }),
-    );
-  } catch (exp) {
-    throw exp;
-  }
+  await Promise.all(
+    ArrayUtil.repeat(600, async (i) => {
+      await sleep_for(i * 10);
+      await ShoppingApi.functional.monitors.system.get(connection);
+    }),
+  );
   await Terminal.execute("npm run stop");
   await Terminal.execute("npm run stop:updator:master");
 }
-main().catch((exp) => {
+main().catch((exp: unknown) => {
   console.log(exp);
   process.exit(-1);
 });

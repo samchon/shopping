@@ -1,7 +1,4 @@
-import { ArrayUtil, TestValidator } from "@nestia/e2e";
-
-import ShoppingApi from "@samchon/shopping-api";
-import {
+import ShoppingApi, {
   IShoppingCartCommodity,
   IShoppingCartDiscountable,
   IShoppingCoupon,
@@ -11,7 +8,7 @@ import {
   IShoppingSection,
   IShoppingSeller,
 } from "@samchon/shopping-api";
-
+import { ArrayUtil, TestValidator } from "@nestia/e2e";
 import { ShoppingGlobal } from "../../../../../../src/ShoppingGlobal";
 import { ConnectionPool } from "../../../../../ConnectionPool";
 import { test_api_shopping_actor_admin_login } from "../../actors/test_api_shopping_actor_admin_login";
@@ -53,7 +50,9 @@ export const validate_api_shopping_cart_discountable =
       async (sale) => {
         const input: IShoppingCartCommodity.ICreate =
           prepare_random_cart_commodity(sale, { volume: 1 });
-        input.stocks.forEach((stock) => (stock.quantity = 1));
+        input.stocks.forEach((stock) => {
+          stock.quantity = 1;
+        });
         const commodity: IShoppingCartCommodity =
           await ShoppingApi.functional.shoppings.customers.carts.commodities.create(
             pool.customer,

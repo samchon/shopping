@@ -1,19 +1,19 @@
-import { expect, test } from "@playwright/test";
+import { expect, test, type Page } from "@playwright/test";
 
 const SIMULATED_MACBOOK_SALE_ID = "00000000-0000-4000-8000-00000000002e";
 
-async function publishMacbookOrder(page: import("@playwright/test").Page) {
+async function publishMacbookOrder(page: Page) {
   await page.goto("/");
-  await expect(
-    page.getByRole("heading", {
+  await page
+    .getByRole("heading", {
       name: /Browse live sale snapshots with channel, section, and SKU-aware filters/i,
-    }),
-  ).toBeVisible();
+    })
+    .waitFor();
 
   await page.goto(`/products/${SIMULATED_MACBOOK_SALE_ID}`);
-  await expect(
-    page.getByRole("heading", { name: "MacBook Pro 16 Creator Bundle" }),
-  ).toBeVisible();
+  await page
+    .getByRole("heading", { name: "MacBook Pro 16 Creator Bundle" })
+    .waitFor();
   await page.getByRole("button", { name: "Add snapshot to cart" }).click();
   await page.waitForURL("**/cart");
   await page.getByRole("button", { name: "Create order draft" }).click();
@@ -22,11 +22,9 @@ async function publishMacbookOrder(page: import("@playwright/test").Page) {
   await page.locator("#citizen-name").fill("Kim Buyer");
   await page.locator("#citizen-mobile").fill("01055557777");
   await page.getByRole("button", { name: "Verify identity" }).click();
-  await expect(
-    page.getByText(
-      "Identity verified. You can now continue to publish the order.",
-    ),
-  ).toBeVisible();
+  await page
+    .getByText("Identity verified. You can now continue to publish the order.")
+    .waitFor();
 
   await page.locator("#address-name").fill("Kim Buyer");
   await page.locator("#address-mobile").fill("01055557777");
@@ -36,11 +34,11 @@ async function publishMacbookOrder(page: import("@playwright/test").Page) {
   await page.locator("#address-zip-code").fill("06123");
   await page.locator("#address-possession").fill("Teheran-ro 123");
   await page.getByRole("button", { name: "Publish order" }).click();
-  await expect(page.getByText("Published delivery snapshot")).toBeVisible();
+  await page.getByText("Published delivery snapshot").waitFor();
 }
 
 async function openSessionAndVerifyIdentity(
-  page: import("@playwright/test").Page,
+  page: Page,
   name: string,
   mobile: string,
 ) {
@@ -50,7 +48,7 @@ async function openSessionAndVerifyIdentity(
   await page.getByLabel("Name").fill(name);
   await page.getByLabel("Mobile").fill(mobile);
   await page.getByRole("button", { name: "Save identity" }).click();
-  await expect(page.getByText("Identity verified.")).toBeVisible();
+  await page.getByText("Identity verified.").waitFor();
   await page.keyboard.press("Escape");
 }
 

@@ -1,13 +1,10 @@
+import ShoppingApi, { IPage, IShoppingChannel } from "@samchon/shopping-api";
 import {
   ArrayUtil,
   GaffComparator,
   RandomGenerator,
   TestValidator,
 } from "@nestia/e2e";
-
-import ShoppingApi from "@samchon/shopping-api";
-import { IPage, IShoppingChannel } from "@samchon/shopping-api";
-
 import { ConnectionPool } from "../../../../ConnectionPool";
 import { test_api_shopping_actor_admin_login } from "../actors/test_api_shopping_actor_admin_login";
 

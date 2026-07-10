@@ -1,3 +1,9 @@
+import ShoppingApi, {
+  IPage,
+  IShoppingCoupon,
+  IShoppingCouponCriteria,
+  IShoppingSale,
+} from "@samchon/shopping-api";
 import {
   ArrayUtil,
   GaffComparator,
@@ -6,15 +12,6 @@ import {
 } from "@nestia/e2e";
 import { randint } from "tstl";
 import typia from "typia";
-
-import ShoppingApi from "@samchon/shopping-api";
-import {
-  IPage,
-  IShoppingCoupon,
-  IShoppingCouponCriteria,
-  IShoppingSale,
-} from "@samchon/shopping-api";
-
 import { ConnectionPool } from "../../../../ConnectionPool";
 import { test_api_shopping_actor_admin_login } from "../actors/test_api_shopping_actor_admin_login";
 import { test_api_shopping_actor_seller_join } from "../actors/test_api_shopping_actor_seller_join";

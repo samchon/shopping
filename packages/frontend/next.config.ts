@@ -1,7 +1,7 @@
-import path from "node:path";
+import withTtsc from "@ttsc/unplugin/next";
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
+const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
@@ -13,17 +13,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  webpack: (config) => {
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      "@": path.resolve(process.cwd(), "src"),
-      "@nestia/fetcher$": path.resolve(
-        process.cwd(),
-        "node_modules/@nestia/fetcher/lib/index.js",
-      ),
-    };
-    return config;
-  },
-};
+} satisfies NextConfig;
 
-export default nextConfig;
+export default withTtsc(nextConfig);

@@ -75,11 +75,17 @@ export function AdminDashboardPage() {
   const createAdminMileage = useCreateAdminMileage();
 
   const [couponUnit, setCouponUnit] = useState<"amount" | "percent">("percent");
-  const [couponAccess, setCouponAccess] = useState<"public" | "private">("public");
+  const [couponAccess, setCouponAccess] = useState<"public" | "private">(
+    "public",
+  );
   const [couponExclusive, setCouponExclusive] = useState(false);
   const [couponMultiplicative, setCouponMultiplicative] = useState(false);
-  const [depositDirection, setDepositDirection] = useState<"income" | "outcome">("income");
-  const [mileageDirection, setMileageDirection] = useState<"income" | "outcome">("income");
+  const [depositDirection, setDepositDirection] = useState<"income" | "outcome">(
+    "income",
+  );
+  const [mileageDirection, setMileageDirection] = useState<"income" | "outcome">(
+    "income",
+  );
 
   const loginForm = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
@@ -173,7 +179,9 @@ export function AdminDashboardPage() {
                   >
                     <div className="grid gap-2">
                       <Label htmlFor="admin-email">Admin email</Label>
-                      <Input id="admin-email" {...loginForm.register("email")} />
+                      <Input id="admin-email" {...loginForm.register(
+                        "email",
+                      )} />
                       <FormMessage message={loginForm.formState.errors.email?.message} />
                     </div>
                     <div className="grid gap-2">
@@ -216,7 +224,7 @@ export function AdminDashboardPage() {
                     disabled={!session.canJoin || joinAdmin.isPending}
                     onClick={async () => {
                       try {
-                        await joinAdmin.mutateAsync();
+                        await joinAdmin.mutateAsync(undefined);
                         toast.success("This customer session is now an administrator.");
                       } catch (error) {
                         toast.error(
@@ -424,14 +432,19 @@ export function AdminDashboardPage() {
                 </div>
               </div>
               <div className="flex flex-wrap gap-4">
-                <label className="flex items-center gap-2 text-sm">
-                  <Checkbox checked={couponExclusive} onCheckedChange={(value) => setCouponExclusive(value === true)} />
+                <label className="flex items-center gap-2 text-sm" htmlFor="coupon-exclusive">
+                  <Checkbox
+                    checked={couponExclusive}
+                    id="coupon-exclusive"
+                    onCheckedChange={(value) => setCouponExclusive(value === true)}
+                  />
                   Exclusive coupon
                 </label>
                 {couponUnit === "amount" ? (
-                  <label className="flex items-center gap-2 text-sm">
+                  <label className="flex items-center gap-2 text-sm" htmlFor="coupon-multiplicative">
                     <Checkbox
                       checked={couponMultiplicative}
+                      id="coupon-multiplicative"
                       onCheckedChange={(value) => setCouponMultiplicative(value === true)}
                     />
                     Multiplicative amount

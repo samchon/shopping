@@ -1,5 +1,4 @@
 import { tags } from "typia";
-
 import { IShoppingCouponCombination } from "../coupons/IShoppingCouponCombination";
 import { IShoppingDiscountable } from "../coupons/IShoppingDiscountable";
 

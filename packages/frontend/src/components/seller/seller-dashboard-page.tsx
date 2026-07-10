@@ -39,7 +39,10 @@ import {
   useRestoreSellerSale,
   useSellerDashboard,
 } from "@/lib/shopping/hooks";
-import type { SellerOpenSalePayload, SellerSaleView } from "@/lib/shopping/types";
+import type {
+  SellerOpenSalePayload,
+  SellerSaleView,
+} from "@/lib/shopping/types";
 import { formatCurrency, formatDateTime } from "@/lib/utils";
 
 const loginSchema = z.object({
@@ -99,7 +102,9 @@ function SellerSaleCard({ sale }: { sale: SellerSaleView }) {
       await openSellerSale.mutateAsync(payload);
       toast.success("Sale schedule updated.");
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Sale schedule update failed.");
+      toast.error(
+        error instanceof Error ? error.message : "Sale schedule update failed.",
+      );
     }
   }
 
@@ -177,7 +182,7 @@ function SellerSaleCard({ sale }: { sale: SellerSaleView }) {
               disabled={restoreSellerSale.isPending}
               onClick={async () => {
                 try {
-                  await restoreSellerSale.mutateAsync();
+                  await restoreSellerSale.mutateAsync(undefined);
                   toast.success("Sale restored.");
                 } catch (error) {
                   toast.error(error instanceof Error ? error.message : "Sale restore failed.");
@@ -192,7 +197,7 @@ function SellerSaleCard({ sale }: { sale: SellerSaleView }) {
               disabled={pauseSellerSale.isPending}
               onClick={async () => {
                 try {
-                  await pauseSellerSale.mutateAsync();
+                  await pauseSellerSale.mutateAsync(undefined);
                   toast.success("Sale paused.");
                 } catch (error) {
                   toast.error(error instanceof Error ? error.message : "Sale pause failed.");
@@ -313,7 +318,9 @@ export function SellerDashboardPage() {
                   >
                     <div className="grid gap-2">
                       <Label htmlFor="seller-email">Seller email</Label>
-                      <Input id="seller-email" {...loginForm.register("email")} />
+                      <Input id="seller-email" {...loginForm.register(
+                        "email",
+                      )} />
                       <FormMessage message={loginForm.formState.errors.email?.message} />
                     </div>
                     <div className="grid gap-2">
@@ -360,7 +367,7 @@ export function SellerDashboardPage() {
                     disabled={!session.canJoin || joinSeller.isPending}
                     onClick={async () => {
                       try {
-                        await joinSeller.mutateAsync();
+                        await joinSeller.mutateAsync(undefined);
                         toast.success("This customer session is now a seller.");
                       } catch (error) {
                         toast.error(
@@ -383,7 +390,9 @@ export function SellerDashboardPage() {
   }
 
   const selectedSourceSaleId = sourceSaleId || sales[0]?.id || "";
-  const sourceSale = sales.find((sale) => sale.id === selectedSourceSaleId) ?? sales[0] ?? null;
+  const sourceSale = sales.find(
+    (sale) => sale.id === selectedSourceSaleId,
+  ) ?? sales[0] ?? null;
 
   return (
     <div className="grid gap-6">

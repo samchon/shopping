@@ -1,5 +1,5 @@
-import { ShoppingGlobal } from "../ShoppingGlobal";
 import { ShoppingSetupWizard } from "../setup/ShoppingSetupWizard";
+import { ShoppingGlobal } from "../ShoppingGlobal";
 
 async function main(): Promise<void> {
   console.log("------------------------------------------");
@@ -13,7 +13,7 @@ async function main(): Promise<void> {
   console.log("------------------------------------------");
   await ShoppingSetupWizard.seed();
 }
-main().catch((exp) => {
+main().catch((exp: unknown) => {
   console.log(exp);
   process.exit(-1);
 });

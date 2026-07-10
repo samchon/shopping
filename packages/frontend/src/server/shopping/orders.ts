@@ -15,9 +15,9 @@ import ShoppingApi from "@samchon/shopping-api";
 
 import { ApiRouteError } from "./errors";
 import {
-  type SessionContext,
   requireCitizen,
   requireCurrentCustomer,
+  type SessionContext,
 } from "./session";
 
 export async function getOrdersData(

@@ -1,5 +1,4 @@
 import type { IShoppingSection } from "@samchon/shopping-api";
-
 import { ShoppingSectionProvider } from "../../providers/shoppings/systematic/ShoppingSectionProvider";
 
 export namespace ShoppingSectionSeeder {

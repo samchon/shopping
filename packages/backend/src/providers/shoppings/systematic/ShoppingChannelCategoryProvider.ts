@@ -1,3 +1,8 @@
+import type {
+  IEntity,
+  IRecordMerge,
+  IShoppingChannelCategory,
+} from "@samchon/shopping-api";
 import { Prisma, shopping_channel_categories } from "@prisma/sdk";
 import {
   IPointer,
@@ -6,13 +11,6 @@ import {
   VariadicSingleton,
 } from "tstl";
 import { v4 } from "uuid";
-
-import type {
-  IEntity,
-  IRecordMerge,
-  IShoppingChannelCategory,
-} from "@samchon/shopping-api";
-
 import { ShoppingGlobal } from "../../../ShoppingGlobal";
 import { ErrorProvider } from "../../../utils/ErrorProvider";
 import { CacheProvider } from "../../common/CacheProvider";

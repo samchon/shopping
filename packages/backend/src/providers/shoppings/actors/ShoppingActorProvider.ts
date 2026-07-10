@@ -1,5 +1,7 @@
-import type { IShoppingActorEntity, IShoppingCustomer } from "@samchon/shopping-api";
-
+import type {
+  IShoppingActorEntity,
+  IShoppingCustomer,
+} from "@samchon/shopping-api";
 import { ShoppingCustomerProvider } from "./ShoppingCustomerProvider";
 
 export namespace ShoppingActorProvider {

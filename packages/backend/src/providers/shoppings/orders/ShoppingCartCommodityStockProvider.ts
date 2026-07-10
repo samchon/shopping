@@ -1,12 +1,10 @@
-import { Prisma } from "@prisma/sdk";
-import { v4 } from "uuid";
-
 import type {
   IShoppingCartCommodityStock,
   IShoppingSaleUnit,
   IShoppingSaleUnitStock,
 } from "@samchon/shopping-api";
-
+import { Prisma } from "@prisma/sdk";
+import { v4 } from "uuid";
 import { ErrorProvider } from "../../../utils/ErrorProvider";
 import { ShoppingSaleSnapshotUnitProvider } from "../sales/ShoppingSaleSnapshotUnitProvider";
 import { ShoppingCartCommodityStockChoiceProvider } from "./ShoppingCartCommodityStockChoiceProvider";

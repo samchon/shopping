@@ -17,10 +17,8 @@
   },
   "homepage": "https://github.com/samchon/shopping#readme",
   "scripts": {
-    "build": "pnpm build:sdk && pnpm build:ttsc && pnpm build:rollup",
+    "build": "rimraf lib && ttsc && rolldown -c",
     "build:sdk": "cd ../backend && pnpm build:sdk",
-    "build:ttsc": "ttsc -p tsconfig.json",
-    "build:rollup": "rollup -c",
     "format": "ttsc format -p tsconfig.json",
     "lint": "ttsc -p tsconfig.json --noEmit",
     "prepack": "pnpm build"
@@ -31,10 +29,11 @@
     "uuid": "catalog:utils"
   },
   "devDependencies": {
-    "@samchon/shopping-api": "workspace:^",
-    "@rollup/plugin-terser": "^0.4.4",
     "@ttsc/lint": "catalog:typescript",
-    "rollup": "^4.60.1",
+    "@ttsc/unplugin": "catalog:typescript",
+    "rimraf": "catalog:utils",
+    "rolldown": "^1.1.5",
+    "tinyglobby": "^0.2.17",
     "ttsc": "catalog:typescript",
     "typescript": "catalog:typescript"
   },

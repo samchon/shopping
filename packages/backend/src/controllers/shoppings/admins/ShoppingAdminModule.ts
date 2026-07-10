@@ -1,5 +1,4 @@
 import { Module } from "@nestjs/common";
-
 import { ShoppingAdminAuthenticateModule } from "./authenticate/ShoppingAdminAuthenticateModule";
 import { ShoppingAdminDiscountModule } from "./discounts/ShoppingAdminDiscountModule";
 import { ShoppingAdminOrderModule } from "./orders/ShoppingAdminOrderModule";

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ChevronLeft, PackagePlus, ShieldAlert } from "lucide-react";
@@ -71,9 +72,19 @@ function getFieldOptions(unit: ProductUnitView) {
   );
 }
 
-function stockChoiceMap(unit: ProductUnitView, stockId: string) {
-  const stock = unit.stocks.find((candidate) => candidate.id === stockId) ?? unit.stocks[0];
-  return Object.fromEntries(stock?.choices.map((choice) => [choice.optionId, choice.candidateId]));
+function stockChoiceMap(
+  unit: ProductUnitView,
+  stockId: string,
+): Record<string, string> {
+  const stock = unit.stocks.find(
+    (candidate) => candidate.id === stockId,
+  ) ?? unit.stocks[0];
+  if (stock === undefined) {
+    return {};
+  }
+  return Object.fromEntries(
+    stock.choices.map((choice) => [choice.optionId, choice.candidateId]),
+  );
 }
 
 function findMatchingStock(
@@ -171,16 +182,23 @@ export function ProductDetailPage({ productId }: { productId: string }) {
       saleId: data.id,
       volume: 1,
       selections: data.units
-        .filter((unit) => selection[unit.id]?.enabled)
-        .map((unit) => ({
-          unitId: unit.id,
-          stockId: selection[unit.id].stockId,
-          quantity: selection[unit.id].quantity,
-          optionValues: getFieldOptions(unit).map((option) => ({
-            optionId: option.id,
-            value: selection[unit.id].fields[option.id] ?? null,
-          })),
-        })),
+        .flatMap((unit) => {
+          const unitSelection = selection[unit.id];
+          if (!unitSelection?.enabled) {
+            return [];
+          }
+          return [
+            {
+              unitId: unit.id,
+              stockId: unitSelection.stockId,
+              quantity: unitSelection.quantity,
+              optionValues: getFieldOptions(unit).map((option) => ({
+                optionId: option.id,
+                value: unitSelection.fields[option.id] ?? null,
+              })),
+            },
+          ];
+        }),
     };
 
     try {
@@ -188,7 +206,9 @@ export function ProductDetailPage({ productId }: { productId: string }) {
       toast.success("Added to cart.");
       router.push("/cart");
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Could not add the product.");
+      toast.error(
+        error instanceof Error ? error.message : "Could not add the product.",
+      );
     }
   }
 
@@ -210,9 +230,15 @@ export function ProductDetailPage({ productId }: { productId: string }) {
       <div className="grid gap-6 lg:grid-cols-[1.2fr,0.8fr]">
         <div className="grid gap-6">
           <Card className="overflow-hidden">
-            <div className="aspect-[4/3] overflow-hidden bg-muted">
+            <div className="relative aspect-[4/3] overflow-hidden bg-muted">
               {primaryImage ? (
-                <img alt={data.title} className="h-full w-full object-cover" src={primaryImage} />
+                <Image
+                  alt={data.title}
+                  className="object-cover"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  src={primaryImage}
+                />
               ) : null}
             </div>
             <CardContent className="grid gap-5 p-6">
@@ -319,6 +345,9 @@ export function ProductDetailPage({ productId }: { productId: string }) {
 
                 const activeStock =
                   unit.stocks.find((stock) => stock.id === unitState.stockId) ?? unit.stocks[0];
+                if (activeStock === undefined) {
+                  return null;
+                }
                 const variantOptions = getVariantOptions(unit);
                 const fieldOptions = getFieldOptions(unit);
                 const currentChoices = stockChoiceMap(unit, unitState.stockId);
@@ -337,9 +366,13 @@ export function ProductDetailPage({ productId }: { productId: string }) {
                         </p>
                       </div>
                       {!unit.required ? (
-                        <label className="flex items-center gap-2 text-sm">
+                        <label
+                          className="flex items-center gap-2 text-sm"
+                          htmlFor={`unit-include-${unit.id}`}
+                        >
                           <Checkbox
                             checked={unitState.enabled}
+                            id={`unit-include-${unit.id}`}
                             onCheckedChange={(checked) =>
                               setSelectionOverrides((current) => {
                                 const safeUnitState = {
@@ -371,7 +404,12 @@ export function ProductDetailPage({ productId }: { productId: string }) {
                           <div className="grid gap-3">
                             {variantOptions.map((option) => (
                               <div key={option.id} className="grid gap-2">
-                                <label className="text-sm font-medium">{option.name}</label>
+                                <label
+                                  className="text-sm font-medium"
+                                  htmlFor={`unit-${unit.id}-variant-${option.id}`}
+                                >
+                                  {option.name}
+                                </label>
                                 <Select
                                   onValueChange={(candidateId) => {
                                     const matched = findMatchingStock(
@@ -380,6 +418,9 @@ export function ProductDetailPage({ productId }: { productId: string }) {
                                       option.id,
                                       candidateId,
                                     );
+                                    if (matched === undefined) {
+                                      return;
+                                    }
                                     setSelectionOverrides((current) => {
                                       const safeUnitState = {
                                         ...unitState,
@@ -400,7 +441,7 @@ export function ProductDetailPage({ productId }: { productId: string }) {
                                   }}
                                   value={currentChoices[option.id]}
                                 >
-                                  <SelectTrigger>
+                                  <SelectTrigger id={`unit-${unit.id}-variant-${option.id}`}>
                                     <SelectValue placeholder={`Choose ${option.name}`} />
                                   </SelectTrigger>
                                   <SelectContent>
@@ -417,7 +458,12 @@ export function ProductDetailPage({ productId }: { productId: string }) {
                         ) : null}
 
                         <div className="grid gap-2">
-                          <label className="text-sm font-medium">Final stock</label>
+                          <label
+                            className="text-sm font-medium"
+                            htmlFor={`unit-${unit.id}-stock`}
+                          >
+                            Final stock
+                          </label>
                           <Select
                             onValueChange={(value) =>
                               setSelectionOverrides((current) => {
@@ -440,7 +486,7 @@ export function ProductDetailPage({ productId }: { productId: string }) {
                             }
                             value={unitState.stockId}
                           >
-                            <SelectTrigger>
+                            <SelectTrigger id={`unit-${unit.id}-stock`}>
                               <SelectValue placeholder="Choose a stock" />
                             </SelectTrigger>
                             <SelectContent>
@@ -460,11 +506,20 @@ export function ProductDetailPage({ productId }: { productId: string }) {
                           <div className="grid gap-3">
                             {fieldOptions.map((option) => (
                               <div key={option.id} className="grid gap-2">
-                                <label className="text-sm font-medium">{option.name}</label>
+                                <label
+                                  className="text-sm font-medium"
+                                  htmlFor={`unit-${unit.id}-field-${option.id}`}
+                                >
+                                  {option.name}
+                                </label>
                                 {option.inputType === "checkbox" ? (
-                                  <label className="flex items-center gap-2 rounded-2xl border border-border px-3 py-3">
+                                  <label
+                                    className="flex items-center gap-2 rounded-2xl border border-border px-3 py-3"
+                                    htmlFor={`unit-${unit.id}-field-${option.id}`}
+                                  >
                                     <Checkbox
                                       checked={Boolean(unitState.fields[option.id])}
+                                      id={`unit-${unit.id}-field-${option.id}`}
                                       onCheckedChange={(checked) =>
                                         setSelectionOverrides((current) => {
                                           const safeUnitState = {
@@ -492,6 +547,7 @@ export function ProductDetailPage({ productId }: { productId: string }) {
                                   </label>
                                 ) : (
                                   <Input
+                                    id={`unit-${unit.id}-field-${option.id}`}
                                     onChange={(event) =>
                                       setSelectionOverrides((current) => {
                                         const safeUnitState = {
@@ -527,7 +583,7 @@ export function ProductDetailPage({ productId }: { productId: string }) {
                         ) : null}
 
                         <div className="grid gap-2">
-                          <label className="text-sm font-medium">Quantity per set</label>
+                          <span className="text-sm font-medium">Quantity per set</span>
                           <div className="flex items-center gap-2">
                             <Button
                               onClick={() =>

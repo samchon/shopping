@@ -1,13 +1,11 @@
-import fs from "fs";
-import typia from "typia";
-
 import type { IShoppingSale, IShoppingSeller } from "@samchon/shopping-api";
-
-import { ShoppingConfiguration } from "../../ShoppingConfiguration";
-import { ShoppingGlobal } from "../../ShoppingGlobal";
+import fs from "node:fs";
+import typia from "typia";
 import { ShoppingCustomerProvider } from "../../providers/shoppings/actors/ShoppingCustomerProvider";
 import { ShoppingSellerProvider } from "../../providers/shoppings/actors/ShoppingSellerProvider";
 import { ShoppingSaleProvider } from "../../providers/shoppings/sales/ShoppingSaleProvider";
+import { ShoppingConfiguration } from "../../ShoppingConfiguration";
+import { ShoppingGlobal } from "../../ShoppingGlobal";
 
 export namespace ShoppingSaleSeeder {
   export const seed = async (): Promise<void> => {

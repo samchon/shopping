@@ -1,10 +1,9 @@
-import { Prisma } from "@prisma/sdk";
-import { IPointer } from "tstl";
-
 import type {
   IShoppingCouponCriteria,
   IShoppingCouponFunnelCriteria,
 } from "@samchon/shopping-api";
+import { Prisma } from "@prisma/sdk";
+import { IPointer } from "tstl";
 
 export namespace ShoppingCouponFunnelCriteriaProvider {
   /* -----------------------------------------------------------

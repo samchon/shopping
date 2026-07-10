@@ -9,7 +9,7 @@ import "server-only";
 
 import ShoppingApi from "@samchon/shopping-api";
 
-import { type SessionContext, requireCurrentCustomer } from "./session";
+import { requireCurrentCustomer, type SessionContext } from "./session";
 
 export async function getSessionData(
   context: SessionContext,

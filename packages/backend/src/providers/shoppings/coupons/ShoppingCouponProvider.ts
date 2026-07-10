@@ -1,7 +1,3 @@
-import { HttpException } from "@nestjs/common";
-import { Prisma } from "@prisma/sdk";
-import { v4 } from "uuid";
-
 import type {
   IPage,
   IShoppingActorEntity,
@@ -9,7 +5,9 @@ import type {
   IShoppingCoupon,
   IShoppingSeller,
 } from "@samchon/shopping-api";
-
+import { HttpException } from "@nestjs/common";
+import { Prisma } from "@prisma/sdk";
+import { v4 } from "uuid";
 import { ShoppingGlobal } from "../../../ShoppingGlobal";
 import { ErrorProvider } from "../../../utils/ErrorProvider";
 import { PaginationUtil } from "../../../utils/PaginationUtil";
@@ -57,9 +55,8 @@ export namespace ShoppingCouponProvider {
       },
       inventory: {
         volume: input.mv_inventory?.value ?? null,
-        volume_per_citizen: input.mv_citizen_inventories?.length
-          ? input.mv_citizen_inventories[0].value
-          : input.volume_per_citizen,
+        volume_per_citizen:
+          input.mv_citizen_inventories?.[0]?.value ?? input.volume_per_citizen,
       },
       criterias: await ShoppingCouponCriterialProvider.json.transform(
         input.criterias.sort((a, b) => a.sequence - b.sequence),
