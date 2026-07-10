@@ -37,7 +37,11 @@ export default defineConfig(({ mode }) => {
     "VITE_SHOPPING_API_SIMULATE",
     "SHOPPING_API_SIMULATE",
   ]) {
-    process.env[key] ??= env[key];
+    // Assigning undefined to process.env coerces it to the string "undefined",
+    // which would defeat the runtime fallbacks in src/server/shopping/config.ts.
+    if (process.env[key] === undefined && env[key] !== undefined) {
+      process.env[key] = env[key];
+    }
   }
 
   return {
